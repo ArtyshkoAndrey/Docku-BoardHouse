@@ -49922,8 +49922,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\OpenServer\domains\docu\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\OpenServer\domains\docu\resources\sass\user\app.scss */"./resources/sass/user/app.scss");
+__webpack_require__(/*! C:\Users\Hugant Mirron\Documents\OpenServer\domains\Docu\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Hugant Mirron\Documents\OpenServer\domains\Docu\resources\sass\user\app.scss */"./resources/sass/user/app.scss");
 
 
 /***/ })
