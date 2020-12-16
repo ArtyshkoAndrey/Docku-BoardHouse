@@ -3,3 +3,24 @@
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
 
+.header-nav {
+  margin-top: 1.5em;
+}
+
+.header-nav.dark .nav-link {
+  color: #2D3134;
+}
+
+.header-nav.dark .nav-link:hover {
+  color: #1d1f21;
+}
+
+.header-nav .nav-item {
+  margin: 0 0.5em 0 0.5em;
+}
+
+.header-nav .center-block {
+  margin-right: 1.5em;
+  margin-left: 1.5em;
+}
+
