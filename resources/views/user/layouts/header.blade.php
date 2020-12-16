@@ -1,4 +1,4 @@
-<nav class="nav header-nav dark justify-content-center align-items-center">
+<nav class="nav header-nav dark justify-content-center align-items-center {{ $theme_menu }}">
   <li class="nav-item dropdown left-block">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Тенге(Т)</a>
     <div class="dropdown-menu">

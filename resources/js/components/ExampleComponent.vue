@@ -16,8 +16,14 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+      props: {
+        valueName: {
+          type: String,
+          required: false // или тру если это обяз параметр для компонета. а дальше везде тупо this.valueName
         }
+      },
+      mounted() {
+          console.log('Component mounted.')
+      }
     }
 </script>
