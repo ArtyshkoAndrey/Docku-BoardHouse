@@ -7,16 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Краткая настройка для работы
-
-- Скачать phpstorm.
-- Скачать nodejs ласт нормальной версии
-- Установить в phpstorm библиатеку Laravel.
-- Скачать openserver
-- Попросить Андрея настроить его
-- Склонировать проект в папку domains, сам преокт должен быть в папке docu
-- Дальше попросить Андрея и он тебе раскажет
-
-- Работает в ветке local. Все изменения присылать пул реквестом, я буду чекать его и принимать
+## Информация
+ - Перед комитами, проверять на pull
+ - В консоле прописать `php artisan model:fresh`
+ - В консоле прописать `php artisan db:seed`
 
 
