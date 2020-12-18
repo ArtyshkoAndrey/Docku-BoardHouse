@@ -9,7 +9,7 @@
 
 ## Информация
  - Перед комитами, проверять на pull
- - В консоле прописать `php artisan model:fresh`
+ - В консоле прописать `php artisan migrate:fresh`
  - В консоле прописать `php artisan db:seed`
 
 
