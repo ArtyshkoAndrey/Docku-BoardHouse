@@ -1,10 +1,22 @@
 <nav class="nav header-nav dark justify-content-center align-items-center {{ $theme_menu }}">
   <li class="nav-item dropdown left-block">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Тенге(Т)</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Рубль</a>
-      <a class="dropdown-item" href="#">Dollar USA</a>
-    </div>
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="navbarDropdown"
+       role="button"
+       data-mdb-toggle="dropdown"
+       aria-expanded="false"
+    >
+      Тенге(Т)
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </li>
+    </ul>
   </li>
 
   <li class="nav-item center-block d-flex align-items-center">

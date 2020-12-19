@@ -10,7 +10,7 @@
 @import 'resources/sass/variables';
 
 // Bootstrap
-@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '~mdb-ui-kit/css/mdb.min.css';
 
 // Стили для шапки
 @import 'header';

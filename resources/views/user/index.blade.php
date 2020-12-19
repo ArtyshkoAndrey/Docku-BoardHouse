@@ -3,11 +3,13 @@
 {{-- Говорим шаблону что будет переменная в нём с значением --}}
 
 @section('content')
+  <button type="button" class="btn btn-primary">Добавить в корзину</button>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
           Главная страница
+          <button type="button" class="btn btn-primary">Button</button>
         </div>
       </div>
     </div>

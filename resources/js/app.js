@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import * as mdb from 'mdb-ui-kit'
 
 window.Vue = require('vue');
 
