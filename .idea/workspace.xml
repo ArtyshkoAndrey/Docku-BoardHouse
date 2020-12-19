@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="7af8fac1-46f0-48db-8a3b-e119f2562549" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/layouts/app.blade.php" afterDir="false" />
     </list>
+=======
+    <list default="true" id="7af8fac1-46f0-48db-8a3b-e119f2562549" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,7 +173,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../modules/php/PHP_7.4/php.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -207,7 +211,12 @@
       <workItem from="1608050355877" duration="5212000" />
       <workItem from="1608259585678" duration="10242000" />
       <workItem from="1608313137419" duration="733000" />
+<<<<<<< Updated upstream
       <workItem from="1608370716035" duration="6765000" />
+=======
+      <workItem from="1608370716035" duration="3410000" />
+      <workItem from="1608375128599" duration="2836000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
