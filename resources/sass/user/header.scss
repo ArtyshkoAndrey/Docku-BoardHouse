@@ -15,11 +15,20 @@
   color: #1d1f21;
 }
 
-.header-nav .nav-item {
-  margin: 0 0.5em 0 0.5em;
+.navbar-brand.small-brand img {
+  width: 128px;
+  height: 32px;
 }
 
-.header-nav .center-block {
+.navbar .nav-item {
+  margin: 0 0.5em 0 0.5em;
+  word-wrap: break-word;
+}
+
+.navbar .nav-item.center-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin-right: 1.5em;
   margin-left: 1.5em;
 }
