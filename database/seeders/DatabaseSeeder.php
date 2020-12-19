@@ -42,5 +42,38 @@ class DatabaseSeeder extends Seeder
       'updated_at'  => now(),
     ]);
     $this->command->info('User table seeded!');
+
+    DB::table('brands')->insert([
+      'name'        => 'Nike',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+
+    DB::table('brands')->insert([
+      'name'        => 'Adidas',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    $this->command->info('Brands table seeded!');
+
+    DB::table('categories')->insert([
+      'name'        => 'Сноуборды',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+
+    DB::table('categories')->insert([
+      'name'        => 'Сноуборды',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+
+    DB::table('categories_categories')->insert([
+      'category_id'  => 1,
+      'child_category_id'  => 2,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    $this->command->info('Categories table seeded!');
   }
 }
