@@ -46,7 +46,14 @@
             <i class="bx bx-sm bx-user"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Артышко Андрей</a></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <img class="rounded-circle"
+                     src="{{ asset('images/user-photo.jpg') }}"
+                     style="width: 25px; height: 25px; margin-right: 1em;"/>
+                <span>Артышко Андрей</span>
+              </a>
+            </li>
             <li><a class="dropdown-item" href="#">Войти</a></li>
             <li><a class="dropdown-item" href="#">Зарегистрироваться</a></li>
           </ul>
@@ -70,12 +77,21 @@
                 <img src="{{ asset('images/product.png') }}" alt="" class="img-fluid pb-2">
               </div>
               <div class="col-9 col-sm-10 border-bottom">
-                <div class="row align-items-center h-100">
+                <div class="row align-items-center justify-content-between h-100">
                   <div class="col-12 col-sm-6">
                     <p class="m-0">Резиновые сапоги Maximo</p>
                   </div>
                   <div class="col-auto ml-auto font-weight-bolder">
                     <p class="m-0">6 000 ₸</p>
+                  </div>
+                  <div class="col-2 d-flex justify-content-around align-items-center">
+                    <button type="button" class="btn btn-dark cart-button">
+                      <i class="bx bx-minus"></i>
+                    </button>
+                    <p id="cart-item-amount-1" class="mx-2 my-auto">1</p>
+                    <button type="button" class="btn btn-dark cart-button">
+                      <i class="bx bx-plus"></i>
+                    </button>
                   </div>
                   <div class="col-2">
                     <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
@@ -91,12 +107,21 @@
                 <img src="{{ asset('images/product.png') }}" alt="" class="img-fluid pb-2">
               </div>
               <div class="col-9 col-sm-10 border-bottom">
-                <div class="row align-items-center h-100">
+                <div class="row align-items-center justify-content-between h-100">
                   <div class="col-12 col-sm-6">
                     <p class="m-0">Резиновые сапоги Maximo</p>
                   </div>
                   <div class="col-auto ml-auto font-weight-bolder">
                     <p class="m-0">6 000 ₸</p>
+                  </div>
+                  <div class="col-2 d-flex justify-content-around align-items-center">
+                    <button type="button" class="btn btn-dark cart-button">
+                      <i class="bx bx-minus"></i>
+                    </button>
+                    <p id="cart-item-amount-2" class="mx-2 my-auto">1</p>
+                    <button type="button" class="btn btn-dark cart-button">
+                      <i class="bx bx-plus"></i>
+                    </button>
                   </div>
                   <div class="col-2">
                     <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
@@ -107,13 +132,13 @@
               </div>
             </div>
 
-            <div class="row justify-content-between mt-3">
-              <div class="col-auto">
-                <a href="#" class="btn btn-dark">Перейти в корзине</a>
+            <div class="row align-items-center justify-content-between mt-3">
+              <div class="col-6">
+                <a href="#" class="btn btn-dark">Перейти в корзину</a>
               </div>
-              <div class="col-auto">
-                <p class="h6 font-weight-normal">Итого: 20 000 ₸</p>
-                <a href="javascript:;" class="text-decoration-none">Очистить корзину</a>
+              <div class="col-6" style="text-align: right;">
+                <p class="h6 font-weight-bold">Итого: 20 000 ₸</p>
+                <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
               </div>
             </div>
           </div>
