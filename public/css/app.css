@@ -16607,8 +16607,15 @@ body {
  * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
-.navbar {
+.header {
   position: absolute;
+  width: 100%;
+}
+.header hr {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.0205) 0%, rgba(255, 255, 255, 0) 10%, white 47.45%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 0.0205) 100%);
+}
+
+.navbar {
   width: 100%;
   background: transparent;
   box-shadow: none;
@@ -16769,6 +16776,43 @@ body {
   }
   #intro .preview i {
     margin-left: 10px;
+  }
+}
+.category-menu {
+  padding: 0;
+}
+.category-menu .navbar-nav {
+  overflow-y: auto;
+}
+.category-menu .dropdown {
+  position: inherit !important;
+}
+.category-menu .dropdown .dropdown-menu {
+  left: 0 !important;
+  width: 100vw !important;
+  border-radius: 0 !important;
+}
+.category-menu .dropdown .dropdown-menu .row .item {
+  display: flex;
+}
+.category-menu .dropdown .dropdown-menu .row > div {
+  padding-bottom: 2em;
+}
+.category-menu .dropdown .dropdown-menu .row .item {
+  display: block;
+  color: #696d73;
+  padding: 0.5em 0;
+}
+.category-menu .dropdown .dropdown-menu .row .item:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .category-menu .navbar-nav {
+    overflow-y: visible;
+  }
+  .category-menu .dropdown .dropdown-menu {
+    width: calc(100vw - 17px) !important;
   }
 }
 /*!
