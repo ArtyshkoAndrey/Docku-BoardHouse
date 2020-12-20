@@ -11,5 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/user/app.scss', 'public/css');
+mix.options({processCssUrls: false})
+  .js('resources/js/app.js', 'public/js')
+  .sass('resources/sass/user/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+  mix.version();
+}
+
+mix.browserSync('http://docu');
+mix.disableNotifications();
