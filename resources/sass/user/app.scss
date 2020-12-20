@@ -3,14 +3,12 @@
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Bootstrap
+@import '~mdb-ui-kit/src/scss/mdb.free';
 
 // Variables
 @import 'resources/sass/variables';
 
-// Bootstrap
-@import '~mdb-ui-kit/css/mdb.min.css';
 
 // Стили для шапки
 @import 'header';
