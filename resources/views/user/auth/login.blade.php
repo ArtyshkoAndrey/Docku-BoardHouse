@@ -1,76 +1,85 @@
 @extends('user.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-{{--                                      TODO: {{ __('Forgot Your Password?') }} Это тупо вывод для мультиязычности. Ты же пишешь тупо текстом "Forgot Your Password?" никаких скобок не нужно. Весь сайт русский--}}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row w-100 d-flex justify-content-center">
+      <div class="col-lg-5 col-md-6 col-12">
+        <div class="row justify-content-center">
+          <div class="col-md-3 col-6">
+            <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid mb-5 mx-auto d-block">
+          </div>
         </div>
+        <div class="card rounded-0">
+          <div class="row m-0 flex-nowrap text-center">
+            <div class="col px-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center"><i class="bx bx-user"></i>Вход</div>
+            <div class="col bg-gray px-4 px-md-5 py-4 font-weight-bolder link-inverse-login-register">
+              <a href="{{ route('register') }}" class="text-decoration-none d-flex justify-content-center align-items-center">
+                <i class="bx bx-plus-circle"></i>Регистрация</a>
+            </div>
+          </div>
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-12 mt-3">
+                <h5 class="text-center">Укажите свой логин и пароль</h5>
+              </div>
+              <div class="col-12 mt-3">
+                <form action="{{ route('login') }}" method="post">
+                  @csrf
+                  <div class="form-outline mb-4">
+                    <input type="email" id="email" name="email" class="form-control" />
+                    <label class="form-label" for="email">Email</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control" />
+                    <label class="form-label" for="password">Пароль</label>
+                  </div>
+                  <button id="submitter" class="btn btn-dark w-100 rounded-0 d-block mt-3 ml-auto">Войти</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 @endsection
 
-{{-- TODO: В этой папке лежат уже готовые страницы для регистрации, авторизации, востановления пароля. verify можешь не трогать --}}
+@section('js')
+  <script>
+    let checker = {
+      password: false,
+      email: false
+    }
+    $( "input" ).focus(function() {
+      $(this).parent().addClass('focus')
+    });
+    $('input').focusout(function() {
+      $(this).parent().removeClass('focus')
+    });
+
+    for (let key in checker) {
+      $('#'+key).on('keydown keyup change', function () {
+        let charLength = $(this).val().length;
+        if (charLength > 3) {
+          checker[key] = true
+          console.log(disabled(checker))
+          if(disabled(checker)) {
+            $('#submitter').attr('disabled', false)
+          } else {
+            $('#submitter').attr('disabled', true)
+          }
+        }
+      })
+    }
+
+    function disabled(checker) {
+      let v = true
+      for (let key in checker) {
+        if (!checker[key]) {
+          v = false
+        }
+      }
+      return v
+    }
+  </script>
+@endsection

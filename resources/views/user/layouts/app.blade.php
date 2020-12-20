@@ -21,7 +21,7 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
   @include('user.layouts.header', ['theme_menu' => $color_menu ?? 'dark'])
 {{--  Тут тупо передаём эту переменную в щапку. ?? это если такой переменной нет, то будет передавать 'dark'. Типо по умолчанию будет передавать если в файле самой странице не передали--}}
