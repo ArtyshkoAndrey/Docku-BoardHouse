@@ -14126,6 +14126,7 @@ Vue.config.performance = true;
 var app = new Vue({
   el: '#app',
   store: _store__WEBPACK_IMPORTED_MODULE_1__["default"],
+  delimiters: ['<%', '%>'],
   data: function data() {
     return {};
   }

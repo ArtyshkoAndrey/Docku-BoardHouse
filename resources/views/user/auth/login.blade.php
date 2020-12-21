@@ -20,7 +20,7 @@
           <div class="card-body p-4">
             <div class="row">
               <div class="col-12 mt-3">
-                <h5 class="text-center">Укажите свой логин и пароль</h5>
+                <h5 class="text-center">Укажите свой логин и пароль</h5>
               </div>
               <div class="col-12 mt-3">
                 <form action="{{ route('login') }}" method="post">
@@ -33,7 +33,7 @@
                     <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="password">Пароль</label>
                   </div>
-                  <button id="submitter" class="btn btn-dark w-100 rounded-0 d-block mt-3 ml-auto">Войти</button>
+                  <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;">Войти</button>
                 </form>
               </div>
             </div>

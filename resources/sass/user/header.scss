@@ -3,6 +3,34 @@
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
 
+.btn {
+  text-transform: none;
+  letter-spacing: .6px;
+  font-weight: normal;
+  border-radius: 10px;
+}
+
+.dropdown-toggle::after {
+  font-family: "boxicons";
+  content: "\e9ac";
+  border: none;
+  text-align: center;
+  display: block;
+  padding: 0 0 0 5px;
+  margin: 0;
+  color: #e8e3ff;
+}
+
+.form-outline .form-control ~ .form-notch {
+  .form-notch-leading {
+    border-radius: 10px 0 0 10px;
+  }
+
+  .form-notch-trailing {
+    border-radius: 0 10px 10px 0;
+  }
+}
+
 .header {
   position: absolute;
   width: 100%;
@@ -34,7 +62,7 @@
 
   .nav-link {
     color: #ffffff;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: lighter;
   }
 
@@ -64,7 +92,7 @@
   }
 
   .navbar-brand img {
-    height: 32px;
+    height: 25px;
     width: auto;
   }
 
@@ -115,6 +143,15 @@
   }
 }
 
+
+@include media-breakpoint-up(md) {
+  .navbar {
+    .nav-link {
+      font-size: 1.3rem;
+    }
+  }
+}
+
 @include media-breakpoint-up(lg) {
   .navbar {
     padding-top: 2em;
@@ -142,7 +179,7 @@
 #intro {
   min-height: 800px;
   height: 100vh;
-  background-image: url('../images/intro.png');
+  background-image: linear-gradient(176.46deg, rgba(64, 106, 130, 0.61) 20.31%, rgba(64, 106, 130, 0) 57.63%), url('../images/intro.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -278,6 +315,10 @@
 .search {
   padding: 0 0;
 
+  .container {
+    max-width: none;
+  }
+
   .input-group {
     flex-wrap: nowrap;
     padding: 0 5px;
@@ -287,7 +328,7 @@
       color: #ffffff;
       display: flex;
       align-items: center;
-      line-height: 2.5em;
+      line-height: 2em;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       border-radius: 10px 0 0 10px !important ;
@@ -299,7 +340,7 @@
       }
 
       .form-control {
-        line-height: 2.5em;
+        line-height: 2em;
         color: #ffffff;
 
         &:focus {
@@ -311,7 +352,7 @@
 
           &~ .form-label {
             color: #ffffff;
-            transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+            transform: translateY(-1.2rem) translateY(0.1rem) translateX(-1.3rem) scale(0.8);
           }
         }
       }
@@ -328,19 +369,70 @@
       }
 
       .form-label {
-        margin-left: 3em !important;
+        margin-left: 2em !important;
         color: #ffffff;
         font-weight: lighter;
+        font-size: 0.7em;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      .form-outline {
+        flex: auto;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        line-height: 2.5em;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 10px 0 0 10px !important ;
+        //border: 1px solid rgba(255, 255, 255, 0.3);
+
+        i {
+          margin-top: 3px;
+          margin-left: .8em;
+        }
+
+        .form-control {
+          line-height: 2.5em;
+          color: #ffffff;
+
+          &:focus {
+            &~ .form-notch {
+              .form-notch-leading, .form-notch-middle, .form-notch-trailing {
+                border-color: #ffffff !important;
+              }
+            }
+
+            &~ .form-label {
+              color: #ffffff;
+              transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+            }
+          }
+        }
+
+        .form-notch {
+          .form-notch-leading {
+            border-radius: 10px 0 0 10px;
+          }
+
+          .form-notch-trailing {
+            border-right: none;
+            border-radius: 0;
+          }
+        }
+
+        .form-label {
+          margin-left: 3em !important;
+          color: #ffffff;
+          font-weight: lighter;
+        }
       }
     }
 
     button {
       border-bottom-right-radius: 10px !important;
       border-top-right-radius: 10px !important;
-
-      @include media-breakpoint-up(sm) {
-
-      }
     }
 
     a {
@@ -348,6 +440,7 @@
       align-items: center;
       margin-left: 1em !important;
       color: #ffffff;
+      text-decoration: underline;
 
       &:hover {
         color: #ffffff;

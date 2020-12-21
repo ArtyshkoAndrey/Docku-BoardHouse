@@ -16607,6 +16607,31 @@ body {
  * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
+.btn {
+  text-transform: none;
+  letter-spacing: 0.6px;
+  font-weight: normal;
+  border-radius: 10px;
+}
+
+.dropdown-toggle::after {
+  font-family: "boxicons";
+  content: "\E9AC";
+  border: none;
+  text-align: center;
+  display: block;
+  padding: 0 0 0 5px;
+  margin: 0;
+  color: #e8e3ff;
+}
+
+.form-outline .form-control ~ .form-notch .form-notch-leading {
+  border-radius: 10px 0 0 10px;
+}
+.form-outline .form-control ~ .form-notch .form-notch-trailing {
+  border-radius: 0 10px 10px 0;
+}
+
 .header {
   position: absolute;
   width: 100%;
@@ -16629,7 +16654,7 @@ body {
 }
 .navbar .nav-link {
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: lighter;
 }
 .navbar .nav-item {
@@ -16653,7 +16678,7 @@ body {
   align-items: center;
 }
 .navbar .navbar-brand img {
-  height: 32px;
+  height: 25px;
   width: auto;
 }
 .navbar .dropdown {
@@ -16697,6 +16722,11 @@ body {
     height: auto !important;
   }
 }
+@media (min-width: 768px) {
+  .navbar .nav-link {
+    font-size: 1.3rem;
+  }
+}
 @media (min-width: 992px) {
   .navbar {
     padding-top: 2em;
@@ -16715,7 +16745,7 @@ body {
 #intro {
   min-height: 800px;
   height: 100vh;
-  background-image: url("../images/intro.png");
+  background-image: linear-gradient(176.46deg, rgba(64, 106, 130, 0.61) 20.31%, rgba(64, 106, 130, 0) 57.63%), url("../images/intro.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -16824,6 +16854,9 @@ body {
 .search {
   padding: 0 0;
 }
+.search .container {
+  max-width: none;
+}
 .search .input-group {
   flex-wrap: nowrap;
   padding: 0 5px;
@@ -16833,7 +16866,7 @@ body {
   color: #ffffff;
   display: flex;
   align-items: center;
-  line-height: 2.5em;
+  line-height: 2em;
   background: rgba(255, 255, 255, 0.15);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -16844,7 +16877,7 @@ body {
   margin-left: 0.8em;
 }
 .search .input-group .form-outline .form-control {
-  line-height: 2.5em;
+  line-height: 2em;
   color: #ffffff;
 }
 .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
@@ -16852,7 +16885,7 @@ body {
 }
 .search .input-group .form-outline .form-control:focus ~ .form-label {
   color: #ffffff;
-  transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+  transform: translateY(-1.2rem) translateY(0.1rem) translateX(-1.3rem) scale(0.8);
 }
 .search .input-group .form-outline .form-notch .form-notch-leading {
   border-radius: 10px 0 0 10px;
@@ -16862,9 +16895,50 @@ body {
   border-radius: 0;
 }
 .search .input-group .form-outline .form-label {
-  margin-left: 3em !important;
+  margin-left: 2em !important;
   color: #ffffff;
   font-weight: lighter;
+  font-size: 0.7em;
+}
+@media (min-width: 768px) {
+  .search .input-group .form-outline {
+    flex: auto;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    line-height: 2.5em;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    border-radius: 10px 0 0 10px !important;
+  }
+  .search .input-group .form-outline i {
+    margin-top: 3px;
+    margin-left: 0.8em;
+  }
+  .search .input-group .form-outline .form-control {
+    line-height: 2.5em;
+    color: #ffffff;
+  }
+  .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+    border-color: #ffffff !important;
+  }
+  .search .input-group .form-outline .form-control:focus ~ .form-label {
+    color: #ffffff;
+    transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+  }
+  .search .input-group .form-outline .form-notch .form-notch-leading {
+    border-radius: 10px 0 0 10px;
+  }
+  .search .input-group .form-outline .form-notch .form-notch-trailing {
+    border-right: none;
+    border-radius: 0;
+  }
+  .search .input-group .form-outline .form-label {
+    margin-left: 3em !important;
+    color: #ffffff;
+    font-weight: lighter;
+  }
 }
 .search .input-group button {
   border-bottom-right-radius: 10px !important;
@@ -16875,6 +16949,7 @@ body {
   align-items: center;
   margin-left: 1em !important;
   color: #ffffff;
+  text-decoration: underline;
 }
 .search .input-group a:hover {
   color: #ffffff;
