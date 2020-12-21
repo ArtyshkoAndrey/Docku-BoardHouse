@@ -16614,6 +16614,12 @@ body {
 .header hr {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.0205) 0%, rgba(255, 255, 255, 0) 10%, white 47.45%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 0.0205) 100%);
 }
+.header .hide {
+  display: none;
+}
+.header a:hover {
+  cursor: pointer;
+}
 
 .navbar {
   width: 100%;
@@ -16868,13 +16874,14 @@ body {
   display: flex;
   align-items: center;
   margin-left: 1em !important;
-  color: white;
+  color: #ffffff;
 }
 .search .input-group a:hover {
+  color: #ffffff;
   text-decoration: underline;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .search {
     padding: 0 10em;
   }
