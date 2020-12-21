@@ -157,303 +157,338 @@
     </div>
   </nav>
   <hr>
-  <nav class="navbar navbar-expand category-menu">
-{{--    <div class="container">--}}
-      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-md-center align-items-center">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Сноубординг</span>
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="row">
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Сноубординг1</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Начинающим</a>
-                  <a class="item" href="#">Любителям</a>
-                  <a class="item" href="#">Профессионалам</a>
-                  <a class="item" href="#">Все сноуборды</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Ботинки для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Крепления для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Защита</span>
-                  <a class="item" href="#">Шлемы</a>
-                  <a class="item" href="#">Защитные очки</a>
-                  <a class="item" href="#">Защитное снаряжение</a>
-                  <a class="item" href="#">Вся защита</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Еще какая-то категория</span>
-                  <a class="item" href="#">Твой любимый товар</a>
-                  <a class="item" href="#">А это тебе не понравиться</a>
-                  <a class="item" href="#">Это полнейшая помойка</a>
-                  <a class="item" href="#">Тут можно купить бухло</a>
-                  <a class="item" href="#">А это от бухла</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Крепления</span>
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="row">
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Сноубординг2</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Начинающим</a>
-                  <a class="item" href="#">Любителям</a>
-                  <a class="item" href="#">Профессионалам</a>
-                  <a class="item" href="#">Все сноуборды</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Ботинки для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Крепления для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Защита</span>
-                  <a class="item" href="#">Шлемы</a>
-                  <a class="item" href="#">Защитные очки</a>
-                  <a class="item" href="#">Защитное снаряжение</a>
-                  <a class="item" href="#">Вся защита</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Еще какая-то категория</span>
-                  <a class="item" href="#">Твой любимый товар</a>
-                  <a class="item" href="#">А это тебе не понравиться</a>
-                  <a class="item" href="#">Это полнейшая помойка</a>
-                  <a class="item" href="#">Тут можно купить бухло</a>
-                  <a class="item" href="#">А это от бухла</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Одежда</span>
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="row">
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Сноубординг3</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Начинающим</a>
-                  <a class="item" href="#">Любителям</a>
-                  <a class="item" href="#">Профессионалам</a>
-                  <a class="item" href="#">Все сноуборды</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Ботинки для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Крепления для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Защита</span>
-                  <a class="item" href="#">Шлемы</a>
-                  <a class="item" href="#">Защитные очки</a>
-                  <a class="item" href="#">Защитное снаряжение</a>
-                  <a class="item" href="#">Вся защита</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Еще какая-то категория</span>
-                  <a class="item" href="#">Твой любимый товар</a>
-                  <a class="item" href="#">А это тебе не понравиться</a>
-                  <a class="item" href="#">Это полнейшая помойка</a>
-                  <a class="item" href="#">Тут можно купить бухло</a>
-                  <a class="item" href="#">А это от бухла</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Защита</span>
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="row">
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Сноубординг4</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Начинающим</a>
-                  <a class="item" href="#">Любителям</a>
-                  <a class="item" href="#">Профессионалам</a>
-                  <a class="item" href="#">Все сноуборды</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Ботинки для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Крепления для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Защита</span>
-                  <a class="item" href="#">Шлемы</a>
-                  <a class="item" href="#">Защитные очки</a>
-                  <a class="item" href="#">Защитное снаряжение</a>
-                  <a class="item" href="#">Вся защита</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Еще какая-то категория</span>
-                  <a class="item" href="#">Твой любимый товар</a>
-                  <a class="item" href="#">А это тебе не понравиться</a>
-                  <a class="item" href="#">Это полнейшая помойка</a>
-                  <a class="item" href="#">Тут можно купить бухло</a>
-                  <a class="item" href="#">А это от бухла</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Аксессуары</span>
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="row">
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Сноубординг5</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Начинающим</a>
-                  <a class="item" href="#">Любителям</a>
-                  <a class="item" href="#">Профессионалам</a>
-                  <a class="item" href="#">Все сноуборды</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Ботинки для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Крепления для сноуборда</span>
-                  <a class="item" href="#">Для мужчин</a>
-                  <a class="item" href="#">Для женщин</a>
-                  <a class="item" href="#">Для детей</a>
-                  <a class="item" href="#">Step On</a>
-                  <a class="item" href="#">Все ботинки</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Защита</span>
-                  <a class="item" href="#">Шлемы</a>
-                  <a class="item" href="#">Защитные очки</a>
-                  <a class="item" href="#">Защитное снаряжение</a>
-                  <a class="item" href="#">Вся защита</a>
-                </div>
-                <div class="col col-md-4 col-lg-3 flex-column">
-                  <span class="font-weight-bold">Еще какая-то категория</span>
-                  <a class="item" href="#">Твой любимый товар</a>
-                  <a class="item" href="#">А это тебе не понравиться</a>
-                  <a class="item" href="#">Это полнейшая помойка</a>
-                  <a class="item" href="#">Тут можно купить бухло</a>
-                  <a class="item" href="#">А это от бухла</a>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+  <div class="container search">
+    <form action="">
+      @csrf
+      <div class="input-group">
+        <div class="form-outline">
+          <i class="bx bx-sm bx-search"></i>
+          <input type="text" id="search" name="search" class="form-control" />
+          <label class="form-label" for="search">Что-то искали?</label>
+        </div>
+        <button class="btn btn-dark font-weight-light">Найти</button>
+        <a href="#">Закрыть</a>
       </div>
+{{--      <div class="input-group mb-3">--}}
+{{--        <label class="input-group-text">--}}
+{{--          <i class="bx bx-search"></i>--}}
+{{--        </label>--}}
+{{--        <input--}}
+{{--          type="text"--}}
+{{--          class="form-control"--}}
+{{--          placeholder="Что-то искали?"--}}
+{{--          aria-label="Recipient's username"--}}
+{{--          aria-describedby="button-addon2"--}}
+{{--        />--}}
+{{--        <button--}}
+{{--          class="btn btn-dark font-weight-light"--}}
+{{--          type="button"--}}
+{{--          id="button-addon2"--}}
+{{--          data-mdb-ripple-color="dark"--}}
+{{--        >--}}
+{{--          Найти--}}
+{{--        </button>--}}
+{{--        <a class="d-flex" href="#">Закрыть</a>--}}
+{{--      </div>--}}
+    </form>
+  </div>
+{{--  <nav class="navbar navbar-expand category-menu">--}}
+{{--    <div class="container">--}}
+{{--      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">--}}
+{{--        <ul class="navbar-nav justify-content-md-center align-items-center">--}}
+{{--          <li class="nav-item dropdown">--}}
+{{--            <a--}}
+{{--              class="nav-link dropdown-toggle"--}}
+{{--              href="#"--}}
+{{--              id="navbarDropdown"--}}
+{{--              role="button"--}}
+{{--              data-mdb-toggle="dropdown"--}}
+{{--              aria-expanded="false"--}}
+{{--            >--}}
+{{--              <span>Сноубординг</span>--}}
+{{--            </a>--}}
+
+{{--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--              <div class="row">--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Сноубординг1</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Начинающим</a>--}}
+{{--                  <a class="item" href="#">Любителям</a>--}}
+{{--                  <a class="item" href="#">Профессионалам</a>--}}
+{{--                  <a class="item" href="#">Все сноуборды</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Ботинки для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Крепления для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Защита</span>--}}
+{{--                  <a class="item" href="#">Шлемы</a>--}}
+{{--                  <a class="item" href="#">Защитные очки</a>--}}
+{{--                  <a class="item" href="#">Защитное снаряжение</a>--}}
+{{--                  <a class="item" href="#">Вся защита</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Еще какая-то категория</span>--}}
+{{--                  <a class="item" href="#">Твой любимый товар</a>--}}
+{{--                  <a class="item" href="#">А это тебе не понравиться</a>--}}
+{{--                  <a class="item" href="#">Это полнейшая помойка</a>--}}
+{{--                  <a class="item" href="#">Тут можно купить бухло</a>--}}
+{{--                  <a class="item" href="#">А это от бухла</a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </li>--}}
+{{--          <li class="nav-item dropdown">--}}
+{{--            <a--}}
+{{--              class="nav-link dropdown-toggle"--}}
+{{--              href="#"--}}
+{{--              id="navbarDropdown"--}}
+{{--              role="button"--}}
+{{--              data-mdb-toggle="dropdown"--}}
+{{--              aria-expanded="false"--}}
+{{--            >--}}
+{{--              <span>Крепления</span>--}}
+{{--            </a>--}}
+
+{{--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--              <div class="row">--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Сноубординг2</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Начинающим</a>--}}
+{{--                  <a class="item" href="#">Любителям</a>--}}
+{{--                  <a class="item" href="#">Профессионалам</a>--}}
+{{--                  <a class="item" href="#">Все сноуборды</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Ботинки для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Крепления для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Защита</span>--}}
+{{--                  <a class="item" href="#">Шлемы</a>--}}
+{{--                  <a class="item" href="#">Защитные очки</a>--}}
+{{--                  <a class="item" href="#">Защитное снаряжение</a>--}}
+{{--                  <a class="item" href="#">Вся защита</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Еще какая-то категория</span>--}}
+{{--                  <a class="item" href="#">Твой любимый товар</a>--}}
+{{--                  <a class="item" href="#">А это тебе не понравиться</a>--}}
+{{--                  <a class="item" href="#">Это полнейшая помойка</a>--}}
+{{--                  <a class="item" href="#">Тут можно купить бухло</a>--}}
+{{--                  <a class="item" href="#">А это от бухла</a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </li>--}}
+{{--          <li class="nav-item dropdown">--}}
+{{--            <a--}}
+{{--              class="nav-link dropdown-toggle"--}}
+{{--              href="#"--}}
+{{--              id="navbarDropdown"--}}
+{{--              role="button"--}}
+{{--              data-mdb-toggle="dropdown"--}}
+{{--              aria-expanded="false"--}}
+{{--            >--}}
+{{--              <span>Одежда</span>--}}
+{{--            </a>--}}
+
+{{--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--              <div class="row">--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Сноубординг3</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Начинающим</a>--}}
+{{--                  <a class="item" href="#">Любителям</a>--}}
+{{--                  <a class="item" href="#">Профессионалам</a>--}}
+{{--                  <a class="item" href="#">Все сноуборды</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Ботинки для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Крепления для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Защита</span>--}}
+{{--                  <a class="item" href="#">Шлемы</a>--}}
+{{--                  <a class="item" href="#">Защитные очки</a>--}}
+{{--                  <a class="item" href="#">Защитное снаряжение</a>--}}
+{{--                  <a class="item" href="#">Вся защита</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Еще какая-то категория</span>--}}
+{{--                  <a class="item" href="#">Твой любимый товар</a>--}}
+{{--                  <a class="item" href="#">А это тебе не понравиться</a>--}}
+{{--                  <a class="item" href="#">Это полнейшая помойка</a>--}}
+{{--                  <a class="item" href="#">Тут можно купить бухло</a>--}}
+{{--                  <a class="item" href="#">А это от бухла</a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </li>--}}
+{{--          <li class="nav-item dropdown">--}}
+{{--            <a--}}
+{{--              class="nav-link dropdown-toggle"--}}
+{{--              href="#"--}}
+{{--              id="navbarDropdown"--}}
+{{--              role="button"--}}
+{{--              data-mdb-toggle="dropdown"--}}
+{{--              aria-expanded="false"--}}
+{{--            >--}}
+{{--              <span>Защита</span>--}}
+{{--            </a>--}}
+
+{{--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--              <div class="row">--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Сноубординг4</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Начинающим</a>--}}
+{{--                  <a class="item" href="#">Любителям</a>--}}
+{{--                  <a class="item" href="#">Профессионалам</a>--}}
+{{--                  <a class="item" href="#">Все сноуборды</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Ботинки для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Крепления для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Защита</span>--}}
+{{--                  <a class="item" href="#">Шлемы</a>--}}
+{{--                  <a class="item" href="#">Защитные очки</a>--}}
+{{--                  <a class="item" href="#">Защитное снаряжение</a>--}}
+{{--                  <a class="item" href="#">Вся защита</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Еще какая-то категория</span>--}}
+{{--                  <a class="item" href="#">Твой любимый товар</a>--}}
+{{--                  <a class="item" href="#">А это тебе не понравиться</a>--}}
+{{--                  <a class="item" href="#">Это полнейшая помойка</a>--}}
+{{--                  <a class="item" href="#">Тут можно купить бухло</a>--}}
+{{--                  <a class="item" href="#">А это от бухла</a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </li>--}}
+{{--          <li class="nav-item dropdown">--}}
+{{--            <a--}}
+{{--              class="nav-link dropdown-toggle"--}}
+{{--              href="#"--}}
+{{--              id="navbarDropdown"--}}
+{{--              role="button"--}}
+{{--              data-mdb-toggle="dropdown"--}}
+{{--              aria-expanded="false"--}}
+{{--            >--}}
+{{--              <span>Аксессуары</span>--}}
+{{--            </a>--}}
+
+{{--            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--              <div class="row">--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Сноубординг5</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Начинающим</a>--}}
+{{--                  <a class="item" href="#">Любителям</a>--}}
+{{--                  <a class="item" href="#">Профессионалам</a>--}}
+{{--                  <a class="item" href="#">Все сноуборды</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Ботинки для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Крепления для сноуборда</span>--}}
+{{--                  <a class="item" href="#">Для мужчин</a>--}}
+{{--                  <a class="item" href="#">Для женщин</a>--}}
+{{--                  <a class="item" href="#">Для детей</a>--}}
+{{--                  <a class="item" href="#">Step On</a>--}}
+{{--                  <a class="item" href="#">Все ботинки</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Защита</span>--}}
+{{--                  <a class="item" href="#">Шлемы</a>--}}
+{{--                  <a class="item" href="#">Защитные очки</a>--}}
+{{--                  <a class="item" href="#">Защитное снаряжение</a>--}}
+{{--                  <a class="item" href="#">Вся защита</a>--}}
+{{--                </div>--}}
+{{--                <div class="col col-md-4 col-lg-3 flex-column">--}}
+{{--                  <span class="font-weight-bold">Еще какая-то категория</span>--}}
+{{--                  <a class="item" href="#">Твой любимый товар</a>--}}
+{{--                  <a class="item" href="#">А это тебе не понравиться</a>--}}
+{{--                  <a class="item" href="#">Это полнейшая помойка</a>--}}
+{{--                  <a class="item" href="#">Тут можно купить бухло</a>--}}
+{{--                  <a class="item" href="#">А это от бухла</a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </li>--}}
+{{--        </ul>--}}
+{{--      </div>--}}
 {{--    </div>--}}
-  </nav>
+{{--  </nav>--}}
   <hr>
 </div>

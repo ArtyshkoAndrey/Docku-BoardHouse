@@ -16815,6 +16815,70 @@ body {
     width: calc(100vw - 17px) !important;
   }
 }
+.search {
+  padding: 0 0;
+}
+.search .input-group {
+  flex-wrap: nowrap;
+  padding: 0 5px;
+}
+.search .input-group .form-outline {
+  flex: auto;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  line-height: 2.5em;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 10px 0 0 10px !important;
+}
+.search .input-group .form-outline i {
+  margin-top: 3px;
+  margin-left: 0.8em;
+}
+.search .input-group .form-outline .form-control {
+  line-height: 2.5em;
+  color: #ffffff;
+}
+.search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+  border-color: #ffffff !important;
+}
+.search .input-group .form-outline .form-control:focus ~ .form-label {
+  color: #ffffff;
+  transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+}
+.search .input-group .form-outline .form-notch .form-notch-leading {
+  border-radius: 10px 0 0 10px;
+}
+.search .input-group .form-outline .form-notch .form-notch-trailing {
+  border-right: none;
+  border-radius: 0;
+}
+.search .input-group .form-outline .form-label {
+  margin-left: 3em !important;
+  color: #ffffff;
+  font-weight: lighter;
+}
+.search .input-group button {
+  border-bottom-right-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+.search .input-group a {
+  display: flex;
+  align-items: center;
+  margin-left: 1em !important;
+  color: white;
+}
+.search .input-group a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .search {
+    padding: 0 10em;
+  }
+}
 /*!
  * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
