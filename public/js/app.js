@@ -14321,8 +14321,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\hugan\Documents\OpenServer\domains\docu\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\hugan\Documents\OpenServer\domains\docu\resources\sass\user\app.scss */"./resources/sass/user/app.scss");
+__webpack_require__(/*! C:\OpenServer\domains\docu\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\docu\resources\sass\user\app.scss */"./resources/sass/user/app.scss");
 
 
 /***/ })

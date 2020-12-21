@@ -15,7 +15,6 @@
               <span class="d-none d-lg-block">Тенге (₸)</span>
               <span class="d-block d-lg-none">KZT</span>
             </a>
-
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Тенге (₸)</a></li>
               <li><a class="dropdown-item" href="#">Русский рубль (₽)</a></li>
@@ -178,6 +177,8 @@
             >
               <span>Пункт <% i %></span>
             </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <div class="container">
