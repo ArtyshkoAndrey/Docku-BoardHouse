@@ -33,7 +33,17 @@
 </body>
 
 <script>
-
+  function toggleSearch() {
+    let search = document.getElementsByClassName('search')[0];
+    let categoryMenu = document.getElementsByClassName('category-menu')[0];
+    if (search.classList.contains('hide')) {
+      search.classList.remove('hide');
+      categoryMenu.classList.add('hide');
+    } else {
+      search.classList.add('hide');
+      categoryMenu.classList.remove('hide');
+    }
+  }
 </script>
 </html>
 {{-- TODO: Тут шаблон страницы для обычный юзеров, не админы. В content падает данные из того файла, который я укажу в бекенде для показа. Каждый ФАЙЛ  подтягивает этот шаблон --}}
