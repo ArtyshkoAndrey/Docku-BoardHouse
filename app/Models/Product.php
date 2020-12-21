@@ -8,6 +8,55 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Product
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property bool $on_sale
+ * @property bool $on_new
+ * @property bool $on_top
+ * @property int $sold_count
+ * @property string $price
+ * @property string|null $price_sale
+ * @property string $weight
+ * @property object $meta
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Brand[] $brands
+ * @property-read int|null $brands_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
+ * @property-read int|null $categories_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read int|null $photos_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductSkus[] $productSkuses
+ * @property-read int|null $product_skuses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Skus[] $skuses
+ * @property-read int|null $skuses_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Product onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOnNew($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOnSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOnTop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSoldCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWeight($value)
+ * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Product extends Model
 {
   use HasFactory;
@@ -92,4 +141,13 @@ class Product extends Model
     return $this->hasMany(Photo::class, 'product_id', 'id');
   }
 
+  public function skuses(): BelongsToMany
+  {
+    return $this->belongsToMany(Skus::class, 'product_skuses', 'product_id', 'skus_id')->withPivot(['stock', 'id']);
+  }
+
+  public function productSkuses(): HasMany
+  {
+    return $this->hasMany(ProductSkus::class, 'product_id', 'id');
+  }
 }

@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
     ]);
 
     DB::table('categories')->insert([
-      'name'        => 'Сноуборды',
+      'name'        => 'Крепления для сноуборда',
       'created_at'  => now(),
       'updated_at'  => now(),
     ]);
@@ -75,5 +75,79 @@ class DatabaseSeeder extends Seeder
       'updated_at'  => now(),
     ]);
     $this->command->info('Categories table seeded!');
+
+    DB::table('skus_categories')->insert([
+      'name'  => 'Сноуборды',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    DB::table('skus_categories')->insert([
+      'name'  => 'Дети',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    $this->command->info('Skus Categories table seeded!');
+
+    DB::table('skuses')->insert([
+      'title'  => '180',
+      'weight' => '1',
+      'skus_category_id' => 1,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    DB::table('skuses')->insert([
+      'title'  => '160',
+      'weight' => '2',
+      'skus_category_id' => 1,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    DB::table('skuses')->insert([
+      'title'  => '36',
+      'weight' => '2',
+      'skus_category_id' => 2,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    DB::table('skuses')->insert([
+      'title'  => '38',
+      'weight' => '1',
+      'skus_category_id' => 2,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    $this->command->info('Skuses table seeded!');
+
+    DB::table('products')->insert([
+      'title'  => 'Товар 1',
+      'description' => 'Это товар',
+      'on_sale' => false,
+      'on_new' => false,
+      'on_top' => false,
+      'sold_count' => 0,
+      'price' => 10000,
+      'price_sale' => null,
+      'weight' => 1,
+      'meta' => '[{"title": "Товар","description": "Официальный разработчик "}]',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    $this->command->info('Product table seeded!');
+
+    DB::table('product_skuses')->insert([
+      'stock'  => 10,
+      'product_id' => 1,
+      'skus_id' => 1,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    DB::table('product_skuses')->insert([
+      'stock'  => 100,
+      'product_id' => 1,
+      'skus_id' => 2,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    $this->command->info('Product table seeded!');
   }
 }

@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -54,6 +55,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereCityId($value)
  * @method static Builder|User whereCountryId($value)
  * @method static Builder|User wherePostCode($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductSkus[] $cartItems
+ * @property-read int|null $cart_items_count
  */
 class User extends Authenticatable
 {
@@ -102,6 +105,11 @@ class User extends Authenticatable
     return $this->belongsTo(City::class);
   }
 
+  public function cartItems (): HasMany
+  {
+    return $this->hasMany(ProductSkus::class, 'user_id', 'id');
+  }
+
   /**
    * User country
    *
@@ -110,5 +118,19 @@ class User extends Authenticatable
   public function country (): BelongsTo
   {
     return $this->belongsTo(Country::class);
+  }
+
+  public function addToCart (Skus $skus)
+  {
+    if ($item = $this->cartItems()->where('product_sku_id', $skus->pivot->id)->first()) {
+      $item->amount++;
+      $item->save();
+    } else {
+      CartItems::create([
+        'user_id' => auth()->user()->id,
+        'product_skus_id' => $skus->pivot->id,
+        'amount' => 1
+      ]);
+    }
   }
 }
