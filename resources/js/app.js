@@ -5,8 +5,10 @@
  */
 
 import * as mdb from 'mdb-ui-kit'
+require('./bootstrap.js')
 
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your

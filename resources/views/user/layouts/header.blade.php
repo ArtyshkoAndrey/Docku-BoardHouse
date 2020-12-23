@@ -1,8 +1,8 @@
 <div class="header">
-  <nav class="navbar navbar-expand">
+  <nav id="main-menu" class="navbar navbar-expand">
     <div class="container">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-center align-items-center w-100">
+        <ul class="navbar-nav justify-content-between justify-content-md-center align-items-center w-100">
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -23,68 +23,74 @@
           <li class="nav-item d-none d-xl-flex">
             <a class="d-block nav-link">+7 (747) 556-23-83</a>
           </li>
-          <a class="navbar-brand mx-auto" href="#">
+          <a class="navbar-brand d-none d-md-block mx-auto" href="#">
             <img src="{{ asset('images/logo.svg') }}" alt="">
           </a>
           <li class="d-none d-lg-flex">
             <a class="nav-link" href="#">info@dockuboardhouse.com</a>
           </li>
-          <li class="nav-item icon">
-            <a class="nav-link" onclick="toggleSearch()">
-              <i class="bx bx-sm bx-search"></i>
-            </a>
-          </li>
-          <li class="nav-item icon dropdown">
+          <div class="d-flex">
+            <li class="nav-item icon">
+              <a class="nav-link" onclick="toggleSearch()">
+                <i class="bx bx-sm bx-search"></i>
+              </a>
+            </li>
+            <li class="nav-item icon dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="user-dropdown"
+                role="button"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bx bx-sm bx-user"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row">
+                      <a href="#" class="d-flex dropdown-item">
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                          <img class="rounded-circle"
+                               src="{{ asset('images/user-photo.jpg') }}"
+                               style="width: 25px; height: 25px;"/>
+                        </div>
+                        <div class="col-auto mx-2">
+                          Артышко Андрей
+                        </div>
+                      </a>
+                    </div>
+                    <div class="row">
+                      <a href="#" class="d-flex dropdown-item">
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                          <i class="bx bx-sm bx-user"></i>
+                        </div>
+                        <div class="col-auto mx-2">
+                          Войти
+                        </div>
+                      </a>
+                    </div>
+                    <div class="row">
+                      <a href="#" class="d-flex dropdown-item">
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                          <i class="bx bx-sm bx-plus-circle"></i>
+                        </div>
+                        <div class="col-auto mx-2">
+                          Зарегистрироваться
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item icon dropdown">
+
             <a
               class="nav-link"
               href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bx bx-sm bx-user"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li class="row">
-                <a href="#" class="d-flex dropdown-item">
-                  <div class="col-2 d-flex align-items-center justify-content-center">
-                    <img class="rounded-circle"
-                         src="{{ asset('images/user-photo.jpg') }}"
-                         style="width: 25px; height: 25px;"/>
-                  </div>
-                  <div class="col-auto mx-2">
-                    Артышко Андрей
-                  </div>
-                </a>
-              </li>
-              <li class="row">
-                <a href="#" class="d-flex dropdown-item">
-                  <div class="col-2 d-flex align-items-center justify-content-center">
-                    <i class="bx bx-sm bx-user"></i>
-                  </div>
-                  <div class="col-auto mx-2">
-                    Войти
-                  </div>
-                </a>
-              </li>
-              <li class="row">
-                <a href="#" class="d-flex dropdown-item">
-                  <div class="col-2 d-flex align-items-center justify-content-center">
-                    <i class="bx bx-sm bx-plus-circle"></i>
-                  </div>
-                  <div class="col-auto mx-2">
-                    Зарегистрироваться
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item icon dropdown">
-            <a
-              class="nav-link"
-              href="#"
-              id="navbarDropdown"
+              id="cart-dropdown"
               role="button"
               data-mdb-toggle="dropdown"
               aria-expanded="false"
@@ -92,14 +98,14 @@
               <i class="bx bx-sm bx-cart"></i>
               <span class="badge rounded-pill badge-notification bg-white text-black">14</span>
             </a>
-            <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
-              <div class="row" v-for="i in 3">
-                <div class="col-3 col-sm-2">
+              <div class="row mt-2" v-for="i in 3">
+                <div class="col-3 col-sm-2 d-flex align-items-center">
                   <img src="{{ asset('images/product.png') }}" alt="" class="img-fluid pb-2">
                 </div>
                 <div class="col-9 col-sm-10 border-bottom">
-                  <div class="row align-items-center justify-content-between h-100">
+                  <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">
                     <div class="col-12 col-sm-6">
                       <p class="m-0 font-weight-bold">Резиновые сапоги Maximo</p>
                     </div>
@@ -123,11 +129,11 @@
                   </div>
                 </div>
               </div>
-              <div class="row align-items-center justify-content-between mt-3">
-                <div class="col-6">
-                  <a href="#" class="btn btn-dark">Перейти в корзину</a>
+              <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3">
+                <div class="col-12 col-md-6">
+                  <a href="#" class="btn btn-dark w-100">Перейти в корзину</a>
                 </div>
-                <div class="col-6" style="text-align: right;">
+                <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
                   <p class="h6 font-weight-bold">Итого: 20 000 ₸</p>
                   <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
                 </div>
@@ -142,6 +148,7 @@
             {{--            </li>--}}
             {{--          </ul>--}}
           </li>
+          </div>
         </ul>
       </div>
     </div>

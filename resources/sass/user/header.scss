@@ -92,8 +92,13 @@
   }
 
   .navbar-brand img {
-    height: 25px;
+    height: 40px;
     width: auto;
+
+    @include media-breakpoint-up(xl) {
+      height: 100%;
+      width: auto;
+    }
   }
 
   .dropdown {
@@ -157,11 +162,6 @@
 
     .nav-item {
       margin: 0 .5em 0 .5em;
-    }
-
-    .navbar-brand img {
-      height: 100%;
-      width: auto;
     }
 
     .dropdown-menu.full-height {

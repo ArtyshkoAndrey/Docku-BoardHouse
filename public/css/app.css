@@ -16678,8 +16678,14 @@ body {
   align-items: center;
 }
 .navbar .navbar-brand img {
-  height: 25px;
+  height: 40px;
   width: auto;
+}
+@media (min-width: 1200px) {
+  .navbar .navbar-brand img {
+    height: 100%;
+    width: auto;
+  }
 }
 .navbar .dropdown {
   position: inherit;
@@ -16733,10 +16739,6 @@ body {
   }
   .navbar .nav-item {
     margin: 0 0.5em 0 0.5em;
-  }
-  .navbar .navbar-brand img {
-    height: 100%;
-    width: auto;
   }
   .navbar .dropdown-menu.full-height {
     min-width: 646px;
@@ -17031,4 +17033,71 @@ body {
 
 .register-page .link-inverse-login-register {
   box-shadow: inset -4px -3px 19px -12px;
+}
+
+/*!
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+.card-body .title {
+  color: black;
+}
+.card-body:hover .title {
+  color: #0c56d0;
+}
+.card-body .sale-badge {
+  display: none;
+}
+.card-body .img-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card-body .img-wrapper img {
+  border-radius: 10px;
+  transition: 1s;
+  display: block;
+}
+.card-body .img-wrapper img:hover {
+  transform: scale(1.2);
+}
+.card-body .old-price {
+  display: none;
+  color: #a9aeb5;
+  font-size: 0.7em;
+  text-align: left;
+  width: 100%;
+  padding-left: 0.1em;
+  text-decoration: line-through;
+}
+
+.card.sale .old-price {
+  display: block;
+}
+.card.sale .sale-badge {
+  display: block;
+  background: #de6d2d;
+  position: absolute;
+  color: white;
+  padding: 0.3em 1.3em;
+  border-radius: 0 10px 0 10px;
+  z-index: 10;
+}
+
+.btn-to-cart {
+  border: 1px solid #a9aeb5;
+}
+.btn-to-cart span {
+  font-size: 1.4em;
+}
+.btn-to-cart i {
+  font-size: 1.3em;
+}
+.btn-to-cart:hover {
+  background: #2d3134;
+  color: white;
+}
+
+body {
+  background: #f2f3f6;
 }
