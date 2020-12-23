@@ -1,0 +1,80 @@
+/*!
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+
+.card-body {
+
+  .title {
+    color: black;
+  }
+
+  &:hover {
+    .title {
+      color: #0c56d0;
+    }
+  }
+
+  .sale-badge {
+    display: none;
+  }
+
+  .img-wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      border-radius: 10px;
+      transition: 1s;
+      display: block;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .old-price {
+    display: none;
+    color: rgba(169, 174, 181, 1);
+    font-size: 0.7em;
+    text-align: left;
+    width: 100%;
+    padding-left: 0.1em;
+    text-decoration: line-through;
+  }
+}
+
+.card.sale {
+  .old-price {
+    display: block;
+  }
+
+  .sale-badge {
+    display: block;
+    background: #de6d2d;
+    position: absolute;
+    color: white;
+    padding: .3em 1.3em;
+    border-radius: 0 10px 0 10px;
+    z-index: 10;
+  }
+}
+
+.btn-to-cart {
+  border: 1px solid rgba(169, 174, 181, 1);
+
+  span {
+    font-size: 1.4em;
+  }
+
+  i {
+    font-size: 1.3em;
+  }
+
+  &:hover {
+    background: rgba(45, 49, 52, 1);
+    color: white;
+  }
+}
