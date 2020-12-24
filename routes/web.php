@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,13 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('user.index');
-});
+})->name('index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+  Route::get('/', [HomeController::class, 'index'])->name('index');
+//  ->withSuccess('Заказ успешно обновлён');
+
+  Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
+});

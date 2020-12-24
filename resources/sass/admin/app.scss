@@ -1,0 +1,24 @@
+@import "~halfmoon/css/halfmoon-variables.css";
+
+body {
+  --dm-sidebar-link-text-color-active: #ff6767;
+  --dm-sidebar-link-text-color-active-hover: #ff0000;
+
+  --dm-navbar-link-active-text-color: #ff6767;
+  --dm-navbar-link-active-text-color-hover: #ff0000;
+
+  --lm-sidebar-link-text-color-active: #ff6767;
+  --lm-sidebar-link-text-color-active-hover: #ff0000;
+
+  --lm-navbar-link-active-text-color: #ff6767;
+  --lm-navbar-link-active-text-color-hover: #ff0000;
+  --lm-navbar-link-text-color-hover: rgba(255,255,255, 0.8);
+  --dm-navbar-link-text-color: rgba(255,255,255, 0.65);
+
+  --dm-navbar-link-text-color-hover: rgba(255,255,255, 0.8);
+  --dm-navbar-link-text-color: rgba(255,255,255, 0.65);
+  --lm-base-body-bg-color: var(--gray-color-light);
+}
+
+//@import "~halfmoon/css/halfmoon.css";
+
