@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
 
+@section('title', 'Doscu - Административная панель')
+
 @section('content')
   <!-- Content wrapper -->
   <div class="content-wrapper">

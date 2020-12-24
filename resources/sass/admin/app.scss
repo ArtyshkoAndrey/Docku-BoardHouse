@@ -12,13 +12,35 @@ body {
 
   --lm-navbar-link-active-text-color: #ff6767;
   --lm-navbar-link-active-text-color-hover: #ff0000;
-  --lm-navbar-link-text-color-hover: rgba(255,255,255, 0.8);
-  --dm-navbar-link-text-color: rgba(255,255,255, 0.65);
+  --lm-navbar-link-text-color-hover: rgba(0,0,0, 0.8);
+  --lm-navbar-link-text-color: rgba(0,0,0, 0.65);
 
   --dm-navbar-link-text-color-hover: rgba(255,255,255, 0.8);
   --dm-navbar-link-text-color: rgba(255,255,255, 0.65);
   --lm-base-body-bg-color: var(--gray-color-light);
+
+  --breadcrumb-separator-margin-left: -5px;
+  --breadcrumb-separator-margin-right: 0;
+  --breadcrumb-separator-content: "\e9b2";
+  --tooltip-width: 15rem;
 }
 
+.breadcrumb-item:before {
+  font-family: "boxicons", serif;
+  //margin-top: 5px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.font-size-9 {
+  font-size: .9rem;
+}
+
+#orders [data-toggle="tooltip"]:not([data-placement])::before, [data-toggle="tooltip"][data-placement="top"]::before {
+  left: 25%;
+}
+#orders  [data-toggle="tooltip"]:not([data-placement])::after, [data-toggle="tooltip"][data-placement="top"]::after {
+  left: 25%;
+}
 //@import "~halfmoon/css/halfmoon.css";
 

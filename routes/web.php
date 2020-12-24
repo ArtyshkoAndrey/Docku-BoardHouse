@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
   Route::get('/', [HomeController::class, 'index'])->name('index');
-//  ->withSuccess('Заказ успешно обновлён');
-
   Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
+
+  Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
 });

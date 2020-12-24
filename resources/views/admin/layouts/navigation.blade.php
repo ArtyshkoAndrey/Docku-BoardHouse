@@ -52,7 +52,7 @@
     <h5 class="sidebar-title">Магазин</h5>
     <div class="sidebar-divider"></div>
 
-    <a href="#" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.orders.*') ? 'active' : '' }}">
+    <a href="{{ route('admin.order.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.order.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bxs-package" aria-hidden="true"></i>
       </span>
