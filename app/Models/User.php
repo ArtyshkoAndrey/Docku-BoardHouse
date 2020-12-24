@@ -57,6 +57,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User wherePostCode($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductSkus[] $cartItems
  * @property-read int|null $cart_items_count
+ * @property bool $is_admin
+ * @method static Builder|User whereIsAdmin($value)
  */
 class User extends Authenticatable
 {
@@ -74,6 +76,7 @@ class User extends Authenticatable
     'password',
     'address',
     'post_code',
+    'is_admin'
   ];
 
   /**
@@ -93,6 +96,7 @@ class User extends Authenticatable
    */
   protected $casts = [
     'email_verified_at' => 'datetime',
+    'is_admin' => 'boolean'
   ];
 
   /**

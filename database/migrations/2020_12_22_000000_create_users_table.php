@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
       $table->string('post_code')->nullable();
       $table->foreignId('country_id')->nullable()->constrained();
       $table->foreignId('city_id')->nullable()->constrained();
+      $table->boolean('is_admin')->default(false);
       $table->rememberToken();
       $table->timestamps();
     });
