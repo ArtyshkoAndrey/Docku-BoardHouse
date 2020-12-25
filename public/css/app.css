@@ -16752,6 +16752,7 @@ body {
   background-size: cover;
   color: #ffffff;
   padding-left: 2em;
+  background-attachment: fixed;
 }
 #intro::after, #intro::before {
   content: "";
