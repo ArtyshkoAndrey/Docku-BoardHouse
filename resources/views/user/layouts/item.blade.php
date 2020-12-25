@@ -15,10 +15,10 @@
         <a class="title" href="#">Burton Custom x</a>
       </div>
     </div>
-    <div class="row">
+    <div class="row context">
       <div class="col-5 d-flex flex-column justify-content-center pl-1 pr-0">
         <span class="old-price">340 000 ₸</span>{{--  TODO: обычная цена--}}
-        <span class="font-weight-bold">200 000 ₸</span>{{--  TODO: цена со скидкой--}}
+        <span class="price">200 000 ₸</span>{{--  TODO: цена со скидкой--}}
       </div>
       <div class="col-7 d-flex justify-content-center align-items-center p-0">
         <button class="btn btn-outline-dark btn-to-cart">

@@ -194,7 +194,7 @@
   }
 
   &::after {
-    height: 25%;
+    height: 22.5%;
     background: url('../images/Vector 5.svg');
   }
 
@@ -255,10 +255,50 @@
 @include media-breakpoint-up(md) {
   #intro {
     padding-left: 10em;
+
+    //.title {
+    //  font-size: 4em;
+    //}
+    //
+    //.subtitle {
+    //  font-size: 1.3em;
+    //}
+    //
+    //.preview {
+    //  width: 320px;
+    //  font-size: 24px;
+    //
+    //  i {
+    //    margin-left: 10px;
+    //  }
+    //}
   }
 }
 
 @include media-breakpoint-up(lg) {
+  #intro {
+    padding-left: 16em;
+
+    .title {
+      font-size: 4em;
+    }
+
+    .subtitle {
+      font-size: 1.3em;
+    }
+
+    .preview {
+      width: 330px;
+      font-size: 1.25em;
+
+      i {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
   #intro {
     padding-left: 16em;
 
@@ -271,20 +311,8 @@
     }
 
     .preview {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       width: 380px;
-      color: white;
-      padding: 16px 40px;
-      background: #ffffff29;
-      border: 2px solid transparent;
-      border-radius: 6px;
-      margin-top: 20px;
-      font-weight: 600;
-      font-size: 24px;
-      border-image-slice: 1;
-      border-image-source: linear-gradient(to right, rgba(229, 233, 239, 0.53), rgba(229, 233, 239, 0));
+      font-size: 1.5em;
 
       i {
         margin-left: 10px;

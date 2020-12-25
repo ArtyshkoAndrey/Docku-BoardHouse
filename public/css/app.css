@@ -16763,7 +16763,7 @@ body {
   background-repeat: no-repeat;
 }
 #intro::after {
-  height: 25%;
+  height: 22.5%;
   background: url("../images/Vector 5.svg");
 }
 #intro::before {
@@ -16820,26 +16820,32 @@ body {
     padding-left: 16em;
   }
   #intro .title {
+    font-size: 4em;
+  }
+  #intro .subtitle {
+    font-size: 1.3em;
+  }
+  #intro .preview {
+    width: 330px;
+    font-size: 1.25em;
+  }
+  #intro .preview i {
+    margin-left: 10px;
+  }
+}
+@media (min-width: 1400px) {
+  #intro {
+    padding-left: 16em;
+  }
+  #intro .title {
     font-size: 5em;
   }
   #intro .subtitle {
     font-size: 1.5em;
   }
   #intro .preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 380px;
-    color: white;
-    padding: 16px 40px;
-    background: #ffffff29;
-    border: 2px solid transparent;
-    border-radius: 6px;
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 24px;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to right, rgba(229, 233, 239, 0.53), rgba(229, 233, 239, 0));
+    font-size: 1.5em;
   }
   #intro .preview i {
     margin-left: 10px;
@@ -17041,6 +17047,7 @@ body {
  */
 .card-body .title {
   color: black;
+  font-weight: 500;
 }
 .card-body:hover .title {
   color: #0c56d0;
@@ -17070,6 +17077,15 @@ body {
   padding-left: 0.1em;
   text-decoration: line-through;
 }
+.card-body .context {
+  padding-right: 0.4em;
+}
+.card-body .price {
+  font-weight: 500;
+}
+.card-body .btn {
+  padding: 0.5rem 1.075rem 0.375rem 1.075rem;
+}
 
 .card.sale .old-price {
   display: block;
@@ -17079,6 +17095,7 @@ body {
   background: #de6d2d;
   position: absolute;
   color: white;
+  right: 0;
   padding: 0.3em 1.3em;
   border-radius: 0 10px 0 10px;
   z-index: 10;
