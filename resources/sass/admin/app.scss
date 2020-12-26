@@ -44,3 +44,26 @@ body {
 }
 //@import "~halfmoon/css/halfmoon.css";
 
+.product {
+  transition: all .5s;
+  &:hover {
+    img {
+      transform: scale(1.2);
+      transition: .5s;
+    }
+  }
+  img {
+    transition: .5s;
+  }
+}
+
+//.product:hover {
+//  background-color: #000!important;
+//  color: white!important;
+//}
+
+.dark-mode {
+  .product:hover {
+    background-color: #000!important;
+  }
+}

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Notifications\ChangeOrderUser;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -37,7 +40,7 @@ class OrderController extends Controller
         $q->where('email', 'like', '%' . $email . '%');
       });
     }
-    $orders = $orders->paginate(10);
+    $orders = $orders->paginate(1);
 
     $filter = [
       'user_name'   => $name,
@@ -96,21 +99,43 @@ class OrderController extends Controller
    *
    * @param Request $request
    * @param Order $order
-   * @return Response
+   * @return RedirectResponse
    */
-  public function update(Request $request, Order $order)
+  public function update(Request $request, Order $order): RedirectResponse
   {
-      //
+    $request->validate([
+      'ship_status' => 'required|string'
+    ]);
+    $data = $request->all();
+    if (!in_array($data['ship_status'], Order::SHIP_STATUS_MAP)) {
+      return redirect()->back()->withInput($data)->withErrors('Не правильно выбран статус');
+    }
+
+    $order->ship_status = $data['ship_status'];
+    if (isset($data['track'])) {
+      $order->ship_data = (object) ['track' => $data['track']];
+    } else {
+      $order->ship_data = (object) [];
+    }
+
+    $order->save();
+    $order->user->notify(new ChangeOrderUser($order));
+
+    return redirect()->route('admin.order.edit', $order)->withSuccess(['Заказ успешно обновлён']);
   }
 
   /**
    * Remove the specified resource from storage.
    *
    * @param Order $order
-   * @return Response
+   * @return RedirectResponse
+   * @throws Exception
    */
-  public function destroy(Order $order)
+  public function destroy(Order $order): RedirectResponse
   {
-      //
+    if ($order->delete()) {
+      return redirect()->route('admin.order.index')->withSuccess(['Заказ был удалён']);
+    }
+    return redirect()->route('admin.order.index')->withErrors(['Ошибка при удалении, обратитесь к администратору']);
   }
 }

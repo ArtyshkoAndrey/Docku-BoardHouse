@@ -19,8 +19,8 @@
     <li class="nav-item {{ Route::currentRouteNamed('admin.index') ? 'active' : '' }}">
       <a href="{{ route('admin.index') }}" class="nav-link">Главная</a>
     </li>
-    <li class="nav-item {{ Route::currentRouteNamed('admin.products.*') ? 'active' : '' }}">
-      <a href="#" class="nav-link">Товары</a>
+    <li class="nav-item {{ Route::currentRouteNamed('admin.product.*') ? 'active' : '' }}">
+      <a href="{{ route('admin.product.index') }}" class="nav-link">Товары</a>
     </li>
   </ul>
 
@@ -70,7 +70,7 @@
     <h5 class="sidebar-title">Товары</h5>
     <div class="sidebar-divider"></div>
 
-    <a href="#" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.products.*') ? 'active' : '' }}">
+    <a href="{{ route('admin.product.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.product.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bxs-t-shirt" aria-hidden="true"></i>
       </span>

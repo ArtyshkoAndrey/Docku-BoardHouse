@@ -76,13 +76,14 @@
             <div class="row p-20">
               <form action="{{ route('admin.order.update', $order) }}" class="w-full" method="POST">
                 @csrf
+                @method('PUT')
 
                 <div class="col-12">
                   <div class="form-group">
                     <label for="ship_status" class="required">Статус заказа</label>
                     <select class="form-control" name="ship_status" id="ship_status" required>
                       @foreach(\App\Models\Order::SHIP_STATUS_MAP as $status)
-                        <option value="{{ $status }}" {{ old('ship_status', $order->ship_status) === $status }}>{{ \App\Models\Order::$shipStatusMap[$status] }}</option>
+                        <option value="{{ $status }}" {{ old('ship_status', $order->ship_status) === $status ? 'selected' : null }}>{{ \App\Models\Order::$shipStatusMap[$status] }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -90,8 +91,8 @@
 
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="ship_data-track" class="">Трек номер</label>
-                    <input type="text" class="form-control" name="ship_data['track']" id="ship_data-track" placeholder="Трек номер" required="required">
+                    <label for="track" class="">Трек номер</label>
+                    <input type="text" class="form-control" name="track" id="track" placeholder="Трек номер" value="{{ old('track', $order->ship_data->track ?? '') }}">
                   </div>
                 </div>
                 <button class="btn" type="submit">Сохранить</button>

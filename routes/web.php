@@ -27,4 +27,5 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 
   Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
+  Route::resource('product', App\Http\Controllers\Admin\ProductController::class);
 });
