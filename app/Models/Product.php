@@ -150,4 +150,13 @@ class Product extends Model
   {
     return $this->hasMany(ProductSkus::class, 'product_id', 'id');
   }
+
+  public function getThumbnail (): string
+  {
+    if ($this->photos->count() > 0) {
+      return asset('storage/images/photos/' . $this->photos->first()->name);
+    } else {
+      return asset('images/product.jpg');
+    }
+  }
 }
