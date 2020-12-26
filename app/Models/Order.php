@@ -9,6 +9,41 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Log;
 
+/**
+ * App\Models\Order
+ *
+ * @property int $id
+ * @property int $no
+ * @property int $user_id
+ * @property object $address
+ * @property string $price
+ * @property string $ship_price
+ * @property \Illuminate\Support\Carbon|null $paid_at
+ * @property string $payment_method
+ * @property string $ship_status
+ * @property object|null $ship_data
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderItem[] $items
+ * @property-read int|null $items_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaidAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Order extends Model
 {
   use HasFactory;

@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
 use DB;
 use Eloquent;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -38,6 +40,7 @@ class DatabaseSeeder extends Seeder
       'country_id'  => 1,
       'city_id'     => 1,
       'avatar'      => null,
+      'is_admin'    => true,
       'created_at'  => now(),
       'updated_at'  => now(),
     ]);
@@ -149,5 +152,48 @@ class DatabaseSeeder extends Seeder
       'updated_at'  => now(),
     ]);
     $this->command->info('Product table seeded!');
+
+    DB::table('orders')->insert([
+      'no'      => '12321333254',
+      'user_id' => 1,
+      'address' => '{"address":"\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d,\u0410\u043b\u043c\u0430\u0442\u044b (\u0410\u043b\u043c\u0430-\u0410\u0442\u0430),\u0410\u0440\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f 115","contact_name":"\u0420\u043e\u043c\u0430\u043d","contact_phone":"+77474117635"}',
+      'price'   => 30000,
+      'paid_at' => now(),
+      'ship_price' => 1973,
+      'payment_method' => 'card',
+      'ship_status' => Order::SHIP_STATUS_DELIVERED,
+      'ship_data' => '{}',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+    DB::table('orders')->insert([
+      'no'      => '1233622333254',
+      'user_id' => 1,
+      'address' => '{"address":"\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d,\u0410\u043b\u043c\u0430\u0442\u044b (\u0410\u043b\u043c\u0430-\u0410\u0442\u0430),\u0410\u0440\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f 115","contact_name":"\u0420\u043e\u043c\u0430\u043d","contact_phone":"+77474117635"}',
+      'price'   => 20000,
+      'paid_at' => now(),
+      'ship_price' => 5160,
+      'payment_method' => 'card',
+      'ship_status' => Order::SHIP_STATUS_RECEIVED,
+      'ship_data' => '{}',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+
+    DB::table('order_items')->insert([
+      'order_id'    => 1,
+      'product_id'  => 1,
+      'amount'      => 3,
+      'skus_id'     => 2,
+      'price'       => 10000
+    ]);
+
+    DB::table('order_items')->insert([
+      'order_id'    => 2,
+      'product_id'  => 1,
+      'amount'      => 2,
+      'skus_id'     => 1,
+      'price'       => 10000
+    ]);
   }
 }

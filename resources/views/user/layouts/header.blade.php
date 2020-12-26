@@ -49,38 +49,61 @@
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
                 <div class="row">
                   <div class="col-12">
-                    <div class="row">
-                      <a href="#" class="d-flex dropdown-item">
-                        <div class="col-2 d-flex align-items-center justify-content-center">
-                          <img class="rounded-circle"
-                               src="{{ asset('images/user-photo.jpg') }}"
-                               style="width: 25px; height: 25px;"/>
-                        </div>
-                        <div class="col-auto mx-2">
-                          Артышко Андрей
-                        </div>
-                      </a>
-                    </div>
-                    <div class="row">
-                      <a href="#" class="d-flex dropdown-item">
-                        <div class="col-2 d-flex align-items-center justify-content-center">
-                          <i class="bx bx-sm bx-user"></i>
-                        </div>
-                        <div class="col-auto mx-2">
-                          Войти
-                        </div>
-                      </a>
-                    </div>
-                    <div class="row">
-                      <a href="#" class="d-flex dropdown-item">
-                        <div class="col-2 d-flex align-items-center justify-content-center">
-                          <i class="bx bx-sm bx-plus-circle"></i>
-                        </div>
-                        <div class="col-auto mx-2">
-                          Зарегистрироваться
-                        </div>
-                      </a>
-                    </div>
+                    @auth
+                      <div class="row">
+                        <a href="#" class="d-flex dropdown-item">
+                          <div class="col-2 d-flex align-items-center justify-content-center">
+                            <img class="rounded-circle"
+                                 src="{{ asset('images/user-photo.jpg') }}"
+                                 style="width: 25px; height: 25px;" alt="logo"/>
+                          </div>
+                          <div class="col-auto mx-2">
+                            Артышко Андрей
+                          </div>
+                        </a>
+                      </div>
+                      <div class="row">
+                        <a href="{{ route('admin.index') }}" class="d-flex dropdown-item">
+                          <div class="col-2 d-flex align-items-center justify-content-center">
+                            <i class="bx bx-sm bxs-dashboard"></i>
+                          </div>
+                          <div class="col-auto mx-2">
+                            Администитивная панель
+                          </div>
+                        </a>
+                      </div>
+                      <div class="row">
+                        <a href="#" class="d-flex dropdown-item">
+                          <div class="col-2 d-flex align-items-center justify-content-center">
+                            <i class="bx bx-sm bx-log-out"></i>
+                          </div>
+                          <div class="col-auto mx-2">
+                            Выйти
+                          </div>
+                        </a>
+                      </div>
+                    @else
+                      <div class="row">
+                        <a href="{{ route('login') }}" class="d-flex dropdown-item">
+                          <div class="col-2 d-flex align-items-center justify-content-center">
+                            <i class="bx bx-sm bx-user"></i>
+                          </div>
+                          <div class="col-auto mx-2">
+                            Войти
+                          </div>
+                        </a>
+                      </div>
+                      <div class="row">
+                        <a href="{{ route('register') }}" class="d-flex dropdown-item">
+                          <div class="col-2 d-flex align-items-center justify-content-center">
+                            <i class="bx bx-sm bx-plus-circle"></i>
+                          </div>
+                          <div class="col-auto mx-2">
+                            Зарегистрироваться
+                          </div>
+                        </a>
+                      </div>
+                      @endauth
                   </div>
                 </div>
               </div>
