@@ -14,35 +14,40 @@ class ApiController extends Controller {
   {
     if ($name = $request->get('name', null)) {
       $countries = Country::where('name', 'like', '%'.$name.'%')->limit(5)->get();
-      return response()->json(['countries'=> $countries], 200);
+    } else {
+      $countries = Country::limit(5)->get();
     }
-    return response()->json(['countries' => []], 200);
+    return response()->json(['countries'=> $countries], 200);
   }
 
   public function categories (Request $request): JsonResponse
   {
     if ($name = $request->get('name', null)) {
       $categories = Category::where('name', 'like', '%'.$name.'%')->limit(5)->get();
-      return response()->json(['categories'=> $categories], 200);
+    } else {
+      $categories = Category::limit(5)->get();
     }
-    return response()->json(['categories' => []], 200);
+    return response()->json(['categories'=> $categories], 200);
   }
 
   public function cities (Request $request): JsonResponse
   {
     if ($name = $request->get('name', null)) {
       $cities = City::where('name', 'like', '%'.$name.'%')->limit(5)->get();
-      return response()->json(['cities'=> $cities], 200);
+    } else {
+      $cities = City::limit(5)->get();
     }
-    return response()->json(['cities' => []], 200);
+    return response()->json(['cities'=> $cities], 200);
   }
 
   public function brands (Request $request): JsonResponse
   {
-    if ($name = $request->get('name', null)) {
+    $name = $request->get('name', null);
+    if ($name && $name !== '') {
       $brands = Brand::where('name', 'like', '%'.$name.'%')->limit(5)->get();
-      return response()->json(['brands'=> $brands], 200);
+    } else {
+      $brands = Brand::limit(5)->get();
     }
-    return response()->json(['brands' => []], 200);
+    return response()->json(['brands'=> $brands], 200);
   }
 }

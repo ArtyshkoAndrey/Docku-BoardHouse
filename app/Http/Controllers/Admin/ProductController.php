@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -15,6 +17,7 @@ class ProductController extends Controller
   /**
    * Display a listing of the resource.
    *
+   * @param Request $request
    * @return Application|Factory|View|Response
    */
   public function index(Request $request): View
@@ -42,7 +45,7 @@ class ProductController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param Request $request
    * @return Response
    */
   public function store(Request $request)
@@ -53,10 +56,10 @@ class ProductController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\Admin\ProductController  $productController
+   * @param Product $product
    * @return Response
    */
-  public function show(ProductController $productController)
+  public function show(Product $product)
   {
       //
   }
@@ -75,23 +78,44 @@ class ProductController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Admin\ProductController  $productController
-   * @return Response
+   * @param Request $request
+   * @param Product $product
+   * @return RedirectResponse
    */
-  public function update(Request $request, ProductController $productController)
+  public function update(Request $request, Product $product): RedirectResponse
   {
-      //
+    $request->validate([
+      'title' => 'required|string|max:255',
+      'price' => 'required|integer|min:0',
+      'weight' => 'required|min:0',
+      'brand' => 'required|exists:brands,id',
+      'category' => 'required|exists:categories,id',
+      'meta_title' => 'required|string',
+      'meta_description' => 'required|string',
+      'description' => 'required',
+    ]);
+    return redirect()->back()->with('success', ['Товар успешно обновлён']);
   }
 
   /**
-   * Remove the specified resource from storage.
+   * Удаление или востановление товара.
    *
-   * @param  \App\Models\Admin\ProductController  $productController
-   * @return Response
+   * @param int $id
+   * @return RedirectResponse
    */
-  public function destroy(ProductController $productController)
+  public function destroy(int $id): RedirectResponse
   {
-      //
+    $product = Product::withTrashed()->find($id);
+    if ($product->trashed()) {
+      $product->restore();
+      return redirect()->back()->with('success', ['Товар успешно востановлен']);
+    } else {
+      try {
+        $product->delete();
+        return redirect()->back()->with('success', ['Товар успешно удалён']);
+      } catch (Exception $exception) {
+        return redirect()->back()->withErrors($exception->getMessage());
+      }
+    }
   }
 }

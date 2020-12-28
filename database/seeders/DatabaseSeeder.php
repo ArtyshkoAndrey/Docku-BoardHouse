@@ -131,7 +131,15 @@ class DatabaseSeeder extends Seeder
       'price' => 10000,
       'price_sale' => null,
       'weight' => 1,
-      'meta' => '[{"title": "Товар","description": "Официальный разработчик "}]',
+      'meta' => '{"title": "Товар","description": "Официальный разработчик "}',
+      'brand_id' => 1,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+
+    DB::table('product_categories')->insert([
+      'product_id' => 1,
+      'category_id' => 1,
       'created_at'  => now(),
       'updated_at'  => now(),
     ]);

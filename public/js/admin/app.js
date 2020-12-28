@@ -1923,6 +1923,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "brand",
   data: function data() {
@@ -1943,9 +1952,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     name: {
       type: String
+    },
+    brand_props: {
+      type: Object
     }
   },
   created: function created() {
+    if (this.brand_props) {
+      this.selected_brand = this.brand_props;
+      this.search = this.brand_props.name;
+    }
+
     this.watcher = this.$watch('search', function (n, o) {
       this.watcherSearch(n, o);
     });
@@ -1955,11 +1972,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.brands.length === 0) {
         this.watcher();
         this.show = false;
-        this.selected_brand = {
-          id: null
-        };
         this.brands = [];
-        this.search = '';
+        this.search = this.selected_brand.name;
         this.watcher = this.$watch('search', function (n, o) {
           this.watcherSearch(n, o);
         });
@@ -2013,6 +2027,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "category",
   data: function data() {
@@ -2033,9 +2055,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     name: {
       type: String
+    },
+    category_props: {
+      required: true
     }
   },
   created: function created() {
+    if (this.category_props) {
+      this.selected_category = this.category_props;
+      this.search = this.category_props.name;
+    }
+
     this.watcher = this.$watch('search', function (n, o) {
       this.watcherSearch(n, o);
     });
@@ -2045,11 +2075,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.categories.length === 0) {
         this.watcher();
         this.show = false;
-        this.selected_category = {
-          id: null
-        };
         this.categories = [];
-        this.search = '';
+        this.search = this.selected_category.name;
         this.watcher = this.$watch('search', function (n, o) {
           this.watcherSearch(n, o);
         });
@@ -2123,6 +2150,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     name: {
       type: String
+    },
+    country_props: {
+      required: false
     }
   },
   created: function created() {
@@ -2131,6 +2161,17 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    closedMenu: function closedMenu() {
+      if (this.ca.length === 0) {
+        this.watcher();
+        this.show = false;
+        this.countries = [];
+        this.search = this.selected_country.name;
+        this.watcher = this.$watch('search', function (n, o) {
+          this.watcherSearch(n, o);
+        });
+      }
+    },
     setCountry: function setCountry(country) {
       this.watcher();
       this.selected_country = country;
@@ -14060,45 +14101,49 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-group" }, [
-    _c("label", { staticClass: "required", attrs: { for: _vm.id } }, [
-      _vm._v("Бренд")
-    ]),
-    _vm._v(" "),
     _c("div", { class: "dropdown w-full " + (this.show ? "show" : "") }, [
       _c("input", {
         attrs: { type: "hidden", name: _vm.name, id: _vm.id },
         domProps: { value: _vm.selected_brand.id }
       }),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.search,
-            expression: "search"
-          }
-        ],
-        staticClass: "form-control w-full",
-        attrs: {
-          autocomplete: "off",
-          type: "text",
-          placeholder: "Бренд",
-          name: "search-" + _vm.name
-        },
-        domProps: { value: _vm.search },
-        on: {
-          blur: function($event) {
-            return _vm.closedMenu()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("label", { staticClass: "required", attrs: { for: _vm.id } }, [
+        _vm._v("Бренд")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group w-full" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
             }
-            _vm.search = $event.target.value
+          ],
+          staticClass: "form-control",
+          attrs: {
+            autocomplete: "off",
+            type: "text",
+            placeholder: "Бренд",
+            name: "search-" + _vm.name
+          },
+          domProps: { value: _vm.search },
+          on: {
+            blur: function($event) {
+              return _vm.closedMenu()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -14132,11 +14177,26 @@ var render = function() {
             : _vm._e()
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-text font-size-10" }, [
+        _vm._v("\n      Начните писать, что бы увидеть варианты\n    ")
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "bx bx-down-arrow-alt" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -14159,45 +14219,49 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-group" }, [
-    _c("label", { staticClass: "required", attrs: { for: _vm.id } }, [
-      _vm._v("Категория")
-    ]),
-    _vm._v(" "),
     _c("div", { class: "dropdown w-full " + (this.show ? "show" : "") }, [
       _c("input", {
         attrs: { type: "hidden", name: _vm.name, id: _vm.id },
         domProps: { value: _vm.selected_category.id }
       }),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.search,
-            expression: "search"
-          }
-        ],
-        staticClass: "form-control w-full",
-        attrs: {
-          autocomplete: "off",
-          type: "text",
-          placeholder: "Категория",
-          name: "search-" + _vm.name
-        },
-        domProps: { value: _vm.search },
-        on: {
-          blur: function($event) {
-            return _vm.closedMenu()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("label", { staticClass: "required", attrs: { for: _vm.id } }, [
+        _vm._v("Категория")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group w-full" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
             }
-            _vm.search = $event.target.value
+          ],
+          staticClass: "form-control w-full",
+          attrs: {
+            autocomplete: "off",
+            type: "text",
+            placeholder: "Категория",
+            name: "search-" + _vm.name
+          },
+          domProps: { value: _vm.search },
+          on: {
+            blur: function($event) {
+              return _vm.closedMenu()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -14232,10 +14296,25 @@ var render = function() {
         ],
         2
       )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-text font-size-10" }, [
+      _vm._v("\n    Начните писать, что бы увидеть варианты\n  ")
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "bx bx-down-arrow-alt" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -14286,6 +14365,9 @@ var render = function() {
         },
         domProps: { value: _vm.search },
         on: {
+          blur: function($event) {
+            return _vm.closedMenu()
+          },
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -26751,7 +26833,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\OpenServer\domains\docu\resources\js\admin\app.js */"./resources/js/admin/app.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\docu\resources\js\admin\app.js */"./resources/js/admin/app.js");
 
 
 /***/ })

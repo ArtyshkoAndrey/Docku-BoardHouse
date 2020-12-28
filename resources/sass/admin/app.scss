@@ -1,6 +1,6 @@
 @import "~halfmoon/css/halfmoon-variables.css";
 
-body {
+:root {
   --dm-sidebar-link-text-color-active: #ff6767;
   --dm-sidebar-link-text-color-active-hover: #ff0000;
 
@@ -23,6 +23,55 @@ body {
   --breadcrumb-separator-margin-right: 0;
   --breadcrumb-separator-content: "\e9b2";
   --tooltip-width: 15rem;
+  /* Small button */
+
+  --small-button-font-size: 1rem;
+  --large-button-font-size: 1.4rem;
+  --code-font-size: 1rem;
+  --base-font-size: 1.1rem;
+  --small-input-font-size: 1rem;
+  --large-input-font-size: 1.6rem;
+  --content-title-font-size: 1.4rem;
+  --modal-close-font-size: 2rem;
+  --alert-heading-font-size: 1.4rem;
+  --alert-close-font-size: 1.4rem;
+  --navbar-brand-font-size: 1.6rem;
+  --sidebar-title-font-size: 1.3rem;
+  --sidebar-icon-font-size: 1.3rem;
+  --tooltip-font-size: 1.1rem;
+  --pagination-item-font-size: 1.1rem;
+  --pagination-item-height: 2.5rem;
+  --pagination-item-width: 2.5rem;
+  --base-html-font-size: 75%;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.3;
+}
+h2 {
+  font-size: 3.2rem;
+  line-height: 1.35;
+}
+h3 {
+  font-size: 2.8rem;
+  line-height: 1.4;
+}
+h4 {
+  font-size: 2.2rem;
+  line-height: 1.45;
+}
+h5 {
+  font-size: 1.6rem;
+}
+h6 {
+  font-size: 1.3rem;
+}
+samp {
+  font-size: .8em;
+}
+sup {
+  font-size: 65%;
 }
 
 .breadcrumb-item:before {

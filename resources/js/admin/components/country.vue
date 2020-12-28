@@ -3,7 +3,7 @@
     <label :for="id" class="required">Страна</label>
     <div :class="'dropdown w-full ' + (this.show ? 'show' : '')">
       <input type="hidden" :value="selected_country.id" :name="name" :id="id">
-      <input autocomplete="off" type="text" placeholder="Страна" class="form-control w-full" :name="'search-' + name" v-model="search">
+      <input autocomplete="off" @blur="closedMenu()" type="text" placeholder="Страна" class="form-control w-full" :name="'search-' + name" v-model="search">
       <div class="dropdown-menu mt-20">
         <h6 class="dropdown-header">Выберите страну</h6>
         <a v-if="countries.length > 0" @click="setCountry(country)" v-for="country in countries " class="dropdown-item pointer-events-auto">{{ country.name }}</a>
@@ -35,6 +35,9 @@ export default {
     name: {
       type: String,
     },
+    country_props: {
+      required: false
+    }
 
   },
   created: function () {
@@ -43,6 +46,17 @@ export default {
     })
   },
   methods: {
+    closedMenu () {
+      if (this.ca.length === 0) {
+        this.watcher()
+        this.show = false
+        this.countries = []
+        this.search = this.selected_country.name
+        this.watcher = this.$watch('search', function (n, o) {
+          this.watcherSearch(n, o)
+        })
+      }
+    },
     setCountry (country) {
       this.watcher()
       this.selected_country = country

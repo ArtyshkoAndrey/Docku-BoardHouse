@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -126,14 +127,14 @@ class Product extends Model
     return (boolean) $counter > 0;
   }
 
-  public function categories(): BelongsToMany
+  public function category(): BelongsToMany
   {
     return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
   }
 
-  public function brands(): BelongsToMany
+  public function brand(): BelongsTo
   {
-    return $this->belongsToMany(Brand::class, 'products_brands', 'product_id', 'brand_id');
+    return $this->belongsTo(Brand::class, 'brand_id', 'id');
   }
 
   public function photos(): HasMany

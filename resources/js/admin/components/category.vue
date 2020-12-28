@@ -1,14 +1,22 @@
 <template>
   <div class="form-group">
-    <label :for="id" class="required">Категория</label>
     <div :class="'dropdown w-full ' + (this.show ? 'show' : '')">
       <input type="hidden" :value="selected_category.id" :name="name" :id="id">
-      <input autocomplete="off" @blur="closedMenu()" type="text" placeholder="Категория" class="form-control w-full" :name="'search-' + name" v-model="search">
+      <label :for="id" class="required">Категория</label>
+      <div class="input-group w-full">
+        <input autocomplete="off" @blur="closedMenu()" type="text" placeholder="Категория" class="form-control w-full" :name="'search-' + name" v-model="search">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="bx bx-down-arrow-alt"></i></span>
+        </div>
+      </div>
       <div class="dropdown-menu mt-20">
         <h6 class="dropdown-header">Выберите категория</h6>
         <a v-if="categories.length > 0" @click="setCountry(category)" v-for="category in categories" class="dropdown-item pointer-events-auto">{{ category.name }}</a>
         <h5 v-if="categories.length === 0" class="dropdown-header">Нет категорий</h5>
       </div>
+    </div>
+    <div class="form-text font-size-10">
+      Начните писать, что бы увидеть варианты
     </div>
   </div>
 </template>
@@ -35,9 +43,15 @@ export default {
     name: {
       type: String,
     },
-
+    category_props: {
+      required: true
+    }
   },
   created: function () {
+    if (this.category_props) {
+      this.selected_category = this.category_props
+      this.search = this.category_props.name
+    }
     this.watcher = this.$watch('search', function (n, o) {
       this.watcherSearch(n, o)
     })
@@ -47,11 +61,8 @@ export default {
       if (this.categories.length === 0) {
         this.watcher()
         this.show = false
-        this.selected_category = {
-          id: null
-        }
         this.categories = []
-        this.search = ''
+        this.search = this.selected_category.name
         this.watcher = this.$watch('search', function (n, o) {
           this.watcherSearch(n, o)
         })
