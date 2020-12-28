@@ -170,6 +170,16 @@
   }
 }
 
+//#intro .title {
+//  background: none;
+//}
+//
+//@media screen and (min-height: 768px) {
+//  #intro .title {
+//    background: red;
+//  }
+//}
+
 #intro {
   //min-height: 800px;
   height: 100vh;
@@ -256,23 +266,6 @@
 @include media-breakpoint-up(md) {
   #intro {
     padding-left: 10em;
-
-    //.title {
-    //  font-size: 4em;
-    //}
-    //
-    //.subtitle {
-    //  font-size: 1.3em;
-    //}
-    //
-    //.preview {
-    //  width: 320px;
-    //  font-size: 24px;
-    //
-    //  i {
-    //    margin-left: 10px;
-    //  }
-    //}
   }
 }
 

@@ -29,6 +29,9 @@
   <main>
     @yield('content')
   </main>
+
+  @include('user.layouts.instagram')
+  @include('user.layouts.footer')
 </div>
 </body>
 

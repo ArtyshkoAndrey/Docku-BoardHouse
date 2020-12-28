@@ -16990,10 +16990,68 @@ body {
     padding: 0 10em;
   }
 }
-/*!
- * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
- * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
- */
+footer {
+  padding: 30px 0 150px;
+  background: #E8E9EE;
+  position: relative;
+}
+footer::after, footer::before {
+  content: "";
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  height: 35%;
+}
+@media (max-width: 991.98px) {
+  footer::after, footer::before {
+    height: 27%;
+  }
+}
+@media (max-width: 767.98px) {
+  footer::after, footer::before {
+    height: 20%;
+  }
+}
+footer::after {
+  background: url("../images/Vector 8.svg");
+}
+footer::before {
+  background: url("../images/Vector 9.svg");
+}
+@media (max-width: 767.98px) {
+  footer {
+    padding-bottom: 192px;
+  }
+}
+footer .container .row > div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+footer .container .row > div span, footer .container .row > div a {
+  font-size: 0.9em;
+  color: #A9AEB5;
+  margin-bottom: 12px;
+}
+footer .container .row > div .title {
+  color: black;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+footer .container .row > div .number {
+  font-size: 2em;
+  color: black;
+  font-weight: bold;
+}
+@media (max-width: 767.98px) {
+  footer .container .row > div .number {
+    font-size: 1.5em;
+  }
+}
+
 .login-page, .register-page, .password-request-page, .password-reset-page {
   height: 100vh;
   width: 100vw;
@@ -17114,6 +17172,78 @@ body {
 .btn-to-cart:hover {
   background: #2d3134;
   color: white;
+}
+
+/*!
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+section.instagram {
+  height: 100vh;
+  background-image: linear-gradient(0deg, #6480AA, rgba(255, 255, 255, 0)), url("../images/instagram-background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  padding-left: 8em;
+  position: relative;
+  background-position-y: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.instagram::after, section.instagram::before {
+  content: "";
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+}
+section.instagram::after {
+  height: 25%;
+  background: url("../images/Vector 71.svg");
+}
+section.instagram::before {
+  height: 30%;
+  background: url("../images/Vector 7.svg");
+}
+section.instagram .phone {
+  height: 100%;
+  width: 90%;
+  position: absolute;
+  background: url("../images/mockup 1.png") no-repeat right;
+  background-size: contain;
+  right: 0;
+  bottom: -30px;
+}
+section.instagram span {
+  color: #ffffff;
+}
+section.instagram .small {
+  font-size: 1em;
+}
+section.instagram .big {
+  font-size: 2.2em;
+  font-weight: 800;
+}
+@media (max-width: 1199.98px) {
+  section.instagram {
+    padding-left: 4em;
+  }
+}
+@media (max-width: 991.98px) {
+  section.instagram {
+    padding-left: 2em;
+  }
+  section.instagram .phone {
+    width: 80%;
+    bottom: -75px;
+  }
+  section.instagram .big {
+    font-size: 1.5em;
+  }
 }
 
 body {

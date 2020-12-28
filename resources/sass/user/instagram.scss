@@ -1,0 +1,83 @@
+/*!
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+
+section.instagram {
+  height: 100vh;
+  background-image: linear-gradient(0deg,
+    #6480AA, rgba(255, 255, 255, 0)),
+  url('../images/instagram-background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  padding-left: 8em;
+  position: relative;
+  background-position-y: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &::after, &::before {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-repeat: no-repeat;
+  }
+
+  &::after {
+    height: 25%;
+    background: url('../images/Vector 71.svg');
+  }
+
+  &::before {
+    height: 30%;
+    background: url('../images/Vector 7.svg');
+  }
+
+  .phone {
+    height: 100%;
+    width: 90%;
+    position: absolute;
+    background: url('../images/mockup 1.png')
+                no-repeat right;
+    background-size: contain;
+    right: 0;
+    bottom: -30px;
+  }
+
+  span {
+    color: #ffffff;
+  }
+
+  .small {
+    font-size: 1em;
+  }
+
+  .big {
+    font-size: 2.2em;
+    font-weight: 800;
+  }
+
+  @include media-breakpoint-down(xl) {
+    padding-left: 4em;
+  }
+
+  @include media-breakpoint-down(lg) {
+    padding-left: 2em;
+
+    .phone {
+      width: 80%;
+      bottom: -75px;
+    }
+
+    .big {
+      font-size: 1.5em;
+    }
+
+  }
+}
