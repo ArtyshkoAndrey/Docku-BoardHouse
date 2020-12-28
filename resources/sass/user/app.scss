@@ -6,21 +6,14 @@
 // Bootstrap
 @import '~mdb-ui-kit/src/scss/mdb.free';
 
-// Variables
 @import 'resources/sass/variables';
 
-
-// Стили для шапки
 @import 'header';
-
-// Стили для футера
 @import 'footer';
-
 @import 'login';
-
 @import 'item.scss';
-
 @import 'instagram.scss';
+@import 'item-catalog.scss';
 
 // TODO: тут писать все общие стили, по возможности разбивать на файлы, отдельно для продукта, отдельно для корзины и прочее. Разбивать если там стили используются не общие.
 

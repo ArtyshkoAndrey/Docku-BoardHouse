@@ -4,7 +4,7 @@
  */
 
 section.instagram {
-  height: 100vh;
+  height: 800px;
   background-image: linear-gradient(0deg,
     #6480AA, rgba(255, 255, 255, 0)),
   url('../images/instagram-background.png');
@@ -22,21 +22,22 @@ section.instagram {
   &::after, &::before {
     content: "";
     width: 100%;
+    height: 100%;
     display: block;
     position: absolute;
     bottom: 0;
     left: 0;
     background-repeat: no-repeat;
+    background-size: 101%;
+    background-position: bottom;
   }
 
   &::after {
-    height: 25%;
-    background: url('../images/Vector 71.svg');
+    background-image: url('../images/Vector 71.svg');
   }
 
   &::before {
-    height: 30%;
-    background: url('../images/Vector 7.svg');
+    background-image: url('../images/Vector 7.svg');
   }
 
   .phone {

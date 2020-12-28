@@ -13,6 +13,8 @@ footer {
     left: 0;
     background-repeat: no-repeat;
     height: 35%;
+    background-position: bottom;
+    background-size: 101%;
 
     @include media-breakpoint-down(lg) {
       height: 27%;
@@ -24,11 +26,11 @@ footer {
   }
 
   &::after {
-    background: url('../images/Vector 8.svg');
+    background-image: url('../images/Vector 8.svg');
   }
 
   &::before {
-    background: url('../images/Vector 9.svg');
+    background-image: url('../images/Vector 9.svg');
   }
 
   @include media-breakpoint-down(md) {

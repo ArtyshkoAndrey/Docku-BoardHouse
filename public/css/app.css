@@ -16635,6 +16635,7 @@ body {
 .header {
   position: absolute;
   width: 100%;
+  z-index: 1;
 }
 .header hr {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.0205) 0%, rgba(255, 255, 255, 0) 10%, white 47.45%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 0.0205) 100%);
@@ -16753,6 +16754,7 @@ body {
   color: #ffffff;
   padding-left: 2em;
   background-attachment: fixed;
+  position: relative;
 }
 #intro::after, #intro::before {
   content: "";
@@ -16762,14 +16764,15 @@ body {
   bottom: 0;
   left: 0;
   background-repeat: no-repeat;
+  background-size: 101%;
 }
 #intro::after {
   height: 22.5%;
-  background: url("../images/Vector 5.svg");
+  background-image: url("../images/Vector 5.svg");
 }
 #intro::before {
   height: 20%;
-  background: url("../images/Vector 6.svg");
+  background-image: url("../images/Vector 6.svg");
 }
 #intro .title {
   font-size: 2.5em;
@@ -16990,6 +16993,12 @@ body {
     padding: 0 10em;
   }
 }
+@media screen and (max-height: 768px) {
+  #intro {
+    min-height: 768px !important;
+    height: auto !important;
+  }
+}
 footer {
   padding: 30px 0 150px;
   background: #E8E9EE;
@@ -17004,6 +17013,8 @@ footer::after, footer::before {
   left: 0;
   background-repeat: no-repeat;
   height: 35%;
+  background-position: bottom;
+  background-size: 101%;
 }
 @media (max-width: 991.98px) {
   footer::after, footer::before {
@@ -17016,10 +17027,10 @@ footer::after, footer::before {
   }
 }
 footer::after {
-  background: url("../images/Vector 8.svg");
+  background-image: url("../images/Vector 8.svg");
 }
 footer::before {
-  background: url("../images/Vector 9.svg");
+  background-image: url("../images/Vector 9.svg");
 }
 @media (max-width: 767.98px) {
   footer {
@@ -17179,7 +17190,7 @@ footer .container .row > div .number {
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
 section.instagram {
-  height: 100vh;
+  height: 800px;
   background-image: linear-gradient(0deg, #6480AA, rgba(255, 255, 255, 0)), url("../images/instagram-background.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -17195,19 +17206,20 @@ section.instagram {
 section.instagram::after, section.instagram::before {
   content: "";
   width: 100%;
+  height: 100%;
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
   background-repeat: no-repeat;
+  background-size: 101%;
+  background-position: bottom;
 }
 section.instagram::after {
-  height: 25%;
-  background: url("../images/Vector 71.svg");
+  background-image: url("../images/Vector 71.svg");
 }
 section.instagram::before {
-  height: 30%;
-  background: url("../images/Vector 7.svg");
+  background-image: url("../images/Vector 7.svg");
 }
 section.instagram .phone {
   height: 100%;
@@ -17244,6 +17256,43 @@ section.instagram .big {
   section.instagram .big {
     font-size: 1.5em;
   }
+}
+
+/*!
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+.item-catalog {
+  margin-top: 50px;
+}
+.item-catalog > div {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.item-catalog > div > .title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #2D3134;
+  margin-left: 0.1em;
+}
+.item-catalog > div > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-left: 15px;
+  color: #2D89DE;
+  border: 3px solid #2D89DE;
+  transition-duration: 0.5s;
+}
+.item-catalog > div > a i {
+  font-size: 1.4em;
+}
+.item-catalog > div > a:hover {
+  background: #2D89DE;
+  color: white;
+  transition-duration: 0.5s;
 }
 
 body {
