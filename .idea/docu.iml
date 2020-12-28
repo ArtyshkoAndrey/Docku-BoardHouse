@@ -133,5 +133,6 @@
     <orderEntry type="library" name="boxicons" level="application" />
     <orderEntry type="library" name="boxicons" level="application" />
     <orderEntry type="library" name="boxicons" level="application" />
+    <orderEntry type="library" name="tinymce" level="application" />
   </component>
 </module>

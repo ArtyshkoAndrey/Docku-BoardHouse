@@ -62,8 +62,24 @@ body {
 //  color: white!important;
 //}
 
+.link-product {
+  color: #000;
+}
+
 .dark-mode {
   .product:hover {
     background-color: #000!important;
   }
+  .link-product {
+    color: #ffffff;
+  }
+}
+
+
+.link-product:hover {
+  color: red!important;
+}
+
+.sidebar, .content-wrapper {
+  transition: .5s
 }

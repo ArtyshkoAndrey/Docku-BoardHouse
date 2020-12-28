@@ -3,9 +3,6 @@
 @section('title', 'Doscu - Список заказов')
 
 @section('content')
-  <!-- Content wrapper -->
-  <div class="content-wrapper">
-
     <div class="container-fluid mt-20 mb-20">
       <div class="row px-20 justify-content-center">
         <div class="col-12">
@@ -120,7 +117,6 @@
         </div>
       </div>
     </div>
-  </div>
 @endsection
 
 @section('script')

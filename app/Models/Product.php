@@ -128,7 +128,7 @@ class Product extends Model
 
   public function categories(): BelongsToMany
   {
-    return $this->belongsToMany(Category::class, 'products_categories', 'product_id', 'category_id');
+    return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
   }
 
   public function brands(): BelongsToMany
@@ -149,6 +149,11 @@ class Product extends Model
   public function productSkuses(): HasMany
   {
     return $this->hasMany(ProductSkus::class, 'product_id', 'id');
+  }
+
+  public function orders(): BelongsToMany
+  {
+    return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id')->withPivot(['amount']);
   }
 
   public function getThumbnail (): string

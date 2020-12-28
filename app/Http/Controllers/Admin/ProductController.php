@@ -20,11 +20,11 @@ class ProductController extends Controller
   public function index(Request $request): View
   {
     $name = $request->get('name', null);
-    $products = Product::query();
+    $products = Product::query()->withTrashed();
     if ($name) {
       $products = $products->where('title', 'like', '%' . $name . '%');
     }
-    $products = $products->paginate(1);
+    $products = $products->paginate(10);
     $filter = ['name' => $name];
     return view('admin.product.index', compact('products', 'filter'));
   }
@@ -64,12 +64,12 @@ class ProductController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Models\Admin\ProductController  $productController
-   * @return Response
+   * @param Product $product
+   * @return Application|Factory|View|Response
    */
-  public function edit(ProductController $productController)
+  public function edit(Product $product)
   {
-      //
+    return view('admin.product.edit', compact('product'));
   }
 
   /**
