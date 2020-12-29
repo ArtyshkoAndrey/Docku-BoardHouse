@@ -44,6 +44,21 @@ class DatabaseSeeder extends Seeder
       'created_at'  => now(),
       'updated_at'  => now(),
     ]);
+//    Юзер админов
+
+    DB::table('users')->insert([
+      'name'        => 'Роман',
+      'email'       => 'iminovarts@gmail.com',
+      'password'    => Hash::make('123123'),
+      'address'     => 'Казахстан',
+      'post_code'   => '660099',
+      'country_id'  => 82,
+      'city_id'     => 10451,
+      'avatar'      => null,
+      'is_admin'    => true,
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
     $this->command->info('User table seeded!');
 
     DB::table('brands')->insert([
