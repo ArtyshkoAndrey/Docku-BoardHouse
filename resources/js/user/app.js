@@ -1,12 +1,19 @@
+/*
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import * as mdb from 'mdb-ui-kit'
+require('./bootstrap.js')
 
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +34,18 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import store from "./store";
+Vue.config.productionTip = false
+
+Vue.config.devtools = true;
+Vue.config.performance = true;
+
 const app = new Vue({
-    el: '#app',
+  el: '#app',
+  store: store,
+  delimiters: ['<%', '%>'],
+  data() {
+    return {
+    }
+  },
 });

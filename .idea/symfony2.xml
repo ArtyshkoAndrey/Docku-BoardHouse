@@ -2,5 +2,12 @@
 <project version="4">
   <component name="Symfony2PluginSettings">
     <option name="pluginEnabled" value="true" />
+    <option name="profilerCsvPath" value="" />
+    <option name="lastServiceGeneratorLanguage" value="yaml" />
+    <option name="routingFiles">
+      <list>
+        <routing_file path="routes/web.php" />
+      </list>
+    </option>
   </component>
 </project>

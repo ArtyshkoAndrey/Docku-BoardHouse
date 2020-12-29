@@ -1,19 +1,23 @@
-@extends('user.layouts.app')
+@extends('user.layouts.app', ['color_menu' => 'dark'])
+{{--@extends('user.layouts.app') Это без параметра и следовательно меню придёт dark автоматически --}}
+{{-- Говорим шаблону что будет переменная в нём с значением --}}
 
 @section('content')
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          Главная страница
-        </div>
+  <section id="intro" class="container-fluid m-0">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title">Магазин cноубордов</h1>
+        <span class="subtitle">С одним из лучших<br>ассортиментов в Алматы</span>
+        <a href="#" class="preview">Начать покупки <i class="bx bx-sm bx-run"></i></a>
       </div>
     </div>
-  </div>
-  <example-component></example-component>
-{{--  TODO: Это я вывел компонент. Все файлы которые лежать в папке js/components буду автоматически ипортироваться в проект. Если ты создал новый файл, то перезапусти вочер.--}}
-{{--TODO: То что ide его не знает и чехочет подцепить js`ом, то не парься, тупо так выводи, потом порешаю.--}}
-  @include('user.layouts.product.product-card')
-{{--  TODO: Это я подключит файл, в нём обычный html. Таким образом я вывел код карточчки товара что бы не повотрять в разный файлах.--}}
+  </section>
+
+  <section>
+    @include('user.layouts.item-catalog')
+    @include('user.layouts.item-catalog')
+    @include('user.layouts.item-catalog')
+    @include('user.layouts.item-catalog')
+  </section>
 @endsection
 
