@@ -2,8 +2,8 @@
   <nav id="main-menu" class="navbar navbar-expand">
     <div class="container">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-between justify-content-md-center align-items-center w-100">
-          <li class="nav-item dropdown">
+        <ul class="navbar-nav align-items-center w-100">
+          <li class="nav-item dropdown mr-auto">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -23,19 +23,20 @@
           <li class="nav-item d-none d-xl-flex">
             <a class="d-block nav-link">+7 (747) 556-23-83</a>
           </li>
-          <a class="navbar-brand d-none d-md-block mx-auto" href="#">
-            <img src="{{ asset('images/logo.svg') }}" alt="">
-          </a>
+          <li class="nav-item d-none d-md-flex mx-auto">
+            <a class="" href="#">
+              <img src="{{ asset('images/logo.svg') }}" alt="">
+            </a>
+          </li>
           <li class="d-none d-lg-flex">
             <a class="nav-link" href="#">info@dockuboardhouse.com</a>
           </li>
-          <div class="d-flex">
-            <li class="nav-item icon">
+          <li class="nav-item icon ml-auto ml-md-0">
               <a class="nav-link" onclick="toggleSearch()">
                 <i class="bx bx-sm bx-search"></i>
               </a>
             </li>
-            <li class="nav-item icon dropdown">
+          <li class="nav-item icon dropdown">
               <a
                 class="nav-link"
                 href="#"
@@ -108,7 +109,7 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item icon dropdown">
+          <li class="nav-item icon dropdown">
 
             <a
               class="nav-link"
@@ -162,16 +163,7 @@
                 </div>
               </div>
             </div>
-            {{--          <ul class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="navbarDropdown">--}}
-            {{--            <li><a class="dropdown-item" href="#">Action</a></li>--}}
-            {{--            <li><a class="dropdown-item" href="#">Another action</a></li>--}}
-            {{--            <li><hr class="dropdown-divider" /></li>--}}
-            {{--            <li>--}}
-            {{--              <a class="dropdown-item" href="#">Something else here</a>--}}
-            {{--            </li>--}}
-            {{--          </ul>--}}
           </li>
-          </div>
         </ul>
       </div>
     </div>
@@ -195,8 +187,136 @@
   <nav class="navbar navbar-expand category-menu">
     <div class="container-fluid container-md w-100">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-between align-items-center w-100">
-          <li class="nav-item dropdown" v-for="i in 5">
+        <ul class="navbar-nav align-items-center w-100">
+          <li class="nav-item dropdown ml-auto">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт <% i %></span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown ">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт <% i %></span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown ">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт <% i %></span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown ">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт <% i %></span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown mr-auto">
             <a
               class="nav-link dropdown-toggle"
               href="#"

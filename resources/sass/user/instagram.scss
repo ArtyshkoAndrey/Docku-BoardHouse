@@ -22,18 +22,18 @@ section.instagram {
   &::after, &::before {
     content: "";
     width: 100%;
-    height: 100%;
+    height: 20%;
     display: block;
     position: absolute;
     bottom: 0;
     left: 0;
     background-repeat: no-repeat;
-    background-size: 101%;
-    background-position: bottom;
+    background-size: cover;
   }
 
   &::after {
     background-image: url('../images/Vector 71.svg');
+    bottom: -1% !important;
   }
 
   &::before {

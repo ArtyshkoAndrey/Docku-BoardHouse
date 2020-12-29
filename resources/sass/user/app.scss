@@ -5,6 +5,8 @@
 
 // Bootstrap
 @import '~mdb-ui-kit/src/scss/mdb.free';
+@import '~mdb-ui-kit/src/scss/mdb.core';
+@import '~bootstrap/scss/bootstrap-grid';
 
 @import 'resources/sass/variables';
 
@@ -24,3 +26,13 @@
 body {
   background: rgba(242, 243, 246, 1);
 }
+
+// Это пиздец
+//
+//.mr-auto {
+//  margin-right: auto!important;
+//}
+//
+//.ml-auto {
+//  margin-left: auto!important;
+//}
