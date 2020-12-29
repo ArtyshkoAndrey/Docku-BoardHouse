@@ -19,26 +19,27 @@ section.instagram {
   flex-direction: column;
   justify-content: center;
 
+
   &::after, &::before {
     content: "";
     width: 100%;
-    height: 20%;
+    height: 25%;
     display: block;
     position: absolute;
-    bottom: 0;
     left: 0;
     background-repeat: no-repeat;
     background-size: cover;
-  }
-
-  &::after {
-    background-image: url('../images/Vector 71.svg');
+    background-image: url('../images/instagram-mountains.svg');
     bottom: -1% !important;
   }
 
-  &::before {
-    background-image: url('../images/Vector 7.svg');
-  }
+  //&::after {
+  //
+  //}
+  //
+  //&::before {
+  //  background-image: url('../images/Vector 7.svg');
+  //}
 
   .phone {
     height: 100%;

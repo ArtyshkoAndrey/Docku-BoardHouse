@@ -29302,7 +29302,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
-  height: 40.5%;
+  height: 35%;
   background-image: url("../images/header_vector_mask.svg");
 }
 #intro .title {
@@ -29671,7 +29671,7 @@ footer .container .row > div .number {
   text-decoration: line-through;
 }
 .card-body .context {
-  padding-right: 0.4em;
+  padding-left: 0.4em;
 }
 .card-body .price {
   font-weight: 500;
@@ -29692,6 +29692,12 @@ footer .container .row > div .number {
   padding: 0.3em 1.3em;
   border-radius: 0 10px 0 10px;
   z-index: 10;
+  font-size: 1em;
+}
+@media (max-width: 767.98px) {
+  .card.sale {
+    font-size: 0.6em;
+  }
 }
 
 .btn-to-cart {
@@ -29706,6 +29712,14 @@ footer .container .row > div .number {
 .btn-to-cart:hover {
   background: #2d3134;
   color: white;
+}
+@media (max-width: 991.98px) {
+  .btn-to-cart span {
+    font-size: 1.2em;
+  }
+  .btn-to-cart i {
+    font-size: 1.1em;
+  }
 }
 
 /*!
@@ -29729,20 +29743,14 @@ section.instagram {
 section.instagram::after, section.instagram::before {
   content: "";
   width: 100%;
-  height: 20%;
+  height: 25%;
   display: block;
   position: absolute;
-  bottom: 0;
   left: 0;
   background-repeat: no-repeat;
   background-size: cover;
-}
-section.instagram::after {
-  background-image: url("../images/Vector 71.svg");
+  background-image: url("../images/instagram-mountains.svg");
   bottom: -1% !important;
-}
-section.instagram::before {
-  background-image: url("../images/Vector 7.svg");
 }
 section.instagram .phone {
   height: 100%;
@@ -29798,6 +29806,11 @@ section.instagram .big {
   font-weight: 700;
   color: #2D3134;
   margin-left: 0.1em;
+}
+@media (max-width: 991.98px) {
+  .item-catalog > div > .title {
+    font-size: 1.1em;
+  }
 }
 .item-catalog > div > a {
   display: flex;
