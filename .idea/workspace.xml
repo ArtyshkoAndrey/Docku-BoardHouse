@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7af8fac1-46f0-48db-8a3b-e119f2562549" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/user/product/search.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/admin/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/user/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/user/header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/user/instagram.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/user/instagram.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/user/item-catalog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/user/item-catalog.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/user/item.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/user/item.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/layouts/item-catalog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/layouts/item-catalog.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/layouts/item.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/layouts/item.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,11 +211,23 @@
       <workItem from="1608050355877" duration="5806000" />
       <workItem from="1609262705989" duration="398000" />
       <workItem from="1609263161028" duration="3114000" />
+      <workItem from="1609300720996" duration="2795000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
