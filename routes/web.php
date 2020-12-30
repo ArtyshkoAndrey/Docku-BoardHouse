@@ -22,6 +22,10 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::prefix('product')->name('product.')->group( function () {
+  Route::get('/search', [\App\Http\Controllers\ProductController::class, 'search'])->name('search');
+});
+
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
   Route::get('/', [HomeController::class, 'index'])->name('index');
   Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
