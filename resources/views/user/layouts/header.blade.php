@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header {{ $theme_menu ?? 'dark-menu' }}">
   <nav id="main-menu" class="navbar navbar-expand">
     <div class="container">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
@@ -24,8 +24,8 @@
             <a class="d-block nav-link">+7 (747) 556-23-83</a>
           </li>
           <li class="nav-item d-none d-md-flex mx-auto">
-            <a class="" href="#">
-              <img src="{{ asset('images/logo.svg') }}" alt="">
+            <a class="" href="{{ route('index') }}">
+              <img src="{{ asset('images/logo.svg') }}" alt="logo">
             </a>
           </li>
           <li class="d-none d-lg-flex">
@@ -169,13 +169,12 @@
   </nav>
   <hr>
   <div class="container search hide">
-    <form action="">
-      @csrf
+    <form action="{{ route('product.search') }}" method="GET">
       <div class="input-group">
         <div class="form-outline">
           <i class="d-block d-md-none bx bx bx-search"></i>
           <i class="d-none d-md-block bx bx-sm bx-search"></i>
-          <input type="text" id="search" name="search" class="form-control" />
+          <input autocomplete="none" type="text" id="search" name="q" class="form-control" />
           <label class="form-label" for="search">Что-то искали?</label>
         </div>
         <button class="btn btn-dark font-weight-light">Найти</button>

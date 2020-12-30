@@ -1,4 +1,4 @@
-@extends('user.layouts.app', ['color_menu' => 'dark'])
+@extends('user.layouts.app', ['theme_menu' => 'light-menu'])
 {{--@extends('user.layouts.app') Это без параметра и следовательно меню придёт dark автоматически --}}
 {{-- Говорим шаблону что будет переменная в нём с значением --}}
 
