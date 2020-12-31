@@ -19,7 +19,7 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
+<body id="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
   @include('user.layouts.header', ['theme_menu' => $theme_menu ?? 'dark-menu'])
 
