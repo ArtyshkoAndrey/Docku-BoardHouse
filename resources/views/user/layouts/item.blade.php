@@ -20,8 +20,8 @@
         <span class="old-price">340 000 ₸</span>{{--  TODO: обычная цена--}}
         <span class="price">200 000 ₸</span>{{--  TODO: цена со скидкой--}}
       </div>
-      <div class="col-12 col-md-7 d-flex justify-content-center align-items-center p-0">
-        <button class="btn btn-outline-dark btn-to-cart w-100 mt-2">
+      <div class="col-12 col-md-7 d-flex justify-content-center align-items-center p-0 px-2">
+        <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0">
           <i class="bx bx-cart"></i>
           <span>В корзину</span>
         </button>

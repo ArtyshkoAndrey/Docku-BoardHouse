@@ -26,11 +26,11 @@ footer {
   }
 
   &::after {
-    background-image: url('../images/Vector 8.svg');
+    background-image: url('../images/Vector8.svg');
   }
 
   &::before {
-    background-image: url('../images/Vector 9.svg');
+    background-image: url('../images/Vector9.svg');
   }
 
   @include media-breakpoint-down(md) {

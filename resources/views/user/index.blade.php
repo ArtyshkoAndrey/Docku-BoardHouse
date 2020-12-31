@@ -19,5 +19,7 @@
     @include('user.layouts.item-catalog')
     @include('user.layouts.item-catalog')
   </section>
+
+  @include('user.layouts.instagram')
 @endsection
 
