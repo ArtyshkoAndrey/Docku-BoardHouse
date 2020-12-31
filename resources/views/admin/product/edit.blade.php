@@ -2,6 +2,29 @@
 
 @section('title', 'Doscu - Редактирование заказа')
 
+@section('css')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
+  <style>
+    .dz-image > img {
+      width: 100%;
+      height: auto;
+    }
+    .dropzone {
+      background: inherit;
+      border-radius: 5px;
+      border: 1px dashed red;
+      border-image: none;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .dropzone .dz-preview.dz-image-preview {
+      background: inherit;
+    }
+  </style>
+@endsection
+
 @section('content')
 
     <div class="container-fluid mt-20 mb-20">
@@ -74,13 +97,6 @@
                     <label for="switch-3">На главной</label>
                   </div>
 
-                  <div class="form-group mt-20 w-full">
-                    <div class="custom-file w-full">
-                      <input type="file" id="multi-file-input-1" multiple="multiple" accept=".jpg,.png,.gif" data-default-value="<p class='m-0'>Не выбрано фотографий</p>">
-                      <label for="multi-file-input-1" class="w-full bg-primary">Фотографии продукта</label>
-                    </div>
-                  </div>
-
                 </div>
               </div>
 
@@ -115,7 +131,7 @@
                       <input type="number" min="0" class="form-control" name="weight" id="weight" placeholder="Вес товара" value="{{ old('weight', $product->weight) }}">
                     </div>
                   </div>
-                  {{--                  {{ dd(json_decode(json_encode($product->category->first()->toArray()))) }}--}}
+
                   {{-- Поиск по категории --}}
                   <category :name="'category'" :id="'category'" :category_props="{{ json_encode($product->category->first()) ?? null }}"></category>
 
@@ -126,19 +142,25 @@
                 </div>
               </div>
 
+              <div class="col-md-8 mt-20">
+                <div class="card bg-dark-dm">
+                  <div id="upload-widget" class="dropzone"></div>
+                </div>
+              </div>
+
               <div class="col-12 mt-10 text-right">
                 <button class="btn bg-success">Сохранить</button>
               </div>
             </div>
           </form>
         </div>
-
       </div>
     </div>
 @endsection
 
 @section('script')
   <script src="https://cdn.tiny.cloud/1/z826n1n5ayf774zeqdphsta5v2rflavdm2kvy7xtmczyokv3/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
   <script>
     // window.onload = function () {
       tinymce.init({
@@ -147,5 +169,50 @@
         toolbar_mode: 'floating',
       });
     // }
+
+    Dropzone.autoDiscover = false;
+    let i =0;
+    let fileList = [];
+
+    const uploader = new Dropzone('#upload-widget', {
+      init: function() {
+        // Hack: Add the dropzone class to the element
+        $(this.element).addClass("dropzone");
+        this.on("success", function (file, serverFileName) {
+          fileList[i] = {"serverFileName": serverFileName, "fileName": file.name, "fileId": i};
+          i++;
+        });
+        this.on("removedfile", function(file) {
+          var rmvFile = "";
+          for(let f=0;f<fileList.length;f++){
+            if(fileList[f].fileName === file.name)
+            {
+              rmvFile = fileList[f].serverFileName;
+            }
+          }
+          if (rmvFile){
+            console.log(rmvFile)
+            axios.post("/", {
+              name: rmvFile
+            })
+              .then(response => {
+                console.log(response)
+              })
+          }
+        });
+      },
+      paramName: 'file',
+      maxFiles: 3,
+      dictDefaultMessage: 'Переместите фотографии или кликните на поле',
+      headers: {
+        'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
+      },
+      acceptedFiles: 'image/*',
+      url: "/",
+      renameFile: function (file) {
+        return new Date().getTime() + '_' + file.name;
+      },
+      addRemoveLinks: true,
+    });
   </script>
 @endsection

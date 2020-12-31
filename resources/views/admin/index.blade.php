@@ -1,76 +1,73 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Doscu - Административная панель')
+@section('title', 'Docku - Административная панель')
 
 @section('content')
-  <!-- Content wrapper -->
-  <div class="content-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
 
-          <div class="card p-0"> <!-- p-0 = padding: 0 -->
-            <img src="{{ asset('images/admin-hello.png') }}" class="img-fluid rounded-top" alt="Приветствие"> <!-- rounded-top = rounded corners on the top -->
-            <!-- Nested content container inside card -->
-            <div class="content">
-              <h2 class="content-title">
-                Добро пожаловать
-              </h2>
-              <p class="text-muted">
-                Ваш сайт перешёл на обновлённую администраативную панель.
-              </p>
-              <p class="text-muted">
-                Это только начало!
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-
-          <div class="card p-0"> <!-- p-0 = padding: 0 -->
-            <img src="{{ asset('images/admin-hello-alert.png') }}" class="img-fluid rounded-top w-full" alt="Приветствие">
-            <div class="content">
-              <h2 class="content-title">
-                Новые уведомления
-              </h2>
-              <p class="text-muted">Мы улучшели систему уведомлений. Теперь уведомления плавно выезжают, и незаметно исчезают</p>
-              <br>
-              <a class="btn" href="{{ route('admin.redirect') }}">Тык!</a>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="row">
-            <div class="col-12">
-              <div class="card p-0"> <!-- p-0 = padding: 0 -->
-
-                <div class="content">
-                  <h2 class="content-title">
-                    Модальные окна
-                  </h2>
-                  <a href="#modal-1" class="btn btn-" role="button">Попробовать</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="card p-0 mt-0"> <!-- p-0 = padding: 0 -->
-
-                <div class="content">
-                  <h2 class="content-title">
-                    Горячиее клавиши
-                  </h2>
-                  <p><code class="code">Shift+S</code> - Открыть/Закрыть меню</p>
-                  <p><code class="code">Shift+D</code> - Сменить тему</p>
-                </div>
-              </div>
-            </div>
+        <div class="card p-0"> <!-- p-0 = padding: 0 -->
+          <img src="{{ asset('images/admin-hello.png') }}" class="img-fluid rounded-top" alt="Приветствие"> <!-- rounded-top = rounded corners on the top -->
+          <!-- Nested content container inside card -->
+          <div class="content">
+            <h2 class="content-title">
+              Добро пожаловать
+            </h2>
+            <p class="text-muted">
+              Ваш сайт перешёл на обновлённую администраативную панель.
+            </p>
+            <p class="text-muted">
+              Это только начало!
+            </p>
           </div>
         </div>
 
       </div>
+
+      <div class="col-lg-4 col-md-6">
+
+        <div class="card p-0"> <!-- p-0 = padding: 0 -->
+          <img src="{{ asset('images/admin-hello-alert.png') }}" class="img-fluid rounded-top w-full" alt="Приветствие">
+          <div class="content">
+            <h2 class="content-title">
+              Новые уведомления
+            </h2>
+            <p class="text-muted">Мы улучшели систему уведомлений. Теперь уведомления плавно выезжают, и незаметно исчезают</p>
+            <br>
+            <a class="btn" href="{{ route('admin.redirect') }}">Тык!</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="row">
+          <div class="col-12">
+            <div class="card p-0"> <!-- p-0 = padding: 0 -->
+
+              <div class="content">
+                <h2 class="content-title">
+                  Модальные окна
+                </h2>
+                <a href="#modal-1" class="btn btn-" role="button">Попробовать</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card p-0 mt-0"> <!-- p-0 = padding: 0 -->
+
+              <div class="content">
+                <h2 class="content-title">
+                  Горячиее клавиши
+                </h2>
+                <p><code class="code">Shift+S</code> - Открыть/Закрыть меню</p>
+                <p><code class="code">Shift+D</code> - Сменить тему</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <!-- First comes the modal -->
