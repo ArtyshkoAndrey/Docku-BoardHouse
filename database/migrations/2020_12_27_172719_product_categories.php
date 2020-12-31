@@ -15,8 +15,16 @@ class ProductCategories extends Migration
   {
     Schema::create('product_categories', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('product_id')->constrained('products');
-      $table->foreignId('category_id')->constrained('categories');
+      $table->foreignId('product_id')
+        ->constrained('products')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
+
+      $table->foreignId('category_id')
+        ->constrained('categories')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
+
       $table->timestamps();
     });
   }

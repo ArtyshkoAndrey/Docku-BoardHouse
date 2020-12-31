@@ -77,5 +77,12 @@
       Товары
     </a>
 
+    <a href="{{ route('telescope') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.product.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bxs-t-shirt" aria-hidden="true"></i>
+      </span>
+      Telescope
+    </a>
+
   </div>
 </div>

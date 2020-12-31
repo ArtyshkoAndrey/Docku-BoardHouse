@@ -16,8 +16,14 @@ class CreateProductSkusesTable extends Migration
     Schema::create('product_skuses', function (Blueprint $table) {
       $table->id();
       $table->integer('stock');
-      $table->foreignId('product_id')->constrained('products');
-      $table->foreignId('skus_id')->constrained('skuses');
+      $table->foreignId('product_id')
+        ->constrained('products')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
+      $table->foreignId('skus_id')
+        ->constrained('skuses')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->timestamps();
     });
   }

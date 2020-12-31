@@ -165,4 +165,17 @@ class Product extends Model
       return asset('images/product.jpg');
     }
   }
+
+  protected static function booted()
+  {
+    parent::boot();
+    static::deleting(function ($product) {
+      if ($product->isForceDeleting()) {
+        foreach ($product->photos as $photo) {
+          $photo->delete();
+        }
+      }
+
+    });
+  }
 }

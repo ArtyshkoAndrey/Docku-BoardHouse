@@ -20,6 +20,11 @@ Route::get('/', function () {
     return view('user.index');
 })->name('index');
 
+Route::get('/test', function () {
+  $product = \App\Models\Product::first();
+  $product->forceDelete();
+})->name('test');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('product')->name('product.')->group( function () {

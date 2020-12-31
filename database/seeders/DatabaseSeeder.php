@@ -152,6 +152,11 @@ class DatabaseSeeder extends Seeder
       'updated_at'  => now(),
     ]);
 
+    DB::table('photos')->insert([
+      'name' => '1.png',
+      'product_id' => 1
+    ]);
+
     DB::table('product_categories')->insert([
       'product_id' => 1,
       'category_id' => 1,

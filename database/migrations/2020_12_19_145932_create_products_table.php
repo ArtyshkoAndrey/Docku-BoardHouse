@@ -25,7 +25,11 @@ class CreateProductsTable extends Migration
       $table->decimal('price_sale', 10, 0)->nullable();
       $table->decimal('weight', 10, 2);
       $table->json('meta');
-      $table->foreignId('brand_id')->constrained('brands');
+      $table->foreignId('brand_id')
+        ->nullable()
+        ->constrained('brands')
+        ->onUpdate('set null')
+        ->onDelete('set null');
       $table->timestamps();
       $table->softDeletes();
     });

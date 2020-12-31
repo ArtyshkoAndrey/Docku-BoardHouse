@@ -15,8 +15,14 @@ class CategoriesCategories extends Migration
   {
     Schema::create('categories_categories', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('category_id')->constrained('categories');
-      $table->foreignId('child_category_id')->constrained('categories');
+      $table->foreignId('category_id')
+        ->constrained('categories')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
+      $table->foreignId('child_category_id')
+        ->constrained('categories')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->timestamps();
     });
   }
