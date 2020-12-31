@@ -8,22 +8,21 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ mix('css/admin/app.css') }}">
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="{{ asset('css/boxicons.min.css') }}">
 
+  @yield('css')
   <title>@yield('title')</title>
 </head>
 <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars dark-mode" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-theme-onload="dark" data-set-preferred-mode-onload="true">
 
   <noscript>You need to enable JavaScript to run this app.</noscript>
-{{--  <div id="app">--}}
-    <!-- Page wrapper with navbar, sidebar, navbar fixed bottom, and sticky alerts (toasts) -->
+
   <div class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom">
     <div class="sticky-alerts">
       <!-- Alert Success -->
       @if (session()->has('success'))
         @php($i = 1)
         @foreach (session('success') as $message)
-          <!-- Precompiled alert with a complex design -->
           <div class="alert alert-success" role="alert" id="precompiled-alert-{{$i}}">
             <table>
               <tbody>
@@ -54,7 +53,6 @@
       @if ($errors->any())
         @php($i = 1)
         @foreach ($errors->all() as $message)
-          <!-- Precompiled alert with a complex design -->
           <div class="alert alert-danger" role="alert" id="precompiled-alert-error-{{$i}}">
             <table>
               <tbody>
@@ -83,7 +81,7 @@
     </div>
 
     @include('admin.layouts.navigation')
-    <!-- Content wrapper -->
+
     <div id="app" class="content-wrapper">
       @yield('content')
     </div>
