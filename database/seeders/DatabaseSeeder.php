@@ -148,6 +148,7 @@ class DatabaseSeeder extends Seeder
       'weight' => 1,
       'meta' => '{"title": "Товар","description": "Официальный разработчик "}',
       'brand_id' => 1,
+      'category_id' => 1,
       'created_at'  => now(),
       'updated_at'  => now(),
     ]);
@@ -157,12 +158,6 @@ class DatabaseSeeder extends Seeder
       'product_id' => 1
     ]);
 
-    DB::table('product_categories')->insert([
-      'product_id' => 1,
-      'category_id' => 1,
-      'created_at'  => now(),
-      'updated_at'  => now(),
-    ]);
     $this->command->info('Product table seeded!');
 
     DB::table('product_skuses')->insert([

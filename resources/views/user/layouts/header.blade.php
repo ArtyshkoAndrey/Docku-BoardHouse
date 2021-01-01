@@ -195,7 +195,7 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span>Пункт <% i %></span>
+              <span>Пункт</span>
             </a>
 
             <div class="triangle" aria-labelledby="navbarDropdown"></div>
@@ -227,7 +227,7 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span>Пункт <% i %></span>
+              <span>Пункт</span>
             </a>
 
             <div class="triangle" aria-labelledby="navbarDropdown"></div>
@@ -259,7 +259,7 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span>Пункт <% i %></span>
+              <span>Пункт</span>
             </a>
 
             <div class="triangle" aria-labelledby="navbarDropdown"></div>
@@ -291,7 +291,7 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span>Пункт <% i %></span>
+              <span>Пункт</span>
             </a>
 
             <div class="triangle" aria-labelledby="navbarDropdown"></div>
@@ -323,7 +323,7 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span>Пункт <% i %></span>
+              <span>Пункт</span>
             </a>
 
             <div class="triangle" aria-labelledby="navbarDropdown"></div>

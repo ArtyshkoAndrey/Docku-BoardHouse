@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Doscu - Список товаров')
+@section('title', 'Docku - Список товаров')
 
 @section('content')
   <div class="container-fluid mt-20 mb-20">
@@ -14,7 +14,14 @@
           </nav>
         </div>
         <div class="col-12">
-          <h3>Товары</h3>
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <h3>Товары</h3>
+            </div>
+            <div class="col-auto px-10">
+              <a href="{{ route('admin.product.create') }}" class="btn">Создать новый товар</a>
+            </div>
+          </div>
         </div>
 
         <div class="col col-md mb-20 pr-10">

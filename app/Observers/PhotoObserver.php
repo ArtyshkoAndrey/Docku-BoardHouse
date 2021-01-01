@@ -38,6 +38,7 @@ class PhotoObserver
   public function deleted(Photo $photo)
   {;
     File::delete(public_path('storage/images/photos/' . $photo->name));
+    File::delete(public_path('storage/images/thumbnails/' . $photo->name));
   }
 
   /**

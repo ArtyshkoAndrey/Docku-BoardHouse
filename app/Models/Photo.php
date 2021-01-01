@@ -7,6 +7,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -39,5 +40,20 @@ class Photo extends Model
   protected $fillable = [
     'name',
   ];
+
+  public function product(): BelongsTo
+  {
+    return $this->belongsTo(Product::class, 'product_id', 'id')->withTrashed();
+  }
+
+  public function getUrl(): string
+  {
+    return asset('storage/images/photos/' . $this->name);
+  }
+
+  public function getThumbnailUrl(): string
+  {
+    return asset('storage/images/thumbnails/' . $this->name);
+  }
 
 }

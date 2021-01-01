@@ -127,9 +127,9 @@ class Product extends Model
     return (boolean) $counter > 0;
   }
 
-  public function category(): BelongsToMany
+  public function category(): BelongsTo
   {
-    return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
+    return $this->belongsTo(Category::class, 'category_id', 'id');
   }
 
   public function brand(): BelongsTo
@@ -160,7 +160,7 @@ class Product extends Model
   public function getThumbnail (): string
   {
     if ($this->photos->count() > 0) {
-      return asset('storage/images/photos/' . $this->photos->first()->name);
+      return $this->photos->first()->getThumbnailUrl();
     } else {
       return asset('images/product.jpg');
     }
@@ -175,7 +175,6 @@ class Product extends Model
           $photo->delete();
         }
       }
-
     });
   }
 }

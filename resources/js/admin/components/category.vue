@@ -44,7 +44,7 @@ export default {
       type: String,
     },
     category_props: {
-      required: true
+      type: Object|null
     }
   },
   created: function () {

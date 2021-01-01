@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Photo;
 use App\Models\Product;
+use App\Services\PhotoService;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -35,11 +37,11 @@ class ProductController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return Response
+   * @return Application|Factory|View|Response
    */
   public function create()
   {
-      //
+    return view('admin.product.create');
   }
 
   /**
@@ -92,8 +94,20 @@ class ProductController extends Controller
       'category' => 'required|exists:categories,id',
       'meta_title' => 'required|string',
       'meta_description' => 'required|string',
-      'description' => 'required',
+      'description' => 'required|string',
+      'on_sale' => 'boolean',
+      'on_top' => 'boolean',
+      'on_new' => 'boolean',
     ]);
+
+    $product->update($request->all());
+    $product
+      ->brand()
+      ->associate($request->brand_id);
+
+    $product
+      ->category()
+      ->associate($request->category_id);
     return redirect()->back()->with('success', ['Товар успешно обновлён']);
   }
 
@@ -116,6 +130,29 @@ class ProductController extends Controller
       } catch (Exception $exception) {
         return redirect()->back()->withErrors($exception->getMessage());
       }
+    }
+  }
+
+  public function photo(Request $request, $id) {
+
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    $photo = new Photo(['name' => $name]);
+    $photo->product()->associate($id);
+    $photo->save();
+    echo $name;
+  }
+
+  public function photoDelete(Request $request): \Illuminate\Http\JsonResponse
+  {
+    $request->validate([
+      'name' => 'required|string'
+    ]);
+    try {
+      $ph = Photo::where('name', $request->name)->first()->delete();
+      return response()->json(['status' => 'success']);
+    } catch (Exception $e) {
+      return response()->json(['status' => 'error'], 500);
     }
   }
 }

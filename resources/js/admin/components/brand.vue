@@ -45,7 +45,7 @@ export default {
       type: String,
     },
     brand_props: {
-      type: Object
+      type: Object|null
     }
 
   },

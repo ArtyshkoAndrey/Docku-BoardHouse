@@ -30,6 +30,10 @@ class CreateProductsTable extends Migration
         ->constrained('brands')
         ->onUpdate('set null')
         ->onDelete('set null');
+      $table->foreignId('category_id')
+        ->constrained('categories')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->timestamps();
       $table->softDeletes();
     });
