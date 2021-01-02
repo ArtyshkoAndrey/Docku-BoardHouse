@@ -294,20 +294,9 @@
 .category-menu {
   padding: 0;
 
-  //.nav-link .triangle {
-  //  display: block;
-  //  width: 30px;
-  //  height: 30px;
-  //  background: white;
-  //  position: relative;
-  //  top: 5px;
-  //  left: calc(50% - 25px);
-  //  transform: rotate(45deg);
-  //}
-
-  //.nav-link.show > .triangle {
-  //  display: block;
-  //}
+  .show {
+    overflow: auto;
+  }
 
   .nav-link.show::before {
     content: "";

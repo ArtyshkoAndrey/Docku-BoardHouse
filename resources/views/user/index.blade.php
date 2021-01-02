@@ -13,7 +13,12 @@
     </div>
   </section>
 
+{{--  <section>--}}
+{{--    --}}
+{{--  </section>--}}
+
   <section>
+{{--    @include('user.product.search')--}}
     @include('user.layouts.item-catalog')
     @include('user.layouts.item-catalog')
     @include('user.layouts.item-catalog')

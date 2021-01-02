@@ -1,20 +1,20 @@
 footer {
-  //background: rgba(242, 243, 246, 1);
-  padding: 30px 0 150px;
+  padding: 30px 0 225px;
   background: #E8E9EE;
   position: relative;
 
-  &::after, &::before {
+  &::after {
     content: "";
     width: 100%;
     display: block;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-repeat: no-repeat;
     height: 35%;
+    background-image: url('../images/footer-mountains.svg');
+    background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 101%;
+    background-size: cover;
 
     @include media-breakpoint-down(lg) {
       height: 27%;
@@ -23,14 +23,6 @@ footer {
     @include media-breakpoint-down(md) {
       height: 20%;
     }
-  }
-
-  &::after {
-    background-image: url('../images/Vector8.svg');
-  }
-
-  &::before {
-    background-image: url('../images/Vector9.svg');
   }
 
   @include media-breakpoint-down(md) {

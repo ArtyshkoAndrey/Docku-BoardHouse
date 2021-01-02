@@ -1,6 +1,6 @@
 <div class="container item-catalog">
   <div>
-    <span class="title">Новое поступление</span>
+    <span class="title">Здесь подтянуть имя из переменной</span>
     <a href="#!"><i class="bx bx-right-arrow-alt"></i></a>
   </div>
   <div class="row">
