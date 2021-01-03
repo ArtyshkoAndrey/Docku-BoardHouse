@@ -29630,38 +29630,41 @@ footer .container .row > div .number {
   }
 }
 
-#login-page, #register-page, .password-request-page, .password-reset-page {
+#login-page, #register-page, #password-request-page, #password-reset-page {
   height: 100vh;
   width: 100vw;
 }
-#login-page .card, #register-page .card, .password-request-page .card, .password-reset-page .card {
+#login-page .card, #register-page .card, #password-request-page .card, #password-reset-page .card {
   background: #FFFFFF;
   box-shadow: 0 4px 10px rgba(123, 123, 123, 0.43);
   border: none;
 }
-#login-page #app, #register-page #app, .password-request-page #app, .password-reset-page #app {
+#login-page #app, #register-page #app, #password-request-page #app, #password-reset-page #app {
   padding: 0 !important;
   height: 100%;
 }
-#login-page #app main, #register-page #app main, .password-request-page #app main, .password-reset-page #app main {
+#login-page #app main, #register-page #app main, #password-request-page #app main, #password-reset-page #app main {
   height: 100%;
   padding: 0 !important;
 }
-#login-page #app main .container-fluid, #login-page #app main .container-sm, #login-page #app main .container-md, #login-page #app main .container-lg, #login-page #app main .container-xl, #login-page #app main .container-xxl, #register-page #app main .container-fluid, #register-page #app main .container-sm, #register-page #app main .container-md, #register-page #app main .container-lg, #register-page #app main .container-xl, #register-page #app main .container-xxl, .password-request-page #app main .container-fluid, .password-request-page #app main .container-sm, .password-request-page #app main .container-md, .password-request-page #app main .container-lg, .password-request-page #app main .container-xl, .password-request-page #app main .container-xxl, .password-reset-page #app main .container-fluid, .password-reset-page #app main .container-sm, .password-reset-page #app main .container-md, .password-reset-page #app main .container-lg, .password-reset-page #app main .container-xl, .password-reset-page #app main .container-xxl {
+#login-page #app main .container-fluid, #login-page #app main .container-sm, #login-page #app main .container-md, #login-page #app main .container-lg, #login-page #app main .container-xl, #login-page #app main .container-xxl, #register-page #app main .container-fluid, #register-page #app main .container-sm, #register-page #app main .container-md, #register-page #app main .container-lg, #register-page #app main .container-xl, #register-page #app main .container-xxl, #password-request-page #app main .container-fluid, #password-request-page #app main .container-sm, #password-request-page #app main .container-md, #password-request-page #app main .container-lg, #password-request-page #app main .container-xl, #password-request-page #app main .container-xxl, #password-reset-page #app main .container-fluid, #password-reset-page #app main .container-sm, #password-reset-page #app main .container-md, #password-reset-page #app main .container-lg, #password-reset-page #app main .container-xl, #password-reset-page #app main .container-xxl {
   width: 100%;
   height: 100%;
 }
-#login-page #app .header, #register-page #app .header, .password-request-page #app .header, .password-reset-page #app .header {
+#login-page #app .header, #register-page #app .header, #password-request-page #app .header, #password-reset-page #app .header {
   display: none;
 }
-#login-page .form-outline, #register-page .form-outline, .password-request-page .form-outline, .password-reset-page .form-outline {
+#login-page .form-outline, #register-page .form-outline, #password-request-page .form-outline, #password-reset-page .form-outline {
   line-height: 2em;
 }
-#login-page .form-outline .form-control, #register-page .form-outline .form-control, .password-request-page .form-outline .form-control, .password-reset-page .form-outline .form-control {
+#login-page .form-outline .form-control, #register-page .form-outline .form-control, #password-request-page .form-outline .form-control, #password-reset-page .form-outline .form-control {
   line-height: 2em;
 }
-#login-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #login-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #login-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, #register-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #register-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #register-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, .password-request-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .password-request-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .password-request-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, .password-reset-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .password-reset-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .password-reset-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+#login-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #login-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #login-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, #register-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #register-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #register-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, #password-request-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #password-request-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #password-request-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, #password-reset-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #password-reset-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #password-reset-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
   border-color: #2D89DE !important;
+}
+#login-page button, #register-page button, #password-request-page button, #password-reset-page button {
+  font-size: 1em;
 }
 
 .link-inverse-login-register {
