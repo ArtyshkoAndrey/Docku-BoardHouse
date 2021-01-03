@@ -108,7 +108,7 @@
                   <div class="col-12">
                     <div class="row align-items-lg-center">
                       <div class="col-lg-4 col-4 pr-10">
-                        <img src="{{ $item->product->getThumbnail() }}" class="img-fluid rounded" alt="{{ $item->product->title }}">
+                        <img src="{{ $item->product->getThumbnailPng() }}" class="img-fluid rounded" alt="{{ $item->product->title }}">
                       </div>
                       <div class="col-lg col pl-10 d-flex flex-column justify-content-center">
                         <h5 class="m-0 font-weight-bolder">{{ $item->product->title }}</h5>

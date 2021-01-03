@@ -153,10 +153,8 @@ class DatabaseSeeder extends Seeder
       'updated_at'  => now(),
     ]);
 
-    DB::table('photos')->insert([
-      'name' => '1.png',
-      'product_id' => 1
-    ]);
+    $path = 'public/sql/photos.sql';
+    DB::unprepared(file_get_contents($path));
 
     $this->command->info('Product table seeded!');
 

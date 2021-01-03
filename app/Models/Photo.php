@@ -46,14 +46,24 @@ class Photo extends Model
     return $this->belongsTo(Product::class, 'product_id', 'id')->withTrashed();
   }
 
-  public function getUrl(): string
+  public function getUrlWebp(): string
   {
-    return asset('storage/images/photos/' . $this->name);
+    return asset('storage/images/photos/' . $this->name  . '.webp');
   }
 
-  public function getThumbnailUrl(): string
+  public function getThumbnailUrlWebp(): string
   {
-    return asset('storage/images/thumbnails/' . $this->name);
+    return asset('storage/images/thumbnails/' . $this->name  . '.webp');
+  }
+
+  public function getUrlPng(): string
+  {
+    return asset('storage/images/photos/' . $this->name  . '.png');
+  }
+
+  public function getThumbnailUrlPng(): string
+  {
+    return asset('storage/images/thumbnails/' . $this->name . '.png');
   }
 
 }

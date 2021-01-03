@@ -10,9 +10,12 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -48,11 +51,42 @@ class ProductController extends Controller
    * Store a newly created resource in storage.
    *
    * @param Request $request
-   * @return Response
+   * @return RedirectResponse
    */
-  public function store(Request $request)
+  public function store(Request $request): RedirectResponse
   {
-      //
+    $request->validate([
+      'title' => 'required|string|max:255',
+      'price' => 'required|integer|min:0',
+      'weight' => 'required|min:0',
+      'brand' => 'required|exists:brands,id',
+      'category' => 'required|exists:categories,id',
+      'meta_title' => 'required|string',
+      'meta_description' => 'required|string',
+      'description' => 'required|string',
+      'on_sale' => 'boolean',
+      'on_top' => 'boolean',
+      'on_new' => 'boolean',
+      'photos' => 'array',
+    ]);
+//    dd($request->all());
+    $data = $request->all();
+    $product = new Product($data);
+    $product
+      ->brand()
+      ->associate($request->get('brand'));
+
+    $product
+      ->category()
+      ->associate($request->get('category'));
+
+    $product->save();
+
+    foreach ($data['photos'] as $name) {
+      Photo::whereName($name)->first()->product()->associate($product->id)->save();
+    }
+
+    return redirect()->route('admin.product.index')->with('success', ['Товар успешно создан']);
   }
 
   /**
@@ -143,16 +177,30 @@ class ProductController extends Controller
     echo $name;
   }
 
-  public function photoDelete(Request $request): \Illuminate\Http\JsonResponse
+  public function photoDelete(Request $request): JsonResponse
   {
     $request->validate([
       'name' => 'required|string'
     ]);
     try {
-      $ph = Photo::where('name', $request->name)->first()->delete();
+      $ph = Photo::where('name', explode('.' ,$request->name)[0])->first()->delete();
       return response()->json(['status' => 'success']);
     } catch (Exception $e) {
       return response()->json(['status' => 'error'], 500);
     }
+  }
+
+  public function photoStore(Request $request) {
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    try {
+      $photo = new Photo(['name' => $name]);
+      $photo->product()->associate(null);
+      $photo->save();
+    } catch (Exception $exception) {
+      PhotoService::delete($name);
+      return response()->json($exception->getMessage(), 500);
+    }
+    return $name;
   }
 }

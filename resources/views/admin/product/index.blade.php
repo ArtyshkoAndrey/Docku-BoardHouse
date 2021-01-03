@@ -88,7 +88,7 @@
           <div class="card border-0 product p-0 m-0 bg-dark-dm">
             <div class="row align-items-center row-eq-spacing p-0 m-0">
               <div class="col-lg-1 col-5 px-0 overflow-hidden">
-                <img src="{{ $product->getThumbnail() }}" class="h-auto d-flex w-full rounded m-0 p-0" alt="{{ $product->title }}">
+                <img src="{{ $product->getThumbnailPng() }}" class="h-auto d-flex w-full rounded m-0 p-0" alt="{{ $product->title }}">
               </div>
               <div class="col-lg col">
                 <div class="row">
