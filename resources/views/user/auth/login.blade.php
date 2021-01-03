@@ -11,16 +11,21 @@
         </div>
         <div class="card rounded-0">
           <div class="row m-0 flex-nowrap text-center">
-            <div class="col-4 col-md-6 px-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center"><i class="bx bx-user"></i>Вход</div>
-            <div class="col col-md-6 bg-gray px-4 px-md-5 py-4 font-weight-bolder link-inverse-login-register">
+            <div class="col-4 col-md-6 px-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center">
+              <i class="bx bx-sm bx-user mr-1"></i>
+              Вход
+            </div>
+            <div class="col col-md-6 bg-gray px-2 px-sm-4 px-md-5 py-4 font-weight-bolder link-inverse-login-register">
               <a href="{{ route('register') }}" class="text-decoration-none d-flex justify-content-center align-items-center">
-                <i class="bx bx-plus-circle"></i>Регистрация</a>
+                <i class="bx bx-sm bx-plus-circle mr-1"></i>
+                Регистрация
+              </a>
             </div>
           </div>
           <div class="card-body p-4">
             <div class="row">
               <div class="col-12 mt-3">
-                <h5 class="text-center">Укажите свой логин и пароль</h5>
+                <h5 class="text-center font-weight-light">Укажите свой логин и пароль</h5>
               </div>
               <div class="col-12 mt-3">
                 <form action="{{ route('login') }}" method="post">
@@ -29,9 +34,10 @@
                     <input type="email" id="email" name="email" class="form-control" />
                     <label class="form-label" for="email">Email</label>
                   </div>
-                  <div class="form-outline mb-4">
+                  <div class="form-outline form-password mb-4">
                     <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="password">Пароль</label>
+                    <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
                   </div>
                   <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;">Войти</button>
                 </form>

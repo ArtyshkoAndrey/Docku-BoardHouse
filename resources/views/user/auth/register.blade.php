@@ -1,8 +1,8 @@
 @extends('user.layouts.app')
 
 @section('content')
-  <div class="container-fluid d-flex align-items-center">
-    <div class="row w-md-100 d-flex justify-content-center">
+  <div class="container-fluid d-flex align-items-center justify-content-center">
+    <div class="row w-100 d-flex justify-content-center">
       <div class="col-lg-5 col-md-6 col-12">
         <div class="row justify-content-center">
           <div class="col-md-5 col-6">
@@ -11,31 +11,46 @@
         </div>
         <div class="card rounded-0">
           <div class="row m-0 flex-nowrap text-center">
-            <div class="col bg-gray px-4 px-md-5 py-4 link-inverse-login-register font-weight-bolder">
-              <a href="{{ route('login') }}" class="text-decoration-none inverse d-flex justify-content-center align-items-center"><i class="icon icon-user icon-1_5x"></i>Войти</a>
+            <div class="col-5 col-md-6 bg-gray px-4 px-md-5 py-4 link-inverse-login-register font-weight-bolder">
+              <a href="{{ route('login') }}" class="text-decoration-none inverse d-flex justify-content-center align-items-center">
+                <i class="bx bx-sm bx-user mr-1"></i>
+                Войти
+              </a>
             </div>
-            <div class="col px-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center"><i class="icon icon-register icon-1_5x color-orange "></i>Регистрация</div>
+            <div class="col col-md-6 px-2 px-sm-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center">
+              <i class="bx bx-sm bx-plus-circle mr-1"></i>
+              Регистрация
+            </div>
           </div>
           <div class="card-body p-4">
             <div class="row">
               <div class="col-12">
-                <h5 class="text-center w-100">Регистрация черз соц сеть</h5>
+                <h5 class="text-center font-weight-light w-100">Регистрация черз соц сеть</h5>
               </div>
               <div class="col-12">
                 <div class="row p-0 m-0">
                   <div class="col-4 p-0 pr-1">
-                    <a href="#" class="btn d-block btn-outline-social rounded-0 d-flex justify-content-center h-100" id="google"><i class="icon icon-google"></i> <span class="d-none d-md-block">Google</span></a>
+                    <a href="#" class="btn social-signup" id="google">
+                      <i class="bx bxl-google mr-md-1"></i>
+                      <span class="d-none d-md-block">Google</span>
+                    </a>
                   </div>
                   <div class="col-4 p-0 px-1">
-                    <a href="#" class="btn d-block btn-outline-social rounded-0 d-flex justify-content-center h-100" id="fb"><i class="icon icon-facebook"></i> <span class="d-none d-md-block">Facebook</span></a>
+                    <a href="#" class="btn social-signup" id="fb">
+                      <i class="bx bxl-facebook mr-md-1"></i>
+                      <span class="d-none d-md-block">Facebook</span>
+                    </a>
                   </div>
                   <div class="col-4 p-0 pl-1">
-                    <a href="#" class="btn d-block btn-outline-social rounded-0 d-flex justify-content-center align-items-center h-100" id="vk"><i class="fab fa-vk mr-md-1"></i> <span class="d-none d-md-block">VKontakte</span></a>
+                    <a href="#" class="btn social-signup" id="vk">
+                      <i class="bx bxl-vk mr-md-1"></i>
+                      <span class="d-none d-md-block">VKontakte</span>
+                    </a>
                   </div>
                 </div>
               </div>
               <div class="col-12 mt-3">
-                <h5 class="text-center">Или укажите логин и пароль</h5>
+                <h5 class="text-center font-weight-light">Или укажите логин и пароль</h5>
               </div>
               <div class="col-12 mt-3">
                 <form action="{{ route('register') }}" method="post">
@@ -45,16 +60,6 @@
                     <label class="form-label" for="first_name">Имя</label>
                   </div>
                   @error('first_name')
-                  <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-
-                  <div class="form-outline mb-4 ">
-                    <input type="text" id="last_name" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" required/>
-                    <label class="form-label" for="last_name">Фамилия</label>
-                  </div>
-                  @error('last_name')
                   <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                   </span>
@@ -70,9 +75,10 @@
                   </span>
                   @enderror
 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline form-password mb-4">
                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required/>
                     <label class="form-label" for="password">Пароль</label>
+                    <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
                   </div>
                   @error('password')
                   <span class="invalid-feedback" role="alert">
@@ -80,9 +86,10 @@
                   </span>
                   @enderror
 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline form-password mb-4">
                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required/>
                     <label class="form-label" for="password_confirmation">Повторите пароль</label>
+                    <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
                   </div>
 
                   <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;" disabled>Зарегистрироваться</button>
@@ -100,7 +107,6 @@
   <script>
     let checker = {
       first_name: false,
-      last_name: false,
       password: false,
       password_confirmation: false,
       email: false

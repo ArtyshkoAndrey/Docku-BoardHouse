@@ -47,6 +47,7 @@ $link-color-hover: #1e5f98;
 
   button {
     font-size: 1em;
+    font-weight: 600;
   }
 }
 
@@ -62,4 +63,25 @@ $link-color-hover: #1e5f98;
 
 .register-page .link-inverse-login-register {
   box-shadow: inset -4px -3px 19px -12px;
+}
+
+.form-outline.form-password {
+  padding-right: 3em;
+}
+
+.hide-show-btn {
+  position: absolute;
+  top: 0;
+  right: 0.75rem;
+  padding-top: 0.47rem;
+  transform-origin: 0 0;
+  transition: all 0.2s ease-out;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 0;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

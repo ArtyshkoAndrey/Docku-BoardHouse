@@ -29665,6 +29665,7 @@ footer .container .row > div .number {
 }
 #login-page button, #register-page button, #password-request-page button, #password-reset-page button {
   font-size: 1em;
+  font-weight: 600;
 }
 
 .link-inverse-login-register {
@@ -29679,6 +29680,26 @@ footer .container .row > div .number {
 
 .register-page .link-inverse-login-register {
   box-shadow: inset -4px -3px 19px -12px;
+}
+
+.form-outline.form-password {
+  padding-right: 3em;
+}
+
+.hide-show-btn {
+  position: absolute;
+  top: 0;
+  right: 0.75rem;
+  padding-top: 0.47rem;
+  transform-origin: 0 0;
+  transition: all 0.2s ease-out;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 0;
+  border: none;
+  background: transparent;
+}
+.hide-show-btn:hover {
+  cursor: pointer;
 }
 
 /*!
@@ -29939,6 +29960,57 @@ section.instagram a:hover {
 .search-page .not-found span.another {
   color: #A9AEB5;
   font-size: 0.8em;
+}
+
+/*!
+ * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+#register-page .social-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 0;
+  font-size: 0.9em;
+  box-shadow: none;
+  border: 1px solid #a69c93;
+}
+#register-page .social-signup#google i {
+  color: #dd4b39;
+  transition-duration: 0.3s;
+}
+#register-page .social-signup#google:hover {
+  background: #dd4b39;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+#register-page .social-signup#google:hover i {
+  color: #fff;
+}
+#register-page .social-signup#fb i {
+  color: #3b5998;
+  transition-duration: 0.3s;
+}
+#register-page .social-signup#fb:hover {
+  background: #3b5998;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+#register-page .social-signup#fb:hover i {
+  color: #fff;
+}
+#register-page .social-signup#vk i {
+  color: #4a76a8;
+  transition-duration: 0.3s;
+}
+#register-page .social-signup#vk:hover {
+  background: #4a76a8;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+#register-page .social-signup#vk:hover i {
+  color: #fff;
 }
 
 body {
