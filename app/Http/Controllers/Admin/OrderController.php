@@ -40,7 +40,7 @@ class OrderController extends Controller
         $q->where('email', 'like', '%' . $email . '%');
       });
     }
-    $orders = $orders->paginate(1);
+    $orders = $orders->paginate(10);
 
     $filter = [
       'user_name'   => $name,

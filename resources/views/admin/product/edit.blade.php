@@ -201,12 +201,12 @@
       <?php $i = 0;?>
       let mockFile
       @foreach($product->photos as $photo)
-      mockFile = { name: '{{ $photo->name }}', size: {{ File::size(public_path('storage/images/photos/' . $photo->name)) }} };
+      mockFile = { name: '{{ $photo->name . '.png' }}', size: {{ File::size(public_path('storage/images/photos/' . $photo->name . '.png')) }} };
       uploader.emit("addedfile", mockFile);
-      uploader.emit("thumbnail", mockFile, '{{ $photo->getThumbnailUrl() }}');
+      uploader.emit("thumbnail", mockFile, '{{ $photo->getThumbnailUrlPng() }}');
       uploader.emit("complete", mockFile);
       uploader.files.push(mockFile)
-      fileList.push({"serverFileName": '{{ $photo->name }}', "fileName":'{{ $photo->name }}', "fileId": {{ $i }}});
+      fileList.push({"serverFileName": '{{ $photo->name . '.png' }}', "fileName":'{{ $photo->name . '.png' }}', "fileId": {{ $i }}});
       <?php $i++?>
       @endforeach
     });

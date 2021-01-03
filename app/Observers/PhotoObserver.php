@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Photo;
+use App\Services\PhotoService;
 use Illuminate\Support\Facades\File;
 
 class PhotoObserver
@@ -36,9 +37,8 @@ class PhotoObserver
    * @return void
    */
   public function deleted(Photo $photo)
-  {;
-    File::delete(public_path('storage/images/photos/' . $photo->name));
-    File::delete(public_path('storage/images/thumbnails/' . $photo->name));
+  {
+    PhotoService::delete($photo->name);
   }
 
   /**

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Docku - Сохдание нового товара')
+@section('title', 'Docku - Сохрание нового товара')
 
 @section('css')
 
@@ -132,6 +132,10 @@
               <button class="btn bg-success">Сохранить</button>
             </div>
           </div>
+
+          @foreach(old('photos', []) as $photo)
+            <input type="hidden" id="{{ $photo }}" value="{{ $photo }}">
+          @endforeach
         </form>
       </div>
     </div>
@@ -158,6 +162,7 @@
         $(this.element).addClass("dropzone");
         this.on("success", function (file, serverFileName) {
           fileList[i] = {"serverFileName": serverFileName, "fileName": file.name, "fileId": i};
+          $('form').append('<input type="hidden" name="photos[]" id="' + serverFileName + '" value="' + serverFileName + '">')
           i++;
         });
         this.on("removedfile", function(file) {
@@ -175,6 +180,7 @@
             })
               .then(response => {
                 console.log(response)
+                document.getElementById(rmvFile).remove()
               })
               .catch(response => {
                 alert(response.data.status)
@@ -188,7 +194,7 @@
         'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
       },
       acceptedFiles: 'image/*',
-      url: "/",
+      url: "{{ route('admin.product.store.photo') }}",
       renameFile: function (file) {
         return new Date().getTime() + '_' + file.name;
       },
@@ -196,18 +202,18 @@
       dictRemoveFile: 'Удалить файл'
     });
 
-    {{--$(document).ready(function() {--}}
-    {{--  <?php $i = 0;?>--}}
-    {{--  let mockFile--}}
-    {{--  @foreach($product->photos as $photo)--}}
-    {{--    mockFile = { name: '{{ $photo->name }}', size: {{ File::size(public_path('storage/images/photos/' . $photo->name)) }} };--}}
-    {{--  uploader.emit("addedfile", mockFile);--}}
-    {{--  uploader.emit("thumbnail", mockFile, '{{ $photo->getThumbnailUrl() }}');--}}
-    {{--  uploader.emit("complete", mockFile);--}}
-    {{--  uploader.files.push(mockFile)--}}
-    {{--  fileList.push({"serverFileName": '{{ $photo->name }}', "fileName":'{{ $photo->name }}', "fileId": {{ $i }}});--}}
-    {{--  <?php $i++?>--}}
-    {{--  @endforeach--}}
-    {{--});--}}
+    $(document).ready(function() {
+      <?php $i = 0;?>
+      let mockFile
+      @foreach(old('photos', []) as $photo)
+        mockFile = { name: '{{ $photo }}', size: {{ File::size(public_path('storage/images/photos/' . $photo)) }} };
+        uploader.emit("addedfile", mockFile);
+        uploader.emit("thumbnail", mockFile, '{{ asset('storage/images/thumbnails/' . $photo) }}');
+        uploader.emit("complete", mockFile);
+        uploader.files.push(mockFile)
+        fileList.push({"serverFileName": '{{ $photo }}', "fileName":'{{ $photo }}', "fileId": {{ $i }}});
+        <?php $i++?>
+      @endforeach
+    });
   </script>
 @endsection

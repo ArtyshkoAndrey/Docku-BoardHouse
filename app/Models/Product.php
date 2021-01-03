@@ -157,10 +157,19 @@ class Product extends Model
     return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id')->withPivot(['amount']);
   }
 
-  public function getThumbnail (): string
+  public function getThumbnailWebp (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrl();
+      return $this->photos->first()->getThumbnailUrlWepb();
+    } else {
+      return asset('images/product.jpg');
+    }
+  }
+
+  public function getThumbnailPng (): string
+  {
+    if ($this->photos->count() > 0) {
+      return $this->photos->first()->getThumbnailUrlPng();
     } else {
       return asset('images/product.jpg');
     }

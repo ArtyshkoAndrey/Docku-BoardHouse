@@ -12,6 +12,10 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class PhotoService
 {
+  protected static array $type = [
+    'png',
+    'webp'
+  ];
 
   /**
    * @param $image
@@ -26,21 +30,40 @@ class PhotoService
   {
     $file = $image->getClientOriginalName();
     $destinationPath = public_path($path);
-    $name = pathinfo($file, PATHINFO_FILENAME) . '.png';
-    $img = Image::make($image->getRealPath())->encode('png', $quality);
-    if ($cube) {
-      $img->fit($width, $width, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-      });
-    } else {
-      $img->resize($width, $height, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-      });
+    $originalName = pathinfo($file, PATHINFO_FILENAME);
+    foreach (PhotoService::$type as $type) {
+      $name = $originalName . '.' . $type;
+      $img = Image::make($image->getRealPath())->encode($type, $quality);
+      if ($cube) {
+        $img->fit($width, $width, function ($constraint) {
+          $constraint->aspectRatio();
+          $constraint->upsize();
+        });
+      } else {
+        $img->resize($width, $height, function ($constraint) {
+          $constraint->aspectRatio();
+          $constraint->upsize();
+        });
+      }
+      $img->save($destinationPath.'/'.$name);
     }
-    $img->save($destinationPath.'/'.$name);
-    return $name;
+
+    return $originalName;
+  }
+
+  /**
+   * Delete Files by name
+   *
+   * @param $name
+   * @return bool
+   */
+  public static  function delete ($name): bool
+  {
+    foreach (PhotoService::$type as $type) {
+      File::delete(public_path('storage/images/photos/' . $name . '.' . $type));
+      File::delete(public_path('storage/images/thumbnails/' . $name . '.' . $type));
+    }
+    return true;
   }
 
 }
