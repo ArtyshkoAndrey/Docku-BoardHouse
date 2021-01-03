@@ -1,18 +1,18 @@
 @extends('user.layouts.app')
 
 @section('content')
-  <div class="container-fluid d-flex align-items-center">
+  <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row w-100 d-flex justify-content-center">
       <div class="col-lg-5 col-md-6 col-12">
         <div class="row justify-content-center">
-          <div class="col-md-3 col-6">
-            <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid mb-5 mx-auto d-block">
+          <div class="col-md-5 col-6">
+            <img src="{{ asset('images/logo-dark.svg') }}" alt="logo" class="img-fluid mb-5 mx-auto d-block logo">
           </div>
         </div>
         <div class="card rounded-0">
           <div class="row m-0 flex-nowrap text-center">
-            <div class="col px-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center"><i class="bx bx-user"></i>Вход</div>
-            <div class="col bg-gray px-4 px-md-5 py-4 font-weight-bolder link-inverse-login-register">
+            <div class="col-4 col-md-6 px-5 py-4 font-weight-bolder d-flex justify-content-center align-items-center"><i class="bx bx-user"></i>Вход</div>
+            <div class="col col-md-6 bg-gray px-4 px-md-5 py-4 font-weight-bolder link-inverse-login-register">
               <a href="{{ route('register') }}" class="text-decoration-none d-flex justify-content-center align-items-center">
                 <i class="bx bx-plus-circle"></i>Регистрация</a>
             </div>

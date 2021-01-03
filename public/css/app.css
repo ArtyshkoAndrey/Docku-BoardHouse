@@ -29449,6 +29449,7 @@ body {
 }
 .category-menu .dropdown {
   position: inherit !important;
+  margin: 0 1em;
 }
 .category-menu .dropdown .dropdown-menu {
   left: 0 !important;
