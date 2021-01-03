@@ -5,7 +5,11 @@
       <div class="col-12">
         <div class="img-wrapper">
           <div class="sale-badge">Sale</div>
-          <img src="{{ asset('images/item-preview.png') }}" class="img-fluid">
+          <picture>
+            <source type="image/webp" srcset="{{ asset('images/item-preview.png') }}">
+            <source type="image/jpeg" srcset="{{ asset('images/item-preview.png') }}">
+            <img src="{{ asset('images/item-preview.png') }}" class="img-fluid">
+          </picture>
           {{--      TODO: Изменить asset, когда будут таблицы --}}
         </div>
       </div>
