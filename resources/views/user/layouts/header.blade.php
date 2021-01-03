@@ -25,7 +25,8 @@
           </li>
           <li class="nav-item d-none d-md-flex mx-auto">
             <a class="" href="{{ route('index') }}">
-              <img src="{{ asset('images/logo.svg') }}" alt="logo">
+              <img class="light-logo" src="{{ asset('images/logo.svg') }}" alt="logo">
+              <img class="dark-logo" src="{{ asset('images/logo-dark.svg') }}" alt="logo">
             </a>
           </li>
           <li class="d-none d-lg-flex">
