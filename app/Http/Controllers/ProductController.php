@@ -49,11 +49,11 @@ class ProductController extends Controller
       !is_array($categoryArr) ? $categoryArr = [$categoryArr] : null;
       foreach ($categoryArr as $index => $category) {
         if ($index == 0) {
-          $items = $items->whereHas('categories', function ($query) use ($category) {
+          $items = $items->whereHas('category', function ($query) use ($category) {
             return $query->where('categories.id', '=', $category);
           });
         } else {
-          $items = $items->orWhereHas('categories', function ($query) use ($category) {
+          $items = $items->orWhereHas('category', function ($query) use ($category) {
             return $query->where('categories.id', '=', $category);
           });
         }

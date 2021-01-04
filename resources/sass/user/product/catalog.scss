@@ -3,7 +3,7 @@
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
 
-.catalog {
+#catalog {
   padding-top: 200px;
 
   &> div {
@@ -34,7 +34,7 @@
   #product-all {
     display: flex;
 
-    .dropdown .dropdown-toggle {
+    .dropdown {
       display: flex;
 
       &:after {
@@ -42,7 +42,13 @@
       }
 
       .dropdown-menu {
-        width: auto;
+        width: 300px!important;
+        max-height: 300px!important;
+
+        .checkbox {
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
       }
     }
   }

@@ -30090,43 +30090,48 @@ section.instagram a:hover {
  * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
-.catalog {
+#catalog {
   padding-top: 200px;
 }
-.catalog > div {
+#catalog > div {
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
-.catalog > div > .title {
+#catalog > div > .title {
   font-size: 1.5em;
   font-weight: 700;
   color: #2D3134;
   margin-left: 0.1em;
 }
 @media (max-width: 991.98px) {
-  .catalog > div > .title {
+  #catalog > div > .title {
     font-size: 1.1em;
   }
 }
-.catalog > div .badge {
+#catalog > div .badge {
   line-height: unset;
   background: #E9EAEC;
   color: #2D3134;
   font-weight: 400;
   margin-left: 1em;
 }
-.catalog #product-all {
+#catalog #product-all {
   display: flex;
 }
-.catalog #product-all .dropdown .dropdown-toggle {
+#catalog #product-all .dropdown {
   display: flex;
 }
-.catalog #product-all .dropdown .dropdown-toggle:after {
+#catalog #product-all .dropdown:after {
   color: #2D3134;
 }
-.catalog #product-all .dropdown .dropdown-toggle .dropdown-menu {
-  width: auto;
+#catalog #product-all .dropdown .dropdown-menu {
+  width: 300px !important;
+  max-height: 300px !important;
+}
+#catalog #product-all .dropdown .dropdown-menu .checkbox {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 body {

@@ -2,162 +2,89 @@
 
 
 @section('content')
-  <div class="container catalog">
+  <div class="container" id="catalog">
     <div>
-      <span class="title">Результат поиска</span>
+      <span class="title">Каталог товаров</span>
       <span class="badge">1000</span>
     </div>
-    <form action="{{ route('product.all') }}" method="get" id="product-all">
-      <div class="col-auto d-flex dropdown h-100">
-        <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none {{ count($filter['category']) > 0 ? 'font-weight-bolder' : null }}" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span>Категория товаров</span>
-        </a>
-        <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" style="/*max-height: 300px; width: 250px*/" aria-labelledby="dropdownCategoryLink">
-          @foreach(\App\Models\Category::all() as $category)
-{{--            <div class="checkbox">--}}
-{{--              <input type="checkbox" class="form-check-input" id="category-{{$category->id}}" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, $filter['category']) ? 'checked' : null }}>--}}
-{{--              <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }}</label>--}}
-{{--              <span class="amount">1000</span>--}}
-{{--            </div>--}}
 
-            <div class="list-group">
-              <div class="list-group-item">
-                <input type="checkbox" class="form-check-input" id="category-{{$category->id}}" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, $filter['category']) ? 'checked' : null }}>
-                <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }}</label>
-                <span class="amount">1000</span>
+    <div class="row">
+      <form action="{{ route('product.all') }}"  class="" method="get" id="product-all">
+
+        <div class="col-auto dropdown">
+          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Категория товаров</span>
+          </a>
+          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownCategoryLink">
+            @foreach(\App\Models\Category::all() as $category)
+              <div class="checkbox">
+                <div class="row">
+                  <div class="col-auto pr-0">
+                    <input type="checkbox" class="form-check-input" id="category-{{$category->id}}" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, $filter['category']) ? 'checked' : null }}>
+                  </div>
+                  <div class="col m-0">
+                    <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }} <span class="text-muted pl-1">1000</span> </label>
+                  </div>
+                </div>
               </div>
+            @endforeach
+          </div>
+        </div>
+
+        <div class="col-auto dropdown">
+          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Категория товаров</span>
+          </a>
+          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownCategoryLink">
+            @foreach(\App\Models\Category::all() as $category)
+              <div class="checkbox">
+                <div class="row">
+                  <div class="col-auto pr-0">
+                    <input type="checkbox" class="form-check-input" id="category-{{$category->id}}" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, $filter['category']) ? 'checked' : null }}>
+                  </div>
+                  <div class="col m-0">
+                    <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }} <span class="text-muted pl-1">1000</span> </label>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+        <div class="col-auto mr-auto">
+          <button class="btn btn-primary">Применить</button>
+        </div>
+
+        <div class="col-auto dropdown ml-auto">
+          <a href="#" class="text-dark dropdown-toggle text-decoration-none" role="button" id="dropdownOrderLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @if($filter['order'] === 'sort-old')
+              <i class="fas fa-sort-amount-down"></i> С начало старые
+            @elseif($filter['order'] === 'sort-new')
+              <i class="fas fa-sort-amount-up"></i> Сначало новые
+            @elseif($filter['order'] === 'sort-expensive')
+              <i class="fas fa-sort-amount-up"></i> С начало дорогие
+            @elseif($filter['order'] === 'sort-cheap')
+              <i class="fas fa-sort-amount-down"></i> С начало дешёвые
+            @endif
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-shadow rounded-0 border-0 py-3 px-4" aria-labelledby="dropdownOrderLink">
+            <a href="#" role="button" onclick="orderSort('sort-old')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-old' ? 'active' : '' }}"><i class="fas fa-sort-amount-down"></i> С начало старые</a>
+            <a href="#" role="button" onclick="orderSort('sort-new')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-new' ? 'active' : '' }}"><i class="fas fa-sort-amount-up"></i> С начало новые</a>
+            <a href="#" role="button" onclick="orderSort('sort-expensive')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-expensive' ? 'active' : '' }}"><i class="fas fa-sort-amount-up"></i> С начало дорогие</a>
+            <a href="#" role="button" onclick="orderSort('sort-cheap')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-cheap' ? 'active' : '' }}"><i class="fas fa-sort-amount-down"></i> С начало дешёвые</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <hr>
+        <div class="row">
+          @foreach($filter['category'] as $value)
+            <div class="col-auto rounded px-2 py-1 m-1">
+              <span class="font-weight-light">{{ \App\Models\Category::find($value)->name }}</span>
+              <button class="btn bg-transparent h5 shadow-0 border-none m-0 p-0" onclick="uncheckProps($('#category-{{$value}}'))"><i class="bx bx-x-circle"></i></button>
             </div>
           @endforeach
         </div>
-      </div>
-
-      <div class="col-auto dropdown h-100" v-for="i in 4">
-        <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none"
-           role="button" id="dropdownSexLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Фильтр
-        </a>
-        <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4" aria-labelledby="dropdownSexLink">
-          <div class="checkbox">
-            <input type="checkbox" class="form-check-input" id="sex-men" name="sex[]" value="Мужской">
-            <label class="form-check-label" for="sex-men">Мужской</label>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="container-fluid catalog" id="filtered">
-    <div class="row justify-content-end">
-      <div class="col-auto dropdown">
-        <a href="#" class="text-dark dropdown-toggle text-decoration-none" role="button" id="dropdownOrderLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          @if($filter['order'] === 'sort-old')
-            <i class="fas fa-sort-amount-down"></i> С начало старые
-          @elseif($filter['order'] === 'sort-new')
-            <i class="fas fa-sort-amount-up"></i> Сначало новые
-          @elseif($filter['order'] === 'sort-expensive')
-            <i class="fas fa-sort-amount-up"></i> С начало дорогие
-          @elseif($filter['order'] === 'sort-cheap')
-            <i class="fas fa-sort-amount-down"></i> С начало дешёвые
-          @endif
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-shadow rounded-0 border-0 py-3 px-4" aria-labelledby="dropdownOrderLink">
-          <a href="#" role="button" onclick="orderSort('sort-old')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-old' ? 'active' : '' }}"><i class="fas fa-sort-amount-down"></i> С начало старые</a>
-          <a href="#" role="button" onclick="orderSort('sort-new')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-new' ? 'active' : '' }}"><i class="fas fa-sort-amount-up"></i> С начало новые</a>
-          <a href="#" role="button" onclick="orderSort('sort-expensive')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-expensive' ? 'active' : '' }}"><i class="fas fa-sort-amount-up"></i> С начало дорогие</a>
-          <a href="#" role="button" onclick="orderSort('sort-cheap')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-cheap' ? 'active' : '' }}"><i class="fas fa-sort-amount-down"></i> С начало дешёвые</a>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <a href="{{ route('product.all') }}" class="link-category col-md-auto col-12 {{--{{ $filter['p'] === 0 ? 'active' : null }}--}} ">Все товары</a>
-{{--      @foreach(App\Models\Category::all() as $cat)--}}
-{{--        @if($cat->parents()->count() === 0)--}}
-{{--          <a href="{{ route('product.all', ['p'=> $cat->id]) }}" class="link-category col-md-auto col-12 {{ $filter['p'] === $cat->id ? 'active' : null }}">{{ $cat->name }}</a>--}}
-{{--        @endif--}}
-{{--      @endforeach--}}
-      <div class="col-12">
-        <hr>
-      </div>
-    </div>
-    <form action="{{ route('product.all') }}" method="get" id="product-all">
-      <input type="hidden" value="{{--{{ $filter['p'] }}--}}" name="p">
-      <input type="hidden" value="{{--{{ $filter['order'] }}--}}" name="order" id="order">
-      <div class="row align-items-center">
-        <div class="col-auto dropdown h-100">
-          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none {{--{{ count($filter['sex']) > 0 ? 'font-weight-bolder' : null }}--}}" role="button" id="dropdownSexLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Пол
-          </a>
-          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4" aria-labelledby="dropdownSexLink">
-{{--            @foreach(\App\Models\Product::SEX_ATTR_MAP as $attr)--}}
-{{--              <div class="checkbox">--}}
-{{--                <input type="checkbox" class="form-check-input" id="sex-{{$attr}}" name="sex[]" value="{{ $attr }}" {{ in_array($attr, $filter['sex']) ? 'checked' : null }}>--}}
-{{--                <label class="form-check-label" for="sex-{{$attr}}">{{ \App\Models\Product::$sexAttrMap[$attr] }}</label>--}}
-{{--              </div>--}}
-
-{{--            @endforeach--}}
-          </div>
-        </div>
-
-        <div class="col-auto dropdown h-100">
-          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none {{ count($filter['category']) > 0 ? 'font-weight-bolder' : null }}" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Категория
-          </a>
-          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" style="max-height: 300px; width: 250px" aria-labelledby="dropdownCategoryLink">
-            @foreach(\App\Models\Category::all() as $category)
-              <div class="checkbox">
-                <input type="checkbox" class="form-check-input" id="category-{{$category->id}}" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, $filter['category']) ? 'checked' : null }}>
-                <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }}</label>
-              </div>
-
-            @endforeach
-          </div>
-        </div>
-
-        <div class="col-auto dropdown h-100">
-          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none {{--{{ count($filter['size']) > 0 ? 'font-weight-bolder' : null }}--}}" role="button" id="dropdownSizeLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Размер
-          </a>
-          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4" aria-labelledby="dropdownSizeLink">
-            @foreach(\App\Models\Skus::all() as $skus)
-              <div class="checkbox">
-                <input type="checkbox" class="form-check-input" id="skus-{{$skus->id}}" name="skus[]" value="{{ $skus->id }}" {{--{{ in_array($skus->id, $filter['size']) ? 'checked' : null }}--}}>
-                <label class="form-check-label" for="skus-{{$skus->id}}">{{ $skus->title }}</label>
-              </div>
-
-            @endforeach
-          </div>
-        </div>
-        <div class="col-md-auto">
-          <button type="submit" class="btn btn-orange w-100 mt-2 mt-md-0">Применить</button>
-        </div>
-
-        <div class="col-12">
-          <hr>
-        </div>
-      </div>
-    </form>
-    <div class="row">
-{{--      @foreach($filter['sex'] as $value)--}}
-{{--        <div class="col-auto bg-gray px-2 py-1 m-1">--}}
-{{--          <span class="font-weight-light">{{ \App\Models\Product::$sexAttrMap[$value] }}</span>--}}
-{{--          <button class="color-orange btn border-none" onclick="uncheckProps($('#sex-{{$value}}'))"><i class="fal fa-times"></i></button>--}}
-{{--        </div>--}}
-{{--      @endforeach--}}
-
-      @foreach($filter['category'] as $value)
-        <div class="col-auto bg-gray px-2 py-1 m-1">
-          <span class="font-weight-light">{{ \App\Models\Category::find($value)->name }}</span>
-          <button class="color-orange btn border-none" onclick="uncheckProps($('#category-{{$value}}'))"><i class="fal fa-times"></i></button>
-        </div>
-      @endforeach
-
-{{--      @foreach($filter['size'] as $value)--}}
-{{--        <div class="col-auto bg-gray px-2 py-1 m-1">--}}
-{{--          <span class="font-weight-light">{{ \App\Models\Skus::find($value)->title }}</span>--}}
-{{--          <button class="color-orange btn border-none" onclick="uncheckProps($('#skus-{{$value}}'))"><i class="fal fa-times"></i></button>--}}
-{{--        </div>--}}
-{{--      @endforeach--}}
-    </div>
   </div>
 
   <div class="container-fluid">
@@ -175,4 +102,24 @@
     </div>
   </div>
 
+@endsection
+
+@section('js')
+  <script>
+    window.onload = function() {
+      $("#catalog .dropdown-menu").on('click', function (event) {
+        event.stopPropagation();
+      });
+
+      function uncheckProps(el) {
+        el.prop('checked', false)
+        $('#product-all').submit()
+      }
+
+      function orderSort(type) {
+        $('#order').val(type)
+        $('#product-all').submit()
+      }
+    }
+  </script>
 @endsection
