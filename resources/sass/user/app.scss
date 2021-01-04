@@ -13,12 +13,13 @@
 @import 'header';
 @import 'footer';
 @import 'login';
-@import 'item.scss';
-@import 'instagram.scss';
+@import 'resources/sass/product/item';
+@import 'instagram';
 @import 'category-preview';
-@import 'search.scss';
-@import 'register.scss';
-@import 'notfound.scss';
+@import 'search';
+@import 'register';
+@import 'not-found';
+@import '../product/catalog';
 
 // TODO: тут писать все общие стили, по возможности разбивать на файлы, отдельно для продукта, отдельно для корзины и прочее. Разбивать если там стили используются не общие.
 
