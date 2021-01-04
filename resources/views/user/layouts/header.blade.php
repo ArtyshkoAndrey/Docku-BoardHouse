@@ -133,22 +133,24 @@
                     <div class="col-12 col-sm-6">
                       <p class="m-0 font-weight-bold">Резиновые сапоги Maximo</p>
                     </div>
-                    <div class="col-auto ml-auto">
-                      <p class="m-0">6 000 ₸</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-around align-items-center">
-                      <button type="button" class="btn btn-dark cart-button">
-                        <i class="bx bx-minus"></i>
-                      </button>
-                      <p id="cart-item-amount-1" class="mx-2 my-auto">1</p>
-                      <button type="button" class="btn btn-dark cart-button">
-                        <i class="bx bx-plus"></i>
-                      </button>
-                    </div>
-                    <div class="col-2">
-                      <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
-                        <i class="bx bxs-trash bx-sm"></i>
-                      </button>
+                    <div class="col-12 col-sm-6 d-flex">
+                      <div class="col-auto ml-auto d-flex align-items-center">
+                        <p class="m-0">6 000 ₸</p>
+                      </div>
+                      <div class="col-4 d-flex justify-content-around align-items-center">
+                        <button type="button" class="btn btn-dark cart-button">
+                          <i class="bx bx-minus"></i>
+                        </button>
+                        <p id="cart-item-amount-1" class="mx-2 my-auto">1</p>
+                        <button type="button" class="btn btn-dark cart-button">
+                          <i class="bx bx-plus"></i>
+                        </button>
+                      </div>
+                      <div class="col-2">
+                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
+                          <i class="bx bxs-trash bx-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -158,8 +160,12 @@
                   <a href="#" class="btn btn-dark w-100">Перейти в корзину</a>
                 </div>
                 <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
-                  <p class="h6 font-weight-bold">Итого: 20 000 ₸</p>
-                  <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
+                  <div class="col-8 col-md-12 d-flex justify-content-end align-items-center p-0">
+                    <p class="h6 font-weight-bold">Итого: 1 220 000 ₸</p>
+                  </div>
+                  <div class="col-4 col-md-12">
+                    <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
+                  </div>
                 </div>
               </div>
             </div>

@@ -21,10 +21,38 @@
 </head>
 <body id="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
+  @if($errors->any())
+    @foreach ($errors->all() as $error)
+      <div class="alert alert-danger fade show info-alert" data-mdb-color="danger" role="alert">
+        <div class="d-flex flex-column justify-content-center">
+          <strong>Ошибка!</strong>
+          <span>{{ $error }}</span>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endforeach
+  @endif
+  @if (session()->has('success'))
+    @foreach (session('success') as $message)
+        <div class="alert alert-success fade show info-alert" data-mdb-color="success" role="alert">
+          <div class="d-flex flex-column justify-content-center">
+            <strong>Успешно!</strong>
+            <span>$message</span>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    @endforeach
+  @endif
+
   @include('user.layouts.header', ['theme_menu' => $theme_menu ?? 'dark-menu'])
 
   <main>
-    @yield('content')
+{{--    @yield('content')--}}
+    @include('user.layouts.catalog')
   </main>
 
   @include('user.layouts.footer')
@@ -88,4 +116,3 @@
   }
 </script>
 </html>
-{{-- TODO: Тут шаблон страницы для обычный юзеров, не админы. В content падает данные из того файла, который я укажу в бекенде для показа. Каждый ФАЙЛ  подтягивает этот шаблон --}}

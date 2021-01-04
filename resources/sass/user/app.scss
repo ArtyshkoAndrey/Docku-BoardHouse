@@ -15,9 +15,10 @@
 @import 'login';
 @import 'item.scss';
 @import 'instagram.scss';
-@import 'item-catalog.scss';
+@import 'category-preview';
 @import 'search.scss';
 @import 'register.scss';
+@import 'notfound.scss';
 
 // TODO: тут писать все общие стили, по возможности разбивать на файлы, отдельно для продукта, отдельно для корзины и прочее. Разбивать если там стили используются не общие.
 
@@ -35,14 +36,16 @@ body {
   }
 }
 
-/// ahahaha
+.alert.info-alert {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 3em;
+  bottom: 1.5em;
+  z-index: 1000;
 
-// Это пиздец
-//
-//.mr-auto {
-//  margin-right: auto!important;
-//}
-//
-//.ml-auto {
-//  margin-left: auto!important;
-//}
+  button {
+    margin-left: .5em;
+  }
+}
+

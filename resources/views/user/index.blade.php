@@ -14,10 +14,10 @@
   </section>
 
   <section>
-    @include('user.layouts.item-catalog')
-    @include('user.layouts.item-catalog')
-    @include('user.layouts.item-catalog')
-    @include('user.layouts.item-catalog')
+    @include('user.layouts.category-preview')
+    @include('user.layouts.category-preview')
+    @include('user.layouts.category-preview')
+    @include('user.layouts.category-preview')
   </section>
 
   @include('user.layouts.instagram')

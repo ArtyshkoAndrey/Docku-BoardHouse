@@ -1,4 +1,4 @@
-<div class="container item-catalog">
+<div class="container category-preview">
   <div>
     <span class="title">Здесь подтянуть имя из переменной</span>
     <a href="#!"><i class="bx bx-right-arrow-alt"></i></a>
