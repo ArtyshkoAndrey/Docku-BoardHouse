@@ -7,7 +7,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Docku') }}</title>
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -51,8 +51,7 @@
   @include('user.layouts.header', ['theme_menu' => $theme_menu ?? 'dark-menu'])
 
   <main>
-{{--    @yield('content')--}}
-    @include('user.layouts.catalog')
+    @yield('content')
   </main>
 
   @include('user.layouts.footer')

@@ -15,7 +15,7 @@
       </div>
       @empty
         <div class="not-found">
-          <img src="{{ asset('images/search-notfound.svg') }}">
+          <img src="{{ asset('images/search-notfound.svg') }}" alt="zero items">
           <span class="mt-2">
             Извените, мы не смогли найти<br>ничего по запросу
             <span class="query">QUERY</span>

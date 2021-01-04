@@ -1,18 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Auth::routes();
 
@@ -21,14 +12,15 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/test', function () {
-  $product = \App\Models\Product::first();
+  $product = Product::first();
   $product->forceDelete();
 })->name('test');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('product')->name('product.')->group( function () {
-  Route::get('/search', [\App\Http\Controllers\ProductController::class, 'search'])->name('search');
+  Route::get('/search', [ProductController::class, 'search'])->name('search');
+  Route::get('/all', [ProductController::class, 'all'])->name('all');
 });
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
