@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\PhotoObserver;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Photo
@@ -11,17 +16,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $product_id
  * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Photo newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Photo newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Photo query()
- * @method static \Illuminate\Database\Eloquent\Builder|Photo whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Photo whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Photo whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Photo whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Photo whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Photo newModelQuery()
+ * @method static Builder|Photo newQuery()
+ * @method static Builder|Photo query()
+ * @method static Builder|Photo whereCreatedAt($value)
+ * @method static Builder|Photo whereId($value)
+ * @method static Builder|Photo whereName($value)
+ * @method static Builder|Photo whereProductId($value)
+ * @method static Builder|Photo whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Photo extends Model
 {
@@ -34,6 +39,31 @@ class Photo extends Model
    */
   protected $fillable = [
     'name',
-    'product_id'
   ];
+
+  public function product(): BelongsTo
+  {
+    return $this->belongsTo(Product::class, 'product_id', 'id')->withTrashed();
+  }
+
+  public function getUrlWebp(): string
+  {
+    return asset('storage/images/photos/' . $this->name  . '.webp');
+  }
+
+  public function getThumbnailUrlWebp(): string
+  {
+    return asset('storage/images/thumbnails/' . $this->name  . '.webp');
+  }
+
+  public function getUrlPng(): string
+  {
+    return asset('storage/images/photos/' . $this->name  . '.png');
+  }
+
+  public function getThumbnailUrlPng(): string
+  {
+    return asset('storage/images/thumbnails/' . $this->name . '.png');
+  }
+
 }

@@ -5,15 +5,21 @@
 
 // Bootstrap
 @import '~mdb-ui-kit/src/scss/mdb.free';
+@import '~mdb-ui-kit/src/scss/mdb.core';
+@import '~bootstrap/scss/bootstrap-grid';
 
 @import 'resources/sass/variables';
 
 @import 'header';
 @import 'footer';
 @import 'login';
-@import 'item.scss';
-@import 'instagram.scss';
-@import 'item-catalog.scss';
+@import 'product/item';
+@import 'instagram';
+@import 'category-preview';
+@import 'search';
+@import 'register';
+@import 'not-found';
+@import 'product/catalog';
 
 // TODO: тут писать все общие стили, по возможности разбивать на файлы, отдельно для продукта, отдельно для корзины и прочее. Разбивать если там стили используются не общие.
 
@@ -24,3 +30,23 @@
 body {
   background: rgba(242, 243, 246, 1);
 }
+
+#login-page, #register-page {
+  footer {
+    display: none;
+  }
+}
+
+.alert.info-alert {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 3em;
+  bottom: 1.5em;
+  z-index: 1000;
+
+  button {
+    margin-left: .5em;
+  }
+}
+

@@ -132,3 +132,22 @@ sup {
 .sidebar, .content-wrapper {
   transition: .5s
 }
+
+.dz-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dropzone {
+  background: inherit;
+  border-radius: 5px;
+  border: 1px dashed red;
+  border-image: none;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropzone .dz-preview.dz-image-preview {
+  background: inherit;
+}

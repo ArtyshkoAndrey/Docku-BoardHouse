@@ -6,7 +6,7 @@
           <span>Есть вопросы? Свяжитесь с нами :)</span>
           <span class="number">+7 (747) 556-23-83</span>
         </div>
-        <span>© dockuboardhouse.com 2020 – магазин сноубордов</span>
+        <span class="text-center">© dockuboardhouse.com 2020 – магазин сноубордов</span>
       </div>
       <div class="col-md-6 col-lg-3">
         <span class="title">Помощь по заказам</span>

@@ -17,7 +17,10 @@ class CreateSkusesTable extends Migration
       $table->id();
       $table->string('title');
       $table->integer('weight');
-      $table->foreignId('skus_category_id')->constrained('skus_categories');
+      $table->foreignId('skus_category_id')
+        ->constrained('skus_categories')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');;
       $table->timestamps();
     });
   }

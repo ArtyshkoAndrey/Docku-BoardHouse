@@ -24,8 +24,17 @@ class CreateProductsTable extends Migration
       $table->decimal('price', 10, 0);
       $table->decimal('price_sale', 10, 0)->nullable();
       $table->decimal('weight', 10, 2);
+      $table->string('sex')->default(\App\Models\Product::SEX_UNISEX);
       $table->json('meta');
-      $table->foreignId('brand_id')->constrained('brands');
+      $table->foreignId('brand_id')
+        ->nullable()
+        ->constrained('brands')
+        ->onUpdate('set null')
+        ->onDelete('set null');
+      $table->foreignId('category_id')
+        ->constrained('categories')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->timestamps();
       $table->softDeletes();
     });

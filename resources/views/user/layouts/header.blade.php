@@ -1,9 +1,9 @@
-<div class="header">
+<div class="header {{ $theme_menu ?? 'dark-menu' }}">
   <nav id="main-menu" class="navbar navbar-expand">
     <div class="container">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-between justify-content-md-center align-items-center w-100">
-          <li class="nav-item dropdown">
+        <ul class="navbar-nav align-items-center w-100">
+          <li class="nav-item dropdown mr-auto">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -23,19 +23,21 @@
           <li class="nav-item d-none d-xl-flex">
             <a class="d-block nav-link">+7 (747) 556-23-83</a>
           </li>
-          <a class="navbar-brand d-none d-md-block mx-auto" href="#">
-            <img src="{{ asset('images/logo.svg') }}" alt="">
-          </a>
+          <li class="nav-item d-none d-md-flex mx-auto">
+            <a class="" href="{{ route('index') }}">
+              <img class="light-logo" src="{{ asset('images/logo.svg') }}" alt="logo">
+              <img class="dark-logo" src="{{ asset('images/logo-dark.svg') }}" alt="logo">
+            </a>
+          </li>
           <li class="d-none d-lg-flex">
             <a class="nav-link" href="#">info@dockuboardhouse.com</a>
           </li>
-          <div class="d-flex">
-            <li class="nav-item icon">
+          <li class="nav-item icon ml-auto ml-md-0">
               <a class="nav-link" onclick="toggleSearch()">
                 <i class="bx bx-sm bx-search"></i>
               </a>
             </li>
-            <li class="nav-item icon dropdown">
+          <li class="nav-item icon dropdown">
               <a
                 class="nav-link"
                 href="#"
@@ -108,8 +110,7 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item icon dropdown">
-
+          <li class="nav-item icon dropdown">
             <a
               class="nav-link"
               href="#"
@@ -132,22 +133,24 @@
                     <div class="col-12 col-sm-6">
                       <p class="m-0 font-weight-bold">Резиновые сапоги Maximo</p>
                     </div>
-                    <div class="col-auto ml-auto">
-                      <p class="m-0">6 000 ₸</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-around align-items-center">
-                      <button type="button" class="btn btn-dark cart-button">
-                        <i class="bx bx-minus"></i>
-                      </button>
-                      <p id="cart-item-amount-1" class="mx-2 my-auto">1</p>
-                      <button type="button" class="btn btn-dark cart-button">
-                        <i class="bx bx-plus"></i>
-                      </button>
-                    </div>
-                    <div class="col-2">
-                      <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
-                        <i class="bx bxs-trash bx-sm"></i>
-                      </button>
+                    <div class="col-12 col-sm-6 d-flex">
+                      <div class="col-auto ml-auto d-flex align-items-center">
+                        <p class="m-0">6 000 ₸</p>
+                      </div>
+                      <div class="col-4 d-flex justify-content-around align-items-center">
+                        <button type="button" class="btn btn-dark cart-button">
+                          <i class="bx bx-minus"></i>
+                        </button>
+                        <p id="cart-item-amount-1" class="mx-2 my-auto">1</p>
+                        <button type="button" class="btn btn-dark cart-button">
+                          <i class="bx bx-plus"></i>
+                        </button>
+                      </div>
+                      <div class="col-2">
+                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
+                          <i class="bx bxs-trash bx-sm"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -157,34 +160,28 @@
                   <a href="#" class="btn btn-dark w-100">Перейти в корзину</a>
                 </div>
                 <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
-                  <p class="h6 font-weight-bold">Итого: 20 000 ₸</p>
-                  <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
+                  <div class="col-8 col-md-12 d-flex justify-content-end align-items-center p-0">
+                    <p class="h6 font-weight-bold">Итого: 1 220 000 ₸</p>
+                  </div>
+                  <div class="col-4 col-md-12">
+                    <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
+                  </div>
                 </div>
               </div>
             </div>
-            {{--          <ul class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="navbarDropdown">--}}
-            {{--            <li><a class="dropdown-item" href="#">Action</a></li>--}}
-            {{--            <li><a class="dropdown-item" href="#">Another action</a></li>--}}
-            {{--            <li><hr class="dropdown-divider" /></li>--}}
-            {{--            <li>--}}
-            {{--              <a class="dropdown-item" href="#">Something else here</a>--}}
-            {{--            </li>--}}
-            {{--          </ul>--}}
           </li>
-          </div>
         </ul>
       </div>
     </div>
   </nav>
   <hr>
   <div class="container search hide">
-    <form action="">
-      @csrf
+    <form action="{{ route('product.search') }}" method="GET">
       <div class="input-group">
         <div class="form-outline">
           <i class="d-block d-md-none bx bx bx-search"></i>
           <i class="d-none d-md-block bx bx-sm bx-search"></i>
-          <input type="text" id="search" name="search" class="form-control" />
+          <input autocomplete="none" type="text" id="search" name="q" class="form-control" />
           <label class="form-label" for="search">Что-то искали?</label>
         </div>
         <button class="btn btn-dark font-weight-light">Найти</button>
@@ -195,8 +192,8 @@
   <nav class="navbar navbar-expand category-menu">
     <div class="container-fluid container-md w-100">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-between align-items-center w-100">
-          <li class="nav-item dropdown" v-for="i in 5">
+        <ul class="navbar-nav align-items-center w-100">
+          <li class="nav-item dropdown ml-auto">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -205,7 +202,135 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span>Пункт <% i %></span>
+              <span>Пункт</span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown ">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт</span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown ">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт</span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown ">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт</span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
+                    <span class="font-weight-bold">Сноубординг1</span>
+                    <a class="item" href="#">Для мужчин</a>
+                    <a class="item" href="#">Для женщин</a>
+                    <a class="item" href="#">Для детей</a>
+                    <a class="item" href="#">Начинающим</a>
+                    <a class="item" href="#">Любителям</a>
+                    <a class="item" href="#">Профессионалам</a>
+                    <a class="item" href="#">Все сноуборды</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown mr-auto">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Пункт</span>
             </a>
 
             <div class="triangle" aria-labelledby="navbarDropdown"></div>

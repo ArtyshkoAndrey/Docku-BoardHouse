@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Doscu - Список товаров')
+@section('title', 'Docku - Список товаров')
 
 @section('content')
   <div class="container-fluid mt-20 mb-20">
@@ -14,7 +14,14 @@
           </nav>
         </div>
         <div class="col-12">
-          <h3>Товары</h3>
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <h3>Товары</h3>
+            </div>
+            <div class="col-auto px-10">
+              <a href="{{ route('admin.product.create') }}" class="btn">Создать новый товар</a>
+            </div>
+          </div>
         </div>
 
         <div class="col col-md mb-20 pr-10">
@@ -81,7 +88,7 @@
           <div class="card border-0 product p-0 m-0 bg-dark-dm">
             <div class="row align-items-center row-eq-spacing p-0 m-0">
               <div class="col-lg-1 col-5 px-0 overflow-hidden">
-                <img src="{{ $product->getThumbnail() }}" class="h-auto d-flex w-full rounded m-0 p-0" alt="{{ $product->title }}">
+                <img src="{{ $product->getThumbnailPng() }}" class="h-auto d-flex w-full rounded m-0 p-0" alt="{{ $product->title }}">
               </div>
               <div class="col-lg col">
                 <div class="row">

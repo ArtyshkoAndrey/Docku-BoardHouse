@@ -16,7 +16,10 @@ class CreateOrdersTable extends Migration
     Schema::create('orders', function (Blueprint $table) {
       $table->id();
       $table->bigInteger('no')->unique();
-      $table->foreignId('user_id')->constrained('users');
+      $table->foreignId('user_id')
+        ->constrained('users')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->json('address');
       $table->decimal('price', 10, 2);
       $table->decimal('ship_price', 10,2);

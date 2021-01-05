@@ -15,9 +15,18 @@ class OrderItems extends Migration
   {
     Schema::create('order_items', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('product_id')->constrained('products');
-      $table->foreignId('order_id')->constrained('orders');
-      $table->foreignId('skus_id')->constrained('skuses');
+      $table->foreignId('product_id')
+        ->constrained('products')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
+      $table->foreignId('order_id')
+        ->constrained('orders')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
+      $table->foreignId('skus_id')
+        ->constrained('skuses')
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->integer('amount')->default(0);
       $table->decimal('price', 10, 0);
       $table->timestamps();

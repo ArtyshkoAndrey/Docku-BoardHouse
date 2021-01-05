@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Photo;
 use App\Models\Product;
+use App\Models\ProductSkus;
+use App\Services\PhotoService;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use PhpParser\Node\Expr\Array_;
 
 class ProductController extends Controller
 {
@@ -35,22 +42,62 @@ class ProductController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return Response
+   * @return Application|Factory|View|Response
    */
   public function create()
   {
-      //
+    return view('admin.product.create');
   }
 
   /**
    * Store a newly created resource in storage.
    *
    * @param Request $request
-   * @return Response
+   * @return RedirectResponse
    */
-  public function store(Request $request)
+  public function store(Request $request): RedirectResponse
   {
-      //
+    $request->validate([
+      'title' => 'required|string|max:255',
+      'price' => 'required|integer|min:0',
+      'weight' => 'required|min:0',
+      'brand' => 'required|exists:brands,id',
+      'category' => 'required|exists:categories,id',
+      'meta_title' => 'required|string',
+      'meta_description' => 'required|string',
+      'description' => 'required|string',
+      'on_sale' => 'boolean',
+      'on_top' => 'boolean',
+      'on_new' => 'boolean',
+      'photos' => 'array',
+    ]);
+//    dd($request->all());
+    $data = $request->all();
+    $data['meta'] = (object) [
+      'title' => $data['meta_title'],
+      'description' => $data['meta_description']
+    ];
+    $product = new Product($data);
+    $product
+      ->brand()
+      ->associate($request->get('brand'));
+
+    $product
+      ->category()
+      ->associate($request->get('category'));
+
+    $product->save();
+
+    foreach ($request->get('skus', []) as $id => $stock) {
+      $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+      $ps->save();
+    }
+
+    foreach ($data['photos'] as $name) {
+      Photo::whereName($name)->first()->product()->associate($product->id)->save();
+    }
+
+    return redirect()->route('admin.product.index')->with('success', ['Товар успешно создан']);
   }
 
   /**
@@ -81,6 +128,7 @@ class ProductController extends Controller
    * @param Request $request
    * @param Product $product
    * @return RedirectResponse
+   * @throws Exception
    */
   public function update(Request $request, Product $product): RedirectResponse
   {
@@ -92,8 +140,50 @@ class ProductController extends Controller
       'category' => 'required|exists:categories,id',
       'meta_title' => 'required|string',
       'meta_description' => 'required|string',
-      'description' => 'required',
+      'description' => 'required|string',
+      'on_sale' => 'boolean',
+      'on_top' => 'boolean',
+      'on_new' => 'boolean',
     ]);
+
+    $ids = [];
+    foreach ($request->get('skus', []) as $id => $stock) {
+      array_push($ids, $id);
+      $flag = false;
+      foreach ($product->productSkuses as $productSkus) {
+        if ($productSkus->skus_id === $id) {
+          $flag = true;
+
+          $productSkus->stock = $stock;
+          $productSkus->save();
+        }
+      }
+      if (!$flag) {
+        $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+        $ps->save();
+      }
+    }
+
+    $idsPS = $product->productSkuses()->pluck('skus_id')->toArray();
+//    dd($idsPS, $ids);
+    $ids = array_diff($idsPS, $ids);
+
+    foreach ($ids as $id) {
+      ProductSkus::whereSkusId($id)->delete();
+    }
+    $data = $request->all();
+    $data['meta'] = (object) [
+      'title' => $data['meta_title'],
+      'description' => $data['meta_description']
+    ];
+    $product->update($data);
+    $product
+      ->brand()
+      ->associate($request->brand_id);
+
+    $product
+      ->category()
+      ->associate($request->category_id);
     return redirect()->back()->with('success', ['Товар успешно обновлён']);
   }
 
@@ -117,5 +207,42 @@ class ProductController extends Controller
         return redirect()->back()->withErrors($exception->getMessage());
       }
     }
+  }
+
+  public function photo(Request $request, $id) {
+
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    $photo = new Photo(['name' => $name]);
+    $photo->product()->associate($id);
+    $photo->save();
+    echo $name;
+  }
+
+  public function photoDelete(Request $request): JsonResponse
+  {
+    $request->validate([
+      'name' => 'required|string'
+    ]);
+    try {
+      $ph = Photo::where('name', explode('.' ,$request->name)[0])->first()->delete();
+      return response()->json(['status' => 'success']);
+    } catch (Exception $e) {
+      return response()->json(['status' => 'error'], 500);
+    }
+  }
+
+  public function photoStore(Request $request) {
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    try {
+      $photo = new Photo(['name' => $name]);
+      $photo->product()->associate(null);
+      $photo->save();
+    } catch (Exception $exception) {
+      PhotoService::delete($name);
+      return response()->json($exception->getMessage(), 500);
+    }
+    return $name;
   }
 }
