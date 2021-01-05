@@ -82,10 +82,11 @@
     </div>
 
     @include('admin.layouts.navigation')
-
     <div id="app" class="content-wrapper">
       @yield('content')
     </div>
+    @yield('modal')
+
 
     <!-- Navbar fixed bottom -->
     <nav class="navbar navbar-fixed-bottom">
