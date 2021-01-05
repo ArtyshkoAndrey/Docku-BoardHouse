@@ -39,7 +39,9 @@ class ProductSkus extends Model
    * @var array
    */
   protected $fillable = [
-    'stock'
+    'stock',
+    'skus_id',
+    'product_id'
   ];
 
   public function skus (): HasOne

@@ -103,6 +103,17 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="sex" class="required">Пол</label>
+                  <div class="input-group">
+                    <select name="sex" id="sex" class="form-control" required>
+                      @foreach(\App\Models\Product::SEX_MAP as $sex)
+                        <option value="{{ $sex }}" {{ old('sex') === $sex ? 'selected' : '' }}>{{ \App\Models\Product::$sexMap[$sex] }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label for="weight" class="required">Вес товара</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -119,6 +130,32 @@
                 <brand :name="'brand'" :id="'brand'"></brand>
 
 
+              </div>
+            </div>
+
+            <div class="col-12 mt-20">
+              <div class="card bg-dark-dm">
+                <div class="row" id="skus-wrapper">
+
+{{--                  @foreach($product->productSkuses as $skus)--}}
+{{--                    <div class="col-lg-3 col-md-4 col-6 pr-10" id="skus-col-{{ $skus->skus->id }}">--}}
+{{--                      <div class="form-group">--}}
+{{--                        <label for="skus-{{ $skus->id }}" class="font-weight-bolder">{{ $skus->skus->category->name }}: {{ $skus->skus->title }}</label>--}}
+{{--                        <div class="input-group">--}}
+{{--                          <input type="number" min="0" step="1" name="skus[{{ $skus->skus->id }}]" id="skus-{{ $skus->id }}" class="form-control" value="{{ $skus->stock ?? null }}">--}}
+{{--                          <div class="input-group-append">--}}
+{{--                            <button class="btn btn-danger" type="button" onclick="deleteSkus({{ $skus->skus->id }})"><i class="bx bx-x"></i></button>--}}
+{{--                          </div>--}}
+{{--                        </div>--}}
+{{--                      </div>--}}
+{{--                    </div>--}}
+{{--                  @endforeach--}}
+
+                </div>
+
+                <div class="row">
+                  <a class="btn w-full" href="#modal-skuses" role="button">Добавить размер</a>
+                </div>
               </div>
             </div>
 
@@ -141,6 +178,37 @@
     </div>
   </div>
 @endsection
+
+@section('modal')
+  <div class="modal ie-scroll-fix" id="modal-skuses" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content w-600">
+        <a href="#" class="close" role="button" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+        <div class="modal-body w-full">
+          <div class="row row-eq-spacing m-0 p-0">
+            @foreach(\App\Models\SkusCategory::all() as $sk)
+              <div class="col-12 m-0 p-0">
+                <h5>{{ $sk->name }}</h5>
+                @foreach($sk->skuses as $skus)
+                  <button id="skus-new-btn-{{$skus->id}}" onclick="addSkus('{{ $sk->name . ': ' . $skus->title }}', '{{ $skus->id }}')" class="btn">{{ $skus->title }}</button>
+                @endforeach
+              </div>
+            @endforeach
+          </div>
+
+        </div>
+
+        <div class="modal-footer mt-10 justify-content-end d-flex">
+          <a class="btn btn-danger" href="#" role="button" aria-label="Close">Закрыть</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@endsection
+
 
 @section('script')
   <script src="https://cdn.tiny.cloud/1/z826n1n5ayf774zeqdphsta5v2rflavdm2kvy7xtmczyokv3/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -201,6 +269,60 @@
       addRemoveLinks: true,
       dictRemoveFile: 'Удалить файл'
     });
+
+    function addSkus(name, id) {
+      console.log(name, id)
+      let row = document.getElementById('skus-wrapper')
+      let col = document.createElement('div')
+      let idBtn = '#skus-new-btn-' + id
+      let btn = $(idBtn)
+      btn.attr("disabled", 'disabled');
+      btn.addClass('btn-success')
+      col.classList.add('col-lg-3')
+      col.classList.add('col-md-4')
+      col.classList.add('col-6')
+      col.classList.add('pr-10')
+      col.id = 'skus-col-' + id
+
+      let form_group = document.createElement('div')
+      form_group.classList.add('form-group')
+
+      let label = document.createElement('label')
+      label.setAttribute('for', 'skus-new-' + id)
+      label.textContent = name
+
+      // let input = document.createElement('input')
+      // input.classList.add('form-control')
+      // input.type = 'number'
+      // input.min = '0'
+      // input.step = '1'
+      // input.name = 'skus[' + id + ']'
+
+      let input = '<input class="form-control" value="0" min="0" step="1" name="skus[' + id + ']">'
+
+      let input_group = document.createElement('div')
+      input_group.classList.add('input-group')
+
+      input_group.innerHTML += input
+
+      form_group.appendChild(label)
+      form_group.appendChild(input_group)
+      input_group.innerHTML += ('<div class="input-group-append"> <button class="btn btn-danger" type="button" onclick="deleteSkus(' + id +')"><i class="bx bx-x"></i></button> </div>')
+
+      col.appendChild(form_group)
+      row.appendChild(col)
+
+      // $('.close')[0].click()
+    }
+
+    function deleteSkus (id) {
+      document.getElementById('skus-col-' + id).remove()
+      let idBtn = '#skus-new-btn-' + id
+      let btn = $(idBtn)
+      btn.attr("disabled", false)
+      btn.removeClass('btn-success')
+
+    }
 
     $(document).ready(function() {
       <?php $i = 0;?>

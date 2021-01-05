@@ -82,7 +82,8 @@ class Product extends Model
     'price',
     'price_sale',
     'weight',
-    'meta'
+    'meta',
+    'sex'
   ];
 
   /**
@@ -111,6 +112,25 @@ class Product extends Model
       "description": "",
       "title": ""
     }'
+  ];
+
+  const SEX_MALE    = 'male';
+  const SEX_FEMALE  = 'female';
+  const SEX_UNISEX  = 'unisex';
+  const SEX_CHILD   = 'child';
+
+  const SEX_MAP = [
+    self::SEX_MALE,
+    self::SEX_FEMALE,
+    self::SEX_UNISEX,
+    self::SEX_CHILD
+  ];
+
+  public static array $sexMap = [
+    self::SEX_UNISEX  => 'Унисекс',
+    self::SEX_FEMALE  => 'Женский',
+    self::SEX_MALE    => 'Мужской',
+    self::SEX_CHILD   => 'Детский'
   ];
 
   public function getAvatar (): string

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\ProductSkus;
 use App\Services\PhotoService;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
+use PhpParser\Node\Expr\Array_;
 
 class ProductController extends Controller
 {
@@ -71,6 +73,10 @@ class ProductController extends Controller
     ]);
 //    dd($request->all());
     $data = $request->all();
+    $data['meta'] = (object) [
+      'title' => $data['meta_title'],
+      'description' => $data['meta_description']
+    ];
     $product = new Product($data);
     $product
       ->brand()
@@ -81,6 +87,11 @@ class ProductController extends Controller
       ->associate($request->get('category'));
 
     $product->save();
+
+    foreach ($request->get('skus', []) as $id => $stock) {
+      $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+      $ps->save();
+    }
 
     foreach ($data['photos'] as $name) {
       Photo::whereName($name)->first()->product()->associate($product->id)->save();
@@ -117,6 +128,7 @@ class ProductController extends Controller
    * @param Request $request
    * @param Product $product
    * @return RedirectResponse
+   * @throws Exception
    */
   public function update(Request $request, Product $product): RedirectResponse
   {
@@ -134,7 +146,37 @@ class ProductController extends Controller
       'on_new' => 'boolean',
     ]);
 
-    $product->update($request->all());
+    $ids = [];
+    foreach ($request->get('skus', []) as $id => $stock) {
+      array_push($ids, $id);
+      $flag = false;
+      foreach ($product->productSkuses as $productSkus) {
+        if ($productSkus->skus_id === $id) {
+          $flag = true;
+
+          $productSkus->stock = $stock;
+          $productSkus->save();
+        }
+      }
+      if (!$flag) {
+        $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+        $ps->save();
+      }
+    }
+
+    $idsPS = $product->productSkuses()->pluck('skus_id')->toArray();
+//    dd($idsPS, $ids);
+    $ids = array_diff($idsPS, $ids);
+
+    foreach ($ids as $id) {
+      ProductSkus::whereSkusId($id)->delete();
+    }
+    $data = $request->all();
+    $data['meta'] = (object) [
+      'title' => $data['meta_title'],
+      'description' => $data['meta_description']
+    ];
+    $product->update($data);
     $product
       ->brand()
       ->associate($request->brand_id);
