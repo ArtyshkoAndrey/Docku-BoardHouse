@@ -2,26 +2,25 @@
 
 namespace App\Notifications;
 
-use App\Models\Order;
+use App\Models\CartItems;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ChangeOrderUser extends Notification
+class HasItemsInCart extends Notification
 {
   use Queueable;
-
-  protected Order $order;
+  protected $items;
 
   /**
    * Create a new notification instance.
    *
-   * @param Order $order
+   * @param $items
    */
-  public function __construct(Order $order)
+  public function __construct($items)
   {
-    $this->order = $order;
+    $this->items = $items;
   }
 
   /**
@@ -32,7 +31,7 @@ class ChangeOrderUser extends Notification
    */
   public function via($notifiable): array
   {
-    return ['mail'];
+      return ['mail'];
   }
 
   /**
@@ -43,13 +42,11 @@ class ChangeOrderUser extends Notification
    */
   public function toMail($notifiable): MailMessage
   {
+//    TODO: Переписать сообщения о том что в корзине остались товары
     return (new MailMessage)
-      ->greeting('Здраствуйте')
-      ->subject('Ваш заказ был обновлён')
-      ->line('Статус вашего заказ был изменён. Зайдите в прочиль что бы узать подробнее.')
-      ->action('Профиль', url('/'))
-//      TODO: Изменить ссылку
-      ->line('Спасибо что покупаете у нас!');
+      ->line('The introduction to the notification.')
+      ->action('Notification Action', url('/'))
+      ->line('Thank you for using our application!');
   }
 
   /**
