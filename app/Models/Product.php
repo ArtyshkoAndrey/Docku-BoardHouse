@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Product
@@ -23,40 +27,40 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $price_sale
  * @property string $weight
  * @property object $meta
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Brand[] $brands
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Collection|Brand[] $brands
  * @property-read int|null $brands_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
+ * @property-read Collection|Category[] $categories
  * @property-read int|null $categories_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read Collection|Photo[] $photos
  * @property-read int|null $photos_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductSkus[] $productSkuses
+ * @property-read Collection|ProductSkus[] $productSkuses
  * @property-read int|null $product_skuses_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Skus[] $skuses
+ * @property-read Collection|Skus[] $skuses
  * @property-read int|null $skuses_count
- * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static Builder|Product newModelQuery()
+ * @method static Builder|Product newQuery()
  * @method static \Illuminate\Database\Query\Builder|Product onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereMeta($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereOnNew($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereOnSale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereOnTop($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceSale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereSoldCount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereWeight($value)
+ * @method static Builder|Product query()
+ * @method static Builder|Product whereCreatedAt($value)
+ * @method static Builder|Product whereDeletedAt($value)
+ * @method static Builder|Product whereDescription($value)
+ * @method static Builder|Product whereId($value)
+ * @method static Builder|Product whereMeta($value)
+ * @method static Builder|Product whereOnNew($value)
+ * @method static Builder|Product whereOnSale($value)
+ * @method static Builder|Product whereOnTop($value)
+ * @method static Builder|Product wherePrice($value)
+ * @method static Builder|Product wherePriceSale($value)
+ * @method static Builder|Product whereSoldCount($value)
+ * @method static Builder|Product whereTitle($value)
+ * @method static Builder|Product whereUpdatedAt($value)
+ * @method static Builder|Product whereWeight($value)
  * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Product extends Model
 {
