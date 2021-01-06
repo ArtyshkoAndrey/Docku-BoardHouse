@@ -29173,7 +29173,7 @@ body {
 }
 
 .header {
-  position: absolute;
+  position: relative;
   width: 100%;
   z-index: 1;
 }
@@ -29915,9 +29915,6 @@ section.instagram a:hover {
  * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
-.search-page {
-  padding-top: 200px;
-}
 .search-page > div {
   display: flex;
   align-items: center;
@@ -30090,9 +30087,6 @@ section.instagram a:hover {
  * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
-#catalog {
-  padding-top: 200px;
-}
 #catalog > div {
   display: flex;
   align-items: center;
@@ -30157,8 +30151,64 @@ section.instagram a:hover {
   text-decoration: underline;
 }
 
+/*!
+ * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+#cart-index-page .cart-page {
+  padding-bottom: 30px;
+}
+#cart-index-page .cart-page .cart-button {
+  min-width: 35px;
+  min-height: 35px;
+  padding: 0;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 991.98px) {
+  #cart-index-page .cart-page .cart-button {
+    min-width: 25px;
+    min-height: 25px;
+  }
+}
+@media (max-width: 991.98px) {
+  #cart-index-page .cart-page .item-name {
+    font-size: 1em;
+  }
+  #cart-index-page .cart-page .item-size {
+    font-size: 0.9em;
+  }
+}
+#cart-index-page .cart-page .form-outline {
+  line-height: 3em;
+}
+#cart-index-page .cart-page .form-outline .form-control {
+  line-height: 3em;
+}
+#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+  border-color: #2D89DE !important;
+}
+#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-label {
+  transform: translateY(-1.4rem) scale(0.8);
+}
+#cart-index-page .promocode-button {
+  font-size: 1em;
+}
+#cart-index-page .promocode-button:disabled {
+  background: transparent;
+  color: black;
+  box-shadow: none;
+  border: 1px solid #A9AEB5;
+}
+
 body {
   background: #f2f3f6;
+}
+
+#index-page .header {
+  position: absolute;
 }
 
 #login-page footer, #register-page footer {

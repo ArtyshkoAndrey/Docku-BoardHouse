@@ -146,7 +146,7 @@
                           <i class="bx bx-plus"></i>
                         </button>
                       </div>
-                      <div class="col-2">
+                      <div class="col-2 d-flex align-items-center">
                         <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
                           <i class="bx bxs-trash bx-sm"></i>
                         </button>
