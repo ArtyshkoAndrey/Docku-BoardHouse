@@ -29,13 +29,22 @@ class ProductController extends Controller
    */
   public function index(Request $request): View
   {
-    $name = $request->get('name', null);
-    $products = Product::query()->withTrashed();
+    $name = $request->get('name');
+    $type = $request->get('type', 'isset');
+    $products = Product::query();
+    if ($type === 'all') {
+      $products = $products->withTrashed();
+    } else if ($type === 'deleted') {
+      $products = $products->onlyTrashed();
+    }
     if ($name) {
       $products = $products->where('title', 'like', '%' . $name . '%');
     }
     $products = $products->paginate(10);
-    $filter = ['name' => $name];
+    $filter = [
+      'name' => $name,
+      'type' => $type
+    ];
     return view('admin.product.index', compact('products', 'filter'));
   }
 
