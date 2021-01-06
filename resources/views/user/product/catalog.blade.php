@@ -31,26 +31,6 @@
           </div>
         </div>
 
-        <div class="col-auto dropdown">
-          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>Категория товаров</span>
-          </a>
-          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownCategoryLink">
-            @foreach(\App\Models\Category::all() as $category)
-              <div class="checkbox">
-                <div class="row">
-                  <div class="col-auto pr-0">
-                    <input type="checkbox" class="form-check-input" id="category-{{$category->id}}" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, $filter['category']) ? 'checked' : null }}>
-                  </div>
-                  <div class="col m-0">
-                    <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }} <span class="text-muted pl-1">1000</span> </label>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        </div>
-
         <div class="col-auto mr-auto">
           <button class="btn btn-primary">Применить</button>
         </div>
@@ -115,16 +95,16 @@
       $("#catalog .dropdown-menu").on('click', function (event) {
         event.stopPropagation();
       });
+    }
 
-      function uncheckProps(el) {
-        el.prop('checked', false)
-        $('#product-all').submit()
-      }
+    function uncheckProps(el) {
+      el.prop('checked', false)
+      $('#product-all').submit()
+    }
 
-      function orderSort(type) {
-        $('#order').val(type)
-        $('#product-all').submit()
-      }
+    function orderSort(type) {
+      $('#order').val(type)
+      $('#product-all').submit()
     }
   </script>
 @endsection
