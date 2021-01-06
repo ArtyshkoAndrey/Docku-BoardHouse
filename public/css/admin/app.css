@@ -13611,10 +13611,6 @@ sup {
 .product {
   transition: all 0.5s;
 }
-.product:hover img {
-  transform: scale(1.2);
-  transition: 0.5s;
-}
 .product img {
   transition: 0.5s;
 }
@@ -13658,4 +13654,27 @@ sup {
 
 .dropzone .dz-preview.dz-image-preview {
   background: inherit;
+}
+
+.object-fit-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.btn-outline-danger {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 2px solid #DE6D2D !important;
+  color: #DE6D2D !important;
+  font-size: 18px;
+}
+
+.btn-outline-success {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 2px solid var(--success-color) !important;
+  color: var(--success-color) !important;
+  font-size: 18px;
 }
