@@ -4,7 +4,7 @@
       <div class="col-md-6 col-lg-4 justify-content-between">
         <div class="d-flex flex-column align-items-center">
           <span>Есть вопросы? Свяжитесь с нами :)</span>
-          <span class="number">+7 (747) 556-23-83</span>
+          <a href="tel:" class="number">+7 (747) 556-23-83</a>
         </div>
         <span class="text-center">© dockuboardhouse.com 2020 – магазин сноубордов</span>
       </div>

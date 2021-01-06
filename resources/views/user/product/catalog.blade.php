@@ -9,7 +9,7 @@
     </div>
 
     <div class="row">
-      <form action="{{ route('product.all') }}"  class="" method="get" id="product-all">
+      <form action="{{ route('product.all') }}" class="" method="get" id="product-all">
 
         <div class="col-auto dropdown">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,25 +77,30 @@
       </form>
     </div>
     <hr>
-        <div class="row">
-          @foreach($filter['category'] as $value)
-            <div class="col-auto rounded px-2 py-1 m-1">
-              <span class="font-weight-light">{{ \App\Models\Category::find($value)->name }}</span>
-              <button class="btn bg-transparent h5 shadow-0 border-none m-0 p-0" onclick="uncheckProps($('#category-{{$value}}'))"><i class="bx bx-x-circle"></i></button>
-            </div>
-          @endforeach
+    <div class="row ml-1">
+      @foreach($filter['category'] as $value)
+        <div class="col-auto px-2 py-1 m-1 filter-badge">
+          <span class="font-weight-light">{{ \App\Models\Category::find($value)->name }}</span>
+          <button class="btn bg-transparent h5 shadow-0 border-none p-0" onclick="uncheckProps($('#category-{{$value}}'))"><i class="bx bx-x"></i></button>
         </div>
+      @endforeach
+        <div class="col-auto px-2 py-1 m-1 clear-filters">
+          <a href="#!">Очистить всё</a>
+        </div>
+    </div>
+    <hr>
   </div>
 
-  <div class="container-fluid">
+
+  <div class="container">
     <div class="row">
       @foreach($items as $item)
-        <div class="col-lg-3 mt-4 col-sm-6 col-12 pl-sm-0">
+        <div class="col-6 col-lg-4 col-xl-3 p-0">
           @include('user.layouts.item', array('item'=>$item))
         </div>
       @endforeach
     </div>
-    <div class="row justify-content-center mt-4">
+    <div class="row mt-4">
       <div class="col-auto">
         {{ $items->onEachSide(1)->appends($filter)->links('vendor.pagination.bootstrap-4') }}
       </div>

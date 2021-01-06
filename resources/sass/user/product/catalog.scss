@@ -33,12 +33,18 @@
 
   #product-all {
     display: flex;
+    align-items: center;
 
     .dropdown {
       display: flex;
 
-      &:after {
-        color: #2D3134;
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+
+        &:after {
+          color: #2D3134;
+        }
       }
 
       .dropdown-menu {
@@ -50,6 +56,30 @@
           margin-bottom: 5px;
         }
       }
+    }
+  }
+
+  hr {
+    color: #a4a5a7;
+  }
+
+  .filter-badge {
+    display: flex;
+    align-items: center;
+    background: #E9EAEC;
+    border-radius: 10px;
+
+    button {
+      display: flex;
+      align-items: center;
+      margin: 0 0 0 .3em;
+    }
+  }
+
+  .clear-filters {
+    a {
+      color: #2D3134;
+      text-decoration: underline;
     }
   }
 }

@@ -21,7 +21,7 @@
             </ul>
           </li>
           <li class="nav-item d-none d-xl-flex">
-            <a class="d-block nav-link">+7 (747) 556-23-83</a>
+            <a href="tel:" class="d-block nav-link">+7 (747) 556-23-83</a>
           </li>
           <li class="nav-item d-none d-md-flex mx-auto">
             <a class="" href="{{ route('index') }}">
