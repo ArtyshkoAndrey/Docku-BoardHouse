@@ -29216,10 +29216,10 @@ body {
 .header.dark-menu .search .input-group .form-outline .form-control {
   color: #2D3134;
 }
-.header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, .header.dark-menu .search .input-group .form-outline .form-control:active ~ .form-notch .form-notch-leading, .header.dark-menu .search .input-group .form-outline .form-control:active ~ .form-notch .form-notch-middle, .header.dark-menu .search .input-group .form-outline .form-control:active ~ .form-notch .form-notch-trailing {
+.header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, .header.dark-menu .search .input-group .form-outline .form-control.active ~ .form-notch .form-notch-leading, .header.dark-menu .search .input-group .form-outline .form-control.active ~ .form-notch .form-notch-middle, .header.dark-menu .search .input-group .form-outline .form-control.active ~ .form-notch .form-notch-trailing {
   border-color: #2D3134 !important;
 }
-.header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-label, .header.dark-menu .search .input-group .form-outline .form-control:active ~ .form-label {
+.header.dark-menu .search .input-group .form-outline .form-control:focus ~ .form-label, .header.dark-menu .search .input-group .form-outline .form-control.active ~ .form-label {
   color: #2D3134;
 }
 .header hr {
@@ -29505,12 +29505,12 @@ body {
   line-height: 2em;
   color: #ffffff;
 }
-.search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, .search .input-group .form-outline .form-control:active ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control:active ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control:active ~ .form-notch .form-notch-trailing {
+.search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control:focus ~ .form-notch .form-notch-trailing, .search .input-group .form-outline .form-control.active ~ .form-notch .form-notch-leading, .search .input-group .form-outline .form-control.active ~ .form-notch .form-notch-middle, .search .input-group .form-outline .form-control.active ~ .form-notch .form-notch-trailing {
   border-color: #ffffff !important;
 }
-.search .input-group .form-outline .form-control:focus ~ .form-label, .search .input-group .form-outline .form-control:active ~ .form-label {
+.search .input-group .form-outline .form-control:focus ~ .form-label, .search .input-group .form-outline .form-control.active ~ .form-label {
   color: #ffffff;
-  transform: translateY(-1.2rem) translateY(0.1rem) translateX(-1.3rem) scale(0.8);
+  transform: translateY(-1.1rem) translateX(-1.3rem) scale(0.8);
 }
 .search .input-group .form-outline .form-notch .form-notch-leading {
   border-radius: 10px 0 0 10px;
@@ -29548,8 +29548,8 @@ body {
   .search .input-group .form-outline .form-control {
     line-height: 2.5em;
   }
-  .search .input-group .form-outline .form-control:focus ~ .form-label, .search .input-group .form-outline .form-control:active ~ .form-label {
-    transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+  .search .input-group .form-outline .form-control:focus ~ .form-label, .search .input-group .form-outline .form-control.active ~ .form-label {
+    transform: translateY(-1.4rem) translateX(-3rem) scale(0.8);
   }
   .search .input-group .form-outline .form-label {
     margin-left: 3em !important;
@@ -30173,6 +30173,16 @@ section.instagram a:hover {
     min-height: 25px;
   }
 }
+#cart-index-page .cart-page .item-name {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #2D3134;
+}
+#cart-index-page .cart-page .item-size {
+  font-size: 1em;
+  color: #A9AEB5;
+  font-weight: normal;
+}
 @media (max-width: 991.98px) {
   #cart-index-page .cart-page .item-name {
     font-size: 1em;
@@ -30190,11 +30200,12 @@ section.instagram a:hover {
 #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
   border-color: #2D89DE !important;
 }
-#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-label {
+#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-label, #cart-index-page .cart-page .form-outline .form-control.active ~ .form-label {
   transform: translateY(-1.4rem) scale(0.8);
 }
 #cart-index-page .promocode-button {
   font-size: 1em;
+  font-weight: bold;
 }
 #cart-index-page .promocode-button:disabled {
   background: transparent;

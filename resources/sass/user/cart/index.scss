@@ -22,6 +22,18 @@
       }
     }
 
+    .item-name {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #2D3134;
+    }
+
+    .item-size {
+      font-size: 1em;
+      color: #A9AEB5;
+      font-weight: normal;
+    }
+
     @include media-breakpoint-down(md) {
       .item-name {
         font-size: 1em;
@@ -44,7 +56,7 @@
           }
         }
 
-        &:focus ~ .form-label {
+        &:focus ~ .form-label, &.active ~ .form-label {
           transform: translateY(-1.4rem) scale(0.8);
         }
       }
@@ -53,6 +65,7 @@
 
   .promocode-button {
     font-size: 1em;
+    font-weight: bold;
   }
 
   .promocode-button:disabled {

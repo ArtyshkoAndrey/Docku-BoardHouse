@@ -96,7 +96,7 @@
           .form-control {
             color: #2D3134;
 
-            &:focus, &:active {
+            &:focus, &.active {
               &~ .form-notch {
                 .form-notch-leading, .form-notch-middle, .form-notch-trailing {
                   border-color: #2D3134 !important;
@@ -465,7 +465,7 @@
         line-height: 2em;
         color: #ffffff;
 
-        &:focus, &:active {
+        &:focus, &.active {
           &~ .form-notch {
             .form-notch-leading, .form-notch-middle, .form-notch-trailing {
               border-color: #ffffff !important;
@@ -474,13 +474,9 @@
 
           &~ .form-label {
             color: #ffffff;
-            transform: translateY(-1.2rem) translateY(0.1rem) translateX(-1.3rem) scale(0.8);
+            transform: translateY(-1.1rem) translateX(-1.3rem) scale(0.8);
           }
         }
-
-        //&:active ~ .form-label {
-        //  transform: translateY(-1.2rem) translateY(0.1rem) translateX(-1.3rem) scale(0.8);
-        //}
       }
 
       .form-notch {
@@ -526,9 +522,9 @@
         .form-control {
           line-height: 2.5em;
 
-          &:focus, &:active {
+          &:focus, &.active {
             &~ .form-label {
-              transform: translateY(-1.5rem) translateY(0.1rem) translateX(-3rem) scale(0.8);
+              transform: translateY(-1.4rem) translateX(-3rem) scale(0.8);
             }
           }
         }

@@ -49,8 +49,18 @@
                     <form action="#" method="POST">
                       @csrf
                       @method('PUT')
-                      <input type="password" name="password" class="form-control mb-4 rounded-0" placeholder="Новый пароль">
-                      <input type="password" name="password_confirmation" class="form-control mb-4 rounded-0" placeholder="Повторите пароль">
+                      <div class="form-outline form-password mb-4">
+                        <input type="password" id="password" name="password" class="form-control" />
+                        <label class="form-label" for="password">Пароль</label>
+                        <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                      </div>
+                      <div class="form-outline form-password mb-4">
+                        <input type="password" id="password" name="password" class="form-control" />
+                        <label class="form-label" for="password">Пароль</label>
+                        <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                      </div>
+{{--                      <input type="password" name="password" class="form-control mb-4 rounded-0" placeholder="Новый пароль">--}}
+{{--                      <input type="password" name="password_confirmation" class="form-control mb-4 rounded-0" placeholder="Повторите пароль">--}}
                       <button type="submit" class="btn btn-dark m-0 rounded-0">Сохранить</button>
                     </form>
                   </div>
@@ -67,33 +77,72 @@
                       @method('PUT')
                       <div class="row">
                         <div class="col-md-6 col-12">
-                          <input type="text" name="first_name" class="form-control mb-4 rounded-0" placeholder="ФИО" value="" required>
+                          <div class="form-outline">
+                            <input type="text" id="first_name" name="first_name" class="form-control" />
+                            <label class="form-label" for="first_name">ФИО</label>
+                          </div>
+{{--                          <input type="text" name="first_name" class="form-control mb-4 rounded-0" placeholder="ФИО" value="" required>--}}
                         </div>
 
                         <div class="col-md-6 col-12">
-                          <input type="text" class="form-control mb-4 rounded-0" name="contact_phone" placeholder="Номер телефона" value="" required>
+                          <div class="form-outline">
+                            <input type="text" id="contact_phone" name="contact_phone" class="form-control" />
+                            <label class="form-label" for="contact_phone">Номер телефона</label>
+                          </div>
+{{--                          <input type="text" class="form-control mb-4 rounded-0" name="contact_phone" placeholder="Номер телефона" value="" required>--}}
                         </div>
 
                         <div class="col-md-6 col-12">
-                          <input type="email" class="form-control mb-4 rounded-0" name="email" placeholder="Email" value="" required>
+                          <div class="form-outline mb-4">
+                            <input type="email" id="email" name="email" class="form-control" />
+                            <label class="form-label" for="email">Email</label>
+                          </div>
+{{--                          <input type="email" class="form-control mb-4 rounded-0" name="email" placeholder="Email" value="" required>--}}
                         </div>
                         <div class="col-md-6 col-12">
-                          <select class="form-control mb-4 rounded-0" name="currency" placeholder="Валюта">
+{{--                          <div class="select-wrapper">--}}
+{{--                            <div class="form-outline">--}}
+{{--                              <input class="form-control select-input" type="text" role="listbox" aria-multiselectable="true" aria-disabled="false" aria-haspopup="true" aria-expanded="false" readonly="">--}}
+{{--                              <label class="form-label select-label" style="margin-left: 0;">Example label</label>--}}
+{{--                              <span class="select-arrow"></span>--}}
+{{--                              --}}{{--                            <div class="form-notch">--}}
+{{--                              --}}{{--                              <div class="form-notch-leading" style="width: 9px;"></div>--}}
+{{--                              --}}{{--                              <div class="form-notch-middle" style="width: 87.2px;"></div>--}}
+{{--                              --}}{{--                              <div class="form-notch-trailing"></div>--}}
+{{--                              --}}{{--                            </div>--}}
+{{--                              <select class="select select-initialized" multiple="">--}}
+{{--                                <option value="1">One</option>--}}
+{{--                                <option value="2">Two</option>--}}
+{{--                                <option value="3">Three</option>--}}
+{{--                                <option value="4">Four</option>--}}
+{{--                                <option value="5">Five</option>--}}
+{{--                                <option value="6">Six</option>--}}
+{{--                                <option value="7">Seven</option>--}}
+{{--                                <option value="8">Eight</option>--}}
+{{--                              </select>--}}
+{{--                            </div>--}}
+{{--                          </div>--}}
+
+                          <select class="form-control mb-4" name="currency" placeholder="Валюта">
                             <option selected value="1">Тенге</option>
                           </select>
                         </div>
                         <div class="col-md-6 col-12 mb-4">
-                          <select id="country" name="country" class="rounded-0 w-100 h-100 form-control">
-                              <option value="1" selected>Россия</option>
+                          <select id="country" name="country" class="w-100 h-100 form-control">
+                            <option value="1" selected>Россия</option>
                           </select>
                         </div>
                         <div class="col-md-6 col-12 mb-4">
-                          <select id="city" name="city" class="w-100 h-100 form-control rounded-0">
+                          <select id="city" name="city" class="w-100 h-100 form-control">
                             <option value="1" selected>Красноярск</option>
                           </select>
                         </div>
                         <div class="col-12">
-                          <input type="text" class="form-control mb-0 rounded-0" name="street" placeholder="Улица, индекс" value="" required>
+                          <div class="form-outline mb-4">
+                            <input type="email" id="street" name="street" class="form-control" />
+                            <label class="form-label" for="street">Улица, индекс</label>
+                          </div>
+{{--                          <input type="text" class="form-control mb-0 rounded-0" name="street" placeholder="Улица, индекс" value="" required>--}}
                           <small class="form-text text-muted">Пример: ул. Ленина, 111 кв. 666, 143080 (индекс)</small>
                         </div>
                       </div>
