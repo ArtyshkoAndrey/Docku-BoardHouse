@@ -29690,114 +29690,18 @@ footer .container .row > div .number {
   position: absolute;
   top: 0;
   right: 0.75rem;
-  padding-top: 0.47rem;
   transform-origin: 0 0;
   transition: all 0.2s ease-out;
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 0;
   border: none;
   background: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .hide-show-btn:hover {
   cursor: pointer;
-}
-
-/*!
- * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
- * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
- */
-.card-body .title {
-  color: black;
-  font-weight: 500;
-}
-.card-body:hover .title {
-  color: #0c56d0;
-}
-.card-body .sale-badge {
-  display: none;
-}
-.card-body .img-wrapper {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.card-body .img-wrapper img {
-  border-radius: 10px;
-  transition: 1s;
-  display: block;
-}
-.card-body .img-wrapper img:hover {
-  transform: scale(1.2);
-}
-.card-body .old-price {
-  display: none;
-  color: #a9aeb5;
-  font-size: 0.7em;
-  text-align: left;
-  width: 100%;
-  padding-left: 0.1em;
-  text-decoration: line-through;
-}
-.card-body .context {
-  padding-left: 0.4em;
-}
-.card-body .price {
-  font-weight: 500;
-}
-.card-body .btn {
-  padding: 0.5rem 1.075rem 0.375rem 1.075rem;
-}
-@media (max-width: 991.98px) {
-  .card-body .title {
-    font-size: 0.9em;
-  }
-  .card-body .price {
-    font-size: 0.8em;
-  }
-}
-
-.card.sale .old-price {
-  display: block;
-}
-.card.sale .sale-badge {
-  display: block;
-  background: #de6d2d;
-  position: absolute;
-  color: white;
-  right: 0;
-  padding: 0.3em 1.3em;
-  border-radius: 0 10px 0 10px;
-  z-index: 10;
-  font-size: 1em;
-}
-@media (max-width: 767.98px) {
-  .card.sale .sale-badge {
-    font-size: 0.6em;
-  }
-}
-
-.btn-to-cart {
-  border: 1px solid #a9aeb5;
-}
-.btn-to-cart span {
-  font-size: 1.2em;
-}
-@media (max-width: 767.98px) {
-  .btn-to-cart span {
-    font-size: 1em;
-  }
-}
-.btn-to-cart i {
-  font-size: 1.3em;
-}
-.btn-to-cart:hover {
-  background: #2d3134;
-  color: white;
-}
-@media (max-width: 991.98px) {
-  .btn-to-cart i {
-    font-size: 1.1em;
-  }
 }
 
 /*!
@@ -30087,6 +29991,167 @@ section.instagram a:hover {
  * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
+#cart-index-page .cart-page {
+  padding-bottom: 30px;
+}
+#cart-index-page .cart-page .cart-button {
+  min-width: 35px;
+  min-height: 35px;
+  padding: 0;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 991.98px) {
+  #cart-index-page .cart-page .cart-button {
+    min-width: 25px;
+    min-height: 25px;
+  }
+}
+#cart-index-page .cart-page .item-name {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #2D3134;
+}
+#cart-index-page .cart-page .item-size {
+  font-size: 1em;
+  color: #A9AEB5;
+  font-weight: normal;
+}
+@media (max-width: 991.98px) {
+  #cart-index-page .cart-page .item-name {
+    font-size: 1em;
+  }
+  #cart-index-page .cart-page .item-size {
+    font-size: 0.9em;
+  }
+}
+#cart-index-page .cart-page .form-outline {
+  line-height: 3em;
+}
+#cart-index-page .cart-page .form-outline .form-control {
+  line-height: 3em;
+}
+#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+  border-color: #2D89DE !important;
+}
+#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-label, #cart-index-page .cart-page .form-outline .form-control.active ~ .form-label {
+  transform: translateY(-1.4rem) scale(0.8);
+}
+#cart-index-page .promocode-button {
+  font-size: 1em;
+  font-weight: bold;
+}
+#cart-index-page .promocode-button:disabled {
+  background: transparent;
+  color: black;
+  box-shadow: none;
+  border: 1px solid #A9AEB5;
+}
+
+/*!
+ * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
+.card-body .title {
+  color: black;
+  font-weight: 500;
+}
+.card-body:hover .title {
+  color: #0c56d0;
+}
+.card-body .sale-badge {
+  display: none;
+}
+.card-body .img-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card-body .img-wrapper img {
+  border-radius: 10px;
+  transition: 1s;
+  display: block;
+}
+.card-body .img-wrapper img:hover {
+  transform: scale(1.2);
+}
+.card-body .old-price {
+  display: none;
+  color: #a9aeb5;
+  font-size: 0.7em;
+  text-align: left;
+  width: 100%;
+  padding-left: 0.1em;
+  text-decoration: line-through;
+}
+.card-body .context {
+  padding-left: 0.4em;
+}
+.card-body .price {
+  font-weight: 500;
+}
+.card-body .btn {
+  padding: 0.5rem 1.075rem 0.375rem 1.075rem;
+}
+@media (max-width: 991.98px) {
+  .card-body .title {
+    font-size: 0.9em;
+  }
+  .card-body .price {
+    font-size: 0.8em;
+  }
+}
+
+.card.sale .old-price {
+  display: block;
+}
+.card.sale .sale-badge {
+  display: block;
+  background: #de6d2d;
+  position: absolute;
+  color: white;
+  right: 0;
+  padding: 0.3em 1.3em;
+  border-radius: 0 10px 0 10px;
+  z-index: 10;
+  font-size: 1em;
+}
+@media (max-width: 767.98px) {
+  .card.sale .sale-badge {
+    font-size: 0.6em;
+  }
+}
+
+.btn-to-cart {
+  border: 1px solid #a9aeb5;
+}
+.btn-to-cart span {
+  font-size: 1.2em;
+}
+@media (max-width: 767.98px) {
+  .btn-to-cart span {
+    font-size: 1em;
+  }
+}
+.btn-to-cart i {
+  font-size: 1.3em;
+}
+.btn-to-cart:hover {
+  background: #2d3134;
+  color: white;
+}
+@media (max-width: 991.98px) {
+  .btn-to-cart i {
+    font-size: 1.1em;
+  }
+}
+
+/*!
+ * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
+ * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
+ */
 #catalog > div {
   display: flex;
   align-items: center;
@@ -30151,67 +30216,41 @@ section.instagram a:hover {
   text-decoration: underline;
 }
 
-/*!
- * Copyright (c) 2021. Данный файл является интелектуальной собственостью Fulliton.
- * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
- */
-#cart-index-page .cart-page {
-  padding-bottom: 30px;
+#profile .form-outline .form-notch-leading {
+  border-radius: 0.25rem 0 0 0.25rem;
 }
-#cart-index-page .cart-page .cart-button {
-  min-width: 35px;
-  min-height: 35px;
+#profile .form-outline .form-notch-trailing {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+#profile button#add-photo {
+  border-radius: 6px;
+  width: 50px;
+  height: 50px;
   padding: 0;
-  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: 1.3em;
+}
+#profile button#add-photo i {
+  margin-top: 5px;
+  margin-left: 1px;
+}
+#profile .nav-pills .nav-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-@media (max-width: 991.98px) {
-  #cart-index-page .cart-page .cart-button {
-    min-width: 25px;
-    min-height: 25px;
-  }
-}
-#cart-index-page .cart-page .item-name {
-  font-size: 1.3em;
-  font-weight: bold;
+  margin: 0;
+  background: #f9f9f9;
   color: #2D3134;
-}
-#cart-index-page .cart-page .item-size {
-  font-size: 1em;
-  color: #A9AEB5;
-  font-weight: normal;
-}
-@media (max-width: 991.98px) {
-  #cart-index-page .cart-page .item-name {
-    font-size: 1em;
-  }
-  #cart-index-page .cart-page .item-size {
-    font-size: 0.9em;
-  }
-}
-#cart-index-page .cart-page .form-outline {
-  line-height: 3em;
-}
-#cart-index-page .cart-page .form-outline .form-control {
-  line-height: 3em;
-}
-#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-leading, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-middle, #cart-index-page .cart-page .form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
-  border-color: #2D89DE !important;
-}
-#cart-index-page .cart-page .form-outline .form-control:focus ~ .form-label, #cart-index-page .cart-page .form-outline .form-control.active ~ .form-label {
-  transform: translateY(-1.4rem) scale(0.8);
-}
-#cart-index-page .promocode-button {
-  font-size: 1em;
-  font-weight: bold;
-}
-#cart-index-page .promocode-button:disabled {
-  background: transparent;
-  color: black;
   box-shadow: none;
-  border: 1px solid #A9AEB5;
+}
+#profile .nav-pills .nav-link.active {
+  background: #fff;
+}
+#profile .bg-gray {
+  background: #f9f9f9;
 }
 
 body {

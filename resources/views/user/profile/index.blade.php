@@ -9,8 +9,8 @@
         <div class="row mx-0">
           <div class="col-md-3 bg-gray m-0 p-0">
             <div class="nav flex-column nav-pills h-100 m-0" role="tablist" aria-orientation="vertical">
-              <a class="nav-link active border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="fal fa-user pr-1"></i> Мой профиль</a>
-              <a class="nav-link border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="fal fa-tasks pr-1"></i> Мои заказы</a>
+              <a class="nav-link active border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="bx bx-user bx-sm pr-1"></i> Мой профиль</a>
+              <a class="nav-link border-0 rounded-0 py-4" href="" aria-selected="true"><i class="bx bx-list-ol bx-sm pr-1"></i> Мои заказы</a>
             </div>
           </div>
           <div class="col-md-9 p-4">
@@ -25,10 +25,9 @@
                 <form action="" method="POST" id="form-photo" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
-                  <input type="file" id="photo" name="photo" size="chars" accept="image/jpeg,image/png" style="visibility: hidden">
+                  <input type="file" id="photo" name="photo" size="chars" accept="image/jpeg,image/png" style="visibility: hidden; width: 100px;">
                   <button type="button" class="btn btn-dark position-absolute" id="add-photo">
-                    <i class="fal fa-camera"></i>
-{{--                    ТУТ икнока камеры--}}
+                    <i class="bx bx-sm bx-camera"></i>
                   </button>
                 </form>
               </div>
@@ -49,14 +48,14 @@
                     <form action="#" method="POST">
                       @csrf
                       @method('PUT')
-                      <div class="form-outline form-password mb-4">
+                      <div class="form-outline form-password mb-4 rounded">
                         <input type="password" id="password" name="password" class="form-control" />
-                        <label class="form-label" for="password">Пароль</label>
+                        <label class="form-label" for="password">Новый пароль</label>
                         <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
                       </div>
-                      <div class="form-outline form-password mb-4">
-                        <input type="password" id="password" name="password" class="form-control" />
-                        <label class="form-label" for="password">Пароль</label>
+                      <div class="form-outline form-password mb-3">
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required/>
+                        <label class="form-label" for="password_confirmation">Повторите пароль</label>
                         <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
                       </div>
 {{--                      <input type="password" name="password" class="form-control mb-4 rounded-0" placeholder="Новый пароль">--}}
@@ -77,7 +76,7 @@
                       @method('PUT')
                       <div class="row">
                         <div class="col-md-6 col-12">
-                          <div class="form-outline">
+                          <div class="form-outline mb-4">
                             <input type="text" id="first_name" name="first_name" class="form-control" />
                             <label class="form-label" for="first_name">ФИО</label>
                           </div>
@@ -85,7 +84,7 @@
                         </div>
 
                         <div class="col-md-6 col-12">
-                          <div class="form-outline">
+                          <div class="form-outline mb-4">
                             <input type="text" id="contact_phone" name="contact_phone" class="form-control" />
                             <label class="form-label" for="contact_phone">Номер телефона</label>
                           </div>
@@ -123,7 +122,7 @@
 {{--                            </div>--}}
 {{--                          </div>--}}
 
-                          <select class="form-control mb-4" name="currency" placeholder="Валюта">
+                          <select class="form-control mb-4" name="currency">
                             <option selected value="1">Тенге</option>
                           </select>
                         </div>
@@ -138,7 +137,7 @@
                           </select>
                         </div>
                         <div class="col-12">
-                          <div class="form-outline mb-4">
+                          <div class="form-outline">
                             <input type="email" id="street" name="street" class="form-control" />
                             <label class="form-label" for="street">Улица, индекс</label>
                           </div>
@@ -146,7 +145,7 @@
                           <small class="form-text text-muted">Пример: ул. Ленина, 111 кв. 666, 143080 (индекс)</small>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-dark m-0 rounded-0">Сохранить</button>
+                      <button type="submit" class="btn btn-dark m-0 mt-3 rounded-0">Сохранить</button>
                     </form>
                   </div>
                 </div>

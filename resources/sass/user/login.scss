@@ -73,13 +73,15 @@ $link-color-hover: #1e5f98;
   position: absolute;
   top: 0;
   right: 0.75rem;
-  padding-top: 0.47rem;
   transform-origin: 0 0;
   transition: all 0.2s ease-out;
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 0;
   border: none;
   background: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
 
   &:hover {
     cursor: pointer;

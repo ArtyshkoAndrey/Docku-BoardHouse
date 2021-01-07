@@ -13,14 +13,18 @@
 @import 'header';
 @import 'footer';
 @import 'login';
-@import 'product/item';
 @import 'instagram';
 @import 'category-preview';
 @import 'search';
 @import 'register';
 @import 'not-found';
-@import 'product/catalog';
+
 @import 'cart/index';
+
+@import 'product/item';
+@import 'product/catalog';
+
+@import 'profile/index';
 
 // TODO: тут писать все общие стили, по возможности разбивать на файлы, отдельно для продукта, отдельно для корзины и прочее. Разбивать если там стили используются не общие.
 
