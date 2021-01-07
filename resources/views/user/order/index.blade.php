@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 @section('title', 'Заказы')
 
 @section('style')
@@ -14,8 +14,8 @@
         <div class="row mx-0">
           <div class="col-md-3 bg-gray m-0 p-0">
             <div class="nav flex-column nav-pills h-100 m-0" role="tablist" aria-orientation="vertical">
-              <a class="nav-link border-0 rounded-0 py-4" href="{{ route('profile.index') }}" aria-selected="true"><i class="fal fa-user pr-1"></i> Мой профиль</a>
-              <a class="nav-link active border-0 rounded-0 py-4" href="{{ route('order.orders') }}" aria-selected="true"><i class="fal fa-tasks pr-1"></i> Мои заказы</a>
+              <a class="nav-link border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="fal fa-user pr-1"></i> Мой профиль</a>
+              <a class="nav-link active border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="fal fa-tasks pr-1"></i> Мои заказы</a>
             </div>
           </div>
           <div class="col-md-9 p-4">
@@ -98,8 +98,17 @@
                         <th class="border-top-0" scope="col">Трек номер</th>
                         <th class="border-top-0" scope="col">Сумма заказа</th>
                       </tr>
+
                       </thead>
                       <tbody>
+                      <tr v-for="i in 6">
+                        <th scope="row">1</th>
+                        <td>Доставлен</td>
+                        <td>Наличные</td>
+                        <td>САМ НОГАМИ ДОНЕСЕТ</td>
+                        <td>ТЕЛЕФОН ЕГО ТРЕК НОМЕР</td>
+                        <td>5 000 000 тг.</td>
+                      </tr>
 {{--                      @forelse($orders as $order)--}}
 {{--                        @if($order->ship_status == 'received')--}}
 {{--                          <tr>--}}

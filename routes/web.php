@@ -33,6 +33,10 @@ Route::prefix('profile')->name('profile.')->group( function () {
   Route::get('/', [ProfileController::class, 'index'])->name('index');
 });
 
+Route::prefix('order')->name('order.')->group( function () {
+  Route::get('/', [OrderController::class, 'index'])->name('index');
+});
+
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
   Route::get('/', [HomeController::class, 'index'])->name('index');
   Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
