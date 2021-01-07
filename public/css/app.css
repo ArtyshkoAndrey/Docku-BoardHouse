@@ -30248,9 +30248,19 @@ section.instagram a:hover {
 }
 #profile .nav-pills .nav-link.active {
   background: #fff;
+  color: #1266f1;
 }
 #profile .bg-gray {
   background: #f9f9f9;
+}
+#profile .tab-content {
+  height: 80vh;
+  overflow: auto;
+}
+@media (max-width: 991.98px) {
+  #profile .tab-content {
+    height: auto;
+  }
 }
 
 body {

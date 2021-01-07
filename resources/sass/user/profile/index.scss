@@ -39,11 +39,21 @@
 
       &.active {
         background: #fff;
+        color: #1266f1;
       }
     }
   }
 
   .bg-gray {
     background: #f9f9f9;
+  }
+
+  .tab-content {
+    height: 80vh;
+    overflow: auto;
+
+    @include media-breakpoint-down(md) {
+      height: auto;
+    }
   }
 }

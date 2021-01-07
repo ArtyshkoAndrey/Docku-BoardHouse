@@ -14,8 +14,8 @@
         <div class="row mx-0">
           <div class="col-md-3 bg-gray m-0 p-0">
             <div class="nav flex-column nav-pills h-100 m-0" role="tablist" aria-orientation="vertical">
-              <a class="nav-link border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="fal fa-user pr-1"></i> Мой профиль</a>
-              <a class="nav-link active border-0 rounded-0 py-4" href="#" aria-selected="true"><i class="fal fa-tasks pr-1"></i> Мои заказы</a>
+              <a class="nav-link border-0 rounded-0 py-4" href="{{ route('profile.index') }}" aria-selected="true"><i class="bx bx-user bx-sm pr-1"></i> Мой профиль</a>
+              <a class="nav-link active border-0 rounded-0 py-4" href="{{ route('order.index') }}" aria-selected="true"><i class="bx bx-list-ol bx-sm pr-1"></i> Мои заказы</a>
             </div>
           </div>
           <div class="col-md-9 p-4">
@@ -50,7 +50,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="i in 6">
+                        <tr v-for="i in 10">
                           <th scope="row">1</th>
                           <td>СТАТУС</td>
                           <td>БЕЗНАЛ</td>
