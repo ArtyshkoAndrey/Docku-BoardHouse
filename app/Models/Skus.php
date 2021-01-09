@@ -45,4 +45,9 @@ class Skus extends Model
   {
     return $this->hasOne(SkusCategory::class, 'id', 'skus_category_id');
   }
+
+  public function products ()
+  {
+    return $this->belongsToMany(Product::class, 'product_skuses', 'id', 'skus_id');
+  }
 }

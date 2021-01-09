@@ -25,8 +25,15 @@ class OrderController extends Controller
   {
     $name = $request->get('user_name', null);
     $email = $request->get('user_email', null);
+    $type = $request->get('type');
     $no = $request->get('no', null);
     $orders = Order::query();
+    if ($type) {
+      foreach (Order::SHIP_STATUS_MAP as $status) {
+        if ($status === $type)
+          $orders = $orders->whereShipStatus($status);
+      }
+    }
     if ($no) {
       $orders = $orders->where('no', 'like', '%' . $no . '%');
     }
@@ -45,7 +52,8 @@ class OrderController extends Controller
     $filter = [
       'user_name'   => $name,
       'user_email'  => $email,
-      'no'          => $no
+      'no'          => $no,
+      'type'        => $type
     ];
     $orders->appends($filter);
     return view('admin.order.index', compact('orders', 'filter'));

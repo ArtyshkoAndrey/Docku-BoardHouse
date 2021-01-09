@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,21 +28,21 @@ use Log;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderItem[] $items
  * @property-read int|null $items_count
  * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Order query()
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereNo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaidAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentMethod($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ * @method static Builder|Order newModelQuery()
+ * @method static Builder|Order newQuery()
+ * @method static Builder|Order query()
+ * @method static Builder|Order whereAddress($value)
+ * @method static Builder|Order whereCreatedAt($value)
+ * @method static Builder|Order whereId($value)
+ * @method static Builder|Order whereNo($value)
+ * @method static Builder|Order wherePaidAt($value)
+ * @method static Builder|Order wherePaymentMethod($value)
+ * @method static Builder|Order wherePrice($value)
+ * @method static Builder|Order whereShipData($value)
+ * @method static Builder|Order whereShipPrice($value)
+ * @method static Builder|Order whereShipStatus($value)
+ * @method static Builder|Order whereUpdatedAt($value)
+ * @method static Builder|Order whereUserId($value)
  * @mixin \Eloquent
  */
 class Order extends Model

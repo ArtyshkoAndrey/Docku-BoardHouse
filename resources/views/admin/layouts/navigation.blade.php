@@ -77,7 +77,14 @@
       Товары
     </a>
 
-    <a href="{{ route('telescope') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.product.*') ? 'active' : '' }}">
+    <a href="{{ route('admin.skus.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.skus.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bxs-purchase-tag" aria-hidden="true"></i>
+      </span>
+      Размеры
+    </a>
+
+    <a href="{{ route('telescope') }}" class="sidebar-link sidebar-link-with-icon">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bxs-t-shirt" aria-hidden="true"></i>
       </span>
