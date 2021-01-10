@@ -9,15 +9,12 @@
 
   <title>{{ config('app.name', 'Docku') }}</title>
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/boxicons.min.css') }}">
   <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet"/>
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
@@ -57,6 +54,10 @@
   @include('user.layouts.footer')
 </div>
 </body>
+
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}"></script>
+
 
 <script>
   function toggleSearch() {

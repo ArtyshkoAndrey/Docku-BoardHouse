@@ -143,16 +143,16 @@
                 @csrf
                 <div class="form-group">
                   <label for="title" class="required">Наименование</label>
-                  <input type="text" id="title" class="form-control" placeholder="Наименование" required="required">
+                  <input type="text" name="title" id="title" class="form-control" placeholder="Наименование" required="required">
                 </div>
                 <div class="form-group">
                   <label for="weight" class="required">Вес</label>
-                  <input type="number" id="weight" class="form-control" placeholder="Вес" required="required">
+                  <input type="number" id="weight" name="weight" class="form-control" placeholder="Вес" required="required">
                 </div>
 
                 <div class="form-group">
                   <label for=sk class="required">Категория</label>
-                  <select id="sk" class="form-control" required="required">
+                  <select id="sk" name="sk" class="form-control" required="required">
                     @foreach($skus_categories as $sk)
                       <option value="{{ $sk->id }}">{{ $sk->name }}</option>
                     @endforeach

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -46,8 +47,8 @@ class Skus extends Model
     return $this->hasOne(SkusCategory::class, 'id', 'skus_category_id');
   }
 
-  public function products ()
+  public function products (): BelongsToMany
   {
-    return $this->belongsToMany(Product::class, 'product_skuses', 'id', 'skus_id');
+    return $this->belongsToMany(Product::class, 'product_skuses', 'skus_id', 'id');
   }
 }

@@ -8,8 +8,10 @@ use App\Models\SkusCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class SkusController extends Controller
 {
@@ -37,12 +39,22 @@ class SkusController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @return Response
+   * @param Request $request
+   * @return Application|RedirectResponse|Response|Redirector
    */
   public function store(Request $request)
   {
-      //
+    $request->validate([
+      'title' => 'required|string',
+      'sk'  => 'required|exists:skus_categories,id',
+      'weight' => 'required|unique:skuses,weight,null,id,skus_category_id,'.$request->sk
+    ]);
+
+    $skus = new Skus($request->all());
+    $sk = SkusCategory::find($request->sk);
+    $sk->skuses()->save($skus);
+
+    return redirect('admin/skus#modal-skus-' . $sk->id)->with('success', ['Размер успешно создан']);
   }
 
   /**
@@ -59,18 +71,18 @@ class SkusController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  int  $id
+   * @param Skus $skus
    * @return Response
    */
-  public function edit($id)
+  public function edit(Skus $skus)
   {
-      //
+    dd($skus);
   }
 
   /**
    * Update the specified resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param Request $request
    * @param  int  $id
    * @return Response
    */
