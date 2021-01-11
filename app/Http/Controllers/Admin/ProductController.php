@@ -174,7 +174,7 @@ class ProductController extends Controller
     }
 
     $idsPS = $product->productSkuses()->pluck('skus_id')->toArray();
-//    dd($idsPS, $ids);
+
     $ids = array_diff($idsPS, $ids);
 
     foreach ($ids as $id) {
@@ -188,11 +188,12 @@ class ProductController extends Controller
     $product->update($data);
     $product
       ->brand()
-      ->associate($request->brand_id);
+      ->associate($request->brand);
 
     $product
       ->category()
-      ->associate($request->category_id);
+      ->associate($request->category);
+    $product->save();
     return redirect()->back()->with('success', ['Товар успешно обновлён']);
   }
 
