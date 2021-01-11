@@ -3,28 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Skus;
 use App\Models\SkusCategory;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Mockery\Exception;
 
-class SkusController extends Controller
+class SkusCategoryController extends Controller
 {
   /**
    * Display a listing of the resource.
    *
-   * @return Application|Factory|View|Response
+   * @return Response
    */
   public function index()
   {
-    $skus_categories = SkusCategory::with('skuses')->get();
-    return view('admin.skus.index', compact('skus_categories'));
+      //
   }
 
   /**
@@ -46,16 +42,11 @@ class SkusController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'title' => 'required|string',
-      'sk'  => 'required|exists:skus_categories,id',
-      'weight' => 'required|unique:skuses,weight,null,id,skus_category_id,'.$request->sk
+      'name' => 'required|string'
     ]);
-
-    $skus = new Skus($request->all());
-    $sk = SkusCategory::find($request->sk);
-    $sk->skuses()->save($skus);
-
-    return redirect('admin/skus#modal-skus-' . $sk->id)->with('success', ['Размер успешно создан']);
+    $sk = new SkusCategory($request->all());
+    $sk->save();
+    return redirect('admin/skus#modal-skus-' . $sk->id)->with('success', ['Категория размеров "'. $sk->name .'" успешно создана']);
   }
 
   /**
@@ -72,12 +63,12 @@ class SkusController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param Skus $skus
+   * @param  int  $id
    * @return Response
    */
-  public function edit(Skus $skus)
+  public function edit($id)
   {
-    dd($skus);
+      //
   }
 
   /**
@@ -96,19 +87,18 @@ class SkusController extends Controller
    * Remove the specified resource from storage.
    *
    * @param int $id
-   * @return Application|RedirectResponse|Redirector
+   * @return RedirectResponse
    * @throws \Exception
    */
-  public function destroy(int $id)
+  public function destroy(int $id): RedirectResponse
   {
-    $skus = Skus::with('category')->find($id);
-    $sk_id = $skus->category->id;
+    $sk = SkusCategory::find($id);
+    $sk_name = $sk->name;
     try {
-      $skus->delete();
-      return redirect('admin/skus#modal-skus-' . $sk_id)->with('success', ['Размер успешно удалён']);
+      $sk->delete();
+      return redirect()->route('admin.skus.index')->with('success', ['Категория размеров "' . $sk_name . '" успешно удалёна']);
     } catch (Exception $exception) {
-      return redirect('admin/skus#modal-skus-' . $sk_id)->withErrors([$exception->getMessage()]);
+      return redirect()->route('admin.skus.index')->withErrors($exception->getMessage());
     }
-
   }
 }

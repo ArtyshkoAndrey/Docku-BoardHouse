@@ -172,3 +172,11 @@ sup {
   color: var(--success-color)!important;
   font-size: 18px;
 }
+
+.btn-outline-primary {
+  background: transparent!important;
+  box-shadow: none!important;
+  border: 2px solid var(--primary-color)!important;
+  color: var(--primary-color)!important;
+  font-size: 18px;
+}

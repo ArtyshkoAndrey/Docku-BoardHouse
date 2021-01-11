@@ -1,11 +1,11 @@
 {
-  "name": "Docku",
+  "name": "fulliton/docku",
   "type": "project",
-  "description": "Интернет магазин",
+  "description": "shop",
   "keywords": [
     "framework",
     "laravel",
-    "Docku"
+    "docku"
   ],
   "license": "MIT",
   "require": {

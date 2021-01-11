@@ -45,6 +45,7 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
   Route::resource('product', App\Http\Controllers\Admin\ProductController::class);
   Route::resource('skus', App\Http\Controllers\Admin\SkusController::class);
+  Route::resource('skus-category', App\Http\Controllers\Admin\SkusCategoryController::class);
 
   Route::post('product/photo/store', [\App\Http\Controllers\Admin\ProductController::class, 'photoStore'])->name('product.store.photo');
   Route::post('product/photo/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'photo'])->name('product.photo');

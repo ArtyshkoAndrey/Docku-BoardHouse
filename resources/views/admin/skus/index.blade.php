@@ -20,7 +20,7 @@
           </div>
 
           <div class="col-md-auto col-12 mt-10 mt-md-0 px-10">
-            <a href="{{ route('admin.skus.create') }}" class="btn d-block">Создать новую категорию</a>
+            <a href="#modal-skus-category-add" class="btn d-block">Создать новую категорию</a>
           </div>
 
         </div>
@@ -32,7 +32,7 @@
             <div class="col-12 mt-10">
               <div class="card p-20 bg-dark-dm m-0">
                 <div class="row align-items-center">
-                  <div class="col-4 col-md-auto">
+                  <div class="col-4 col-md-4 col-lg-auto">
                     <a href="#modal-skus-{{ $sk->id }}" class="text-decoration-none text-danger m-0 p-0"><h5 class="p-0 m-0 d-block">{{ $sk->name }}</h5></a>
                   </div>
 
@@ -41,16 +41,20 @@
                   </div>
 
                   <div class="col-md col-12">
-                    <div class="row">
-                      <div class="col-md-auto col-4 ml-md-auto mt-10 mt-md-0">
-                        <a href="#modal-skus-add" data-id-sk="{{ $sk->id }}" id="skus-add-btn-{{ $sk->id }}" class="btn shadow-none border-0 d-block skus-add"><i class="bx bx-plus font-size-16"></i></a>
+                    <div class="row justify-content-center">
+                      <div class="col-md-10 col-lg-auto col-4 pl-md-10 pl-lg-0 ml-lg-auto mt-10 mt-md-0">
+                        <a href="#modal-skus-add" data-id-sk="{{ $sk->id }}" id="skus-add-btn-{{ $sk->id }}" class="btn bg-transparent text-primary shadow-none border-0 d-block skus-add"><i class="bx bx-plus font-size-16"></i></a>
                       </div>
 
-                      <div class="col-md-auto col-4 mt-10 pl-10 mt-md-0">
-                        <a href="{{ route('admin.skus.edit', $sk->id) }}" class="btn shadow-none border-0 d-block"><i class="bx bx-pencil font-size-16"></i></a>
+                      <div class="col-md-10 col-lg-auto col-4 pl-10 mt-10 mt-lg-0 mt-md-10">
+                        <a href="{{ route('admin.skus.edit', $sk->id) }}" class="btn bg-transparent text-success shadow-none border-0 d-block"><i class="bx bx-pencil font-size-16"></i></a>
                       </div>
-                      <div class="col-md-auto col-4 mt-10 mt-md-0 pl-10">
-                        <a href="{{ route('admin.skus.edit', $sk->id) }}" class="btn shadow-none text-danger border-0 d-block"><i class="bx bx-trash font-size-16"></i></a>
+                      <div class="col-md-10 col-lg-auto col-4 pl-10 mt-10 mt-lg-0 mt-md-10">
+                        <form action="{{ route('admin.skus-category.destroy', $sk->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn shadow-none bg-transparent text-danger border-0 w-full d-block"><i class="bx bx-trash font-size-16"></i></button>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -106,11 +110,15 @@
                           <div class="col-auto col-md-auto align-self-center ml-10 mx-md-auto">
                             <p class="m-0">Вес: {{ $skus->weight }}</p>
                           </div>
-                          <div class="col-md-auto col-6 ml-md-auto mt-10 mt-md-0 pr-10">
-                            <a href="{{ route('admin.skus.edit', $skus) }}" class="btn shadow-none border-0 d-block"><i class="bx bx-pencil font-size-16"></i></a>
+                          <div class="col-md-auto col-6 ml-md-auto mt-10 mt-md-0 pr-10 pr-md-0">
+                            <a href="{{ route('admin.skus.edit', $skus) }}" class="btn bg-transparent text-success shadow-none border-0 d-block"><i class="bx bx-pencil font-size-16"></i></a>
                           </div>
-                          <div class="col-md-auto col-6 mx-md-10  mt-10 mt-md-0 pl-10">
-                            <a href="{{ route('admin.skus.edit', $skus) }}" class="btn shadow-none text-danger border-0 d-block"><i class="bx bx-trash font-size-16"></i></a>
+                          <div class="col-md-auto col-6 mx-md-10  mt-10 mt-md-0 pl-10 pl-md-0">
+                            <form action="{{ route('admin.skus.destroy', $skus) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn shadow-none bg-transparent text-danger border-0 d-block"><i class="bx bx-trash font-size-16"></i></button>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -160,6 +168,34 @@
                   </select>
                 </div>
 
+                <input class="btn btn-primary btn-block" type="submit" value="Создать">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal ie-scroll-fix" id="modal-skus-category-add" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-dark-light-dm bg-light-lm ">
+        <a href="#" class="close" role="button" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+        <div class="container">
+
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <h1 class="modal-title font-size-16 text-center">Добавление новой категории зармеров</h1>
+            </div>
+            <div class="col-md-8 col-12">
+              <form action="{{ route('admin.skus-category.store') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                  <label for="name" class="required">Наименование</label>
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Наименование" required="required">
+                </div>
                 <input class="btn btn-primary btn-block" type="submit" value="Создать">
               </form>
             </div>
