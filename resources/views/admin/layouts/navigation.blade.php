@@ -8,9 +8,9 @@
     </button>
   </div>
   <!-- Navbar brand -->
-  <a href="{{ route('admin.index') }}" class="navbar-brand d-none d-md-block">
-    <img src="{{ asset('images/logo-admin.svg') }}" class="invisible visible-dm position-absolute" alt="logo" style="opacity: 0.5">
-    <img src="{{ asset('images/logo-admin-light.png') }}" class="invisible visible-lm" alt="logo">
+  <a href="{{ route('admin.index') }}" class="navbar-brand d-none d-md-block w-100">
+    <img src="{{ asset('images/logo-admin.svg') }}" class="invisible visible-dm position-absolute img-fluid my-auto w-100" alt="logo">
+    <img src="{{ asset('images/logo-admin-light.svg') }}" class="invisible visible-lm img-fluid w-100 my-auto" alt="logo">
   </a>
   <!-- Navbar text -->
   <span class="navbar-text text-monospace">v0.1</span> <!-- text-monospace = font-family shifted to monospace -->
@@ -79,7 +79,7 @@
 
     <a href="{{ route('admin.brand.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.brand.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
-        <i class="bx bxs-purchase-tag-alt" aria-hidden="true"></i>
+        <i class="bx bx-purchase-tag-alt" aria-hidden="true"></i>
       </span>
       Бренды
     </a>
