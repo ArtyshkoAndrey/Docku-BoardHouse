@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * App\Models\Category
@@ -48,4 +49,14 @@ class Category extends Model
   protected $casts = [
     'to_menu' => 'boolean',
   ];
+
+  /**
+   * Дочерние категории
+   *
+   * @return BelongsToMany
+   */
+  public function child(): BelongsToMany
+  {
+    return $this->belongsToMany(Category::class, 'categories_categories', 'category_id', 'child_category_id');
+  }
 }
