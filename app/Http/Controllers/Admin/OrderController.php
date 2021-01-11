@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Swift_TransportException;
 
 class OrderController extends Controller
 {
@@ -23,10 +24,10 @@ class OrderController extends Controller
    */
   public function index(Request $request)
   {
-    $name = $request->get('user_name', null);
-    $email = $request->get('user_email', null);
+    $name = $request->get('user_name');
+    $email = $request->get('user_email');
     $type = $request->get('type');
-    $no = $request->get('no', null);
+    $no = $request->get('no');
     $orders = Order::query();
     if ($type) {
       foreach (Order::SHIP_STATUS_MAP as $status) {
@@ -127,9 +128,14 @@ class OrderController extends Controller
     }
 
     $order->save();
-    $order->user->notify(new ChangeOrderUser($order));
+    try {
+      $order->user->notify(new ChangeOrderUser($order));
+    } catch (Swift_TransportException $exception) {
+      $errors = $exception->getMessage();
+    }
 
-    return redirect()->route('admin.order.edit', $order)->withSuccess(['Заказ успешно обновлён']);
+
+    return redirect()->route('admin.order.edit', $order)->with('success', ['Заказ успешно обновлён'])->withErrors($errors ?? null);
   }
 
   /**
@@ -142,7 +148,7 @@ class OrderController extends Controller
   public function destroy(Order $order): RedirectResponse
   {
     if ($order->delete()) {
-      return redirect()->route('admin.order.index')->withSuccess(['Заказ был удалён']);
+      return redirect()->route('admin.order.index')->with('success',['Заказ был удалён']);
     }
     return redirect()->route('admin.order.index')->withErrors(['Ошибка при удалении, обратитесь к администратору']);
   }

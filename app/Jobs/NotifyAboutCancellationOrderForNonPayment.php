@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Swift_TransportException;
 
 /**
 * Class NotifyAboutCancellationOrderForNonPayment. Уведомить пользователя об автоотмене заказ если так и не оплатил
@@ -41,7 +42,12 @@ class NotifyAboutCancellationOrderForNonPayment implements ShouldQueue
   {
     if (!$this->order->paid_at) {
       $this->order->close();
-      $this->order->user()->notify(new ChangeOrderUser($this->order));
+      try {
+        $this->order->user()->notify(new ChangeOrderUser($this->order));
+      } catch (Swift_TransportException $exception) {
+
+      }
+
     }
   }
 }
