@@ -54,7 +54,7 @@
 
     <a href="{{ route('admin.order.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.order.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
-        <i class="bx bxs-package" aria-hidden="true"></i>
+        <i class="bx bx-package" aria-hidden="true"></i>
       </span>
       Заказы
     </a>
@@ -86,14 +86,14 @@
 
     <a href="{{ route('admin.skus.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.skus.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
-        <i class="bx bxs-purchase-tag" aria-hidden="true"></i>
+        <i class="bx bx-purchase-tag" aria-hidden="true"></i>
       </span>
       Размеры
     </a>
 
-    <a href="{{ route('telescope') }}" class="sidebar-link sidebar-link-with-icon">
+    <a href="{{ route('telescope') }}" target="_blank" class="sidebar-link sidebar-link-with-icon">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
-        <i class="bx bxs-t-shirt" aria-hidden="true"></i>
+        <i class="bx bx-bug" aria-hidden="true"></i>
       </span>
       Telescope
     </a>
