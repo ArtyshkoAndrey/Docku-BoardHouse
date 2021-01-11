@@ -19,14 +19,14 @@
             <h3>Бренды</h3>
           </div>
 
-          <div class="col-md-auto col-12 mt-10 mt-md-0 px-10">
+          <div class="col-auto px-10">
             <a href="#modal-brand-add" class="btn d-block">Создать новый бренд</a>
           </div>
 
         </div>
       </div>
 
-      <div class="col-md-4 col-12">
+      <div class="col-md-4 col-8">
         <form action="{{ route('admin.brand.index') }}" method="get">
           <div class="input-group">
             <label for="name"></label>
@@ -39,7 +39,7 @@
           </div>
         </form>
       </div>
-      <div class="col-md-auto col-12">
+      <div class="col-md-auto col">
         <a href="{{ route('admin.brand.index') }}" class="btn">Сбросить</a>
       </div>
 
@@ -61,11 +61,11 @@
                     <a href="#modal-brand-{{ $brand->id }}" class="text-decoration-none text-danger m-0 p-0"><h5 class="p-0 m-0 d-block">{{ $brand->name }}</h5></a>
                   </div>
 
-                  <div class="col-auto h-full col-md-auto ml-auto ml-md-10">
+                  <div class="col-auto h-full col-md-auto ml-auto ml-md-10 d-none d-md-block">
                     <p class="m-0">Кол-во товаров: {{ count($brand->products) }}</p>
                   </div>
 
-                  <div class="col-md col-12">
+                  <div class="col-md col">
                     <div class="row justify-content-center">
 
                       <div class="col-md-10 col-lg-auto col-4 pl-10 mt-10 mt-lg-0 mt-md-10 ml-lg-auto">
