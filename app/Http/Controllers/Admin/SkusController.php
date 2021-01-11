@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Mockery\Exception;
+use Illuminate\Support\Facades\Validator;
 
 class SkusController extends Controller
 {
@@ -34,7 +35,7 @@ class SkusController extends Controller
    */
   public function create()
   {
-      //
+    //
   }
 
   /**
@@ -61,35 +62,61 @@ class SkusController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
-   * @return Response
+   * @return RedirectResponse
    */
-  public function show($id)
+  public function show(): RedirectResponse
   {
-      //
+    return redirect()->back();
   }
 
   /**
    * Show the form for editing the specified resource.
    *
-   * @param Skus $skus
-   * @return Response
+   * @param int $id
+   * @return RedirectResponse|View
    */
-  public function edit(Skus $skus)
+  public function edit(int $id)
   {
-    dd($skus);
+    $validator = Validator::make(['id'=>$id], $this->rules());
+    if ($validator->fails()) {
+      return redirect()->route('admin.skus.index')->withErrors($validator);
+    }
+    $skus = Skus::find($id);
+    $skuses = $skus->category->skuses;
+    return view('admin.skus.edit', compact('skus', 'skuses'));
   }
 
   /**
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param  int  $id
-   * @return Response
+   * @param  int $id
+   * @return RedirectResponse
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, int $id): RedirectResponse
   {
-      //
+    $request->validate([
+      'title' => 'required|string',
+      'weight' => 'required|integer'
+    ]);
+
+    $skus = Skus::find($id);
+    if ($skus->weight !== $request->get('weight')) {
+      $oldWeight = $skus->weight;
+//      dump($skus->weight !== $request->get('weight'));
+      $secondSkus = Skus::whereHas('category', function ($q) use ($skus) {
+        $q->whereId($skus->category->id);
+      })->whereWeight($request->get('weight'))->first();
+      if ($secondSkus) {
+//        dump($secondSkus);
+        $secondSkus->weight = $oldWeight;
+//        dd($secondSkus->weight, $oldWeight);
+        $secondSkus->save();
+//        dd($secondSkus->weight);
+      }
+    }
+    $skus->update($request->all());
+    return redirect()->back()->with('success', ['Размер успешно обнавлён']);
   }
 
   /**
@@ -109,6 +136,14 @@ class SkusController extends Controller
     } catch (Exception $exception) {
       return redirect('admin/skus#modal-skus-' . $sk_id)->withErrors([$exception->getMessage()]);
     }
+
+  }
+
+  public function rules(): array
+  {
+    return [
+      'id' => 'required|integer|exists:skuses,id',
+    ];
 
   }
 }

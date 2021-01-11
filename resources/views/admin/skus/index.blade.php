@@ -30,7 +30,7 @@
         <div class="row" style="margin-left: -1rem; margin-right: -1rem ;">
           @foreach($skus_categories as $sk)
             <div class="col-12 mt-10">
-              <div class="card p-20 bg-dark-dm m-0">
+              <div class="card p-10 bg-dark-dm m-0">
                 <div class="row align-items-center">
                   <div class="col-4 col-md-4 col-lg-auto">
                     <a href="#modal-skus-{{ $sk->id }}" class="text-decoration-none text-danger m-0 p-0"><h5 class="p-0 m-0 d-block">{{ $sk->name }}</h5></a>

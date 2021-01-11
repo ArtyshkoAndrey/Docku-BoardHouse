@@ -13686,4 +13686,15 @@ sup {
   color: var(--primary-color) !important;
   font-size: 18px;
 }
+
+.invalid-feedback {
+  display: none;
+}
+
+.form-group .invalid-feedback {
+  display: none;
+}
+.form-group.is-invalid .invalid-feedback {
+  display: block;
+}
 /*# sourceMappingURL=app.css.map*/
