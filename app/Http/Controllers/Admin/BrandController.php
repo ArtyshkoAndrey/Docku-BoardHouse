@@ -3,83 +3,111 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Application|Factory|View|Response
+   */
+  public function index(Request $request)
+  {
+    $brands = Brand::query();
+    $name = $request->get('name');
+    if ($name) {
+      $brands = $brands->where('name', 'like', '%' . $name . '%');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    $filter = [
+      'name' => $name
+    ];
+    $brands = $brands->paginate(7);
+    $brands->appends($filter);
+    return view('admin.brand.index', compact('brands', 'filter'));
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return Response
+   */
+  public function create()
+  {
+      //
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param Request $request
+   * @return RedirectResponse
+   */
+  public function store(Request $request): RedirectResponse
+  {
+    $request->validate([
+      'name' => 'required|string|unique:brands,name'
+    ]);
+    Brand::create($request->all());
+    return redirect()->back()->with('success', ['Бренд успешно создан']);
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function show($id)
+  {
+      //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function edit($id)
+  {
+      //
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param Request $request
+   * @param Brand $brand
+   * @return RedirectResponse
+   */
+  public function update(Request $request, Brand $brand): RedirectResponse
+  {
+    $request->validate([
+      'name' => 'required|string|unique:brands,name'
+    ]);
+    $brand->update($request->all());
+    return redirect()->back()->with('success', ['Бренд успешно обнавлён']);
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param Brand $brand
+   * @return RedirectResponse
+   * @throws Exception
+   */
+  public function destroy(Brand $brand): RedirectResponse
+  {
+    $brand->delete();
+    return redirect()->back()->with('success', ['Бренд успешно удалён']);
+  }
 }

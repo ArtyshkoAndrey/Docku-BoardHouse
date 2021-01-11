@@ -77,6 +77,13 @@
       Товары
     </a>
 
+    <a href="{{ route('admin.brand.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.brand.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bxs-purchase-tag-alt" aria-hidden="true"></i>
+      </span>
+      Бренды
+    </a>
+
     <a href="{{ route('admin.skus.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.skus.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bxs-purchase-tag" aria-hidden="true"></i>
