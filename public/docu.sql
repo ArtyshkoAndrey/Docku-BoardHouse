@@ -17644,7 +17644,7 @@ CREATE TABLE `products` (
   `sex` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unisex',
   `meta` json NOT NULL,
   `brand_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -20278,7 +20278,7 @@ ALTER TABLE `photos`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `product_skuses`
