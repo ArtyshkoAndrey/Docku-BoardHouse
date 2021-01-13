@@ -14,12 +14,6 @@ Route::get('/', function () {
     return view('user.index');
 })->name('index');
 
-Route::get('/test', function () {
-  $product = Product::first();
-  $product->forceDelete();
-})->name('test');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('product')->name('product.')->group( function () {
   Route::get('/search', [ProductController::class, 'search'])->name('search');
@@ -53,3 +47,5 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::post('product/photo/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'photo'])->name('product.photo');
   Route::post('product/photo-delete', [\App\Http\Controllers\Admin\ProductController::class, 'photoDelete'])->name('product.photo.delete');
 });
+
+Route::post('auth/check', [App\Http\Controllers\ApiController::class, 'check']);

@@ -14,13 +14,17 @@ const store = new Vuex.Store({
       items: []
     },
     currency: null,
+    currency_id: 1,
     auth: false
   },
   mutations: {
-    addItem: (state, item) => {state.cart.items.push(item)},
+    addItem: (state, ProductSkus) => {state.cart.items.push(ProductSkus)},
     removeItem: (state, id) => { state.cart.items = state.cart.items.filter( e => e.id !== id ) },
     clearCart: (state) => {state.cart.items = []},
-    currency: (state, item) => {state.currency = item},
+    currency: (state, item) => {
+      state.currency = item
+      state.currency_id = 1
+    },
     auth: (state, auth) => {state.auth = auth},
   },
   getters: {
@@ -34,7 +38,7 @@ const store = new Vuex.Store({
     },
     auth: state => {
       return state.auth;
-    }
+    },
   },
   plugins: [createPersistedState()],
 });

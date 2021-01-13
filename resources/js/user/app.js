@@ -48,4 +48,20 @@ const app = new Vue({
     return {
     }
   },
+  mounted () {
+    axios.post('auth/check')
+      .then(response => {
+        this.$store.commit('auth', response.data)
+      })
+      .catch(response => {
+        console.error(response)
+      })
+    axios.post('api/currency/' + this.$store.state.currency_id)
+      .then(response => {
+        this.$store.commit('currency', response.data)
+      })
+      .catch(error => {
+        alert(error.response.data.error)
+      })
+  }
 });

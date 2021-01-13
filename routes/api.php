@@ -22,3 +22,5 @@ Route::post('countries', [App\Http\Controllers\ApiController::class, 'countries'
 Route::post('cities', [App\Http\Controllers\ApiController::class, 'cities']);
 Route::post('categories', [App\Http\Controllers\ApiController::class, 'categories']);
 Route::post('brands', [App\Http\Controllers\ApiController::class, 'brands']);
+
+Route::post('currency/{id}', [\App\Http\Controllers\Api\ApiController::class, 'currency']);
