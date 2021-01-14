@@ -39,9 +39,13 @@ class ApiController extends Controller
       'currency_id' => 'required|exists:currencies,id',
       'user_id'     => 'present|int|exists:users,id|nullable'
     ]);
+
     $data = $request->all();
     $currency = Currency::find($data['currency_id']);
-    User::find($data['user_id'])->update(['currency_id' => $data['currency_id']]);
+
+    if ($data['user_id'])
+      User::find($data['user_id'])->update(['currency_id' => $data['currency_id']]);
+
     return response()->json($currency, 200);
   }
 

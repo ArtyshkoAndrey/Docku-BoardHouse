@@ -28,21 +28,17 @@ const store = new Vuex.Store({
       state.currency_id = item.id
     },
     set_currency: (state, item) => {
-      if (state.auth) {
-        axios.post('api/set-currency', {
-          user_id: state.user.id,
-          currency_id: item.id
+      axios.post('api/set-currency', {
+        user_id: state.user ? state.user.id : null,
+        currency_id: item.id
+      })
+        .then (response => {
+          state.currency = response.data
+          state.currency_id = item.id
         })
-          .then (response => {
-            state.currency = response.data
-            state.currency_id = item.id
-          })
-          .catch(error => {
-            alert(error.response.data)
-          })
-      } else {
-        state.currency_id = item.id
-      }
+        .catch(error => {
+          alert(error.response.data)
+        })
     },
     auth: (state, {auth, user}) => {
       state.auth = auth
