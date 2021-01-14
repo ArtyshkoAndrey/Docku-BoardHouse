@@ -6,6 +6,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -13,9 +14,10 @@ const store = new Vuex.Store({
     cart: {
       items: []
     },
-    currency: null,
+    currency: {},
     currency_id: 1,
-    auth: false
+    auth: false,
+    user: null,
   },
   mutations: {
     addItem: (state, ProductSkus) => {state.cart.items.push(ProductSkus)},
@@ -23,9 +25,32 @@ const store = new Vuex.Store({
     clearCart: (state) => {state.cart.items = []},
     currency: (state, item) => {
       state.currency = item
-      state.currency_id = 1
+      state.currency_id = item.id
     },
-    auth: (state, auth) => {state.auth = auth},
+    set_currency: (state, item) => {
+      if (state.auth) {
+        axios.post('api/set-currency', {
+          user_id: state.user.id,
+          currency_id: item.id
+        })
+          .then (response => {
+            state.currency = response.data
+            state.currency_id = item.id
+          })
+          .catch(error => {
+            alert(error.response.data)
+          })
+      } else {
+        state.currency_id = item.id
+      }
+    },
+    auth: (state, {auth, user}) => {
+      state.auth = auth
+      state.user = user
+      if (state.currency_id === null)
+        state.currency_id = 1
+      state.currency_id = user ? user.currency_id ?? state.currency_id : state.currency_id
+    },
   },
   getters: {
     items: state => {

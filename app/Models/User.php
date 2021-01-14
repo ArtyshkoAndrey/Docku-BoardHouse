@@ -76,7 +76,8 @@ class User extends Authenticatable
     'password',
     'address',
     'post_code',
-    'is_admin'
+    'is_admin',
+    'currency_id'
   ];
 
   /**

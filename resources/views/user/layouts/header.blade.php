@@ -12,12 +12,21 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span class="d-none d-lg-block">Тенге (₸)</span>
-              <span class="d-block d-lg-none">KZT</span>
+              <span class="">@{{ $store.state.currency.short_name ?? 'Загрузка' }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Тенге (₸)</a></li>
-              <li><a class="dropdown-item" href="#">Русский рубль (₽)</a></li>
+              @foreach(\App\Models\Currency::all() as $currency)
+                <li>
+
+                  <button
+                    @click="$store.commit('set_currency', {{$currency}})"
+                    class="dropdown-item"
+                    v-bind:class="$store.state.currency.id === {{ $currency->id }} ? 'active' : '' ">
+                      {{ $currency->name }} ({{ $currency->symbol }})
+                  </button>
+
+                </li>
+              @endforeach
             </ul>
           </li>
           <li class="nav-item d-none d-xl-flex">
@@ -75,7 +84,7 @@
                         </a>
                       </div>
                       <div class="row">
-                        <a href="#" class="d-flex dropdown-item">
+                        <a href="#" class="d-flex dropdown-item" onclick="event.preventDefault();$('#logout').submit()">
                           <div class="col-2 d-flex align-items-center justify-content-center">
                             <i class="bx bx-sm bx-log-out"></i>
                           </div>
@@ -83,6 +92,9 @@
                             Выйти
                           </div>
                         </a>
+                        <form action="{{ route('logout') }}" id="logout" method="POST" class="d-none">
+                          @csrf
+                        </form>
                       </div>
                     @else
                       <div class="row">

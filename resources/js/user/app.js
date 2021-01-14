@@ -43,22 +43,29 @@ Vue.config.performance = true;
 const app = new Vue({
   el: '#app',
   store: store,
-  delimiters: ['<%', '%>'],
+  // delimiters: ['<%', '%>'],
   data() {
     return {
+      test: !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
     }
   },
-  mounted () {
-    axios.post('auth/check')
+  async created () {
+    await axios.post('auth/check')
       .then(response => {
+
         this.$store.commit('auth', response.data)
+
+        this.test ? console.log('Auth bool server', response.data) : null
       })
       .catch(response => {
         console.error(response)
       })
-    axios.post('api/currency/' + this.$store.state.currency_id)
+
+    await axios.post('api/currency/' + this.$store.state.currency_id)
       .then(response => {
         this.$store.commit('currency', response.data)
+
+        this.test ? console.log('Server return currency', response.data) : null
       })
       .catch(error => {
         alert(error.response.data.error)

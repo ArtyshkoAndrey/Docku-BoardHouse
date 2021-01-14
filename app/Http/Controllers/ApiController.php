@@ -54,6 +54,10 @@ class ApiController extends Controller {
 
   public function check (): JsonResponse
   {
-    return response()->json(Auth::check(), 200);
+    $data = (object) [
+      'auth' => Auth::check(),
+      'user' => Auth::user()
+    ];
+    return response()->json($data, 200);
   }
 }
