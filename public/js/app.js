@@ -51928,7 +51928,7 @@ var app = new Vue({
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.post('auth/check').then(function (response) {
+              return window.axios.post('/auth/check').then(function (response) {
                 _this.$store.commit('auth', response.data);
 
                 _this.test ? console.log('Auth bool server', response.data) : null;
@@ -51938,7 +51938,7 @@ var app = new Vue({
 
             case 2:
               _context.next = 4;
-              return axios.post('api/currency/' + _this.$store.state.currency_id).then(function (response) {
+              return window.axios.post('/api/currency/' + _this.$store.state.currency_id).then(function (response) {
                 _this.$store.commit('currency', response.data);
 
                 _this.test ? console.log('Server return currency', response.data) : null;

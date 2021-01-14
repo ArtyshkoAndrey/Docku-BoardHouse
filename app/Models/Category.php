@@ -59,4 +59,14 @@ class Category extends Model
   {
     return $this->belongsToMany(Category::class, 'categories_categories', 'category_id', 'child_category_id');
   }
+
+  /**
+   * Родительская категория
+   *
+   * @return BelongsToMany
+   */
+  public function parents(): BelongsToMany
+  {
+    return $this->belongsToMany(Category::class, 'categories_categories', 'child_category_id', 'category_id');
+  }
 }

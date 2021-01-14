@@ -50,7 +50,7 @@ const app = new Vue({
     }
   },
   async created () {
-    await axios.post('auth/check')
+    await window.axios.post('/auth/check')
       .then(response => {
 
         this.$store.commit('auth', response.data)
@@ -61,7 +61,7 @@ const app = new Vue({
         console.error(response)
       })
 
-    await axios.post('api/currency/' + this.$store.state.currency_id)
+    await window.axios.post('/api/currency/' + this.$store.state.currency_id)
       .then(response => {
         this.$store.commit('currency', response.data)
 

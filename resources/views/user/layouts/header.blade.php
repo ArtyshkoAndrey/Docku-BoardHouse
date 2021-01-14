@@ -201,170 +201,46 @@
       </div>
     </form>
   </div>
+
   <nav class="navbar navbar-expand category-menu">
     <div class="container-fluid container-md w-100">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav align-items-center w-100">
-          <li class="nav-item dropdown ml-auto">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Пункт</span>
-            </a>
+          @foreach($categories = \App\Models\Category::whereDoesntHave('parents')->get() as $index => $category)
 
-            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+            <li class="nav-item dropdown {{ $index === 0 ? 'ml-auto' : ($index === count($categories) - 1 ? 'mr-auto' : null) }}">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span>{{ $category->name }}</span>
+              </a>
 
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container">
+              <div class="triangle" aria-labelledby="navbarDropdown"></div>
 
-                <div class="row">
-                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
-                    <span class="font-weight-bold">Сноубординг1</span>
-                    <a class="item" href="#">Для мужчин</a>
-                    <a class="item" href="#">Для женщин</a>
-                    <a class="item" href="#">Для детей</a>
-                    <a class="item" href="#">Начинающим</a>
-                    <a class="item" href="#">Любителям</a>
-                    <a class="item" href="#">Профессионалам</a>
-                    <a class="item" href="#">Все сноуборды</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="container">
+
+                  <div class="row">
+                    @foreach($category->child as $childCategory)
+                      <div class="col col-md-4 col-lg-3 flex-column" >
+                        <a class="item font-weight-bold text-black" href="{{ route('product.all', ['category' => $childCategory->id]) }}">{{ $childCategory->name }}</a>
+                        @foreach($childCategory->child as $thirdCategory)
+                          <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
+                        @endforeach
+                      </div>
+                    @endforeach
                   </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown ">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Пункт</span>
-            </a>
+            </li>
 
-            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+          @endforeach
 
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container">
-
-                <div class="row">
-                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
-                    <span class="font-weight-bold">Сноубординг1</span>
-                    <a class="item" href="#">Для мужчин</a>
-                    <a class="item" href="#">Для женщин</a>
-                    <a class="item" href="#">Для детей</a>
-                    <a class="item" href="#">Начинающим</a>
-                    <a class="item" href="#">Любителям</a>
-                    <a class="item" href="#">Профессионалам</a>
-                    <a class="item" href="#">Все сноуборды</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown ">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Пункт</span>
-            </a>
-
-            <div class="triangle" aria-labelledby="navbarDropdown"></div>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container">
-
-                <div class="row">
-                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
-                    <span class="font-weight-bold">Сноубординг1</span>
-                    <a class="item" href="#">Для мужчин</a>
-                    <a class="item" href="#">Для женщин</a>
-                    <a class="item" href="#">Для детей</a>
-                    <a class="item" href="#">Начинающим</a>
-                    <a class="item" href="#">Любителям</a>
-                    <a class="item" href="#">Профессионалам</a>
-                    <a class="item" href="#">Все сноуборды</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown ">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Пункт</span>
-            </a>
-
-            <div class="triangle" aria-labelledby="navbarDropdown"></div>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container">
-
-                <div class="row">
-                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
-                    <span class="font-weight-bold">Сноубординг1</span>
-                    <a class="item" href="#">Для мужчин</a>
-                    <a class="item" href="#">Для женщин</a>
-                    <a class="item" href="#">Для детей</a>
-                    <a class="item" href="#">Начинающим</a>
-                    <a class="item" href="#">Любителям</a>
-                    <a class="item" href="#">Профессионалам</a>
-                    <a class="item" href="#">Все сноуборды</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown mr-auto">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>Пункт</span>
-            </a>
-
-            <div class="triangle" aria-labelledby="navbarDropdown"></div>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container">
-
-                <div class="row">
-                  <div class="col col-md-4 col-lg-3 flex-column" v-for="i in 4">
-                    <span class="font-weight-bold">Сноубординг1</span>
-                    <a class="item" href="#">Для мужчин</a>
-                    <a class="item" href="#">Для женщин</a>
-                    <a class="item" href="#">Для детей</a>
-                    <a class="item" href="#">Начинающим</a>
-                    <a class="item" href="#">Любителям</a>
-                    <a class="item" href="#">Профессионалам</a>
-                    <a class="item" href="#">Все сноуборды</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
