@@ -138,7 +138,7 @@
 
               <div class="row mt-2" v-for="i in 3">
                 <div class="col-3 col-sm-2 d-flex align-items-center">
-                  <img src="{{ asset('images/product.png') }}" alt="" class="img-fluid pb-2">
+                  <img src="{{ asset('images/product.jpg') }}" alt="" class="img-fluid pb-2">
                 </div>
                 <div class="col-9 col-sm-10 border-bottom">
                   <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">

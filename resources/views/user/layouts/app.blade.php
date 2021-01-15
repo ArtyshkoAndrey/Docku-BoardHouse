@@ -10,26 +10,45 @@
   <title>{{ config('app.name', 'Docku') }}</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/boxicons.min.css') }}">
-  <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet"/>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />
+  <link rel="preload" href="{{ asset('css/boxicons.min.css') }}" as="style" />
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" as="style" />
+
+  <link rel="preload" href="{{ asset('fonts/boxicons.eot') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/boxicons.svg') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/boxicons.ttf') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/boxicons.woff') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/boxicons.woff2') }}" as="font" crossorigin="anonymous" />
+
+  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Regular.ttf') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Medium.ttf') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Bold.ttf') }}" as="font" crossorigin="anonymous" />
+  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-SemiBold.ttf') }}" as="font" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito"/>
+  <link rel="stylesheet" href="{{ asset('css/boxicons.min.css') }}"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+
   <!-- Styles -->
-  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  <link rel="preload" href="{{ mix('css/app.css') }}" as="style" />
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body id="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
-  @if($errors->any())
-    @foreach ($errors->all() as $error)
-      <div class="alert alert-danger fade show info-alert" data-mdb-color="danger" role="alert">
-        <div class="d-flex flex-column justify-content-center">
-          <strong>Ошибка!</strong>
-          <span>{{ $error }}</span>
+  @if(isset($errors))
+    @if($errors->any())
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger fade show info-alert" data-mdb-color="danger" role="alert">
+          <div class="d-flex flex-column justify-content-center">
+            <strong>Ошибка!</strong>
+            <span>{{ $error }}</span>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    @endforeach
+      @endforeach
+    @endif
   @endif
   @if (session()->has('success'))
     @foreach (session('success') as $message)

@@ -1,5 +1,5 @@
 <div class="col-3 p-1">
-  <img src="{{ asset('images/item-preview.png') }}" alt="Заголовок" class="w-100" style="object-fit: cover">
+  <img src="{{ asset('images/item-preview.jpg') }}" alt="Заголовок" class="w-100" style="object-fit: cover">
 </div>
 
 <div class="col-9">
