@@ -203,9 +203,10 @@
   }
 
   .dropdown-menu.full-height {
-    height: calc(100vh - 84px);
+    height: calc(100vh - 72px);
     width: 100vw;
     min-width: auto;
+    padding-bottom: 50px;
   }
 }
 
@@ -403,6 +404,7 @@
       left: 0!important;
       width: 100%!important;
       border-radius: 0!important;
+      height: calc(100vh - 145px);
 
       .row {
         .item {

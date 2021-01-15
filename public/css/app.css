@@ -29310,9 +29310,10 @@ body {
   justify-content: center;
 }
 .navbar .dropdown-menu.full-height {
-  height: calc(100vh - 84px);
+  height: calc(100vh - 72px);
   width: 100vw;
   min-width: auto;
+  padding-bottom: 50px;
 }
 
 @media (min-width: 1200px) {
@@ -29473,6 +29474,7 @@ body {
   left: 0 !important;
   width: 100% !important;
   border-radius: 0 !important;
+  height: calc(100vh - 145px);
 }
 .category-menu .dropdown .dropdown-menu .row .item {
   display: flex;
@@ -30279,6 +30281,10 @@ section.instagram a:hover {
   #profile .tab-content {
     height: auto;
   }
+}
+
+*:active, *:hover {
+  outline: none;
 }
 
 body {

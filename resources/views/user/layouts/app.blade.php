@@ -109,11 +109,16 @@
     })(jQuery)
 
     function checkOpenCart() {
-      if ($('[aria-labelledby="cart-dropdown"]').isActive() ||
-          $('.category-menu .dropdown-menu').isActive()) {
-        $('body').css("overflow","hidden");
-      } else {
-        $('body').css("overflow","auto");
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        if ($('[aria-labelledby="cart-dropdown"]').isActive() ||
+            $('.category-menu .dropdown-menu').isActive()) {
+          $('body').css("overflow","hidden");
+          $('html')
+          $('.category-menu .dropdown-menu').css('overflow', 'auto');
+        } else {
+          $('body').css("overflow","auto");
+          $('.category-menu .dropdown-menu').css('overflow', 'hidden');
+        }
       }
     }
 
