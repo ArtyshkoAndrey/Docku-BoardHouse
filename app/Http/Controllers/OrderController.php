@@ -15,4 +15,9 @@ class OrderController extends Controller
     return view('user.order.index');
   }
 
+  public function create ()
+  {
+    return view('user.order.create');
+  }
+
 }

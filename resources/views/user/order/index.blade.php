@@ -8,7 +8,7 @@
 
 @section('content')
 
-  <section class="container-fluid py-5" id="profile">
+  <section class="container py-5" id="profile">
     <div class="card rounded-0 px-0">
       <div class="card-body px-0 py-0 rounded-0">
         <div class="row mx-0">

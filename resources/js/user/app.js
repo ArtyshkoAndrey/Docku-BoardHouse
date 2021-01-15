@@ -28,7 +28,9 @@ const files = require.context('./components', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', import('./components/ExampleComponent.vue'));
-
+Vue.prototype.$cost = function (number) {
+  return new Intl.NumberFormat('ru-RU').format(Math.round(number))
+}
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -184,16 +184,16 @@ class Product extends Model
   public function getThumbnailWebp (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrlWepb();
+      return $this->photos->first()->getThumbnailUrlWebp();
     } else {
       return asset('images/product.jpg');
     }
   }
 
-  public function getThumbnailPng (): string
+  public function getThumbnailJpg (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrlPng();
+      return $this->photos->first()->getThumbnailUrlJpg();
     } else {
       return asset('images/product.jpg');
     }

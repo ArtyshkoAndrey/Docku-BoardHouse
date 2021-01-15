@@ -14,10 +14,14 @@
   </section>
 
   <section>
-    @include('user.layouts.category-preview')
-    @include('user.layouts.category-preview')
-    @include('user.layouts.category-preview')
-    @include('user.layouts.category-preview')
+    @include('user.layouts.category-preview', ['title' => 'Новое поступление', 'products' => $newProducts])
+
+    @include('user.layouts.category-preview', ['title' => 'Хит продаж', 'products' => $hitProducts])
+
+    @foreach($categories as $category)
+      @include('user.layouts.category-preview', ['title' => $category->name, 'products' => $category->products()->get()])
+    @endforeach
+
   </section>
 
   @include('user.layouts.instagram')

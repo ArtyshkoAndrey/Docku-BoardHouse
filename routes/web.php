@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('user.index');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 
 Route::prefix('product')->name('product.')->group( function () {
@@ -31,6 +29,7 @@ Route::prefix('profile')->name('profile.')->group( function () {
 
 Route::prefix('order')->name('order.')->group( function () {
   Route::get('/', [OrderController::class, 'index'])->name('index');
+  Route::get('/create', [OrderController::class, 'create'])->name('create');
 });
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {

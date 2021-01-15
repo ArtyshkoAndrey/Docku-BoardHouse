@@ -226,31 +226,6 @@
                 <div class="container">
 
                   <div class="row">
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div><div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-                    <div class="col col-md-4 col-lg-3 flex-column"><a href="//localhost:3002/product/all?category=11" class="item font-weight-bold text-black">Dorian</a></div>
-
 
                     @foreach($category->child as $childCategory)
                       <div class="col col-md-4 col-lg-3 flex-column" >

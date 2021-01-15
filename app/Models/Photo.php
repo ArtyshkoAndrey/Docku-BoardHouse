@@ -61,7 +61,7 @@ class Photo extends Model
     return asset('storage/images/photos/' . $this->name  . '.png');
   }
 
-  public function getThumbnailUrlPng(): string
+  public function getThumbnailUrlJpg(): string
   {
     return asset('storage/images/thumbnails/' . $this->name . '.png');
   }

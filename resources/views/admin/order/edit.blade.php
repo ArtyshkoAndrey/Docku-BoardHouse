@@ -105,7 +105,7 @@
         @foreach($order->items as $item)
           <div class="col-12 col-md-6 col-lg-4 mt-10">
             <div class="card m-0 p-0 bg-dark-dm">
-              <img src="{{ $item->product->getThumbnailPng()  }}" class="img-fluid rounded-top h-150 w-full object-fit-cover" alt="...">
+              <img src="{{ $item->product->getThumbnailJpg()  }}" class="img-fluid rounded-top h-150 w-full object-fit-cover" alt="...">
               <div class="content mx-20 mt-0">
                 <div class="content-title my-20">
                   {{ $item->product->title }}

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Category
@@ -68,5 +69,10 @@ class Category extends Model
   public function parents(): BelongsToMany
   {
     return $this->belongsToMany(Category::class, 'categories_categories', 'child_category_id', 'category_id');
+  }
+
+  public function products(): HasMany
+  {
+    return $this->hasMany(Product::class);
   }
 }
