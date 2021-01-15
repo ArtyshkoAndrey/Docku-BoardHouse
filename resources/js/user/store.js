@@ -28,7 +28,7 @@ const store = new Vuex.Store({
       state.currency_id = item.id
     },
     set_currency: (state, item) => {
-      axios.post('api/set-currency', {
+      window.axios.post('/api/set-currency', {
         user_id: state.user ? state.user.id : null,
         currency_id: item.id
       })

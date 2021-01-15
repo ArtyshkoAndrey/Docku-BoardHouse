@@ -84,10 +84,10 @@ class OrderController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param Order $order
+   * @param int $id
    * @return Response
    */
-  public function show(Order $order)
+  public function show(int $id)
   {
       //
   }
@@ -95,11 +95,12 @@ class OrderController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param Order $order
+   * @param int $id
    * @return Application|Factory|View|Response
    */
-  public function edit(Order $order)
+  public function edit(int $id)
   {
+    $order = Order::find($id);
     return view('admin.order.edit', compact('order'));
   }
 
@@ -107,10 +108,10 @@ class OrderController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param Order $order
+   * @param int $id
    * @return RedirectResponse
    */
-  public function update(Request $request, Order $order): RedirectResponse
+  public function update(Request $request, int $id): RedirectResponse
   {
     $request->validate([
       'ship_status' => 'required|string'
@@ -119,7 +120,7 @@ class OrderController extends Controller
     if (!in_array($data['ship_status'], Order::SHIP_STATUS_MAP)) {
       return redirect()->back()->withInput($data)->withErrors('Не правильно выбран статус');
     }
-
+    $order = Order::find($id);
     $order->ship_status = $data['ship_status'];
     if (isset($data['track'])) {
       $order->ship_data = (object) ['track' => $data['track']];
@@ -141,12 +142,13 @@ class OrderController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param Order $order
+   * @param int $id
    * @return RedirectResponse
    * @throws Exception
    */
-  public function destroy(Order $order): RedirectResponse
+  public function destroy(int $id): RedirectResponse
   {
+    $order = Order::find($id);
     if ($order->delete()) {
       return redirect()->route('admin.order.index')->with('success',['Заказ был удалён']);
     }

@@ -12,7 +12,8 @@
 import * as mdb from 'mdb-ui-kit'
 require('./bootstrap.js')
 
-window.Vue = require('vue');
+import store from "./store";
+window.Vue = require('vue')
 
 
 /**
@@ -26,7 +27,7 @@ window.Vue = require('vue');
 const files = require.context('./components', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', import('./components/ExampleComponent.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,7 +35,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import store from "./store";
+
 Vue.config.productionTip = false
 
 Vue.config.devtools = true;
@@ -43,7 +44,6 @@ Vue.config.performance = true;
 const app = new Vue({
   el: '#app',
   store: store,
-  // delimiters: ['<%', '%>'],
   data() {
     return {
       test: !process.env.NODE_ENV || process.env.NODE_ENV === 'development'

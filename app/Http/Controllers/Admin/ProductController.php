@@ -112,10 +112,10 @@ class ProductController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param Product $product
+   * @param int $id
    * @return Response
    */
-  public function show(Product $product)
+  public function show(int $id)
   {
       //
   }
@@ -123,11 +123,12 @@ class ProductController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param Product $product
+   * @param int $id
    * @return Application|Factory|View|Response
    */
-  public function edit(Product $product)
+  public function edit(int $id)
   {
+    $product = Product::find($id);
     return view('admin.product.edit', compact('product'));
   }
 
@@ -135,11 +136,11 @@ class ProductController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param Product $product
+   * @param int $id
    * @return RedirectResponse
    * @throws Exception
    */
-  public function update(Request $request, Product $product): RedirectResponse
+  public function update(Request $request, int $id): RedirectResponse
   {
     $request->validate([
       'title' => 'required|string|max:255',
@@ -154,7 +155,7 @@ class ProductController extends Controller
       'on_top' => 'boolean',
       'on_new' => 'boolean',
     ]);
-
+    $product = Product::find($id);
     $ids = [];
     foreach ($request->get('skus', []) as $id => $stock) {
       array_push($ids, $id);
