@@ -83,4 +83,14 @@ class ProductController extends Controller
     ];
     return view('user.product.catalog', compact('items', 'filter'));
   }
+
+  /**
+   * @param int $id
+   * @return View
+   */
+  public function show (int $id): View
+  {
+    $product = Product::find($id);
+    return view('user.product.show', compact('product'));
+  }
 }

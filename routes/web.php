@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::prefix('product')->name('product.')->group( function () {
   Route::get('/search', [ProductController::class, 'search'])->name('search');
   Route::get('/all', [ProductController::class, 'all'])->name('all');
+  Route::get('/{id}', [ProductController::class, 'show'])->name('show');
 });
 
 Route::prefix('cart')->name('cart.')->group( function () {
