@@ -30,7 +30,7 @@
             </ul>
           </li>
           <li class="nav-item d-none d-xl-flex">
-            <a href="tel:" class="d-block nav-link">+7 (747) 556-23-83</a>
+            <a href="tel:+77475562383" class="d-block nav-link">+7 (747) 556-23-83</a>
           </li>
           <li class="nav-item d-none d-md-flex mx-auto">
             <a class="" href="{{ route('index') }}">
@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="d-none d-lg-flex">
-            <a class="nav-link" href="#">info@dockuboardhouse.com</a>
+            <a class="nav-link" href="mailto:info@dockuboardhouse.com">info@dockuboardhouse.com</a>
           </li>
           <li class="nav-item icon ml-auto ml-md-0">
               <a class="nav-link" onclick="toggleSearch()">
@@ -65,14 +65,15 @@
                         <a href="#" class="d-flex dropdown-item">
                           <div class="col-2 d-flex align-items-center justify-content-center">
                             <img class="rounded-circle"
-                                 src="{{ asset('images/user-photo.jpg') }}"
+                                 src="{{ auth()->user()->getAvatar() }}"
                                  style="width: 25px; height: 25px;" alt="logo"/>
                           </div>
                           <div class="col-auto mx-2">
-                            Артышко Андрей
+                            {{ auth()->user()->name }}
                           </div>
                         </a>
                       </div>
+                      @if(auth()->user()->is_admin)
                       <div class="row">
                         <a href="{{ route('admin.index') }}" class="d-flex dropdown-item">
                           <div class="col-2 d-flex align-items-center justify-content-center">
@@ -83,6 +84,7 @@
                           </div>
                         </a>
                       </div>
+                      @endif
                       <div class="row">
                         <a href="#" class="d-flex dropdown-item" onclick="event.preventDefault();$('#logout').submit()">
                           <div class="col-2 d-flex align-items-center justify-content-center">
@@ -132,29 +134,33 @@
               aria-expanded="false"
             >
               <i class="bx bx-sm bx-cart"></i>
-              <span class="badge rounded-pill badge-notification bg-white text-black">14</span>
+              <span class="badge rounded-pill badge-notification bg-white text-black">@{{ $store.state.cart.items.reduce((a, b) => +a + +b.amount, 0) }}</span>
             </a>
             <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
-              <div class="row mt-2" v-for="i in 3">
+              <div class="row mt-2" v-for="product in $store.state.cart.products">
                 <div class="col-3 col-sm-2 d-flex align-items-center">
-                  <img src="{{ asset('images/product.jpg') }}" alt="" class="img-fluid pb-2">
+                  <img :src="'storage/images/thumbnails/' + product.photos[0].name + '.png'" alt="" class="img-fluid pb-2">
                 </div>
                 <div class="col-9 col-sm-10 border-bottom">
                   <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">
                     <div class="col-12 col-sm-6">
-                      <p class="m-0 font-weight-bold">Резиновые сапоги Maximo</p>
+                      <p class="m-0 font-weight-bold">@{{ product.title }}</p>
                     </div>
                     <div class="col-12 col-sm-6 d-flex">
                       <div class="col-auto ml-auto d-flex align-items-center">
-                        <p class="m-0">6 000 ₸</p>
+                        <p class="m-0">
+                          @{{ $cost( (product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}
+                        </p>
                       </div>
                       <div class="col-4 d-flex justify-content-around align-items-center">
                         <button type="button" class="btn btn-dark cart-button">
                           <i class="bx bx-minus"></i>
                         </button>
-                        <p id="cart-item-amount-1" class="mx-2 my-auto">1</p>
-                        <button type="button" class="btn btn-dark cart-button">
+                        <p id="cart-item-amount-1" class="mx-2 my-auto">
+                          @{{ $store.state.cart.items.find(el => product.product_skuses.some(sk => sk.id === el.id) ).amount }}
+                        </p>
+                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: $store.state.cart.items.find(el => product.product_skuses.some(sk => sk.id === el.id) ).id, amount: 1 })">
                           <i class="bx bx-plus"></i>
                         </button>
                       </div>
@@ -169,14 +175,14 @@
               </div>
               <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3">
                 <div class="col-12 col-md-6">
-                  <a href="#" class="btn btn-dark w-100">Перейти в корзину</a>
+                  <a href="{{ route('cart.index') }}" class="btn btn-dark w-100">Перейти в корзину</a>
                 </div>
                 <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
                   <div class="col-8 col-md-12 d-flex justify-content-end align-items-center p-0">
                     <p class="h6 font-weight-bold">Итого: 1 220 000 ₸</p>
                   </div>
                   <div class="col-4 col-md-12">
-                    <a href="javascript:;" class="text-decoration-none" style="color: #DE6D2D">Очистить корзину</a>
+                    <button class="bg-transparent border-0 text-decoration-none" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
                   </div>
                 </div>
               </div>

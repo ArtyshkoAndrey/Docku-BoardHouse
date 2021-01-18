@@ -138,4 +138,9 @@ class User extends Authenticatable
       ]);
     }
   }
+
+  public function getAvatar (): string
+  {
+    return $this->avatar ? asset('storage/avatar/' . $this->avatar) : asset('images/product.jpg');
+  }
 }

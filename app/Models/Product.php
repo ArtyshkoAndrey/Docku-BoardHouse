@@ -168,7 +168,7 @@ class Product extends Model
 
   public function skuses(): BelongsToMany
   {
-    return $this->belongsToMany(Skus::class, 'product_skuses', 'product_id', 'skus_id')->withPivot(['stock', 'id']);
+    return $this->belongsToMany(Skus::class, 'product_skuses', 'product_id', 'skus_id')->withPivot('stock', 'id');
   }
 
   public function productSkuses(): HasMany

@@ -26,3 +26,4 @@ Route::post('brands', [App\Http\Controllers\ApiController::class, 'brands']);
 
 Route::post('currency/{id}', [ApiController::class, 'currency']);
 Route::post('set-currency', [ApiController::class, 'set_currency']);
+Route::post('products', [ApiController::class, 'products']);

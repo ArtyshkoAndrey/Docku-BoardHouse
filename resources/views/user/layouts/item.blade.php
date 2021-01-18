@@ -16,7 +16,7 @@
     </div>
     <div class="row pt-3 mb-auto">
       <div class="col-12">
-        <a class="title" href="#">{{ $item->title }} Lorem ipsum dolor sit amet.</a>
+        <a class="title" href="{{ route('product.show', $item->id) }}">{{ $item->title }}</a>
       </div>
     </div>
     <div class="row context mt-auto">
@@ -29,15 +29,21 @@
         @endif
       </div>
       <div class="col-12 col-md-7 d-flex justify-content-center align-items-center p-0 px-2">
-        @if($item->skuses()->count() > 0)
+        @if($item->skuses()->count() >=  2)
           <a href="{{ route('product.show', $item->id) }}" class="btn btn-outline-dark btn-to-cart">
             <i class="bx bx-cart"></i>
             <span>Выбрать</span>
           </a>
+        @elseif($item->skuses()->count() === 1)
+          <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0"
+              @click="$store.commit('addItem', {id: {{ $item->skuses()->first()->pivot->id }}, amount: 1})">
+            <i class="bx bx-cart"></i>
+            <span>В корзину</span>
+          </button>
         @else
           <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0">
             <i class="bx bx-cart"></i>
-            <span>В корзину</span>
+            <span>Нет размеров</span>
           </button>
         @endif
 

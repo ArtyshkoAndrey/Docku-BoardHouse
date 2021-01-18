@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -49,4 +50,13 @@ class ApiController extends Controller
     return response()->json($currency, 200);
   }
 
+  public function products (Request $request)
+  {
+    $ids = $request->get('products_skuses_ids', []);
+    $products = Product::with('photos', 'productSkuses')->whereHas('productSkuses', function ($q) use ($ids) {
+      $q->whereIn('id', $ids);
+    })->get();
+
+    return response()->json($products);
+  }
 }

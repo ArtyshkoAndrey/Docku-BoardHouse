@@ -72,5 +72,15 @@ const app = new Vue({
       .catch(error => {
         alert(error.response.data.error)
       })
+
+    await window.axios.post('/api/products', {
+      products_skuses_ids: this.$store.state.cart.items.map(el => el.id)
+    })
+      .then(response => {
+        this.$store.commit('setProducts', response.data)
+      })
+      .catch(error => {
+        alert(error.response.data)
+      })
   }
 });

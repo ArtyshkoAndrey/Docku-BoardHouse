@@ -7,7 +7,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     cart: {
-      items: []
+      items: [],
+      products: []
     },
     currency: {},
     currency_id: 1,
@@ -15,7 +16,17 @@ const store = new Vuex.Store({
     user: null,
   },
   mutations: {
-    addItem: (state, ProductSkus) => {state.cart.items.push(ProductSkus)},
+    addItem: (state, {id, amount}) => {
+      let item = state.cart.items.find(el => el.id === id )
+      if (item) {
+        item.amount += amount
+      } else {
+        state.cart.items.push({id: id, amount: amount})
+      }
+    },
+    setProducts: (state, products) => {
+      state.cart.products = products
+    },
     removeItem: (state, id) => { state.cart.items = state.cart.items.filter( e => e.id !== id ) },
     clearCart: (state) => {state.cart.items = []},
     currency: (state, item) => {

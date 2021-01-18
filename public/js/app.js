@@ -51950,6 +51950,18 @@ var app = new Vue({
               });
 
             case 4:
+              _context.next = 6;
+              return window.axios.post('/api/products', {
+                products_skuses_ids: _this.$store.state.cart.items.map(function (el) {
+                  return el.id;
+                })
+              }).then(function (response) {
+                _this.$store.commit('setProducts', response.data);
+              })["catch"](function (error) {
+                alert(error.response.data);
+              });
+
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -52123,10 +52135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
-/*
- * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
- * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
- */
 
 
 
@@ -52134,7 +52142,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     cart: {
-      items: []
+      items: [],
+      products: []
     },
     currency: {},
     currency_id: 1,
@@ -52142,8 +52151,24 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     user: null
   },
   mutations: {
-    addItem: function addItem(state, ProductSkus) {
-      state.cart.items.push(ProductSkus);
+    addItem: function addItem(state, _ref) {
+      var id = _ref.id,
+          amount = _ref.amount;
+      var item = state.cart.items.find(function (el) {
+        return el.id === id;
+      });
+
+      if (item) {
+        item.amount += amount;
+      } else {
+        state.cart.items.push({
+          id: id,
+          amount: amount
+        });
+      }
+    },
+    setProducts: function setProducts(state, products) {
+      state.cart.products = products;
     },
     removeItem: function removeItem(state, id) {
       state.cart.items = state.cart.items.filter(function (e) {
@@ -52157,22 +52182,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.currency = item;
       state.currency_id = item.id;
     },
-    set_currency: function set_currency(state, item) {
-      window.axios.post('/api/set-currency', {
-        user_id: state.user ? state.user.id : null,
-        currency_id: item.id
-      }).then(function (response) {
-        state.currency = response.data;
-        state.currency_id = item.id;
-      })["catch"](function (error) {
-        alert(error.response.data);
-      });
-    },
-    auth: function auth(state, _ref) {
+    auth: function auth(state, _ref2) {
       var _user$currency_id;
 
-      var _auth = _ref.auth,
-          user = _ref.user;
+      var _auth = _ref2.auth,
+          user = _ref2.user;
       state.auth = _auth;
       state.user = user;
       if (state.currency_id === null) state.currency_id = 1;
@@ -52190,6 +52204,20 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     auth: function auth(state) {
       return state.auth;
+    }
+  },
+  actions: {
+    set_currency: function set_currency(_ref3, data) {
+      var commit = _ref3.commit,
+          state = _ref3.state;
+      window.axios.post('/api/set-currency', {
+        user_id: state.user ? state.user.id : null,
+        currency_id: data.currency.id
+      }).then(function (response) {
+        commit('currency', response.data);
+      })["catch"](function (error) {
+        alert(error.response.data);
+      });
     }
   },
   plugins: [Object(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_2__["default"])()]
@@ -52227,9 +52255,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\docu\resources\js\user\app.js */"./resources/js/user/app.js");
-__webpack_require__(/*! C:\OpenServer\domains\docu\resources\sass\user\app.scss */"./resources/sass/user/app.scss");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\docu\resources\sass\admin\app.scss */"./resources/sass/admin/app.scss");
+__webpack_require__(/*! D:\OpenServer\domains\docu\resources\js\user\app.js */"./resources/js/user/app.js");
+__webpack_require__(/*! D:\OpenServer\domains\docu\resources\sass\user\app.scss */"./resources/sass/user/app.scss");
+module.exports = __webpack_require__(/*! D:\OpenServer\domains\docu\resources\sass\admin\app.scss */"./resources/sass/admin/app.scss");
 
 
 /***/ })
