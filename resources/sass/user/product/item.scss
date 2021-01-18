@@ -7,6 +7,11 @@
   .title {
     color: black;
     font-weight: 500;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    height: 3rem;
+    -webkit-box-orient: vertical;
   }
 
   &:hover {
@@ -31,6 +36,8 @@
 
       &:hover {
         transform: scale(1.2);
+        //width: 120% !important;
+        //height: 120% !important;
       }
     }
   }

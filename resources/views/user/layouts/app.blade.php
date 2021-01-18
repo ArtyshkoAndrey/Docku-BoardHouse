@@ -12,7 +12,7 @@
   <!-- Fonts -->
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />
   <link rel="preload" href="{{ asset('css/boxicons.min.css') }}" as="style" />
-  <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" as="style" />
+{{--  <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" as="style" />--}}
 
   <link rel="preload" href="{{ asset('fonts/boxicons.eot') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/boxicons.svg') }}" as="font" crossorigin="anonymous" />
@@ -24,6 +24,9 @@
   <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Medium.ttf') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Bold.ttf') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-SemiBold.ttf') }}" as="font" crossorigin="anonymous" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito"/>
   <link rel="stylesheet" href="{{ asset('css/boxicons.min.css') }}"/>
@@ -76,6 +79,10 @@
 
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 
 
 <script>
@@ -108,15 +115,20 @@
       }
     })(jQuery)
 
+    // $('.img-wrapper').height($('.img-wrapper').width())
+    // $('.img-wrapper:hover').css({'margin-left': '-' + ($('.img-wrapper').width / 2) + 'px'})
+    // $('.img-wrapper:hover').css({'margin-top': '-' + ($('.img-wrapper').width / 2) + 'px'})
+
     function checkOpenCart() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
         if ($('[aria-labelledby="cart-dropdown"]').isActive() ||
             $('.category-menu .dropdown-menu').isActive()) {
-          $('body').css("overflow","hidden");
-          $('html')
+          $('body').css("overflow", "hidden");
+          $('html').css('overflow', 'hidden');
           $('.category-menu .dropdown-menu').css('overflow', 'auto');
         } else {
-          $('body').css("overflow","auto");
+          $('body').css("overflow", "auto");
+          $('html').css('overflow', 'auto');
           $('.category-menu .dropdown-menu').css('overflow', 'hidden');
         }
       }

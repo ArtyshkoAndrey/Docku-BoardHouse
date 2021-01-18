@@ -4,7 +4,7 @@
   <div class="container mt-2 cart-page">
     <div class="row justify-content-center">
       <div class="col-12">
-        <p class="font-weight-bolder h4">Корзина</p>
+        <p class="font-weight-bolder h4" style="color: #2D3134;">Корзина</p>
       </div>
       <div class="col-md-8">
         <div class="row mt-3 mx-0 p-2 border" v-for="i in 3" style="border-color: #A9AEB5 !important; border-radius: 16px;">

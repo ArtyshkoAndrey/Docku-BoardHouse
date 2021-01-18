@@ -1,6 +1,6 @@
-<div class="card bg-transparent shadow-0 {{ $item->on_sale ? 'sale' : null }}">
+<div class="card bg-transparent shadow-0 h-100 {{ $item->on_sale ? 'sale' : null }}">
 
-  <div class="card-body mx-auto">
+  <div class="card-body d-flex flex-column">
     <div class="row">
       <div class="col-12">
         <div class="img-wrapper">
@@ -8,18 +8,18 @@
           <picture>
             <source type="image/webp" srcset="{{ $item->getThumbnailWebp() }}">
             <source type="image/jpeg" srcset="{{ $item->getThumbnailJpg() }}">
-            <img src="{{ $item->getThumbnailJpg() }}" class="img-fluid" alt="{{ $item->name }}">
+            <img src="{{ $item->getThumbnailJpg() }}" class="w-100 h-100" alt="{{ $item->name }}">
           </picture>
           {{--      TODO: Изменить asset, когда будут таблицы --}}
         </div>
       </div>
     </div>
-    <div class="row pt-3">
+    <div class="row pt-3 mb-auto">
       <div class="col-12">
         <a class="title" href="#">{{ $item->title }} Lorem ipsum dolor sit amet.</a>
       </div>
     </div>
-    <div class="row context">
+    <div class="row context mt-auto">
       <div class="col-12 col-md-5 d-flex flex-column justify-content-center pl-2">
         @if($item->price_sale)
           <span class="old-price">{{ $cost($store.state.currency.ratio * <? echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>

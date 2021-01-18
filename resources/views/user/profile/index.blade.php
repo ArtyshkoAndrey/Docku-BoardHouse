@@ -99,29 +99,6 @@
 {{--                          <input type="email" class="form-control mb-4 rounded-0" name="email" placeholder="Email" value="" required>--}}
                         </div>
                         <div class="col-md-6 col-12">
-{{--                          <div class="select-wrapper">--}}
-{{--                            <div class="form-outline">--}}
-{{--                              <input class="form-control select-input" type="text" role="listbox" aria-multiselectable="true" aria-disabled="false" aria-haspopup="true" aria-expanded="false" readonly="">--}}
-{{--                              <label class="form-label select-label" style="margin-left: 0;">Example label</label>--}}
-{{--                              <span class="select-arrow"></span>--}}
-{{--                              --}}{{--                            <div class="form-notch">--}}
-{{--                              --}}{{--                              <div class="form-notch-leading" style="width: 9px;"></div>--}}
-{{--                              --}}{{--                              <div class="form-notch-middle" style="width: 87.2px;"></div>--}}
-{{--                              --}}{{--                              <div class="form-notch-trailing"></div>--}}
-{{--                              --}}{{--                            </div>--}}
-{{--                              <select class="select select-initialized" multiple="">--}}
-{{--                                <option value="1">One</option>--}}
-{{--                                <option value="2">Two</option>--}}
-{{--                                <option value="3">Three</option>--}}
-{{--                                <option value="4">Four</option>--}}
-{{--                                <option value="5">Five</option>--}}
-{{--                                <option value="6">Six</option>--}}
-{{--                                <option value="7">Seven</option>--}}
-{{--                                <option value="8">Eight</option>--}}
-{{--                              </select>--}}
-{{--                            </div>--}}
-{{--                          </div>--}}
-
                           <select class="form-control mb-4" name="currency">
                             <option selected value="1">Тенге</option>
                           </select>

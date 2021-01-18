@@ -206,9 +206,12 @@
     <div class="container-fluid container-md w-100">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav align-items-center w-100">
+          <li class="nav-item ml-auto">
+            <a href="{{ route('index') }}" class="nav-link">Главная</a>
+          </li>
           @foreach($categories = \App\Models\Category::whereDoesntHave('parents')->get() as $index => $category)
 
-            <li class="nav-item dropdown {{ $index === 0 ? 'ml-auto' : ($index === count($categories) - 1 ? 'mr-auto' : null) }}">
+            <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -242,6 +245,66 @@
 
           @endforeach
 
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Sale</span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+
+                  @foreach($category->child as $childCategory)
+                    <div class="col col-md-4 col-lg-3 flex-column">
+                      @foreach($childCategory->child as $thirdCategory)
+                        <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
+                      @endforeach
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown mr-auto">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>Бренды</span>
+            </a>
+
+            <div class="triangle" aria-labelledby="navbarDropdown"></div>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="container">
+
+                <div class="row">
+
+                  @foreach($category->child as $childCategory)
+                    <div class="col col-md-4 col-lg-3 flex-column" >
+                      @foreach($childCategory->child as $thirdCategory)
+                        <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
+                      @endforeach
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

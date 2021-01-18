@@ -3,14 +3,13 @@
 
 @section('content')
   <div class="container" id="catalog">
-    <div>
+    <div class="mb-2">
       <span class="title">Каталог товаров</span>
       <span class="badge">1000</span>
     </div>
 
-    <div class="row">
-      <form action="{{ route('product.all') }}" class="" method="get" id="product-all">
-
+    <form action="{{ route('product.all') }}" class="" method="get" id="product-all">
+      <div class="row w-100">
         <div class="col-auto dropdown">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>Категория товаров</span>
@@ -31,11 +30,11 @@
           </div>
         </div>
 
-        <div class="col-auto mr-auto">
+        <div class="col-auto">
           <button class="btn btn-primary">Применить</button>
         </div>
 
-        <div class="col-auto dropdown ml-auto">
+        <div class="col-12 col-md-auto dropdown ml-auto mt-2 mt-md-0">
           <a href="#" class="text-dark dropdown-toggle text-decoration-none" role="button" id="dropdownOrderLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             @if($filter['order'] === 'sort-old')
               <i class="fas fa-sort-amount-down"></i> С начало старые
@@ -54,8 +53,8 @@
             <a href="#" role="button" onclick="orderSort('sort-cheap')" class="dropdown-item bg-transparent {{ $filter['order'] === 'sort-cheap' ? 'active' : '' }}"><i class="fas fa-sort-amount-down"></i> С начало дешёвые</a>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
     <hr>
     <div class="row ml-1">
       @foreach($filter['category'] as $value)
@@ -68,7 +67,7 @@
           <a href="#!">Очистить всё</a>
         </div>
     </div>
-    <hr>
+  <hr>
   </div>
 
 

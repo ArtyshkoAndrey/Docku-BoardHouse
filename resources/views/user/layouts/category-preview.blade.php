@@ -1,5 +1,5 @@
 <div class="container category-preview">
-  <div>
+  <div class="title-wrapper">
     <span class="title">{{ $title }}</span>
     <a href="#!"><i class="bx bx-right-arrow-alt"></i></a>
   </div>

@@ -1,11 +1,11 @@
 <div class="col-3 p-1">
-  <img src="{{ asset('images/item-preview.jpg') }}" alt="Заголовок" class="w-100" style="object-fit: cover">
+  <img src="{{ asset('images/item-preview.jpg') }}" alt="Заголовок" class="w-100 img-fluid" style="object-fit: cover">
 </div>
 
 <div class="col-9">
   <div class="row h-100 align-items-between">
     <div class="col-10">
-      <p class="h5 item-name">GNU Klassy by Kaitlyn Farrington qwe</p>
+      <p class="h5 item-name mt-1">GNU Klassy by Kaitlyn Farrington qwe</p>
       <p class="h6">
         <span class="item-size">Размер: </span><span>160</span>
       </p>
