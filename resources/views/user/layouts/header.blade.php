@@ -19,7 +19,7 @@
                 <li>
 
                   <button
-                    @click="$store.commit('set_currency', {{$currency}})"
+                    @click="$store.dispatch('set_currency', { currency: {{$currency}} })"
                     class="dropdown-item"
                     v-bind:class="$store.state.currency.id === {{ $currency->id }} ? 'active' : '' ">
                       {{ $currency->name }} ({{ $currency->symbol }})

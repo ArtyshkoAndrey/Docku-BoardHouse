@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2020. Данный файл является интелектуальной собственостью Fulliton.
- * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
- */
-
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
@@ -27,19 +22,6 @@ const store = new Vuex.Store({
       state.currency = item
       state.currency_id = item.id
     },
-    set_currency: (state, item) => {
-      window.axios.post('/api/set-currency', {
-        user_id: state.user ? state.user.id : null,
-        currency_id: item.id
-      })
-        .then (response => {
-          state.currency = response.data
-          state.currency_id = item.id
-        })
-        .catch(error => {
-          alert(error.response.data)
-        })
-    },
     auth: (state, {auth, user}) => {
       state.auth = auth
       state.user = user
@@ -60,6 +42,20 @@ const store = new Vuex.Store({
     auth: state => {
       return state.auth;
     },
+  },
+  actions: {
+    set_currency: ({commit, state}, data) => {
+      window.axios.post('/api/set-currency', {
+        user_id: state.user ? state.user.id : null,
+        currency_id: data.currency.id
+      })
+        .then (response => {
+          commit('currency', response.data)
+        })
+        .catch(error => {
+          alert(error.response.data)
+        })
+    }
   },
   plugins: [createPersistedState()],
 });
