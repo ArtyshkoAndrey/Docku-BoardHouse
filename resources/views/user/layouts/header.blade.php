@@ -154,18 +154,18 @@
                         </p>
                       </div>
                       <div class="col-4 d-flex justify-content-around align-items-center">
-                        <button type="button" class="btn btn-dark cart-button">
+                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: $store.getters.itemByProduct(product).id, amount: -1 })">
                           <i class="bx bx-minus"></i>
                         </button>
                         <p id="cart-item-amount-1" class="mx-2 my-auto">
                           @{{ $store.state.cart.items.find(el => product.product_skuses.some(sk => sk.id === el.id) ).amount }}
                         </p>
-                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: $store.state.cart.items.find(el => product.product_skuses.some(sk => sk.id === el.id) ).id, amount: 1 })">
+                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: $store.getters.itemByProduct(product).id, amount: 1 })">
                           <i class="bx bx-plus"></i>
                         </button>
                       </div>
                       <div class="col-2 d-flex align-items-center">
-                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
+                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" @click="$store.commit('removeItem', $store.getters.itemByProduct(product).id)">
                           <i class="bx bxs-trash bx-sm"></i>
                         </button>
                       </div>
@@ -179,7 +179,7 @@
                 </div>
                 <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
                   <div class="col-8 col-md-12 d-flex justify-content-end align-items-center p-0">
-                    <p class="h6 font-weight-bold">Итого: 1 220 000 ₸</p>
+                    <p class="h6 font-weight-bold">Итого: @{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
                   </div>
                   <div class="col-4 col-md-12">
                     <button class="bg-transparent border-0 text-decoration-none" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
