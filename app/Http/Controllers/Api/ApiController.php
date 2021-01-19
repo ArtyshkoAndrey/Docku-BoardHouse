@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Models\CartItems;
 use App\Models\Currency;
 use App\Models\Product;
 use App\Models\User;
@@ -50,7 +51,7 @@ class ApiController extends Controller
     return response()->json($currency, 200);
   }
 
-  public function products (Request $request)
+  public function products (Request $request): JsonResponse
   {
     $ids = $request->get('products_skuses_ids', []);
     $products = Product::with('photos', 'productSkuses')->whereHas('productSkuses', function ($q) use ($ids) {
@@ -58,5 +59,21 @@ class ApiController extends Controller
     })->get();
 
     return response()->json($products);
+  }
+
+  public function update_cart (Request $request)
+  {
+    $data = $request->all();
+
+    CartItems::whereUserId($data['user_id'])->delete();
+    foreach ($data['products_skuses'] as $ps) {
+      CartItems::create(['user_id' => $data['user_id'], 'product_sku_id' => $ps['id'], 'amount' => $ps['amount']]);
+    }
+  }
+
+  public function cart_items_auth (Request $request): JsonResponse
+  {
+    $cartItems = CartItems::whereUserId($request->get('user_id'))->get();
+    return response()->json($cartItems, 200);
   }
 }

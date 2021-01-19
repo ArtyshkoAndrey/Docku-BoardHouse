@@ -26,16 +26,9 @@ const store = new Vuex.Store({
         }
       } else {
         state.cart.items.push({id: id, amount: amount})
-        window.axios.post('/api/products', {
-          products_skuses_ids: state.cart.items.map(el => el.id)
-        })
-          .then(response => {
-            store.commit('setProducts', response.data)
-          })
-          .catch(error => {
-            alert(error.response.data)
-          })
+        store.dispatch('getProducts')
       }
+      store.dispatch('updateAuthCart')
     },
     setProducts: (state, products) => {
       state.cart.products = products
@@ -45,10 +38,12 @@ const store = new Vuex.Store({
       state.cart.products = state.cart.products.filter( e => {
         return !e.product_skuses.some(sk => sk.id === id)
       })
+      store.dispatch('updateAuthCart')
     },
     clearCart: (state) => {
       state.cart.items = []
       state.cart.products = []
+      store.dispatch('updateAuthCart')
     },
     currency: (state, item) => {
       state.currency = item
@@ -60,6 +55,7 @@ const store = new Vuex.Store({
       if (state.currency_id === null)
         state.currency_id = 1
       state.currency_id = user ? user.currency_id ?? state.currency_id : state.currency_id
+      store.dispatch('getCartItems')
     },
   },
   getters: {
@@ -86,6 +82,47 @@ const store = new Vuex.Store({
       })
         .then (response => {
           commit('currency', response.data)
+        })
+        .catch(error => {
+          alert(error.response.data)
+        })
+    },
+    updateAuthCart: ({commit, state}) => {
+      if (state.auth) {
+        window.axios.post('/api/update-cart', {
+          auth: state.auth,
+          user_id: state.user.id,
+          products_skuses: state.cart.items
+        })
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            alert(error.response.data)
+          })
+      }
+    },
+    getCartItems: ({commit, state}) => {
+      window.axios.post('/api/cart-items-auth', {
+        user_id: state.user.id
+      })
+        .then(response => {
+          state.cart.items = []
+          state.cart.products = []
+          response.data.forEach(item => {
+            state.cart.items.push({id: item.product_sku_id, amount: item.amount})
+          })
+          store.dispatch('getProducts')
+        })
+    },
+    getProducts: ({commit, state}) => {
+      console.log(state.cart.items.map(el => el.id))
+      window.axios.post('/api/products', {
+        products_skuses_ids: state.cart.items.map(el => el.id)
+      })
+        .then(response => {
+          console.log(response.data)
+          commit('setProducts', response.data)
         })
         .catch(error => {
           alert(error.response.data)

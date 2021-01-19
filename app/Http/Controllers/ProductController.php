@@ -60,6 +60,21 @@ class ProductController extends Controller
       }
     }
 
+    if ($brandArr = $request->input('brand', [])) {
+      !is_array($brandArr) ? $brandArr = [$brandArr] : null;
+      foreach ($brandArr as $index => $brand) {
+        if ($index == 0) {
+          $items = $items->whereHas('brand', function ($query) use ($brand) {
+            return $query->where('brands.id', '=', $brand);
+          });
+        } else {
+          $items = $items->orWhereHas('brand', function ($query) use ($brand) {
+            return $query->where('brands.id', '=', $brand);
+          });
+        }
+      }
+    }
+
 //    if ($sizeArr = $request->input('skus', [])) {
 //      !is_array($sizeArr) ? $sizeArr = [$sizeArr] : null;
 //      foreach ($sizeArr as $index => $size) {
@@ -75,13 +90,14 @@ class ProductController extends Controller
 //      }
 //    }
 
-
+    $itemsCount = $items->count();
     $items = $items->paginate(15);
     $filter = [
       'category' => $categoryArr,
-      'order' => $order
+      'order' => $order,
+      'brand' => $brandArr
     ];
-    return view('user.product.catalog', compact('items', 'filter'));
+    return view('user.product.catalog', compact('items', 'filter', 'itemsCount'));
   }
 
   /**

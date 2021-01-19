@@ -41,6 +41,8 @@ class CartItems extends Model
    */
   protected $fillable = [
     'amount',
+    'user_id',
+    'product_sku_id'
   ];
 
   /**
