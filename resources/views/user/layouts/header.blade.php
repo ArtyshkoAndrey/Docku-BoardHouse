@@ -215,7 +215,8 @@
           <li class="nav-item ml-auto">
             <a href="{{ route('index') }}" class="nav-link">Главная</a>
           </li>
-          @foreach($categories = \App\Models\Category::whereDoesntHave('parents')->get() as $index => $category)
+
+          @foreach(\App\Models\Category::whereDoesntHave('parents')->get() as $index => $category)
 
             <li class="nav-item dropdown">
               <a

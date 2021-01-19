@@ -16,12 +16,9 @@
       </div>
       <div class="col-md-6 col-lg-2">
         <span class="title">Категории</span>
-        <a href="#!">Сноуборды</a>
-        <a href="#!">Ботинки</a>
-        <a href="#!">Крепления</a>
-        <a href="#!">Одежда</a>
-        <a href="#!">Защита</a>
-        <a href="#!">Аксессуары</a>
+        @foreach(\App\Models\Category::whereDoesntHave('parents')->get() as $category)
+          <a href="{{ route('product.all', ['category' => $category->id]) }}">{{ $category->name }}</a>
+        @endforeach
       </div>
       <div class="col-md-6 col-lg-3">
         <span class="title">Как нас найти</span>
