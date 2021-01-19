@@ -29,7 +29,7 @@
       </div>
       <div class="col-12 col-md-7 d-flex justify-content-center align-items-center p-0 px-2">
         @if($item->skuses()->count() >=  2)
-          <a href="{{ route('product.show', $item->id) }}" class="btn btn-outline-dark btn-to-cart">
+          <a href="{{ route('product.show', $item->id) }}" class="btn btn-outline-dark w-100 btn-to-cart">
             <i class="bx bx-cart"></i>
             <span>Выбрать</span>
           </a>
