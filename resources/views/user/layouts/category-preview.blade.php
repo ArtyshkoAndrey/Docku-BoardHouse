@@ -1,7 +1,7 @@
 <div class="container category-preview">
   <div class="title-wrapper">
     <span class="title">{{ $title }}</span>
-    <a href="#!"><i class="bx bx-right-arrow-alt"></i></a>
+    <a href="{{ $link }}"><i class="bx bx-right-arrow-alt"></i></a>
   </div>
   <div class="row">
     @foreach($products as $product)
