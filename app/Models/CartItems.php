@@ -27,6 +27,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|CartItems whereUpdatedAt($value)
  * @method static Builder|CartItems whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\User $user
  */
 class CartItems extends Model
 {

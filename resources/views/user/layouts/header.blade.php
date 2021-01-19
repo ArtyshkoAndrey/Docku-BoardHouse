@@ -140,7 +140,7 @@
 
               <div class="row mt-2" v-for="product in $store.state.cart.products">
                 <div class="col-3 col-sm-2 d-flex align-items-center">
-                  <img :src="'storage/images/thumbnails/' + product.photos[0].name + '.png'" alt="" class="img-fluid pb-2">
+                  <img :src="'/storage/images/thumbnails/' + product.photos[0].name + '.jpg'" alt="" class="img-fluid pb-2">
                 </div>
                 <div class="col-9 col-sm-10 border-bottom">
                   <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">

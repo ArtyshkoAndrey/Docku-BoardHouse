@@ -15,17 +15,36 @@
           </div>
           <div class="col-3 slider-nav">
             <div class="scroll-wrapper">
-              <div class="item" v-for="i in 6">
-                <div class="img-wrapper" data-image-id="">
-                  <img class="w-100" src="{{ asset('images/item-preview.jpg') }}">
+
+              @foreach($product->photos as $photo)
+
+                <div class="item">
+                  <div class="img-wrapper" data-image-id="{{ $photo->id }}">
+                    <picture>
+                      <source type="image/webp" srcset="{{ $photo->getThumbnailUrlWebp() }}">
+                      <source type="image/jpeg" srcset="{{ $photo->getThumbnailUrlJpg() }}">
+                      <img class="w-100" src="{{ $photo->getThumbnailUrlJpg() }}" alt="{{ $photo->name }}">
+                    </picture>
+
+                  </div>
                 </div>
-              </div>
+
+              @endforeach
+
             </div>
           </div>
           <div class="col-9 slider-for">
-            <div class="img-wrapper" v-for="i in 6">
-              <img class="w-100" src="{{ asset('images/item-preview.jpg') }}">
-            </div>
+
+            @foreach($product->photos->reverse() as $photo)
+              <div class="img-wrapper" data-id="{{ $photo->id }}">
+                <picture>
+                  <source type="image/webp" srcset="{{  $photo->getUrlWebp() }}">
+                  <source type="image/jpeg" srcset="{{  $photo->getUrlJpg() }}">
+                  <img class="w-100" src="{{ $photo->getUrlJpg() }}" alt="{{ $photo->name }}">
+                </picture>
+              </div>
+            @endforeach
+
           </div>
           <div class="col-12">
             <div class="row">
@@ -38,8 +57,15 @@
       </div>
       <div class="col-12 col-md-5">
         <div class="row flex-column">
-          <div class="col-12">Сноуборд / Мужчинам / Профессиональные / GNU Klassy by Kaitlyn Farrington</div>
-          <div class="col-12 title-wrapper">GNU Klassy by Kaitlyn Farrington</div>
+          <div class="col-12">
+
+            @foreach($categories as $category)
+              {{ $category->name }} /
+            @endforeach
+            {{ $product->title }}
+
+          </div>
+          <div class="col-12 title-wrapper">{{ $product->title }}</div>
           <div class="col-12 prices-wrapper"></div>
           <div class="col-12 sizes-wrapper"></div>
           <div class="col-12"></div>
@@ -57,6 +83,7 @@
   //   $('.slider-nav').height($('.slider-for .img-wrapper').height());
   // });
   let itemAmount = 4
+{{--  {{ count($product->photos) }} - кол-во фотографий--}}
 
   function initSliderSize() {
     let previewImageHeight = $('.slider-for .img-wrapper').height()

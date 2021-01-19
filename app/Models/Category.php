@@ -26,6 +26,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereToMenu($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|Category[] $child
+ * @property-read int|null $child_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Category[] $parents
+ * @property-read int|null $parents_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class Category extends Model
 {

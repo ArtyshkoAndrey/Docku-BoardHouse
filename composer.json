@@ -19,7 +19,7 @@
     "laravel/telescope": "^4.4",
     "laravel/tinker": "^2.5",
     "laravel/ui": "^3.1",
-    "ext-simplexml": "*",
+    "ext-simplexml": "*"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.8",

@@ -27,6 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Photo whereProductId($value)
  * @method static Builder|Photo whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \App\Models\Product|null $product
  */
 class Photo extends Model
 {
@@ -48,22 +49,22 @@ class Photo extends Model
 
   public function getUrlWebp(): string
   {
-    return asset('storage/images/photos/' . $this->name  . '.webp');
+    return asset('storage/images/photos/' . str_replace(" ", "%20", $this->name)  . '.webp');
   }
 
   public function getThumbnailUrlWebp(): string
   {
-    return asset('storage/images/thumbnails/' . $this->name  . '.webp');
+    return asset('storage/images/thumbnails/' . str_replace(" ", "%20", $this->name)  . '.webp');
   }
 
-  public function getUrlPng(): string
+  public function getUrlJpg(): string
   {
-    return asset('storage/images/photos/' . $this->name  . '.png');
+    return asset('storage/images/photos/' . str_replace(" ", "%20", $this->name)  . '.jpg');
   }
 
   public function getThumbnailUrlJpg(): string
   {
-    return asset('storage/images/thumbnails/' . $this->name . '.png');
+    return asset('storage/images/thumbnails/' .  str_replace(" ", "%20", $this->name) . '.jpg');
   }
 
 }

@@ -91,6 +91,13 @@ class ProductController extends Controller
   public function show (int $id): View
   {
     $product = Product::find($id);
-    return view('user.product.show', compact('product'));
+    $childCategory = $product->category()->first();
+    $categories = [];
+    while($category = $childCategory->parents()->first()) {
+      array_push($categories, $category);
+      $childCategory = $category;
+    }
+    array_push($categories, $product->category()->first());
+    return view('user.product.show', compact('product', 'categories'));
   }
 }

@@ -59,6 +59,8 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $cart_items_count
  * @property bool $is_admin
  * @method static Builder|User whereIsAdmin($value)
+ * @property int|null $currency_id
+ * @method static Builder|User whereCurrencyId($value)
  */
 class User extends Authenticatable
 {

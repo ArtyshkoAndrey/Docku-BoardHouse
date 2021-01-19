@@ -61,6 +61,16 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
  * @mixin Eloquent
+ * @property string $sex
+ * @property int|null $brand_id
+ * @property int|null $category_id
+ * @property-read \App\Models\Brand|null $brand
+ * @property-read \App\Models\Category|null $category
+ * @property-read Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
+ * @method static Builder|Product whereBrandId($value)
+ * @method static Builder|Product whereCategoryId($value)
+ * @method static Builder|Product whereSex($value)
  */
 class Product extends Model
 {

@@ -75,7 +75,7 @@
     <div class="row">
       @foreach($items as $item)
         <div class="col-6 col-lg-4 col-xl-3 p-0">
-          @include('user.layouts.item', array('item'=>$item))
+          @include('user.layouts.item', array('item' => $item))
         </div>
       @endforeach
     </div>

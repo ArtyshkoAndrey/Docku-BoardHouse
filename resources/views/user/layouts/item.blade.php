@@ -10,7 +10,6 @@
             <source type="image/jpeg" srcset="{{ $item->getThumbnailJpg() }}">
             <img src="{{ $item->getThumbnailJpg() }}" class="w-100 h-100" alt="{{ $item->name }}">
           </picture>
-          {{--      TODO: Изменить asset, когда будут таблицы --}}
         </div>
       </div>
     </div>
@@ -41,9 +40,8 @@
             <span>В корзину</span>
           </button>
         @else
-          <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0">
-            <i class="bx bx-cart"></i>
-            <span>Нет размеров</span>
+          <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0" disabled>
+            Товар распродан
           </button>
         @endif
 
