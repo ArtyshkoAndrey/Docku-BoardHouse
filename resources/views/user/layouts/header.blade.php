@@ -238,7 +238,7 @@
                   <div class="row">
 
                     @foreach($category->child as $childCategory)
-                      <div class="col col-md-4 col-lg-3 flex-column" >
+                      <div class="col-6 col-md-4 col-lg-3 flex-column" >
                         <a class="item font-weight-bold text-black" href="{{ route('product.all', ['category' => $childCategory->id]) }}">{{ $childCategory->name }}</a>
                         @foreach($childCategory->child as $thirdCategory)
                           <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
@@ -252,35 +252,13 @@
 
           @endforeach
 
-          <li class="nav-item dropdown">
+          <li class="nav-item">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link text-danger"
               href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
             >
               <span>Sale</span>
             </a>
-
-            <div class="triangle" aria-labelledby="navbarDropdown"></div>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container">
-
-                <div class="row">
-
-                  @foreach($category->child as $childCategory)
-                    <div class="col col-md-4 col-lg-3 flex-column">
-                      @foreach($childCategory->child as $thirdCategory)
-                        <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
-                      @endforeach
-                    </div>
-                  @endforeach
-                </div>
-              </div>
-            </div>
           </li>
           <li class="nav-item dropdown mr-auto">
             <a
@@ -300,14 +278,18 @@
               <div class="container">
 
                 <div class="row">
+                  <?php
+                    $countBrands = App\Models\Brand::count();
+                    $countBrands /= 4;
 
-                  @foreach($category->child as $childCategory)
-                    <div class="col col-md-4 col-lg-3 flex-column" >
-                      @foreach($childCategory->child as $thirdCategory)
-                        <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
-                      @endforeach
-                    </div>
-                  @endforeach
+                    \App\Models\Brand::chunk($countBrands, function ($brands) {
+                      echo '<div class="col-6 col-md-4 col-lg-3 flex-column" >';
+                      foreach ($brands as $brand) {
+                        echo '<a class="item" href="' . route('product.all', ['brand' => $brand->id]) . '">' . $brand->name . '</a>';
+                      }
+                      echo '</div>';
+                    });
+                  ?>
                 </div>
               </div>
             </div>
