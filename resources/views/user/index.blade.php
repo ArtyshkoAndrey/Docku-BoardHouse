@@ -14,12 +14,16 @@
   </section>
 
   <section>
-    @include('user.layouts.category-preview', ['title' => 'Новое поступление', 'products' => $newProducts])
+{{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
+    @include('user.layouts.category-preview', ['title' => 'Новое поступление', 'link' => route('product.all'), 'products' => $newProducts])
 
-    @include('user.layouts.category-preview', ['title' => 'Хит продаж', 'products' => $hitProducts])
+    {{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
+    @include('user.layouts.category-preview', ['title' => 'Хит продаж', 'link' => route('product.all'), 'products' => $hitProducts])
 
     @foreach($categories as $category)
-      @include('user.layouts.category-preview', ['title' => $category->name, 'products' => $category->products()->get()])
+      @if($category->products->count() > 0)
+        @include('user.layouts.category-preview', ['title' => $category->name, 'link' => route('product.all', ['category' => $category->id]), 'products' => $category->products()->orderByDesc('id')->take(4)->get()])
+      @endif
     @endforeach
 
   </section>
