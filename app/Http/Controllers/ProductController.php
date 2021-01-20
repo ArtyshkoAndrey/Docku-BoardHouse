@@ -111,7 +111,6 @@ class ProductController extends Controller
     $filter = [
       'category' => $categoryArr,
       'order' => $order,
-      'brand' => $brandArr
       'brand' => $brandArr,
       'sale'  => $sale,
       'new'   => $new,
