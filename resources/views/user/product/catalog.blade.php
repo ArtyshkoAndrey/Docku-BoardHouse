@@ -93,7 +93,7 @@
       @endforeach
 
       <div class="col-auto px-2 py-1 m-1 clear-filters">
-        <a href="#!">Очистить всё</a>
+        <a href="{{ route('product.all') }}">Очистить всё</a>
       </div>
     </div>
   <hr>
