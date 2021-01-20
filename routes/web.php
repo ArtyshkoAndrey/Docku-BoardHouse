@@ -23,12 +23,17 @@ Route::prefix('cart')->name('cart.')->group( function () {
   Route::get('/', [CartController::class, 'index'])->name('index');
 });
 
-Route::prefix('profile')->name('profile.')->group( function () {
+Route::middleware(['auth'])->prefix('profile')->name('profile.')->group( function () {
+  Route::name('update.')->prefix('update')->group( function () {
+    Route::put('data', [ProfileController::class, 'data'])->name('data');
+    Route::put('photo', [ProfileController::class, 'photo'])->name('photo');
+    Route::put('password', [ProfileController::class, 'password'])->name('password');
+  });
   Route::get('/', [ProfileController::class, 'index'])->name('index');
 });
 
 Route::prefix('order')->name('order.')->group( function () {
-  Route::get('/', [OrderController::class, 'index'])->name('index');
+  Route::get('/', [OrderController::class, 'index'])->middleware('auth')->name('index');
   Route::get('/create', [OrderController::class, 'create'])->name('create');
 });
 

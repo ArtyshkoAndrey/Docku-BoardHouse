@@ -58,7 +58,7 @@
         <div class="alert alert-success fade show info-alert" data-mdb-color="success" role="alert">
           <div class="d-flex flex-column justify-content-center">
             <strong>Успешно!</strong>
-            <span>$message</span>
+            <span>{{ $message }}</span>
           </div>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -82,7 +82,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
 
 
 <script>

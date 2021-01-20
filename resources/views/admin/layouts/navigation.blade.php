@@ -34,7 +34,10 @@
         <i class="bx bxs-chevron-down" aria-hidden="true"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-right w-200" aria-labelledby="navbar-dropdown-toggle-btn-1"> <!-- w-200 = width: 20rem (200px) -->
-        <p class="dropdown-item d-flex align-items-center m-0"><img src="{{ asset('images/user-photo.JPG') }}" alt="person" class="img-fluid rounded-circle h-25 mr-10"> Артышко Андрей</p>
+        <p class="dropdown-item d-flex align-items-center m-0">
+          <img src="{{ auth()->user()->avatar_image }}" alt="person" class="img-fluid rounded-circle h-25 mr-10">
+          {{ auth()->user()->name }}
+        </p>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item text-danger"><i class="bx bxs-log-out-circle mx-10"></i> Выйти</a>
 

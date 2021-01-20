@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -79,7 +80,8 @@ class User extends Authenticatable
     'address',
     'post_code',
     'is_admin',
-    'currency_id'
+    'currency_id',
+    'phone'
   ];
 
   /**
@@ -141,8 +143,34 @@ class User extends Authenticatable
     }
   }
 
-  public function getAvatar (): string
+  public function currency (): belongsTo
+  {
+    return $this->belongsTo(Currency::class);
+  }
+
+  public function getAvatarImageAttribute (): string
   {
     return $this->avatar ? asset('storage/avatar/' . $this->avatar) : asset('images/product.jpg');
+  }
+
+  public function getFullAddressAttribute (): string
+  {
+    $text = '';
+    if($this->country)
+      $text .= $this->country->name . ', ';
+
+    if($this->city)
+      $text .= $this->city->name . ', ';
+
+    if($this->address)
+      if($this->post_code)
+        $text .= $this->address . ', ';
+      else
+        $text .= $this->address;
+
+    if($this->post_code)
+      $text .= $this->post_code;
+
+    return $text;
   }
 }

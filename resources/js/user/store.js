@@ -104,17 +104,19 @@ const store = new Vuex.Store({
       }
     },
     getCartItems: ({commit, state}) => {
-      window.axios.post('/api/cart-items-auth', {
-        user_id: state.user.id
-      })
-        .then(response => {
-          state.cart.items = []
-          state.cart.products = []
-          response.data.forEach(item => {
-            state.cart.items.push({id: item.product_sku_id, amount: item.amount})
-          })
-          store.dispatch('getProducts')
+      if (state.auth) {
+        window.axios.post('/api/cart-items-auth', {
+          user_id: state.user.id
         })
+          .then(response => {
+            state.cart.items = []
+            state.cart.products = []
+            response.data.forEach(item => {
+              state.cart.items.push({id: item.product_sku_id, amount: item.amount})
+            })
+            store.dispatch('getProducts')
+          })
+      }
     },
     getProducts: ({commit, state}) => {
       console.log(state.cart.items.map(el => el.id))
