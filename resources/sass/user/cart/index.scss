@@ -5,6 +5,7 @@
 
 #cart-index-page {
   .cart-page {
+    min-height: calc(100vh - 480px - 175px);
     padding-bottom: 30px;
 
     .cart-button {

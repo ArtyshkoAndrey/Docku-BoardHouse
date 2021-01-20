@@ -154,18 +154,18 @@
                         </p>
                       </div>
                       <div class="col-4 d-flex justify-content-around align-items-center">
-                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })">
+                        <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })">
                           <i class="bx bx-minus"></i>
                         </button>
                         <p id="cart-item-amount-1" class="mx-2 my-auto">
                           @{{ product.item.amount }}
                         </p>
-                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: product.item.id, amount: 1 })">
+                        <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: 1 })">
                           <i class="bx bx-plus"></i>
                         </button>
                       </div>
-                      <div class="col-2 d-flex align-items-center">
-                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" @click="$store.commit('removeItem', product.item.id)">
+                      <div class="col-3 d-flex align-items-center justify-content-center">
+                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" onclick="event.stopPropagation();" @click="$store.commit('removeItem', product.item.id)">
                           <i class="bx bxs-trash bx-sm"></i>
                         </button>
                       </div>
@@ -178,11 +178,11 @@
                   <a href="{{ route('cart.index') }}" class="btn btn-dark w-100">Перейти в корзину</a>
                 </div>
                 <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
-                  <div class="col-8 col-md-12 d-flex justify-content-end align-items-center p-0">
-                    <p class="h6 font-weight-bold">Итого: @{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
+                  <div class="col-6 col-md-12 d-flex justify-content-start justify-content-md-end align-items-center p-0">
+                    <p class="h6 font-weight-bold mb-0 mb-md-2">Итого: @{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
                   </div>
-                  <div class="col-4 col-md-12">
-                    <button class="bg-transparent border-0 text-decoration-none" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
+                  <div class="col-6 col-md-12 pr-md-0">
+                    <button class="bg-transparent border-0 text-decoration-none pr-0" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
                   </div>
                 </div>
               </div>
