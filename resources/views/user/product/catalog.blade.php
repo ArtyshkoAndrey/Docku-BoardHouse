@@ -52,6 +52,18 @@
         </div>
 
         <div class="col-auto">
+          <div class="checkbox w-100 h-100 d-flex align-items-center">
+            <div class="row">
+              <div class="col-auto pr-0">
+                <input type="checkbox" class="form-check-input" id="sale" name="sale" value="true" {{ $filter['sale'] ? 'checked' : null }}>
+              </div>
+              <div class="col m-0">
+                <label class="form-check-label" for="sale">Sale</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
           <button class="btn btn-primary">Применить</button>
         </div>
 

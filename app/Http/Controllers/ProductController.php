@@ -33,6 +33,10 @@ class ProductController extends Controller
     $items = Product::query();
     $order = $request->input('order', 'sort-new');
 
+    $sale = $request->get('sale', false);
+    if($sale) {
+      $items = $items->whereOnSale(true);
+    }
     if ($order) {
       if ($order === 'sort-new') {
         $items = $items->orderBy('created_at', 'desc');
@@ -96,6 +100,7 @@ class ProductController extends Controller
       'category' => $categoryArr,
       'order' => $order,
       'brand' => $brandArr
+      'sale'  => $sale,
     ];
     return view('user.product.catalog', compact('items', 'filter', 'itemsCount'));
   }
