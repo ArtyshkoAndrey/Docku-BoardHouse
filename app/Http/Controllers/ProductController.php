@@ -49,6 +49,11 @@ class ProductController extends Controller
       }
     }
 
+    if ($sex = $request->input('sex', [])) {
+      !is_array($sex) ? $sex = [$sex] : null;
+      $items = $items->whereIn('sex', $sex);
+    }
+
     if ($categoryArr = $request->input('category', [])) {
       !is_array($categoryArr) ? $categoryArr = [$categoryArr] : null;
       foreach ($categoryArr as $index => $category) {
@@ -101,6 +106,7 @@ class ProductController extends Controller
       'order' => $order,
       'brand' => $brandArr
       'sale'  => $sale,
+      'sex'   => $sex
     ];
     return view('user.product.catalog', compact('items', 'filter', 'itemsCount'));
   }
