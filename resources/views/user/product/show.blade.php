@@ -21,9 +21,9 @@
                 <div class="item">
                   <div class="img-wrapper" data-image-id="{{ $photo->id }}">
                     <picture>
-                      <source type="image/webp" srcset="{{ $photo->getThumbnailUrlWebp() }}">
-                      <source type="image/jpeg" srcset="{{ $photo->getThumbnailUrlJpg() }}">
-                      <img class="w-100" src="{{ $photo->getThumbnailUrlJpg() }}" alt="{{ $photo->name }}">
+                      <source type="image/webp" srcset="{{ $photo->thumbnail_url_webp }}">
+                      <source type="image/jpeg" srcset="{{ $photo->thumbnail_url_jpg }}">
+                      <img class="w-100" src="{{ $photo->thumbnail_url_jpg }}" alt="{{ $photo->name }}">
                     </picture>
 
                   </div>
