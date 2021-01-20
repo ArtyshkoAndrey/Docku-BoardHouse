@@ -53,6 +53,26 @@
 
         <div class="col-auto dropdown">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownBrandLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Размеры</span>
+          </a>
+          <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownBrandLink">
+            @foreach($attributes as $attr)
+              <div class="checkbox">
+                <div class="row">
+                  <div class="col-auto pr-0">
+                    <input type="checkbox" class="form-check-input" id="attr-{{$attr->id}}" name="size[]" value="{{ $attr->id }}" {{ in_array($attr->id, $filter['size']) ? 'checked' : null }}>
+                  </div>
+                  <div class="col m-0">
+                    <label class="form-check-label" for="attr-{{$attr->id}}">{{ $attr->title }} <span class="text-muted pl-1">{{ $attr->category->name }}</span></label>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+
+        <div class="col-auto dropdown">
+          <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownBrandLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>Пол</span>
           </a>
           <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownBrandLink">
@@ -135,6 +155,12 @@
         <div class="col-auto px-2 py-1 m-1 filter-badge">
           <span class="font-weight-light">{{ \App\Models\Brand::find($value)->name }}</span>
           <button class="btn bg-transparent h5 shadow-0 border-none p-0" onclick="uncheckProps($('#brand-{{$value}}'))"><i class="bx bx-x"></i></button>
+        </div>
+      @endforeach
+      @foreach($filter['size'] as $value)
+        <div class="col-auto px-2 py-1 m-1 filter-badge">
+          <span class="font-weight-light">{{ \App\Models\Skus::find($value)->title }}</span>
+          <button class="btn bg-transparent h5 shadow-0 border-none p-0" onclick="uncheckProps($('#attr-{{$value}}'))"><i class="bx bx-x"></i></button>
         </div>
       @endforeach
 

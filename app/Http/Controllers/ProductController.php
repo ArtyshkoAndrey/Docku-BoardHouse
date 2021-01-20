@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Skus;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,6 +36,8 @@ class ProductController extends Controller
 
     $sale = $request->get('sale', false);
     $new = $request->get('new', false);
+
+    $size = $request->get('size', []);
 
     if($sale) {
       $items = $items->whereOnSale(true);
@@ -91,20 +94,42 @@ class ProductController extends Controller
       }
     }
 
-//    if ($sizeArr = $request->input('skus', [])) {
-//      !is_array($sizeArr) ? $sizeArr = [$sizeArr] : null;
-//      foreach ($sizeArr as $index => $size) {
+    if ($brandArr !== [] && $categoryArr !== []) {
+      $attributes = Skus::whereHas('products.brand', function ($q) use ($brandArr) {
+        $q->whereIn('products.brand_id', $brandArr);
+      })
+        ->whereHas('products.category', function ($q) use ($categoryArr) {
+          $q->whereIn('products.category_id', $categoryArr);
+        })->get();
+    } else if ($categoryArr !== [] && $brandArr === []) {
+      $attributes = Skus::whereHas('products.category', function ($q) use ($categoryArr) {
+        $q->whereIn('products.category_id', $categoryArr);
+      })->get();
+    } else if ($categoryArr === [] && $brandArr !== []) {
+      $attributes = Skus::whereHas('products.brand', function ($q) use ($brandArr) {
+        $q->whereIn('products.brand_id', $brandArr);
+      })->get();
+    } else {
+      $attributes = Skus::all();
+    }
+
+    if ($size) {
+      !is_array($size) ? $size = [$size] : null;
+      $items = $items->whereHas('skuses', function ($query) use ($size) {
+        return $query->whereIn('skus_id', $size);
+      });
+//      foreach ($size as $index => $s) {
 //        if ($index == 0) {
-//          $items = $items->whereHas('skus', function ($query) use ($size) {
-//            return $query->where('id', '=', $size);
+//          $items = $items->whereHas('skuses', function ($query) use ($s) {
+//            return $query->where('id', '=', $s);
 //          });
 //        } else {
-//          $items = $items->orWhereHas('skus', function ($query) use ($size) {
-//            return $query->where('id', '=', $size);
+//          $items = $items->orWhereHas('skuses', function ($query) use ($s) {
+//            return $query->where('id', '=', $s);
 //          });
 //        }
 //      }
-//    }
+    }
 
     $itemsCount = $items->count();
     $items = $items->paginate(15);
@@ -114,9 +139,10 @@ class ProductController extends Controller
       'brand' => $brandArr,
       'sale'  => $sale,
       'new'   => $new,
-      'sex'   => $sex
+      'sex'   => $sex,
+      'size'  => $size
     ];
-    return view('user.product.catalog', compact('items', 'filter', 'itemsCount'));
+    return view('user.product.catalog', compact('items', 'filter', 'itemsCount', 'attributes'));
   }
 
   /**
