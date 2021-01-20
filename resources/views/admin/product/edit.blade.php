@@ -324,7 +324,7 @@
       @foreach($product->photos as $photo)
         mockFile = { name: '{{ $photo->name . '.jpg' }}', size: {{ File::size(public_path('storage/images/photos/' . $photo->name . '.jpg')) }} };
         uploader.emit("addedfile", mockFile);
-        uploader.emit("thumbnail", mockFile, '{{ $photo->getThumbnailUrlJpg() }}');
+        uploader.emit("thumbnail", mockFile, '{{ $photo->thumbnail_url_jpg }}');
         uploader.emit("complete", mockFile);
         uploader.files.push(mockFile)
         fileList.push({"serverFileName": '{{ $photo->name . '.jpg' }}', "fileName":'{{ $photo->name . '.jpg' }}', "fileId": {{ $i }}});
