@@ -33,6 +33,17 @@ class ProductController extends Controller
     $items = Product::query();
     $order = $request->input('order', 'sort-new');
 
+    $sale = $request->get('sale', false);
+    $new = $request->get('new', false);
+
+    if($sale) {
+      $items = $items->whereOnSale(true);
+    }
+
+    if($new) {
+      $items = $items->whereOnNew(true);
+    }
+
     if ($order) {
       if ($order === 'sort-new') {
         $items = $items->orderBy('created_at', 'desc');
@@ -45,6 +56,11 @@ class ProductController extends Controller
       }
     }
 
+    if ($sex = $request->input('sex', [])) {
+      !is_array($sex) ? $sex = [$sex] : null;
+      $items = $items->whereIn('sex', $sex);
+    }
+
     if ($categoryArr = $request->input('category', [])) {
       !is_array($categoryArr) ? $categoryArr = [$categoryArr] : null;
       foreach ($categoryArr as $index => $category) {
@@ -55,6 +71,21 @@ class ProductController extends Controller
         } else {
           $items = $items->orWhereHas('category', function ($query) use ($category) {
             return $query->where('categories.id', '=', $category);
+          });
+        }
+      }
+    }
+
+    if ($brandArr = $request->input('brand', [])) {
+      !is_array($brandArr) ? $brandArr = [$brandArr] : null;
+      foreach ($brandArr as $index => $brand) {
+        if ($index == 0) {
+          $items = $items->whereHas('brand', function ($query) use ($brand) {
+            return $query->where('brands.id', '=', $brand);
+          });
+        } else {
+          $items = $items->orWhereHas('brand', function ($query) use ($brand) {
+            return $query->where('brands.id', '=', $brand);
           });
         }
       }
@@ -75,12 +106,33 @@ class ProductController extends Controller
 //      }
 //    }
 
-
+    $itemsCount = $items->count();
     $items = $items->paginate(15);
     $filter = [
       'category' => $categoryArr,
-      'order' => $order
+      'order' => $order,
+      'brand' => $brandArr,
+      'sale'  => $sale,
+      'new'   => $new,
+      'sex'   => $sex
     ];
-    return view('user.product.catalog', compact('items', 'filter'));
+    return view('user.product.catalog', compact('items', 'filter', 'itemsCount'));
+  }
+
+  /**
+   * @param int $id
+   * @return View
+   */
+  public function show (int $id): View
+  {
+    $product = Product::find($id);
+    $childCategory = $product->category()->first();
+    $categories = [];
+    while($category = $childCategory->parents()->first()) {
+      array_unshift($categories, $category);
+      $childCategory = $category;
+    }
+    array_push($categories, $product->category()->first());
+    return view('user.product.show', compact('product', 'categories'));
   }
 }

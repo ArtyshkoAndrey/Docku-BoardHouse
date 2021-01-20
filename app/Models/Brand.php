@@ -25,6 +25,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Brand whereName($value)
  * @method static Builder|Brand whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class Brand extends Model
 {

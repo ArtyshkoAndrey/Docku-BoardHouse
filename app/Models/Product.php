@@ -61,6 +61,16 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
  * @mixin Eloquent
+ * @property string $sex
+ * @property int|null $brand_id
+ * @property int|null $category_id
+ * @property-read \App\Models\Brand|null $brand
+ * @property-read \App\Models\Category|null $category
+ * @property-read Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
+ * @method static Builder|Product whereBrandId($value)
+ * @method static Builder|Product whereCategoryId($value)
+ * @method static Builder|Product whereSex($value)
  */
 class Product extends Model
 {
@@ -114,6 +124,11 @@ class Product extends Model
     }'
   ];
 
+  protected $appends =[
+    'thumbnail_webp',
+    'thumbnail_jpg'
+  ];
+
   const SEX_MALE    = 'male';
   const SEX_FEMALE  = 'female';
   const SEX_UNISEX  = 'unisex';
@@ -132,15 +147,6 @@ class Product extends Model
     self::SEX_MALE    => 'Мужской',
     self::SEX_CHILD   => 'Детский'
   ];
-
-  public function getAvatar (): string
-  {
-    if (count($this->photos) > 0) {
-      return asset('storage/products/' . $this->photos[0]->name);
-    } else {
-      return asset('images/person.png');
-    }
-  }
 
   public function available (): bool
   {
@@ -168,7 +174,7 @@ class Product extends Model
 
   public function skuses(): BelongsToMany
   {
-    return $this->belongsToMany(Skus::class, 'product_skuses', 'product_id', 'skus_id')->withPivot(['stock', 'id']);
+    return $this->belongsToMany(Skus::class, 'product_skuses', 'product_id', 'skus_id')->withPivot('stock', 'id');
   }
 
   public function productSkuses(): HasMany
@@ -181,19 +187,19 @@ class Product extends Model
     return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id')->withPivot(['amount']);
   }
 
-  public function getThumbnailWebp (): string
+  public function getThumbnailWebpAttribute (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrlWepb();
+      return $this->photos->first()->thumbnail_url_webp;
     } else {
       return asset('images/product.jpg');
     }
   }
 
-  public function getThumbnailPng (): string
+  public function getThumbnailJpgAttribute (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrlPng();
+      return $this->photos->first()->thumbnail_url_jpg;
     } else {
       return asset('images/product.jpg');
     }

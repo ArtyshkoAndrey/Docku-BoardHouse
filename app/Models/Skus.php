@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Skus whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Skus whereWeight($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class Skus extends Model
 {

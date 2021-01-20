@@ -22,16 +22,25 @@ class CreateUsersTable extends Migration
       $table->string('password');
       $table->text('address')->nullable();
       $table->string('post_code')->nullable();
+      $table->string('phone')->nullable();
       $table->foreignId('country_id')
         ->nullable()
         ->constrained()
         ->onUpdate('cascade')
-        ->onDelete('cascade');
+        ->onDelete('set null');
+
       $table->foreignId('city_id')
         ->nullable()
         ->constrained()
         ->onUpdate('cascade')
-        ->onDelete('cascade');
+        ->onDelete('set null');
+
+      $table->foreignId('currency_id')
+        ->nullable()
+        ->constrained()
+        ->onUpdate('cascade')
+        ->onDelete('set null');
+
       $table->boolean('is_admin')->default(false);
       $table->rememberToken();
       $table->timestamps();

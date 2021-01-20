@@ -8,16 +8,24 @@
       <div class="col-md-6">
         <h1 class="title">Магазин cноубордов</h1>
         <span class="subtitle">С одним из лучших<br>ассортиментов в Алматы</span>
-        <a href="#" class="preview">Начать покупки <i class="bx bx-sm bx-run"></i></a>
+        <a href="{{ route('product.all') }}" class="preview">Начать покупки <i class="bx bx-sm bx-run"></i></a>
       </div>
     </div>
   </section>
 
   <section>
-    @include('user.layouts.category-preview')
-    @include('user.layouts.category-preview')
-    @include('user.layouts.category-preview')
-    @include('user.layouts.category-preview')
+{{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
+    @include('user.layouts.category-preview', ['title' => 'Новое поступление', 'link' => route('product.all'), 'products' => $newProducts])
+
+    {{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
+    @include('user.layouts.category-preview', ['title' => 'Хит продаж', 'link' => route('product.all'), 'products' => $hitProducts])
+
+    @foreach($categories as $category)
+      @if($category->products->count() > 0)
+        @include('user.layouts.category-preview', ['title' => $category->name, 'link' => route('product.all', ['category' => $category->id]), 'products' => $category->products()->orderByDesc('id')->take(4)->get()])
+      @endif
+    @endforeach
+
   </section>
 
   @include('user.layouts.instagram')

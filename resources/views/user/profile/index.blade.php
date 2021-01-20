@@ -21,8 +21,8 @@
             </div>
             <div class="row mt-4">
               <div class="col-md-3">
-                <img src="{{ asset('images/user-photo.JPG') }}" class="img-fluid w-100 px-4 px-md-0" alt="...">
-                <form action="" method="POST" id="form-photo" enctype="multipart/form-data">
+                <img src="{{ auth()->user()->avatar_image }}" class="img-fluid w-100 px-4 px-md-0" alt="{{ auth()->user()->name }}">
+                <form action="{{ route('profile.update.photo') }}" method="POST" id="form-photo" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                   <input type="file" id="photo" name="photo" size="chars" accept="image/jpeg,image/png" style="visibility: hidden; width: 100px;">
@@ -32,10 +32,10 @@
                 </form>
               </div>
               <div class="col-md-9 pl-md-5 pl-0 px-3 mt-4 mt-md-0">
-                <h4 class="font-weight-bold">Артышко Андрей</h4>
-                <p class="font-weight-light mb-0">Россия, Красноярск Горького 24 кв.2 25 660099</p>
-                <p class="font-weight-light mb-0">Валюта: Американский доллар</p>
-                <p class="font-weight-light mb-0">89029634366</p>
+                <h4 class="font-weight-bold">{{ auth()->user()->name }}</h4>
+                <p class="font-weight-light mb-0">{{ auth()->user()->full_address }}</p>
+                <p class="font-weight-light mb-0">Валюта: {{ auth()->user()->currency->name ?? '' }}</p>
+                <p class="font-weight-light mb-0">{{ auth()->user()->phone }}</p>
               </div>
             </div>
             <div class="row mt-4">
@@ -45,7 +45,7 @@
                     <h4 class="font-weight-bold">Сменить пароль</h4>
                   </div>
                   <div class="col-12">
-                    <form action="#" method="POST">
+                    <form action="{{ route('profile.update.password') }}" method="POST">
                       @csrf
                       @method('PUT')
                       <div class="form-outline form-password mb-4 rounded">
@@ -58,8 +58,6 @@
                         <label class="form-label" for="password_confirmation">Повторите пароль</label>
                         <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
                       </div>
-{{--                      <input type="password" name="password" class="form-control mb-4 rounded-0" placeholder="Новый пароль">--}}
-{{--                      <input type="password" name="password_confirmation" class="form-control mb-4 rounded-0" placeholder="Повторите пароль">--}}
                       <button type="submit" class="btn btn-dark m-0 rounded-0">Сохранить</button>
                     </form>
                   </div>
@@ -71,81 +69,129 @@
                     <h4 class="font-weight-bold">Настройки профиля</h4>
                   </div>
                   <div class="col-12">
-                    <form action="#" method="POST">
+                    <form action="{{ route('profile.update.data') }}" method="POST">
                       @csrf
                       @method('PUT')
                       <div class="row">
+
                         <div class="col-md-6 col-12">
                           <div class="form-outline mb-4">
-                            <input type="text" id="first_name" name="first_name" class="form-control" />
-                            <label class="form-label" for="first_name">ФИО</label>
+                            <input type="text"
+                                   id="name"
+                                   name="name"
+                                   class="form-control active"
+                                   value="{{ auth()->user()->name }}"
+                                   required/>
+                            <label class="form-label"
+                                   for="name">
+                              ФИО
+                            </label>
                           </div>
-{{--                          <input type="text" name="first_name" class="form-control mb-4 rounded-0" placeholder="ФИО" value="" required>--}}
                         </div>
 
                         <div class="col-md-6 col-12">
                           <div class="form-outline mb-4">
-                            <input type="text" id="contact_phone" name="contact_phone" class="form-control" />
-                            <label class="form-label" for="contact_phone">Номер телефона</label>
+                            <input type="text"
+                                   id="phone"
+                                   name="phone"
+                                   class="form-control active"
+                                   value="{{ auth()->user()->phone }}"
+                                   required/>
+                            <label class="form-label"
+                                   for="phone">
+                              Номер телефона
+                            </label>
                           </div>
-{{--                          <input type="text" class="form-control mb-4 rounded-0" name="contact_phone" placeholder="Номер телефона" value="" required>--}}
                         </div>
 
                         <div class="col-md-6 col-12">
                           <div class="form-outline mb-4">
-                            <input type="email" id="email" name="email" class="form-control" />
-                            <label class="form-label" for="email">Email</label>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   class="form-control active"
+                                   value="{{ auth()->user()->email }}"
+                                   required/>
+                            <label class="form-label"
+                                   for="email">
+                              Email
+                            </label>
                           </div>
-{{--                          <input type="email" class="form-control mb-4 rounded-0" name="email" placeholder="Email" value="" required>--}}
                         </div>
-                        <div class="col-md-6 col-12">
-{{--                          <div class="select-wrapper">--}}
-{{--                            <div class="form-outline">--}}
-{{--                              <input class="form-control select-input" type="text" role="listbox" aria-multiselectable="true" aria-disabled="false" aria-haspopup="true" aria-expanded="false" readonly="">--}}
-{{--                              <label class="form-label select-label" style="margin-left: 0;">Example label</label>--}}
-{{--                              <span class="select-arrow"></span>--}}
-{{--                              --}}{{--                            <div class="form-notch">--}}
-{{--                              --}}{{--                              <div class="form-notch-leading" style="width: 9px;"></div>--}}
-{{--                              --}}{{--                              <div class="form-notch-middle" style="width: 87.2px;"></div>--}}
-{{--                              --}}{{--                              <div class="form-notch-trailing"></div>--}}
-{{--                              --}}{{--                            </div>--}}
-{{--                              <select class="select select-initialized" multiple="">--}}
-{{--                                <option value="1">One</option>--}}
-{{--                                <option value="2">Two</option>--}}
-{{--                                <option value="3">Three</option>--}}
-{{--                                <option value="4">Four</option>--}}
-{{--                                <option value="5">Five</option>--}}
-{{--                                <option value="6">Six</option>--}}
-{{--                                <option value="7">Seven</option>--}}
-{{--                                <option value="8">Eight</option>--}}
-{{--                              </select>--}}
-{{--                            </div>--}}
-{{--                          </div>--}}
 
+                        <div class="col-md-6 col-12">
                           <select class="form-control mb-4" name="currency">
-                            <option selected value="1">Тенге</option>
+                            @foreach(\App\Models\Currency::all() as $currency)
+                              <option value="{{ $currency->id }}"
+                                      {{ ($currency->id === (auth()->user()->currency->id ?? null))
+                                            ? 'selected'
+                                            : null }} >
+                                {{ $currency->name }}
+                              </option>
+                            @endforeach
                           </select>
                         </div>
+
                         <div class="col-md-6 col-12 mb-4">
-                          <select id="country" name="country" class="w-100 h-100 form-control">
-                            <option value="1" selected>Россия</option>
-                          </select>
+                          <country :name="'country'"
+                                   :id="'country'"
+                                   :country_props="{{ json_encode(auth()->user()->country ?? null) }}">
+                          </country>
                         </div>
+
                         <div class="col-md-6 col-12 mb-4">
-                          <select id="city" name="city" class="w-100 h-100 form-control">
-                            <option value="1" selected>Красноярск</option>
-                          </select>
+                          <city :name="'city'"
+                                :id="'city'"
+                                :city_props="{{ json_encode(auth()->user()->city ?? null) }}">
+                          </city>
                         </div>
+                        <div class="col-12 mb-4">
+                          <div class="form-outline">
+                            <input type="text"
+                                   id="address"
+                                   name="address"
+                                   class="form-control active"
+                                   value="{{ auth()->user()->address }}"
+                                   required
+                            />
+
+                            <label class="form-label"
+                                   for="address"
+                            >
+                              Улица
+                            </label>
+                          </div>
+                          <small class="form-text text-muted">
+                            Пример: ул. Ленина, 111 кв. 666
+                          </small>
+                        </div>
+
                         <div class="col-12">
                           <div class="form-outline">
-                            <input type="email" id="street" name="street" class="form-control" />
-                            <label class="form-label" for="street">Улица, индекс</label>
+                            <input type="text"
+                                   id="post_code"
+                                   name=post_code
+                                   class="form-control active"
+                                   value="{{ auth()->user()->post_code }}"
+                                   required
+                            />
+
+                            <label class="form-label"
+                                   for="post_code"
+                            >
+                              Индекс
+                            </label>
                           </div>
-{{--                          <input type="text" class="form-control mb-0 rounded-0" name="street" placeholder="Улица, индекс" value="" required>--}}
-                          <small class="form-text text-muted">Пример: ул. Ленина, 111 кв. 666, 143080 (индекс)</small>
+                          <small class="form-text text-muted">
+                            Пример: 143080
+                          </small>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-dark m-0 mt-3 rounded-0">Сохранить</button>
+
+                      <button type="submit"
+                              class="btn btn-dark m-0 mt-3 rounded-0">
+                        Сохранить
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -160,5 +206,15 @@
 @endsection
 
 @section('js')
+  <script>
+    $(document).ready(function () {
+      $('#add-photo').click(() => {
+        $('#photo').click();
+      });
+      $("#photo").change(() => {
+        $('#form-photo').submit()
+      })
+    })
+  </script>
 
 @endsection

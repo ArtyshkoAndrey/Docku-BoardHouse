@@ -17,6 +17,7 @@ class BrandController extends Controller
   /**
    * Display a listing of the resource.
    *
+   * @param Request $request
    * @return Application|Factory|View|Response
    */
   public function index(Request $request)
@@ -86,14 +87,15 @@ class BrandController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param Brand $brand
+   * @param int $id
    * @return RedirectResponse
    */
-  public function update(Request $request, Brand $brand): RedirectResponse
+  public function update(Request $request, int $id): RedirectResponse
   {
     $request->validate([
       'name' => 'required|string|unique:brands,name'
     ]);
+    $brand = Brand::find($id);
     $brand->update($request->all());
     return redirect()->back()->with('success', ['Бренд успешно обнавлён']);
   }
@@ -101,12 +103,13 @@ class BrandController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param Brand $brand
+   * @param int $id
    * @return RedirectResponse
    * @throws Exception
    */
-  public function destroy(Brand $brand): RedirectResponse
+  public function destroy(int $id): RedirectResponse
   {
+    $brand = Brand::find($id);
     $brand->delete();
     return redirect()->back()->with('success', ['Бренд успешно удалён']);
   }

@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     closedMenu () {
-      if (this.ca.length === 0) {
+      if (this.countries.length === 0) {
         this.watcher()
         this.show = false
         this.countries = []

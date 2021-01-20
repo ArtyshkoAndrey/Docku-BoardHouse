@@ -27,6 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Photo whereProductId($value)
  * @method static Builder|Photo whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \App\Models\Product|null $product
  */
 class Photo extends Model
 {
@@ -41,29 +42,35 @@ class Photo extends Model
     'name',
   ];
 
+  protected $appends = [
+    'thumbnail_url_webp',
+    'url_webp',
+    'url_jpg',
+    'thumbnail_url_jpg'
+  ];
   public function product(): BelongsTo
   {
     return $this->belongsTo(Product::class, 'product_id', 'id')->withTrashed();
   }
 
-  public function getUrlWebp(): string
+  public function getUrlWebpAttribute(): string
   {
-    return asset('storage/images/photos/' . $this->name  . '.webp');
+    return asset('storage/images/photos/' . str_replace(" ", "%20", $this->name)  . '.webp');
   }
 
-  public function getThumbnailUrlWebp(): string
+  public function getThumbnailUrlWebpAttribute(): string
   {
-    return asset('storage/images/thumbnails/' . $this->name  . '.webp');
+    return asset('storage/images/thumbnails/' . str_replace(" ", "%20", $this->name)  . '.webp');
   }
 
-  public function getUrlPng(): string
+  public function getUrlJpgAttribute(): string
   {
-    return asset('storage/images/photos/' . $this->name  . '.png');
+    return asset('storage/images/photos/' . str_replace(" ", "%20", $this->name)  . '.jpg');
   }
 
-  public function getThumbnailUrlPng(): string
+  public function getThumbnailUrlJpgAttribute(): string
   {
-    return asset('storage/images/thumbnails/' . $this->name . '.png');
+    return asset('storage/images/thumbnails/' .  str_replace(" ", "%20", $this->name) . '.jpg');
   }
 
 }

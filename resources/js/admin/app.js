@@ -1,5 +1,4 @@
-
-window.Vue = require('vue');
+window.Vue = require('vue')
 
 window.halfmoon = require("halfmoon");
 window.$ = window.jQuery = require('jquery');

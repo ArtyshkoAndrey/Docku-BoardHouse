@@ -34,7 +34,10 @@
         <i class="bx bxs-chevron-down" aria-hidden="true"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-right w-200" aria-labelledby="navbar-dropdown-toggle-btn-1"> <!-- w-200 = width: 20rem (200px) -->
-        <p class="dropdown-item d-flex align-items-center m-0"><img src="{{ asset('images/user-photo.JPG') }}" alt="person" class="img-fluid rounded-circle h-25 mr-10"> Артышко Андрей</p>
+        <p class="dropdown-item d-flex align-items-center m-0">
+          <img src="{{ auth()->user()->avatar_image }}" alt="person" class="img-fluid rounded-circle h-25 mr-10">
+          {{ auth()->user()->name }}
+        </p>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item text-danger"><i class="bx bxs-log-out-circle mx-10"></i> Выйти</a>
 
@@ -89,6 +92,13 @@
         <i class="bx bx-purchase-tag" aria-hidden="true"></i>
       </span>
       Размеры
+    </a>
+
+    <a href="{{ route('admin.category.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.category.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-purchase-tag" aria-hidden="true"></i>
+      </span>
+      Категории
     </a>
 
     <a href="{{ route('telescope') }}" target="_blank" class="sidebar-link sidebar-link-with-icon">

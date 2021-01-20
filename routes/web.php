@@ -10,32 +10,31 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('user.index');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-Route::get('/test', function () {
-  $product = Product::first();
-  $product->forceDelete();
-})->name('test');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('product')->name('product.')->group( function () {
   Route::get('/search', [ProductController::class, 'search'])->name('search');
   Route::get('/all', [ProductController::class, 'all'])->name('all');
+  Route::get('/{id}', [ProductController::class, 'show'])->name('show');
 });
 
 Route::prefix('cart')->name('cart.')->group( function () {
   Route::get('/', [CartController::class, 'index'])->name('index');
 });
 
-Route::prefix('profile')->name('profile.')->group( function () {
+Route::middleware(['auth'])->prefix('profile')->name('profile.')->group( function () {
+  Route::name('update.')->prefix('update')->group( function () {
+    Route::put('data', [ProfileController::class, 'data'])->name('data');
+    Route::put('photo', [ProfileController::class, 'photo'])->name('photo');
+    Route::put('password', [ProfileController::class, 'password'])->name('password');
+  });
   Route::get('/', [ProfileController::class, 'index'])->name('index');
 });
 
 Route::prefix('order')->name('order.')->group( function () {
-  Route::get('/', [OrderController::class, 'index'])->name('index');
+  Route::get('/', [OrderController::class, 'index'])->middleware('auth')->name('index');
+  Route::get('/create', [OrderController::class, 'create'])->name('create');
 });
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -53,3 +52,5 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::post('product/photo/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'photo'])->name('product.photo');
   Route::post('product/photo-delete', [\App\Http\Controllers\Admin\ProductController::class, 'photoDelete'])->name('product.photo.delete');
 });
+
+Route::post('auth/check', [App\Http\Controllers\ApiController::class, 'check']);
