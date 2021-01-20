@@ -57,6 +57,10 @@ class Category extends Model
     'to_menu' => 'boolean',
   ];
 
+  protected $appends = [
+    'search_name'
+  ];
+
   /**
    * Дочерние категории
    *
@@ -80,5 +84,13 @@ class Category extends Model
   public function products(): HasMany
   {
     return $this->hasMany(Product::class);
+  }
+
+  public function getSearchNameAttribute (): string
+  {
+    if ($this->parents()->count() > 0)
+      return $this->name . '(' . $this->parents()->first()->name .')';
+
+    return $this->name . '(' . $this->child()->first()->name .')';
   }
 }
