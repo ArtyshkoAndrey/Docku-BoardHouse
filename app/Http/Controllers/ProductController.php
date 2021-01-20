@@ -110,7 +110,7 @@ class ProductController extends Controller
     $childCategory = $product->category()->first();
     $categories = [];
     while($category = $childCategory->parents()->first()) {
-      array_push($categories, $category);
+      array_unshift($categories, $category);
       $childCategory = $category;
     }
     array_push($categories, $product->category()->first());
