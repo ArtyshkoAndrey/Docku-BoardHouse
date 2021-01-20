@@ -19,8 +19,14 @@ class HomeController extends Controller
   public function index () :View
   {
     $categories = Category::whereToMenu(true)->get();
-    $newProducts = Product::whereOnNew(true)->orderByDesc('id')->take(4)->get();
-    $hitProducts = Product::whereOnTop(true)->orderByDesc('id')->take(4)->get();
+    $newProducts = Product::whereOnNew(true)
+      ->orderByDesc('id')
+      ->take(4)
+      ->get();
+    $hitProducts = Product::whereOnTop(true)
+      ->orderByDesc('id')
+      ->take(4)
+      ->get();
     return view('user.index', compact('categories', 'newProducts', 'hitProducts'));
   }
 }
