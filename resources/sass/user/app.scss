@@ -25,11 +25,12 @@
 
 @import 'product/item';
 @import 'product/catalog';
+@import 'product/show';
 
 @import 'profile/index';
 
 @import 'order/create';
-@import 'order/show';
+
 
 // TODO: тут писать все общие стили, по возможности разбивать на файлы, отдельно для продукта, отдельно для корзины и прочее. Разбивать если там стили используются не общие.
 

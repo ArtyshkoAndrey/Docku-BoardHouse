@@ -28,8 +28,9 @@
     </div>
     <div class="row">
       <div class="col-12 text-center d-inline-block">
-        <span>Powered by <a href="https://www.vk.com/Fulliton" style="color: #1266f1;" target="_blank">Fulliton</a></span>
-        <span class="ml-3">Powered by <a href="https://www.vk.com/Fulliton" style="color: #1266f1;" target="_blank">Fulliton</a></span>
+        <span>
+          Powered by <a href="https://www.vk.com/Fulliton" style="color: #1266f1;" target="_blank">Fulliton</a>
+          and <a href="https://hugant.github.io" style="color: #1266f1;" target="_blank">Hugant Mirron</a></span>
       </div>
     </div>
   </div>
