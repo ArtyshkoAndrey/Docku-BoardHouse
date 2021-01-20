@@ -91,6 +91,13 @@
       Размеры
     </a>
 
+    <a href="{{ route('admin.category.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.category.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-purchase-tag" aria-hidden="true"></i>
+      </span>
+      Категории
+    </a>
+
     <a href="{{ route('telescope') }}" target="_blank" class="sidebar-link sidebar-link-with-icon">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bx-bug" aria-hidden="true"></i>
