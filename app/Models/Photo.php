@@ -42,27 +42,33 @@ class Photo extends Model
     'name',
   ];
 
+  protected $appends = [
+    'thumbnail_url_webp',
+    'url_webp',
+    'url_jpg',
+    'thumbnail_url_jpg'
+  ];
   public function product(): BelongsTo
   {
     return $this->belongsTo(Product::class, 'product_id', 'id')->withTrashed();
   }
 
-  public function getUrlWebp(): string
+  public function getUrlWebpAttribute(): string
   {
     return asset('storage/images/photos/' . str_replace(" ", "%20", $this->name)  . '.webp');
   }
 
-  public function getThumbnailUrlWebp(): string
+  public function getThumbnailUrlWebpAttribute(): string
   {
     return asset('storage/images/thumbnails/' . str_replace(" ", "%20", $this->name)  . '.webp');
   }
 
-  public function getUrlJpg(): string
+  public function getUrlJpgAttribute(): string
   {
     return asset('storage/images/photos/' . str_replace(" ", "%20", $this->name)  . '.jpg');
   }
 
-  public function getThumbnailUrlJpg(): string
+  public function getThumbnailUrlJpgAttribute(): string
   {
     return asset('storage/images/thumbnails/' .  str_replace(" ", "%20", $this->name) . '.jpg');
   }

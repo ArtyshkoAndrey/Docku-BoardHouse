@@ -63,7 +63,7 @@
             @forelse($products as $product)
               <div class="col-11 col-md-6 col-lg-3 mt-20 d-block d-lg-none">
                 <div class="card h-full m-0 p-0 bg-dark-dm">
-                  <img src="{{ $product->getThumbnailJpg()  }}" class="img-fluid rounded-top h-150 w-full object-fit-cover" alt="...">
+                  <img src="{{ $product->thumbnail_jpg  }}" class="img-fluid rounded-top h-150 w-full object-fit-cover" alt="...">
                   <div class="content mx-20 mt-0">
                     <div class="content-title my-20">
                       {{ $product->title }}
@@ -111,7 +111,7 @@
                 <div class="card border-0 product p-0 m-0 bg-dark-dm">
                   <div class="row py-10 align-items-center row-eq-spacing p-0 m-0">
                     <div class="col-lg-1 col-5 px-10 overflow-hidden">
-                      <img src="{{ $product->getThumbnailJpg() }}" class="h-auto d-flex w-full rounded m-0 p-0" alt="{{ $product->title }}">
+                      <img src="{{ $product->thumbnail_jpg }}" class="h-auto d-flex w-full rounded m-0 p-0" alt="{{ $product->title }}">
                     </div>
                     <div class="col-lg col">
                       <div class="row align-items-start">

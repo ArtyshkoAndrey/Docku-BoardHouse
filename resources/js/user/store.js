@@ -39,6 +39,7 @@ const store = new Vuex.Store({
         return !e.product_skuses.some(sk => sk.id === id)
       })
       store.dispatch('updateAuthCart')
+      store.dispatch('getProducts')
     },
     clearCart: (state) => {
       state.cart.items = []
@@ -121,7 +122,6 @@ const store = new Vuex.Store({
         products_skuses_ids: state.cart.items.map(el => el.id)
       })
         .then(response => {
-          console.log(response.data)
           commit('setProducts', response.data)
         })
         .catch(error => {

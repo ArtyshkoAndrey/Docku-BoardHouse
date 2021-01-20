@@ -6,9 +6,9 @@
         <div class="img-wrapper">
           <div class="sale-badge">Sale</div>
           <picture>
-            <source type="image/webp" srcset="{{ $item->getThumbnailWebp() }}">
-            <source type="image/jpeg" srcset="{{ $item->getThumbnailJpg() }}">
-            <img src="{{ $item->getThumbnailJpg() }}" class="w-100 h-100" alt="{{ $item->name }}">
+            <source type="image/webp" srcset="{{ $item->thumbnail_webp }}">
+            <source type="image/jpeg" srcset="{{ $item->thumbnail_jpg }}">
+            <img src="{{ $item->thumbnail_jpg }}" class="w-100 h-100" alt="{{ $item->name }}">
           </picture>
         </div>
       </div>

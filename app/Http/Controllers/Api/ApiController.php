@@ -54,7 +54,7 @@ class ApiController extends Controller
   public function products (Request $request): JsonResponse
   {
     $ids = $request->get('products_skuses_ids', []);
-    $products = Product::with('photos', 'productSkuses')->whereHas('productSkuses', function ($q) use ($ids) {
+    $products = Product::with('photos', 'productSkuses.skus')->whereHas('productSkuses', function ($q) use ($ids) {
       $q->whereIn('id', $ids);
     })->get();
 
@@ -74,6 +74,6 @@ class ApiController extends Controller
   public function cart_items_auth (Request $request): JsonResponse
   {
     $cartItems = CartItems::whereUserId($request->get('user_id'))->get();
-    return response()->json($cartItems, 200);
+    return response()->json($cartItems);
   }
 }

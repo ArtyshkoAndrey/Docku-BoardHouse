@@ -124,6 +124,11 @@ class Product extends Model
     }'
   ];
 
+  protected $appends =[
+    'thumbnail_webp',
+    'thumbnail_jpg'
+  ];
+
   const SEX_MALE    = 'male';
   const SEX_FEMALE  = 'female';
   const SEX_UNISEX  = 'unisex';
@@ -142,15 +147,6 @@ class Product extends Model
     self::SEX_MALE    => 'Мужской',
     self::SEX_CHILD   => 'Детский'
   ];
-
-  public function getAvatar (): string
-  {
-    if (count($this->photos) > 0) {
-      return asset('storage/products/' . $this->photos[0]->name);
-    } else {
-      return asset('images/person.png');
-    }
-  }
 
   public function available (): bool
   {
@@ -191,19 +187,19 @@ class Product extends Model
     return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id')->withPivot(['amount']);
   }
 
-  public function getThumbnailWebp (): string
+  public function getThumbnailWebpAttribute (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrlWebp();
+      return $this->photos->first()->thumbnail_url_webp;
     } else {
       return asset('images/product.jpg');
     }
   }
 
-  public function getThumbnailJpg (): string
+  public function getThumbnailJpgAttribute (): string
   {
     if ($this->photos->count() > 0) {
-      return $this->photos->first()->getThumbnailUrlJpg();
+      return $this->photos->first()->thumbnail_url_jpg;
     } else {
       return asset('images/product.jpg');
     }

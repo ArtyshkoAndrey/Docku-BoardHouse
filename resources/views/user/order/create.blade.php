@@ -114,15 +114,15 @@
       <div class="col-12 col-md-5">
         <div class="row">
           <div class="col-12 justify-content-end d-flex mb-3 mt-4">
-            <a href="{{ route('login') }}" class="text-decoration-none" style="font-size: .9em;">Войдите в аккаунт,
+            <a href="{{ route('login') }}" class="text-decoration-none" v-if="!$store.state.auth" style="font-size: .9em;">Войдите в аккаунт,
               чтобы оплачивать быстрее</a>
           </div>
-          <div class="col-12 mb-5">
+          <div class="col-12 mb-2" :class="$store.state.auth ? 'mt-3' : null">
             <div class="order-results">
               <div class="row">
                 <div class="col-12">
                   <span>Сумма покупок</span>
-                  <span>400 000 тг.</span>
+                  <span>@{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</span>
                 </div>
                 <div class="col-12">
                   <span>Доставка</span>
@@ -139,20 +139,47 @@
               </div>
             </div>
           </div>
+
+          <div class="col-12">
+            <div class="form-outline">
+              <input type="text" id="promocode" name="promocode" class="form-control" />
+              <label class="form-label" for="promocode">Введите промокод (при наличии)</label>
+            </div>
+          </div>
+          <div class="col-12 mb-5">
+            <button class="btn btn-dark d-block w-100 mt-2 py-3 promocode-button">Активировать промокод</button>
+          </div>
+
           <div class="col-12">
             <div class="row">
               <div class="col-12 mb-3">
                 <span class="h5 title">Позиции заказа</span>
               </div>
-              <div class="col-12 mb-3" v-for="i in 3">
+
+              <div class="col-12" v-if="!cartLoader">
                 <div class="row">
-                  <div class="col-3">
-                    <img src="{{ asset('images/item-preview.jpg') }}" alt="" class="w-100" style="object-fit: cover">
+                  <div class="col-12 mb-3" v-for="product in productsCart">
+                    <div class="row">
+                      <div class="col-3">
+                        <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100" style="object-fit: cover">
+                      </div>
+                      <div class="col-9 d-flex flex-column justify-content-around pl-0"
+                           style="border-bottom: 1px solid #E9EAEC;">
+                        <span style="font-weight: 500;">GNU Klassy by Kaitlyn Farrington</span>
+                        <span class="font-weight-bold">
+                          @{{ $cost((product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio * product.item.amount) }} @{{ $store.state.currency.symbol }}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-9 d-flex flex-column justify-content-around pl-0"
-                       style="border-bottom: 1px solid #E9EAEC;">
-                    <span style="font-weight: 500;">GNU Klassy by Kaitlyn Farrington</span>
-                    <span class="font-weight-bold">200 000 тг.</span>
+                </div>
+              </div>
+              <div class="col-12" v-else>
+                <div class="row justify-content-center">
+                  <div class="col-auto">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                   </div>
                 </div>
               </div>

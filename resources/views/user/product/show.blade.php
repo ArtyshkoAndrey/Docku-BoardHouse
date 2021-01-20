@@ -38,9 +38,9 @@
             @foreach($product->photos->reverse() as $photo)
               <div class="img-wrapper" data-id="{{ $photo->id }}">
                 <picture>
-                  <source type="image/webp" srcset="{{  $photo->getUrlWebp() }}">
-                  <source type="image/jpeg" srcset="{{  $photo->getUrlJpg() }}">
-                  <img class="w-100" src="{{ $photo->getUrlJpg() }}" alt="{{ $photo->name }}">
+                  <source type="image/webp" srcset="{{  $photo->url_webp }}">
+                  <source type="image/jpeg" srcset="{{  $photo->url_jpg }}">
+                  <img class="w-100" src="{{ $photo->url_jpg }}" alt="{{ $photo->name }}">
                 </picture>
               </div>
             @endforeach

@@ -48,7 +48,8 @@ const app = new Vue({
   store: store,
   data() {
     return {
-      test: !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+      test: !process.env.NODE_ENV || process.env.NODE_ENV === 'development',
+      cartLoader: true
     }
   },
   async created () {
@@ -82,5 +83,29 @@ const app = new Vue({
       .catch(error => {
         alert(error.response.data)
       })
+
+    this.cartLoader = false
+  },
+  computed: {
+    productsCart() {
+      if (this.$store.state.cart.products.length < 1) {
+        return []
+      }
+      return this.$store.state.cart.items.map(item => {
+        let product = this.$store.state.cart.products.find(el => el.product_skuses.some(sk => sk.id === item.id))
+
+        if (product) {
+          product = Object.assign({}, product)
+          product.item = item
+          product.product_skuses = Object.values(product.product_skuses)
+          product.skus = product.product_skuses
+          product.skus = product.product_skuses.find(el => el.id === item.id)
+          return product
+        }
+      })
+    }
+  },
+  destroyed () {
+    this.$store.state.cart.products = []
   }
-});
+})

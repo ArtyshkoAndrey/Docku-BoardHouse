@@ -138,14 +138,14 @@
             </a>
             <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
-              <div class="row mt-2" v-for="product in $store.state.cart.products">
+              <div class="row mt-2" v-for="product in productsCart" v-if="product">
                 <div class="col-3 col-sm-2 d-flex align-items-center">
                   <img :src="'/storage/images/thumbnails/' + product.photos[0].name + '.jpg'" alt="" class="img-fluid pb-2">
                 </div>
                 <div class="col-9 col-sm-10 border-bottom">
                   <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">
                     <div class="col-12 col-sm-6">
-                      <p class="m-0 font-weight-bold">@{{ product.title }}</p>
+                      <p class="m-0 font-weight-bold">@{{ product.title }} -  @{{ product.skus.skus.title }}</p>
                     </div>
                     <div class="col-12 col-sm-6 d-flex">
                       <div class="col-auto ml-auto d-flex align-items-center">
@@ -154,18 +154,18 @@
                         </p>
                       </div>
                       <div class="col-4 d-flex justify-content-around align-items-center">
-                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: $store.getters.itemByProduct(product).id, amount: -1 })">
+                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })">
                           <i class="bx bx-minus"></i>
                         </button>
                         <p id="cart-item-amount-1" class="mx-2 my-auto">
-                          @{{ $store.state.cart.items.find(el => product.product_skuses.some(sk => sk.id === el.id) ).amount }}
+                          @{{ product.item.amount }}
                         </p>
-                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: $store.getters.itemByProduct(product).id, amount: 1 })">
+                        <button type="button" class="btn btn-dark cart-button" @click="$store.commit('addItem', {id: product.item.id, amount: 1 })">
                           <i class="bx bx-plus"></i>
                         </button>
                       </div>
                       <div class="col-2 d-flex align-items-center">
-                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" @click="$store.commit('removeItem', $store.getters.itemByProduct(product).id)">
+                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" @click="$store.commit('removeItem', product.item.id)">
                           <i class="bx bxs-trash bx-sm"></i>
                         </button>
                       </div>
