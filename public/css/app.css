@@ -47230,4 +47230,23 @@ body {
 .alert.info-alert button {
   margin-left: 0.5em;
 }
+
+.form-outline-wrapper.invalid .form-control {
+  color: #2D3134;
+}
+.form-outline-wrapper.invalid .form-control:focus ~ .form-notch .form-notch-leading, .form-outline-wrapper.invalid .form-control:focus ~ .form-notch .form-notch-middle, .form-outline-wrapper.invalid .form-control:focus ~ .form-notch .form-notch-trailing, .form-outline-wrapper.invalid .form-control.active ~ .form-notch .form-notch-leading, .form-outline-wrapper.invalid .form-control.active ~ .form-notch .form-notch-middle, .form-outline-wrapper.invalid .form-control.active ~ .form-notch .form-notch-trailing {
+  border-color: #f93154 !important;
+}
+.form-outline-wrapper.invalid .form-control:focus ~ .form-label, .form-outline-wrapper.invalid .form-control.active ~ .form-label {
+  color: #f93154;
+}
+.form-outline-wrapper.invalid .form-control ~ .form-notch .form-notch-leading, .form-outline-wrapper.invalid .form-control ~ .form-notch .form-notch-middle, .form-outline-wrapper.invalid .form-control ~ .form-notch .form-notch-trailing {
+  border-color: #f93154 !important;
+}
+.form-outline-wrapper.invalid .form-control ~ .form-label {
+  color: #f93154;
+}
+.form-outline-wrapper.invalid .invalid-feedback {
+  display: block;
+}
 /*# sourceMappingURL=app.css.map*/

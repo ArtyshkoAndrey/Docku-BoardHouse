@@ -73,3 +73,35 @@ body {
   }
 }
 
+.form-outline-wrapper.invalid {
+  .form-control {
+    color: #2D3134;
+
+    &:focus, &.active {
+      &~ .form-notch {
+        .form-notch-leading, .form-notch-middle, .form-notch-trailing {
+          border-color: #f93154 !important;
+        }
+      }
+
+      &~ .form-label {
+        color: #f93154;
+      }
+    }
+
+    &~ .form-notch {
+      .form-notch-leading, .form-notch-middle, .form-notch-trailing {
+        border-color: #f93154 !important;
+      }
+    }
+
+    &~ .form-label {
+      color: #f93154;
+    }
+  }
+
+  .invalid-feedback {
+    display: block;
+  }
+}
+
