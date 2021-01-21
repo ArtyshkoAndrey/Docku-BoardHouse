@@ -44,6 +44,9 @@
                 </picture>
               </div>
             @endforeach
+            <button class="expand-button" onclick="alert(1)">
+              <i class="bx bx-expand"></i>
+            </button>
 
           </div>
           <div class="col-12">
@@ -55,7 +58,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5 pl-0 pl-md-4">
+      <div class="col-12 col-md-5 pl-3 pl-md-4">
         <div class="row flex-column">
           <div class="col-12 breadcrumb">
 
@@ -65,14 +68,47 @@
             {{ $product->title }}
 
           </div>
-          <div class="col-12 title-wrapper">{{ $product->title }}</div>
-          <div class="col-12 prices-wrapper"></div>
-          <div class="col-12 sizes-wrapper"></div>
-          <div class="col-12"></div>
-          <div class="col-12 description-wrapper"></div>
+          <div class="col-12 title-wrapper mb-2">{{ $product->title }}</div>
+          <div class="col-12 prices-wrapper sale mb-2">
+            <span class="old-price">200 000 тг.</span>
+            <span class="price">200 000 тг.</span>
+          </div>
+          <div class="col-12 sizes-wrapper mb-2">
+            <div class="row">
+              <div class="col-auto mr-auto font-weight-bold" style="color: #2D3134;">Выберите размер</div>
+              <div class="col-auto">
+                <a href="#!">Как выбрать нужный размер</a>
+              </div>
+              <div class="col-12 mt-2 size-table">
+                <div class="size-box selected">160</div>
+                <div class="size-box">161</div>
+                <div class="size-box">162</div>
+                <div class="size-box">163</div>
+                <div class="size-box">164</div>
+                <div class="size-box">165</div>
+                <div class="size-box">166</div>
+                <div class="size-box">167</div>
+                <div class="size-box disabled">168</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-5">
+            <button class="btn btn-dark btn-to-cart mt-2 mt-md-0">
+              <span>Добавить в корзину</span>
+              <i class="bx bx-cart-alt"></i>
+            </button>
+          </div>
+          <div class="col-12 description-wrapper">
+            <div class="row">
+              <div class="col-12 title">Описание</div>
+              <div class="col-12 description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam facere fuga incidunt iste modi nostrum optio, quod repellendus voluptatem.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    @include('user.layouts.category-preview', ['title' => 'Может быть интересно', 'link' => route('product.all'), 'products' => $category->products()])
   </div>
 @endsection
 
@@ -116,6 +152,7 @@
 
     currentPosition = 0
     scrollStep = itemHeight + parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
+    $('.slider-nav .scroll-wrapper').css('top', '-' + currentPosition + 'px')
   })
 
   $('.slider-button#prev').click(function() {
