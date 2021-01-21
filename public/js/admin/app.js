@@ -27216,7 +27216,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\docu\resources\js\admin\app.js */"./resources/js/admin/app.js");
+module.exports = __webpack_require__(/*! D:\OpenServer\domains\docu\resources\js\admin\app.js */"./resources/js/admin/app.js");
 
 
 /***/ })

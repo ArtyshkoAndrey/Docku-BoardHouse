@@ -35,8 +35,8 @@
           </div>
           <div class="col-9 slider-for">
 
-            @foreach($product->photos->reverse() as $photo)
-              <div class="img-wrapper" data-id="{{ $photo->id }}">
+            @foreach($product->photos as $index => $photo)
+              <div class="img-wrapper {{ $index === 0 ? 'active' : null }}" data-id="{{ $photo->id }}">
                 <picture>
                   <source type="image/webp" srcset="{{  $photo->url_webp }}">
                   <source type="image/jpeg" srcset="{{  $photo->url_jpg }}">
@@ -70,8 +70,10 @@
           </div>
           <div class="col-12 title-wrapper mb-2">{{ $product->title }}</div>
           <div class="col-12 prices-wrapper sale mb-2">
-            <span class="old-price">200 000 тг.</span>
-            <span class="price">200 000 тг.</span>
+            @if($product->on_sale)
+              <span class="old-price">{{ $cost($store.state.currency.ratio * <? echo $product->price ?>) }} @{{ $store.state.currency.symbol }}</span>
+            @endif
+            <span class="price">{{ $cost($store.state.currency.ratio * <? echo $product->on_sale ? $product->price_sale : $product->price?>) }} @{{ $store.state.currency.symbol }}</span>
           </div>
           <div class="col-12 sizes-wrapper mb-2">
             <div class="row">

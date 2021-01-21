@@ -34,10 +34,10 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      this.data.phone = $('#phone').val()
-      this.data.email = $('#email').val()
-      this.data.name = $('#name').val()
-      this.data.address = $('#address').val()
+      this.data.phone     = $('#phone').val()
+      this.data.email     = $('#email').val()
+      this.data.name      = $('#name').val()
+      this.data.address   = $('#address').val()
       this.data.post_code = $('#post_code').val()
     })
   },

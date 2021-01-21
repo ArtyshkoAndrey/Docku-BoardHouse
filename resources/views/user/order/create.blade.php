@@ -107,7 +107,7 @@
                        id="phone"
                        name="phone"
                        class="form-control {{ (auth()->user()->phone ?? null) ? 'active' : '' }}"
-                       :value="'{{ auth()->user()->phone ?? '' }}'"
+                       value="{{ auth()->user()->phone ?? '' }}"
                        @input="setPhone"/>
                 <label class="form-label"
                        for="phone">
@@ -166,30 +166,38 @@
             {{--              </div>--}}
             {{--            </div>--}}
 
-            <div class="col-12 mb-4">
-              <p class="h4 title">Оплата</p>
-            </div>
+            <transition name="slide-fade" mode="out-in" appear>
+              <div class="col-12" v-if="transfer.name !== null">
+                <div class="row">
+                  <div class="col-12 mb-4">
+                    <p class="h4 title">Оплата</p>
+                  </div>
 
-            <div class="col-12 mb-3">
-              <div class="choosable-field active">
-                <div class="row">
-                  <div class="col-8 d-flex flex-column">
-                    <span class="title">Оплата при получении</span>
-                    <span class="description">Оплатите курьеру или в магазине после получения</span>
+                  <div class="col-12 mb-3">
+                    <div class="choosable-field active">
+                      <div class="row">
+                        <div class="col-8 d-flex flex-column">
+                          <span class="title">Оплата при получении</span>
+                          <span class="description">Оплатите курьеру или в магазине после получения</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 mb-5">
+                    <div class="choosable-field">
+                      <div class="row">
+                        <div class="col-8 d-flex flex-column">
+                          <span class="title">Оплатить онлайн</span>
+                          <span class="description">Оплатите онлайн любым удобным способом через сервис cloud payments</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-12 mb-5">
-              <div class="choosable-field">
-                <div class="row">
-                  <div class="col-8 d-flex flex-column">
-                    <span class="title">Оплатить онлайн</span>
-                    <span class="description">Оплатите онлайн любым удобным способом через сервис cloud payments</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </transition>
+
+
           </div>
           <button class="btn btn-dark complete" disabled>Завершить и перейти к оплате</button>
         </div>
