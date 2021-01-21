@@ -21,14 +21,16 @@
               <country :id="'country'"
                        :name="'country'"
                        v-on:set="setCountry"
-                       :country_props="{{ json_encode(auth()->user()->country ?? null) }}"></country>
+                       :country_props="{{ json_encode(auth()->user()->country ?? null) }}"
+                       ref="country"></country>
             </div>
 
             <div class="col-12 col-md-6 mb-3">
               <city :id="'city'"
                     :name="'city'"
                     v-on:set="setCity"
-                    :city_props="{{ json_encode(auth()->user()->city ?? null) }}"></city>
+                    :city_props="{{ json_encode(auth()->user()->city ?? null) }}"
+                    ref="city"></city>
             </div>
 
             <div class="col-md-6 mb-5">
@@ -235,34 +237,37 @@
                 <div class="col-12 mb-3">
                   <span class="h5 title">Позиции заказа</span>
                 </div>
+                <transition name="slide-fade" mode="out-in" appear>
+                  <div class="col-12" v-if="!$root.cartLoader" key="products">
+                    <div class="row">
+                      <div class="col-12 mb-3" v-for="product in $root.productsCart">
+                        <div class="row">
+                          <div class="col-3">
+                            <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100" style="object-fit: cover">
+                          </div>
+                          <div class="col-9 d-flex flex-column justify-content-around pl-0"
+                               style="border-bottom: 1px solid #E9EAEC;">
+                            <span style="font-weight: 500;">@{{ product.title }}</span>
+                            <span class="font-weight-bold">
+                            @{{ $cost((product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio * product.item.amount) }} @{{ $store.state.currency.symbol }}
+                          </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                <div class="col-12" v-if="!$root.cartLoader">
-                  <div class="row">
-                    <div class="col-12 mb-3" v-for="product in $root.productsCart">
-                      <div class="row">
-                        <div class="col-3">
-                          <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100" style="object-fit: cover">
-                        </div>
-                        <div class="col-9 d-flex flex-column justify-content-around pl-0"
-                             style="border-bottom: 1px solid #E9EAEC;">
-                          <span style="font-weight: 500;">@{{ product.title }}</span>
-                          <span class="font-weight-bold">
-                          @{{ $cost((product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio * product.item.amount) }} @{{ $store.state.currency.symbol }}
-                        </span>
+                  <div class="col-12" v-else key="loader">
+                    <div class="row justify-content-center">
+                      <div class="col-auto">
+                        <div class="spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12" v-else>
-                  <div class="row justify-content-center">
-                    <div class="col-auto">
-                      <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </transition>
+
               </div>
             </div>
           </div>

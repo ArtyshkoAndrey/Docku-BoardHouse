@@ -74,28 +74,31 @@ export default {
         price: 0,
         name: 'pickup'
       }
+    },
+
+    resetTransfer () {
+      this.transfer = {
+        price: 0,
+        name: null
+      }
     }
   },
   computed: {
     price () {
       return this.$store.getters.priceAmount + (-this.price_with_sale + this.transfer.price) * this.$store.state.currency.ratio
     }
+  },
+  watch: {
+    'data.country': {
+      handler: function (after, before) {
+        this.resetTransfer()
+      },
+      deep: true
+    }
   }
 }
 </script>
 
 <style scoped>
-  /* Анимации появления и исчезновения могут иметь */
-  /* различные продолжительности и динамику.       */
-  .slide-fade-enter-active {
-    transition: all .1s ease;
-  }
-  .slide-fade-leave-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to
-    /* .slide-fade-leave-active до версии 2.1.8 */ {
-    transform: translateX(10px);
-    opacity: 0;
-  }
+
 </style>
