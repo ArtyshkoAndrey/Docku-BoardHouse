@@ -255,7 +255,7 @@
           <li class="nav-item">
             <a
               class="nav-link text-danger"
-              href="#"
+              href="{{ route('product.all', ['sale' => true]) }}"
             >
               <span>Sale</span>
             </a>
