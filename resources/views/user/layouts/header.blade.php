@@ -182,7 +182,7 @@
                     <p class="h6 font-weight-bold mb-0 mb-md-2">Итого: @{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
                   </div>
                   <div class="col-6 col-md-12 pr-md-0">
-                    <button class="bg-transparent border-0 text-decoration-none pr-0" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
+                    <button class="bg-transparent border-0 text-decoration-none pr-0" onclick="event.stopPropagation();" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
                   </div>
                 </div>
               </div>

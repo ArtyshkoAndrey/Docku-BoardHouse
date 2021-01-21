@@ -46281,6 +46281,52 @@ footer .container .row > div .number {
   height: 100vh;
   width: 100vw;
 }
+#login-page .social-signin, #register-page .social-signin, #password-request-page .social-signin, #password-reset-page .social-signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 0;
+  font-size: 0.9em;
+  box-shadow: none;
+  border: 1px solid #a69c93;
+}
+#login-page .social-signin#google i, #register-page .social-signin#google i, #password-request-page .social-signin#google i, #password-reset-page .social-signin#google i {
+  color: #dd4b39;
+  transition-duration: 0.3s;
+}
+#login-page .social-signin#google:hover, #register-page .social-signin#google:hover, #password-request-page .social-signin#google:hover, #password-reset-page .social-signin#google:hover {
+  background: #dd4b39;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+#login-page .social-signin#google:hover i, #register-page .social-signin#google:hover i, #password-request-page .social-signin#google:hover i, #password-reset-page .social-signin#google:hover i {
+  color: #fff;
+}
+#login-page .social-signin#fb i, #register-page .social-signin#fb i, #password-request-page .social-signin#fb i, #password-reset-page .social-signin#fb i {
+  color: #3b5998;
+  transition-duration: 0.3s;
+}
+#login-page .social-signin#fb:hover, #register-page .social-signin#fb:hover, #password-request-page .social-signin#fb:hover, #password-reset-page .social-signin#fb:hover {
+  background: #3b5998;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+#login-page .social-signin#fb:hover i, #register-page .social-signin#fb:hover i, #password-request-page .social-signin#fb:hover i, #password-reset-page .social-signin#fb:hover i {
+  color: #fff;
+}
+#login-page .social-signin#vk i, #register-page .social-signin#vk i, #password-request-page .social-signin#vk i, #password-reset-page .social-signin#vk i {
+  color: #4a76a8;
+  transition-duration: 0.3s;
+}
+#login-page .social-signin#vk:hover, #register-page .social-signin#vk:hover, #password-request-page .social-signin#vk:hover, #password-reset-page .social-signin#vk:hover {
+  background: #4a76a8;
+  color: #fff;
+  transition-duration: 0.3s;
+}
+#login-page .social-signin#vk:hover i, #register-page .social-signin#vk:hover i, #password-request-page .social-signin#vk:hover i, #password-reset-page .social-signin#vk:hover i {
+  color: #fff;
+}
 #login-page .card, #register-page .card, #password-request-page .card, #password-reset-page .card {
   background: #FFFFFF;
   box-shadow: 0 4px 10px rgba(123, 123, 123, 0.43);
@@ -47167,7 +47213,9 @@ body {
   position: absolute;
 }
 
-#login-page footer, #register-page footer {
+#login-page footer, #register-page footer,
+#password-request-page footer,
+#password-reset-page footer {
   display: none;
 }
 

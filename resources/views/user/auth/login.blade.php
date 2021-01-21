@@ -24,6 +24,31 @@
           </div>
           <div class="card-body p-4">
             <div class="row">
+              <div class="col-12">
+                <h5 class="text-center font-weight-light w-100">Вход через соц. сеть</h5>
+              </div>
+              <div class="col-12">
+                <div class="row p-0 m-0">
+                  <div class="col-4 p-0 pr-1">
+                    <a href="#" class="btn social-signin" id="google">
+                      <i class="bx bxl-google mr-md-1"></i>
+                      <span class="d-none d-md-block">Google</span>
+                    </a>
+                  </div>
+                  <div class="col-4 p-0 px-1">
+                    <a href="#" class="btn social-signin" id="fb">
+                      <i class="bx bxl-facebook mr-md-1"></i>
+                      <span class="d-none d-md-block">Facebook</span>
+                    </a>
+                  </div>
+                  <div class="col-4 p-0 pl-1">
+                    <a href="#" class="btn social-signin" id="vk">
+                      <i class="bx bxl-vk mr-md-1"></i>
+                      <span class="d-none d-md-block">VKontakte</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
               <div class="col-12 mt-3">
                 <h5 class="text-center font-weight-light">Укажите свой логин и пароль</h5>
               </div>
@@ -34,11 +59,13 @@
                     <input type="email" id="email" name="email" class="form-control" />
                     <label class="form-label" for="email">Email</label>
                   </div>
-                  <div class="form-outline form-password mb-4">
+                  <div class="form-outline form-password mb-2">
                     <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="password">Пароль</label>
-                    <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="bx bxs-lock-open-alt"></i></button>
                   </div>
+                  <a href="#!">Забыли пароль?</a>
+{{--                  TODO: forgot password--}}
                   <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;">Войти</button>
                 </form>
               </div>

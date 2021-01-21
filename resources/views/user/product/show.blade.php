@@ -108,6 +108,7 @@
       </div>
     </div>
 
+{{--    TODO: add products --}}
     @include('user.layouts.category-preview', ['title' => 'Может быть интересно', 'link' => route('product.all'), 'products' => $category->products()])
   </div>
 @endsection

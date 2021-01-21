@@ -97,7 +97,38 @@
     }
   }
 
+  function passwordTypeToggle(button, elID) {
+    let el = $('#' + elID)
+    let icon = $(button).children('i')
+    if (el.attr('type') === 'password') {
+      el.attr('type', 'text')
+      icon.removeClass('bxs-lock-open-alt')
+      icon.addClass('bxs-lock-alt')
+    } else if (el.attr('type') === 'text') {
+      el.attr('type', 'password')
+      icon.addClass('bxs-lock-open-alt')
+      icon.removeClass('bxs-lock-alt')
+    }
+    console.log()
+  }
 
+  (() => {
+    'use strict';
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation');
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
 
   window.onload = function() {
     (function($){

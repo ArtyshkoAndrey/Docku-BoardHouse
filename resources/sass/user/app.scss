@@ -52,7 +52,9 @@ body {
   }
 }
 
-#login-page, #register-page {
+#login-page, #register-page,
+#password-request-page,
+#password-reset-page {
   footer {
     display: none;
   }

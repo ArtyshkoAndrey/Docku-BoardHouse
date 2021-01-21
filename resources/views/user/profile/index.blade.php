@@ -51,12 +51,12 @@
                       <div class="form-outline form-password mb-4 rounded">
                         <input type="password" id="password" name="password" class="form-control" />
                         <label class="form-label" for="password">Новый пароль</label>
-                        <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                        <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="bx bxs-lock-open-alt"></i></button>
                       </div>
                       <div class="form-outline form-password mb-3">
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required/>
                         <label class="form-label" for="password_confirmation">Повторите пароль</label>
-                        <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                        <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password_confirmation')"><i class="bx bxs-lock-open-alt"></i></button>
                       </div>
                       <button type="submit" class="btn btn-dark m-0 rounded-0">Сохранить</button>
                     </form>
@@ -215,6 +215,7 @@
         $('#form-photo').submit()
       })
     })
-  </script>
 
+    $('#phone').mask('+7 (000) 000-00-00');
+  </script>
 @endsection
