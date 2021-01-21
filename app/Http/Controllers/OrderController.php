@@ -7,6 +7,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Setting;
+
 class OrderController extends Controller
 {
 
@@ -17,7 +19,9 @@ class OrderController extends Controller
 
   public function create ()
   {
-    return view('user.order.create');
+    $cash = Setting::whereName('cash')->first();
+    $cloudPayment = Setting::whereName('cloudPayment')->first();
+    return view('user.order.create', compact('cash', 'cloudPayment'));
   }
 
 }

@@ -82,20 +82,24 @@
                 <a href="#!">Как выбрать нужный размер</a>
               </div>
               <div class="col-12 mt-2 size-table">
-                <div class="size-box selected">160</div>
-                <div class="size-box">161</div>
-                <div class="size-box">162</div>
-                <div class="size-box">163</div>
-                <div class="size-box">164</div>
-                <div class="size-box">165</div>
-                <div class="size-box">166</div>
-                <div class="size-box">167</div>
-                <div class="size-box disabled">168</div>
+               <div class="row">
+                 @foreach($product->skuses as $skus)
+                 <div class="col-auto">
+                   <div class="size-box p-2 {{ $skus->pivot->stock === 0 ? 'disabled' : null }}"
+                        :class="selectSkus === {{$skus->pivot->id}} ? 'selected' : null"
+                        @click="selectSkus = {{$skus->pivot->stock ? $skus->pivot->id : 'null'}}">
+                     {{ $skus->pivot->id }}
+                   </div>
+                 </div>
+                 @endforeach
+               </div>
               </div>
             </div>
           </div>
           <div class="col-12 mb-5">
-            <button class="btn btn-dark btn-to-cart mt-2 mt-md-0">
+            <button class="btn btn-dark btn-to-cart mt-2 mt-md-0"
+                    :disabled="selectSkus === null"
+                    @click="$store.commit('addItem', {id: selectSkus, amount: 1})">
               <span>Добавить в корзину</span>
               <i class="bx bx-cart-alt"></i>
             </button>
@@ -103,15 +107,23 @@
           <div class="col-12 description-wrapper">
             <div class="row">
               <div class="col-12 title">Описание</div>
-              <div class="col-12 description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam facere fuga incidunt iste modi nostrum optio, quod repellendus voluptatem.</div>
+              <div class="col-12 description">
+                {!! $product->description !!}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-{{--    TODO: add products --}}
-    @include('user.layouts.category-preview', ['title' => 'Может быть интересно', 'link' => route('product.all'), 'products' => $category->products()])
+
+   <div class="mb-5">
+     @include('user.layouts.category-preview',
+     ['title' => 'Может быть интересно',
+     'link' => route('product.all', ['category' => $category->id]),
+     'products' => $category->products()->take(4)->get()
+   ])
+   </div>
   </div>
 @endsection
 
@@ -131,7 +143,6 @@
   function initSliderSize() {
     let previewImageHeight = $('.slider-for .img-wrapper').height()
     $('.slider-nav').height(previewImageHeight)
-    let itemMarginTop = parseInt($('.slider-nav .item .img-wrapper').css('marginTop'))
     let itemMarginBottom = parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
 
     itemHeight = previewImageHeight / showItemAmount - itemMarginBottom + itemMarginBottom / 4

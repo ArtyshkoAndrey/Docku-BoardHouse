@@ -7,7 +7,7 @@ export default {
   name: "order",
   data () {
     return {
-      data: {
+      info: {
         country: {
           id: null,
           name: null
@@ -29,44 +29,45 @@ export default {
       transfer: {
         price: 0,
         name: null
-      }
+      },
+      company: null
     }
   },
   mounted () {
     this.$nextTick(() => {
-      this.data.phone     = $('#phone').val()
-      this.data.email     = $('#email').val()
-      this.data.name      = $('#name').val()
-      this.data.address   = $('#address').val()
-      this.data.post_code = $('#post_code').val()
+      this.info.phone     = $('#phone').val()
+      this.info.email     = $('#email').val()
+      this.info.name      = $('#name').val()
+      this.info.address   = $('#address').val()
+      this.info.post_code = $('#post_code').val()
     })
   },
   methods: {
     setCountry (country) {
-      this.data.country = country
+      this.info.country = country
     },
 
     setCity (city) {
-      this.data.city = city
+      this.info.city = city
     },
 
     setName (event) {
-      this.data.name = event.target.value
+      this.info.name = event.target.value
     },
 
     setEmail (event) {
-      this.data.email = event.target.value
+      this.info.email = event.target.value
     },
     setPhone (event) {
-      this.data.phone = event.target.value
+      this.info.phone = event.target.value
     },
 
     setAddress (event) {
-      this.data.address = event.target.value
+      this.info.address = event.target.value
     },
 
     setPostCode(event) {
-      this.data.post_code = event.target.value
+      this.info.post_code = event.target.value
     },
 
     setPickupTransfer () {
@@ -86,10 +87,23 @@ export default {
   computed: {
     price () {
       return this.$store.getters.priceAmount + (-this.price_with_sale + this.transfer.price) * this.$store.state.currency.ratio
+    },
+    disabledButton () {
+      let disabled = false
+      for (let key in this.info) {
+        console.log(!this.info[key] || this.info[key] === '')
+        if (!this.info[key] || this.info[key] === '')
+          disabled = true
+      }
+
+      if(!this.transfer.name || !this.company || !this.info.country.id || !this.info.city.id)
+        disabled = true
+
+      return disabled
     }
   },
   watch: {
-    'data.country': {
+    'info.country': {
       handler: function (after, before) {
         this.resetTransfer()
       },

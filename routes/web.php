@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PickupController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -58,6 +59,11 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
       Route::get('/', [PickupController::class, 'index'])->name('index');
       Route::post('/store', [PickupController::class, 'store'])->name('store');
       Route::delete('/{id}', [PickupController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('money')->name('money.')->group(function () {
+      Route::get('/', [SettingController::class, 'index'])->name('index');
+      Route::put('/', [SettingController::class, 'update'])->name('update');
     });
   });
 });

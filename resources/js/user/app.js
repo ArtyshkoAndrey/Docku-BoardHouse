@@ -49,7 +49,8 @@ const app = new Vue({
   data() {
     return {
       test: !process.env.NODE_ENV || process.env.NODE_ENV === 'development',
-      cartLoader: true
+      cartLoader: true,
+      selectSkus: null
     }
   },
   async created () {

@@ -123,7 +123,7 @@
 
             <transition name="slide-fade" mode="out-in" appear>
 
-              <div class="col-12 mb-3" v-if="data.city ? data.city.pickup : false" key="1">
+              <div class="col-12 mb-3" v-if="info.city ? info.city.pickup : false" key="1">
                 <div class="choosable-field" :class="transfer.name === 'pickup' ? 'active' : null" @click="setPickupTransfer">
                   <div class="row">
                     <div class="col-8 d-flex flex-column">
@@ -141,7 +141,7 @@
                 <div class="choosable-field">
                   <div class="row">
                     <div class="col-8 d-flex flex-column">
-                      <span class="title">@{{ data.city.pickup !== null ? 'В вашем городе нет самовывоза' : 'Вы не выбрали город' }}</span>
+                      <span class="title">@{{ info.city.pickup !== null ? 'В вашем городе нет самовывоза' : 'Вы не выбрали город' }}</span>
                       <span class="description">Упс...</span>
                     </div>
                     <div class="col-4 d-flex justify-content-end">
@@ -172,34 +172,43 @@
                   <div class="col-12 mb-4">
                     <p class="h4 title">Оплата</p>
                   </div>
+                  @if($cash->data === '1')
+                    <div class="col-12 mb-3">
+                      <div class="choosable-field"
+                           :class="company === 'cash' ? 'active' : null"
+                           @click="company = 'cash'">
+                        <div class="row">
+                          <div class="col-8 d-flex flex-column">
+                            <span class="title">Оплата при получении</span>
+                            <span class="description">Оплатите курьеру или в магазине после получения</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @endif
 
-                  <div class="col-12 mb-3">
-                    <div class="choosable-field active">
-                      <div class="row">
-                        <div class="col-8 d-flex flex-column">
-                          <span class="title">Оплата при получении</span>
-                          <span class="description">Оплатите курьеру или в магазине после получения</span>
+                  @if($cloudPayment->data === '1')
+                    <div class="col-12 mb-5">
+                      <div class="choosable-field"
+                           :class="company === 'cloudPayment' ? 'active' : null"
+                           @click="company = 'cloudPayment'">
+                        <div class="row">
+                          <div class="col-8 d-flex flex-column">
+                            <span class="title">Оплатить онлайн</span>
+                            <span class="description">Оплатите онлайн любым удобным способом через сервис cloud payments</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 mb-5">
-                    <div class="choosable-field">
-                      <div class="row">
-                        <div class="col-8 d-flex flex-column">
-                          <span class="title">Оплатить онлайн</span>
-                          <span class="description">Оплатите онлайн любым удобным способом через сервис cloud payments</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  @endif
+
                 </div>
               </div>
             </transition>
 
 
           </div>
-          <button class="btn btn-dark complete" disabled>Завершить и перейти к оплате</button>
+          <button class="btn btn-dark complete" :disabled="disabledButton">Завершить и перейти к оплате</button>
         </div>
         <div class="col-12 col-md-5">
           <div class="row">
