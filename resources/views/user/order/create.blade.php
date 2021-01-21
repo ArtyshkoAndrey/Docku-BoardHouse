@@ -32,6 +32,18 @@
               <label class="form-label" for="address">Точный адрес<span class="required">*</span></label>
             </div>
           </div>
+          <div class="col-12 mb-5">
+            <form>
+              <div class="form-outline-wrapper invalid">
+                <div class="form-outline mb-3">
+                  <input type="text" class="form-control" id="validationCustom05" required />
+                  <label for="validationCustom05" class="form-label">Zip</label>
+                </div>
+                <div class="invalid-feedback">Please provide a valid zip.</div>
+              </div>
+            </form>
+          </div>
+
 
           <div class="col-12 mb-4">
             <p class="h4 title">Контактные данные</p>
