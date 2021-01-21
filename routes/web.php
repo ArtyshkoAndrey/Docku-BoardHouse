@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PickupController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -51,6 +52,14 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::post('product/photo/store', [\App\Http\Controllers\Admin\ProductController::class, 'photoStore'])->name('product.store.photo');
   Route::post('product/photo/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'photo'])->name('product.photo');
   Route::post('product/photo-delete', [\App\Http\Controllers\Admin\ProductController::class, 'photoDelete'])->name('product.photo.delete');
+
+  Route::prefix('settings')->name('settings.')->group(function () {
+    Route::prefix('pickup')->name('pickup.')->group(function () {
+      Route::get('/', [PickupController::class, 'index'])->name('index');
+      Route::post('/store', [PickupController::class, 'store'])->name('store');
+      Route::delete('/{id}', [PickupController::class, 'destroy'])->name('destroy');
+    });
+  });
 });
 
 Route::post('auth/check', [App\Http\Controllers\ApiController::class, 'check']);

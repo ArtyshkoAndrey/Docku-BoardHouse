@@ -39,6 +39,15 @@ class City extends Model
    */
   protected $fillable = [
     'name',
+    'pickup'
+  ];
+
+  protected $casts = [
+    'pickup' => 'boolean'
+  ];
+
+  protected $appends = [
+    'search_name'
   ];
 
   /**
@@ -49,5 +58,10 @@ class City extends Model
   public function country (): HasOne
   {
     return $this->hasOne(Country::class, 'id', 'country_id');
+  }
+
+  public function getSearchNameAttribute (): string
+  {
+    return $this->name . '(' . $this->country->name . ')';
   }
 }
