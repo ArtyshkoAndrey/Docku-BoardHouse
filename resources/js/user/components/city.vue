@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import * as mdb from 'mdb-ui-kit'
 export default {
   name: "city",
   data() {
@@ -73,12 +72,11 @@ export default {
     }
 
   },
-  created: function () {
-    document.querySelectorAll('.form-outline').forEach((formOutline) => {
-      new mdb.Input(formOutline).update();
-    });
+  mounted: function () {
     if (this.city_props) {
+      $('#search-city').addClass('active')
       this.selected_city = this.city_props
+      this.$emit('set', this.selected_city);
       this.search = this.city_props.name
     }
     this.watcher = this.$watch('search', function (n, o) {
@@ -100,6 +98,7 @@ export default {
     setCity (city) {
       this.watcher()
       this.selected_city = city
+      this.$emit('set', city);
       this.show = false
       this.search = city.name
       this.watcher = this.$watch('search', function (n, o) {

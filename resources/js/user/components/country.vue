@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import * as mdb from 'mdb-ui-kit'
 export default {
   name: "country",
   data() {
@@ -74,22 +73,18 @@ export default {
 
   },
   mounted: function () {
-    document.querySelectorAll('.form-outline').forEach((formOutline) => {
-      new mdb.Input(formOutline).update();
-    });
     if (this.country_props) {
       $('#search-country').addClass('active')
-      console.log(this.country_props)
       this.selected_country = this.country_props
+      this.$emit('set', this.selected_country);
       this.search = this.country_props.name
-      console.log( this.selected_country)
     }
     this.watcher = this.$watch('search', function (n, o) {
       this.watcherSearch(n, o)
     })
   },
   methods: {
-    closedMenu () {
+    closedMenu() {
       if (this.countries.length === 0) {
         this.watcher()
         this.show = false
@@ -100,16 +95,17 @@ export default {
         })
       }
     },
-    setCountry (country) {
+    setCountry(country) {
       this.watcher()
       this.selected_country = country
+      this.$emit('set', country);
       this.show = false
       this.search = country.name
       this.watcher = this.$watch('search', function (n, o) {
         this.watcherSearch(n, o)
       })
     },
-    watcherSearch: function(n, o) {
+    watcherSearch: function (n, o) {
       this.show = true
       axios.post('/api/countries', {
         name: n
@@ -117,7 +113,7 @@ export default {
         .then(response => {
           this.countries = response.data.countries
         })
-    }
+    },
   }
 }
 </script>
