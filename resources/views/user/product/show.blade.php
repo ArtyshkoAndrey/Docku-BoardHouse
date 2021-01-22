@@ -84,13 +84,13 @@
               <div class="col-12 mt-2 size-table">
                <div class="row">
                  @foreach($product->skuses as $skus)
-                 <div class="col-auto">
-                   <div class="size-box p-2 {{ $skus->pivot->stock === 0 ? 'disabled' : null }}"
-                        :class="selectSkus === {{$skus->pivot->id}} ? 'selected' : null"
-                        @click="selectSkus = {{$skus->pivot->stock ? $skus->pivot->id : 'null'}}">
-                     {{ $skus->pivot->id }}
+                   <div class="col-auto">
+                     <div class="size-box p-2 {{ $skus->pivot->stock === 0 ? 'disabled' : null }}"
+                          :class="selectSkus === {{$skus->pivot->id}} ? 'selected' : null"
+                          @click="selectSkus = {{$skus->pivot->stock ? $skus->pivot->id : 'null'}}">
+                       {{ $skus->pivot->id }}
+                     </div>
                    </div>
-                 </div>
                  @endforeach
                </div>
               </div>
@@ -117,13 +117,15 @@
     </div>
 
 
-   <div class="mb-5">
-     @include('user.layouts.category-preview',
-     ['title' => 'Может быть интересно',
-     'link' => route('product.all', ['category' => $category->id]),
-     'products' => $category->products()->take(4)->get()
-   ])
-   </div>
+    <div class="mb-5">
+      @if(isset($category))
+        @include('user.layouts.category-preview',
+        ['title' => 'Может быть интересно',
+          'link' => route('product.all', ['category' => $category->id]),
+          'products' => $category->products()->take(4)->get()
+        ])
+        @endif
+    </div>
   </div>
 @endsection
 

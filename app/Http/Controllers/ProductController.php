@@ -152,13 +152,18 @@ class ProductController extends Controller
   public function show (int $id): View
   {
     $product = Product::find($id);
-    $childCategory = $product->category()->first();
-    $categories = [];
-    while($category = $childCategory->parents()->first()) {
-      array_unshift($categories, $category);
-      $childCategory = $category;
+    try {
+      $childCategory = $product->category()->first();
+      $categories = [];
+      while($category = $childCategory->parents()->first()) {
+        array_unshift($categories, $category);
+        $childCategory = $category;
+      }
+      array_push($categories, $product->category()->first());
+    } catch (\Error $exception) {
+      $categories = [];
     }
-    array_push($categories, $product->category()->first());
+
     return view('user.product.show', compact('product', 'categories'));
   }
 }
