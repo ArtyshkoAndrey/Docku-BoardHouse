@@ -14,6 +14,7 @@ require('./bootstrap.js')
 
 import store from "./store";
 window.Vue = require('vue')
+window.Swal = require('sweetalert2')
 
 
 /**

@@ -30,7 +30,13 @@ export default {
         price: 0,
         name: null
       },
-      company: null
+      method_pay: null,
+      loaderButton: false,
+      loaderButtonAfter: false,
+      order: {
+        no: null,
+        id: null
+      }
     }
   },
   mounted () {
@@ -82,13 +88,134 @@ export default {
         price: 0,
         name: null
       }
+    },
+    pay () {
+      !this.$root.test ? this.$store.commit('clearCart') : null
+      let widget = new cp.CloudPayments();
+      widget.pay('auth', // или 'charge'
+        { //options
+          publicId: 'pk_e531fbe6a10b284d414ce62fbf852', //id из личного кабинета
+          description: 'Оплата товаров dockuboardhouse.com', //назначение
+          amount: this.price, //сумма
+          currency: this.$store.state.currency.short_name, //валюта
+          // invoiceId: '1234567', //номер заказа  (необязательно)
+          accountId: this.info.email, //идентификатор плательщика (необязательно)
+          skin: "modern", //дизайн виджета (необязательно)
+          // data: {
+            // myProp: 'myProp value'
+          // }
+        },
+        {
+          onSuccess: (options) => { // success
+            //действие при успешной оплате
+            console.log(options)
+            this.loaderButton = false
+            window.location = '/order'
+
+          },
+          onFail: (reason, options) => { // fail
+            //действие при неуспешной оплате
+            console.log(reason, options)
+            this.loaderButton = true
+            window.Swal.fire({
+              title: 'Вы не оплатили заказ!',
+              text: 'В течении 3-х часов Вы сможете оплатить свой заказ, иначе он удалится',
+              icon: 'error',
+              confirmButtonText: 'Далее'
+            })
+              .then((result) => {
+                window.location = '/order'
+              })
+          }
+        }
+      )
+    },
+    createOrder () {
+      return window.axios.post('/order/store', {
+        info: this.info,
+        method_pay: this.method_pay,
+        transfer: this.transfer,
+        items: this.$root.productsCart,
+        code: this.code,
+        price: this.priceAmount,
+        sale: this.price_with_sale
+      })
+    },
+    cashPay () {
+      this.createOrder()
+        .then(response => {
+          console.log(response)
+          !this.$root.test ? this.$store.commit('clearCart') : null
+
+          window.Swal.fire({
+            title: 'Успешно',
+            text: 'Заказ усмешно создан',
+            icon: 'success',
+            confirmButtonText: 'Отследить'
+          })
+          .then(result => {
+            window.location = '/order'
+          })
+
+        })
+        .catch(error => {
+          let errors = Object.values(error.response.data.errors)
+          errors = errors.flat()
+          console.log(errors)
+          let txt = ''
+          errors.forEach(value => {
+            txt += ('<p>' + value + '</p>')
+          })
+
+          window.Swal.fire({
+            title: 'Ошибка',
+            html: txt,
+            icon: 'error',
+            confirmButtonText: 'Изменить',
+            width: '40rem'
+          })
+          .then(result => {
+            this.loaderButtonAfter = false
+          })
+        })
+    },
+    orderedNow () {
+      this.loaderButton = true;
+      this.createOrder()
+        .then(response => {
+          this.order = response.data.order
+        })
+        .catch(error => {
+          console.log(error.response.data)
+        })
+    },
+    orderAfter () {
+      this.loaderButtonAfter = true
+      this.cashPay()
     }
   },
   computed: {
     price () {
       return this.$store.getters.priceAmount + (-this.price_with_sale + this.transfer.price) * this.$store.state.currency.ratio
     },
+    priceWithoutCurrency () {
+      return this.$store.getters.priceAmountWithoutCurrency + (-this.price_with_sale + this.transfer.price)
+    },
+    priceAmount () {
+      return this.$store.getters.priceAmountWithoutCurrency
+    },
     disabledButton () {
+      let disabled = this.disabled
+
+      if (this.loaderButton)
+        disabled = true
+
+      if(this.method_pay === 'cash')
+        disabled = true
+
+      return disabled
+    },
+    disabled () {
       let disabled = false
       for (let key in this.info) {
         console.log(!this.info[key] || this.info[key] === '')
@@ -96,16 +223,36 @@ export default {
           disabled = true
       }
 
-      if(!this.transfer.name || !this.company || !this.info.country.id || !this.info.city.id)
+      if(!this.transfer.name || !this.method_pay || !this.info.country.id || !this.info.city.id)
         disabled = true
 
       return disabled
-    }
+    },
+    disabledButtonAfter () {
+      let disabled = this.disabled
+
+      if (this.loaderButtonAfter)
+        disabled = true
+
+      // if(this.method_pay === '')
+      //   disabled = true
+
+      return disabled
+    },
   },
   watch: {
     'info.country': {
       handler: function (after, before) {
         this.resetTransfer()
+        this.method_pay = null
+      },
+      deep: true
+    },
+
+    'info.city': {
+      handler: function (after, before) {
+        this.resetTransfer()
+        this.method_pay = null
       },
       deep: true
     }

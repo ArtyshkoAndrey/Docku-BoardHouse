@@ -45,6 +45,14 @@
                   <div class="col-12">
                     <p class="m-0"><span class="font-weight-bold">Имя получателя:</span> {{ $order->address->contact_name }}</p >
                   </div>
+
+                  <div class="col-12">
+                    <p class="m-0"><span class="font-weight-bold">Телефон:</span> {{ $order->user->phone }}</p >
+                  </div>
+
+                  <div class="col-12">
+                    <p class="m-0"><span class="font-weight-bold">Email:</span> <a href="mailto:{{ $order->user->email }}" class="text-danger">{{ $order->user->email }}</a></p >
+                  </div>
                 </div>
               </div>
             </div>
@@ -54,13 +62,19 @@
                 <div class="row p-20">
                   <div class="col-12">
 {{--                    TODO: переделать вывод выбраной компании, хранить имя в бд --}}
-                    <p class="m-0"><span class="font-weight-bold">Доставка:</span> КазПочта</p>
+                    <p class="m-0"><span class="font-weight-bold">Доставка:</span> {{ \App\Models\Order::$transferMethodsMap[$order->transfer] }}</p>
                   </div>
                   <div class="col-12">
                     <p class="m-0"><span class="font-weight-bold">Оплата:</span> {{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</p >
                   </div>
                   <div class="col-12">
-                    <p class="m-0"><span class="font-weight-bold">Итого:</span> {{ number_format($order->price + $order->ship_price, 0,',', ' ') }} ₸</p >
+                    <p class="m-0"><span class="font-weight-bold">Стоимость доставки:</span> {{ number_format($order->ыршз_price, 0,',', ' ') }} ₸</p >
+                  </div>
+                  <div class="col-12">
+                    <p class="m-0"><span class="font-weight-bold">Скидка:</span> {{ number_format($order->sale, 0,',', ' ') }} ₸</p >
+                  </div>
+                  <div class="col-12">
+                    <p class="m-0"><span class="font-weight-bold">Итого:</span> {{ number_format($order->price + $order->ship_price - $order->sale, 0,',', ' ') }} ₸</p >
                   </div>
                 </div>
               </div>
@@ -103,9 +117,9 @@
           <hr class="bg-dark">
         </div>
         @foreach($order->items as $item)
-          <div class="col-12 col-md-6 col-lg-4 mt-10">
+          <div class="col-12 h-full col-md-6 col-lg-4 mt-10">
             <div class="card m-0 p-0 bg-dark-dm">
-              <img src="{{ $item->product->thumbnail_jpg  }}" class="img-fluid rounded-top h-150 w-full object-fit-cover" alt="...">
+              <img src="{{ $item->product->thumbnail_jpg  }}" class="img-fluid rounded-top h-full w-full object-fit-cover" alt="...">
               <div class="content mx-20 mt-0">
                 <div class="content-title my-20">
                   {{ $item->product->title }}

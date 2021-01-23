@@ -45974,7 +45974,7 @@ readers do not read off random characters that represent icons */
 }
 #intro {
   height: 100vh;
-  background-image: linear-gradient(176.46deg, rgba(64, 106, 130, 0.61) 0%, rgba(64, 106, 130, 0) 100%), url("../images/intro.jpg");
+  background-image: linear-gradient(176.46deg, rgba(64, 106, 130, 0.61) 0%, rgba(64, 106, 130, 0) 100%), url("../images/test/3 .jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -172,11 +172,11 @@
                   <div class="col-12 mb-4">
                     <p class="h4 title">Оплата</p>
                   </div>
-                  @if($cash->data === '1')
+                  @if($cash ? ($cash->data === '1') : false)
                     <div class="col-12 mb-3">
                       <div class="choosable-field"
-                           :class="company === 'cash' ? 'active' : null"
-                           @click="company = 'cash'">
+                           :class="method_pay === 'cash' ? 'active' : null"
+                           @click="method_pay = 'cash'">
                         <div class="row">
                           <div class="col-8 d-flex flex-column">
                             <span class="title">Оплата при получении</span>
@@ -187,11 +187,11 @@
                     </div>
                   @endif
 
-                  @if($cloudPayment->data === '1')
+                  @if($cloudPayment ? ($cloudPayment->data === '1') : false)
                     <div class="col-12 mb-5">
                       <div class="choosable-field"
-                           :class="company === 'cloudPayment' ? 'active' : null"
-                           @click="company = 'cloudPayment'">
+                           :class="method_pay === 'cloudPayment' ? 'active' : null"
+                           @click="method_pay = 'cloudPayment'">
                         <div class="row">
                           <div class="col-8 d-flex flex-column">
                             <span class="title">Оплатить онлайн</span>
@@ -208,7 +208,26 @@
 
 
           </div>
-          <button class="btn btn-dark complete" :disabled="disabledButton">Завершить и перейти к оплате</button>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-dark complete" id="checkout" @click="orderedNow" :disabled="disabledButton">
+                <span v-if="!loaderButton">Завершить и перейти к оплате</span>
+                <div v-else class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-outline-dark complete" @click="orderAfter" data-mdb-ripple-color="dark" id="checkout" :disabled="disabledButtonAfter">
+                <span v-if="!loaderButtonAfter">Завершить и оплатить позже</span>
+
+                <div v-else class="spinner-border text-dark" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
         </div>
         <div class="col-12 col-md-5">
           <div class="row">
@@ -296,6 +315,41 @@
 @endsection
 
 @section('js')
+  <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+
+  <script>
+
+    pay = function () {
+      let widget = new cp.CloudPayments();
+      widget.pay('auth', // или 'charge'
+        { //options
+          publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+          description: 'Оплата товаров в example.com', //назначение
+          amount: 100, //сумма
+          currency: 'RUB', //валюта
+          invoiceId: '1234567', //номер заказа  (необязательно)
+          accountId: 'user@example.com', //идентификатор плательщика (необязательно)
+          skin: "mini", //дизайн виджета (необязательно)
+          data: {
+            myProp: 'myProp value'
+          }
+        },
+        {
+          onSuccess: function (options) { // success
+            //действие при успешной оплате
+          },
+          onFail: function (reason, options) { // fail
+            //действие при неуспешной оплате
+          },
+          onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+            //например вызов вашей аналитики Facebook Pixel
+          }
+        }
+      )
+    };
+
+    // $('#checkout').click(pay);
+  </script>
   <script>
     $('#phone').mask('+7 (000) 000-00-00')
   </script>

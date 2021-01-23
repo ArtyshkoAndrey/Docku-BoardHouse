@@ -63,10 +63,30 @@ const store = new Vuex.Store({
     items: state => {
       return state.cart.items;
     },
-    priceAmount: state => {
-      return state.cart.products.reduce((sum, item) => {
-        return sum + (item.on_sale ? Number(item.price_sale) : Number(item.price)) * store.getters.itemByProduct(item).amount
-      }, 0) * state.currency.ratio;
+    priceAmount: (state, getters) => {
+      return getters.priceAmountWithoutCurrency * state.currency.ratio;
+    },
+    priceAmountWithoutCurrency: (state, getters) => {
+      return getters.productsCart.reduce((sum, item) => {
+        return sum + (item.on_sale ? Number(item.price_sale) : Number(item.price)) * item.item.amount
+      }, 0);
+    },
+    productsCart: state => {
+      if (state.cart.products.length < 1) {
+        return []
+      }
+      return state.cart.items.map(item => {
+        let product = state.cart.products.find(el => el.product_skuses.some(sk => sk.id === item.id))
+
+        if (product) {
+          product = Object.assign({}, product)
+          product.item = item
+          product.product_skuses = Object.values(product.product_skuses)
+          product.skus = product.product_skuses
+          product.skus = product.product_skuses.find(el => el.id === item.id)
+          return product
+        }
+      })
     },
     auth: state => {
       return state.auth;

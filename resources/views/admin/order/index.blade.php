@@ -114,8 +114,9 @@
                       <p class="font-size-9 my-0 font-weight-normal">{{ $order->created_at->format('d.m.Y') }} <span class="text-muted">{{ $order->created_at->format('H:i') }}</span></p>
                     </th>
                     <td>
-                      <p class="my-0" data-toggle="tooltip" data-title="{{ 'Товары: ' .  number_format((int)$order->price, 0, ',', ' ') . '  ₸' }} {{ 'Доставка: ' .  number_format((int)$order->ship_price, 0, ',', ' ') . '  ₸' }}">
-                        {{ number_format((int)($order->price + $order->ship_price), 0, ',', ' ') }}  ₸
+                      <p class="my-0" data-toggle="tooltip" data-title="{{ 'Товары: ' .  number_format((int)$order->price, 0, ',', ' ') . '  ₸' }}
+                        {{ 'Доставка: ' .  number_format((int)$order->ship_price, 0, ',', ' ') . '  ₸' }}">
+                        {{ number_format((int)($order->price + $order->ship_price - $order->sale), 0, ',', ' ') }}  ₸
                       </p>
                       <p class="my-0 font-size-9 text-muted">{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</p>
                     </td>

@@ -15,17 +15,17 @@ class CreateOrdersTable extends Migration
   {
     Schema::create('orders', function (Blueprint $table) {
       $table->id();
-      $table->bigInteger('no')->unique();
+      $table->string('no')->unique();
       $table->foreignId('user_id')
         ->constrained('users')
         ->onUpdate('cascade')
         ->onDelete('cascade');
       $table->json('address');
       $table->decimal('price', 10, 2);
-      $table->decimal('ship_price', 10,2);
+      $table->decimal('ship_price', 10,2)->default(0);
       $table->timestamp('paid_at')->nullable();
       $table->text('payment_method');
-      $table->text('ship_status');
+      $table->text('ship_status')->default(\App\Models\Order::SHIP_STATUS_PAID);
       $table->json('ship_data')->nullable();
       $table->timestamps();
     });
