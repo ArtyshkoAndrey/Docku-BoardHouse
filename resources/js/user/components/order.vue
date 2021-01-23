@@ -33,6 +33,7 @@ export default {
       method_pay: null,
       loaderButton: false,
       loaderButtonAfter: false,
+      windowsLoader: false,
       order: {
         no: null,
         id: null
@@ -98,7 +99,7 @@ export default {
           description: 'Оплата товаров dockuboardhouse.com', //назначение
           amount: this.price, //сумма
           currency: this.$store.state.currency.short_name, //валюта
-          // invoiceId: '1234567', //номер заказа  (необязательно)
+          invoiceId: this.order.no, //номер заказа  (необязательно)
           accountId: this.info.email, //идентификатор плательщика (необязательно)
           skin: "modern", //дизайн виджета (необязательно)
           // data: {
@@ -109,8 +110,22 @@ export default {
           onSuccess: (options) => { // success
             //действие при успешной оплате
             console.log(options)
-            this.loaderButton = false
-            window.location = '/order'
+            this.windowsLoader = true
+            window.axios.post('/order/update/status', {
+              order: this.order.id,
+              state: 'pending'
+            })
+            .then(response => {
+              this.loaderButton = false
+              window.location = '/order'
+            })
+            .catch(error => {
+              window.Swal.fire({
+                icon: "error",
+                title: 'Ошибка',
+                text: 'Возникла системная ошибка подстверждения оплаты. Обратитесь к администрации'
+              })
+            })
 
           },
           onFail: (reason, options) => { // fail
@@ -184,9 +199,27 @@ export default {
       this.createOrder()
         .then(response => {
           this.order = response.data.order
+          this.pay()
         })
         .catch(error => {
-          console.log(error.response.data)
+          let errors = Object.values(error.response.data.errors)
+          errors = errors.flat()
+          console.log(errors)
+          let txt = ''
+          errors.forEach(value => {
+            txt += ('<p>' + value + '</p>')
+          })
+
+          window.Swal.fire({
+            title: 'Ошибка',
+            html: txt,
+            icon: 'error',
+            confirmButtonText: 'Изменить',
+            width: '40rem'
+          })
+            .then(result => {
+              this.loaderButton = false
+            })
         })
     },
     orderAfter () {

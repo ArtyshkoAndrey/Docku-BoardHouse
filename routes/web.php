@@ -37,7 +37,8 @@ Route::middleware(['auth'])->prefix('profile')->name('profile.')->group( functio
 Route::prefix('order')->name('order.')->group( function () {
   Route::get('/', [OrderController::class, 'index'])->middleware('auth')->name('index');
   Route::get('/create', [OrderController::class, 'create'])->name('create');
-  Route::post('store', [OrderController::class, 'store'])->name('store');
+  Route::post('/store', [OrderController::class, 'store'])->name('store');
+  Route::post('/update/status', [OrderController::class, 'updateStatus'])->name('update.status');
 });
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {

@@ -50,38 +50,20 @@
                       </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="i in 10">
-                          <th scope="row">1</th>
-                          <td>СТАТУС</td>
-                          <td>БЕЗНАЛ</td>
-                          <td>САМ НОГАМИ ДОНЕСЕТ</td>
-                          <td>ТЕЛЕФОН ЕГО ТРЕК НОМЕР</td>
-                          <td>5 000 000 тг.</td>
-                        </tr>
-{{--                      @forelse($orders as $order)--}}
-{{--                        @if($order->ship_status !== 'received')--}}
-{{--                          <tr>--}}
-{{--                            <th scope="row">{{ $order->id }}</th>--}}
-{{--                            <td style="color: {{ $order->ship_status == \App\Models\Order::SHIP_STATUS_PENDING ? '#D0D0D0' : ( $order->ship_status == \App\Models\Order::SHIP_STATUS_CANCEL ? 'red' : '#04B900')}}">--}}
-{{--                              {{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}--}}
-{{--                            </td>--}}
-{{--                            <td>{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</td>--}}
-{{--                            <td>{{ $order->expressCompany ? $order->expressCompany->name : 'Компания больше не доступна' }}</td>--}}
-{{--                            <td>--}}
-{{--                              @if(isset($order->ship_data['express_no']))--}}
-{{--                                {{ $order->ship_data['express_no'] }}--}}
-{{--                              @else--}}
-{{--                                Ожидайте--}}
-{{--                              @endif--}}
-{{--                            </td>--}}
-{{--                            <td>{{ $order->total_amount + $order->ship_price }} тг.</td>--}}
-{{--                          </tr>--}}
-{{--                        @endif--}}
-{{--                      @empty--}}
-{{--                        <tr>--}}
-{{--                          <td colspan="5">Нет автивных заказов</td>--}}
-{{--                        </tr>--}}
-{{--                      @endforelse--}}
+                        @forelse($orders->where('ship_status', '!=', \App\Models\Order::SHIP_STATUS_RECEIVED) as $order)
+                            <tr>
+                              <th scope="row">{{ $order->no }}</th>
+                              <td>{{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}</td>
+                              <td>{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</td>
+                              <td>{{ \App\Models\Order::$transferMethodsMap[$order->transfer] }}</td>
+                              <td>{{ $order->ship_data->track ?? 'Нет данных' }}</td>
+                              <td>{{ number_format($order->price + $order->ship_price - $order->sale, 0,',', ' ') }} ₸</td>
+                            </tr>
+                        @empty
+                          <tr>
+                            <td colspan="6">Нет заказов</td>
+                          </tr>
+                        @endforelse
                       </tbody>
                     </table>
                   </div>
@@ -101,38 +83,20 @@
 
                       </thead>
                       <tbody>
-                      <tr v-for="i in 6">
-                        <th scope="row">1</th>
-                        <td>Доставлен</td>
-                        <td>Наличные</td>
-                        <td>САМ НОГАМИ ДОНЕСЕТ</td>
-                        <td>ТЕЛЕФОН ЕГО ТРЕК НОМЕР</td>
-                        <td>5 000 000 тг.</td>
-                      </tr>
-{{--                      @forelse($orders as $order)--}}
-{{--                        @if($order->ship_status == 'received')--}}
-{{--                          <tr>--}}
-{{--                            <th scope="row">{{ $order->id }}</th>--}}
-{{--                            <td style="color: {{ $order->ship_status == \App\Models\Order::SHIP_STATUS_PENDING ? '#D0D0D0' : ( $order->ship_status == \App\Models\Order::SHIP_STATUS_CANCEL ? 'red' : '#04B900')}}">--}}
-{{--                              {{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}--}}
-{{--                            </td>--}}
-{{--                            <td>{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</td>--}}
-{{--                            <td>{{ $order->expressCompany ? $order->expressCompany->name : 'Метод больше не доступен' }}</td>--}}
-{{--                            <td>--}}
-{{--                              @if(isset($order->ship_data['express_no']))--}}
-{{--                                {{ $order->ship_data['express_no'] }}--}}
-{{--                              @else--}}
-{{--                                Ожидайте--}}
-{{--                              @endif--}}
-{{--                            </td>--}}
-{{--                            <td>{{ $order->total_amount }} тг.</td>--}}
-{{--                          </tr>--}}
-{{--                        @endif--}}
-{{--                      @empty--}}
-{{--                        <tr>--}}
-{{--                          <td colspan="5">Нет выполненых заказов</td>--}}
-{{--                        </tr>--}}
-{{--                      @endforelse--}}
+                        @forelse($orders->where('ship_status', '=', \App\Models\Order::SHIP_STATUS_RECEIVED) as $order)
+                          <tr>
+                            <th scope="row">{{ $order->no }}</th>
+                            <td>{{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}</td>
+                            <td>{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</td>
+                            <td>{{ \App\Models\Order::$transferMethodsMap[$order->transfer] }}</td>
+                            <td>{{ $order->ship_data->track ?? 'Нет данных' }}</td>
+                            <td>{{ number_format($order->price + $order->ship_price - $order->sale, 0,',', ' ') }} ₸</td>
+                          </tr>
+                        @empty
+                          <tr>
+                            <td colspan="6">Нет заказов</td>
+                          </tr>
+                        @endforelse
                       </tbody>
                     </table>
                   </div>

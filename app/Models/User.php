@@ -124,6 +124,11 @@ class User extends Authenticatable
     return $this->hasMany(CartItems::class, 'user_id', 'id');
   }
 
+  public function orders ()
+  {
+    return $this->hasMany(Order::class);
+  }
+
   /**
    * User country
    *

@@ -28,7 +28,7 @@ class OrderController extends Controller
     $email = $request->get('user_email');
     $type = $request->get('type');
     $no = $request->get('no');
-    $orders = Order::query();
+    $orders = Order::query()->orderBy('id', 'desc');
     if ($type) {
       foreach (Order::SHIP_STATUS_MAP as $status) {
         if ($status === $type)

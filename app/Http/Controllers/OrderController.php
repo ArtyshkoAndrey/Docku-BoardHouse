@@ -8,13 +8,17 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\OrderStoreRequest;
+use App\Jobs\CloseOrder;
 use App\Models\Order;
 use App\Models\Setting;
 use App\Models\User;
+use App\Notifications\AdminPaidOrderNotification;
+use App\Notifications\ChangeOrderUser;
 use App\Notifications\CreateOrderNotification;
 use App\Notifications\RegisterPassword;
 use App\Services\CartService;
 use App\Services\OrderService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Swift_TransportException;
@@ -31,7 +35,8 @@ class OrderController extends Controller
 
   public function index ()
   {
-    return view('user.order.index');
+    $orders = auth()->user()->orders()->orderBy('id', 'desc')->get();
+    return view('user.order.index', compact('orders'));
   }
 
   public function create ()
@@ -77,12 +82,34 @@ class OrderController extends Controller
       );
 
     $user->notify(new CreateOrderNotification($order));
+    CloseOrder::dispatch($order, now(), $this->orderService);
 
     return response()->json([
       'order' => $order,
       'user' => $user,
       'status' => 'success',
     ]);
+  }
+
+  public function updateStatus (Request $request)
+  {
+    $request->validate([
+      'order' => 'required|exists:orders,id'
+    ]);
+
+    $order = Order::find($request->order);
+
+    $order->ship_status = Order::SHIP_STATUS_PENDING;
+    $order->paid_at = Carbon::now();
+    $order->save();
+    $order->user->notify(new ChangeOrderUser($order));
+
+    $admins = User::whereIsAdmin(true)->get();
+
+    foreach ($admins as $admin) {
+      $admin->notify(new AdminPaidOrderNotification($order));
+    }
+
   }
 
 }

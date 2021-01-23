@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ChangeOrderUser extends Notification
+class AdminPaidOrderNotification extends Notification
 {
   use Queueable;
 
@@ -45,11 +45,9 @@ class ChangeOrderUser extends Notification
   {
     return (new MailMessage)
       ->greeting('Здраствуйте')
-      ->subject('Ваш заказ был обновлён')
-      ->line('Статус вашего заказ был изменён. Зайдите в прочиль что бы узать подробнее.')
-      ->action('Профиль', route('order.index'))
-//      TODO: Изменить ссылку
-      ->line('Спасибо что покупаете у нас!');
+      ->subject('Заказ №' . $this->order->no . ' был оплачен')
+      ->line('Заказ от '. $this->order->user->name . ' был оплачен. Зайдите в админ панель что бы узать подробнее.')
+      ->action('Подробнее', route('admin.order.edit', $this->order->id));
   }
 
   /**

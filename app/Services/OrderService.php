@@ -5,7 +5,10 @@ namespace App\Services;
 
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\ProductSkus;
 use App\Models\User;
+use Carbon\Carbon;
 
 class OrderService
 {
@@ -24,6 +27,7 @@ class OrderService
         'transfer' => $transfer['name'],
         'payment_method' => $method_pay,
         'ship_price' => $transfer['price'],
+        'paid_at' => $method_pay === Order::PAYMENT_METHODS_CASH ? Carbon::now() : null,
         'sale' => $sale,
         'ship_status' => $method_pay === Order::PAYMENT_METHODS_CARD ? Order::SHIP_STATUS_PAID : Order::SHIP_STATUS_PENDING
       ]);
@@ -35,12 +39,37 @@ class OrderService
           'price' => $item['on_sale'] ? $item['price_sale'] : $item['price'],
           'amount' => $item['item']['amount']
         ]);
+        $ps = ProductSkus::find($item['item']['id']);
+        $ps->stock = $ps->stock - $item['item']['amount'];
+        $ps->save();
         $orderItem->product()->associate($item['id']);
         $orderItem->skus()->associate($item['skus']['skus']['id']);
         $orderItem->save();
+
+        $pss = ProductSkus::where('product_id', $item['id'])->get();
+        if($pss->pluck('stock')->sum() < 1) {
+          Product::find($item['id'])->delete();
+        }
       }
 
       return $order;
     });
+  }
+
+  public function canceled (Order $order) {
+    foreach ($order->items as $orderItem) {
+      if(($product = $orderItem->product)->trashed()) {
+        $product->restore();
+      }
+      $ps = ProductSkus::where('product_id', $orderItem->product->id)
+        ->where('skus_id', $orderItem->skus->id)
+        ->first();
+      if($ps) {
+        $ps->stock = $ps->stock + $orderItem->amount;
+        $ps->save();
+      }
+    }
+    $order->ship_status = Order::SHIP_STATUS_CANCEL;
+    $order->save();
   }
 }

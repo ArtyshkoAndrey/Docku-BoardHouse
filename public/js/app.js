@@ -2304,6 +2304,7 @@ __webpack_require__.r(__webpack_exports__);
       method_pay: null,
       loaderButton: false,
       loaderButtonAfter: false,
+      windowsLoader: false,
       order: {
         no: null,
         id: null
@@ -2371,7 +2372,8 @@ __webpack_require__.r(__webpack_exports__);
         //сумма
         currency: this.$store.state.currency.short_name,
         //валюта
-        // invoiceId: '1234567', //номер заказа  (необязательно)
+        invoiceId: this.order.no,
+        //номер заказа  (необязательно)
         accountId: this.info.email,
         //идентификатор плательщика (необязательно)
         skin: "modern" //дизайн виджета (необязательно)
@@ -2384,8 +2386,20 @@ __webpack_require__.r(__webpack_exports__);
           // success
           //действие при успешной оплате
           console.log(options);
-          _this2.loaderButton = false;
-          window.location = '/order';
+          _this2.windowsLoader = true;
+          window.axios.post('/order/update/status', {
+            order: _this2.order.id,
+            state: 'pending'
+          }).then(function (response) {
+            _this2.loaderButton = false;
+            window.location = '/order';
+          })["catch"](function (error) {
+            window.Swal.fire({
+              icon: "error",
+              title: 'Ошибка',
+              text: 'Возникла системная ошибка подстверждения оплаты. Обратитесь к администрации'
+            });
+          });
         },
         onFail: function onFail(reason, options) {
           // fail
@@ -2453,8 +2467,25 @@ __webpack_require__.r(__webpack_exports__);
       this.loaderButton = true;
       this.createOrder().then(function (response) {
         _this4.order = response.data.order;
+
+        _this4.pay();
       })["catch"](function (error) {
-        console.log(error.response.data);
+        var errors = Object.values(error.response.data.errors);
+        errors = errors.flat();
+        console.log(errors);
+        var txt = '';
+        errors.forEach(function (value) {
+          txt += '<p>' + value + '</p>';
+        });
+        window.Swal.fire({
+          title: 'Ошибка',
+          html: txt,
+          icon: 'error',
+          confirmButtonText: 'Изменить',
+          width: '40rem'
+        }).then(function (result) {
+          _this4.loaderButton = false;
+        });
       });
     },
     orderAfter: function orderAfter() {
