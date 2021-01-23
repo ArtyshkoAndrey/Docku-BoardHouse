@@ -62,6 +62,11 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereIsAdmin($value)
  * @property int|null $currency_id
  * @method static Builder|User whereCurrencyId($value)
+ * @property string|null $phone
+ * @property-read \App\Models\Currency|null $currency
+ * @property-read string $avatar_image
+ * @property-read string $full_address
+ * @method static Builder|User wherePhone($value)
  */
 class User extends Authenticatable
 {

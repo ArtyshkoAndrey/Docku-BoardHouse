@@ -28,6 +28,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Photo whereUpdatedAt($value)
  * @mixin Eloquent
  * @property-read \App\Models\Product|null $product
+ * @property-read string $thumbnail_url_jpg
+ * @property-read string $thumbnail_url_webp
+ * @property-read string $url_jpg
+ * @property-read string $url_webp
  */
 class Photo extends Model
 {

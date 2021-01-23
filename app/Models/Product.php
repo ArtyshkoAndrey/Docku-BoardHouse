@@ -71,6 +71,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Product whereBrandId($value)
  * @method static Builder|Product whereCategoryId($value)
  * @method static Builder|Product whereSex($value)
+ * @property-read string $thumbnail_jpg
+ * @property-read string $thumbnail_webp
  */
 class Product extends Model
 {

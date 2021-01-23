@@ -27,6 +27,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|City whereName($value)
  * @method static Builder|City whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property bool $pickup
+ * @property-read string $search_name
+ * @method static Builder|City wherePickup($value)
  */
 class City extends Model
 {
