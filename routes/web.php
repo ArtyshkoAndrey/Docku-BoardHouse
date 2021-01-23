@@ -37,6 +37,7 @@ Route::middleware(['auth'])->prefix('profile')->name('profile.')->group( functio
 Route::prefix('order')->name('order.')->group( function () {
   Route::get('/', [OrderController::class, 'index'])->middleware('auth')->name('index');
   Route::get('/create', [OrderController::class, 'create'])->name('create');
+  Route::post('store', [OrderController::class, 'store'])->name('store');
 });
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -49,6 +50,7 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::resource('skus-category', App\Http\Controllers\Admin\SkusCategoryController::class);
   Route::resource('brand', App\Http\Controllers\Admin\BrandController::class);
   Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
+  Route::resource('coupon', App\Http\Controllers\Admin\CouponController::class);
 
   Route::post('product/photo/store', [\App\Http\Controllers\Admin\ProductController::class, 'photoStore'])->name('product.store.photo');
   Route::post('product/photo/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'photo'])->name('product.photo');

@@ -62,7 +62,7 @@
       Заказы
     </a>
 
-    <a href="#" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.coupon-codes.*') ? 'active' : '' }}">
+    <a href="{{ route('admin.coupon.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.coupon.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bxs-coupon" aria-hidden="true"></i>
       </span>
