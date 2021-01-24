@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use App\Exceptions\CouponCodeUnavailableException;
 use App\Http\Controllers\Controller;
 use App\Models\CartItems;
+use App\Models\CouponCode;
 use App\Models\Currency;
 use App\Models\Product;
 use App\Models\User;
@@ -75,5 +77,89 @@ class ApiController extends Controller
   {
     $cartItems = CartItems::whereUserId($request->get('user_id'))->get();
     return response()->json($cartItems);
+  }
+
+  public function coupon (Request $request)
+  {
+
+    $data = $request->all();
+
+    if (!$record = CouponCode::where('code', $request->code)->first()) {
+      return response()->json(['error' => 'Данного купона не существует'], 403);
+    }
+
+    try {
+      $record->checkAvailable();
+    } catch (CouponCodeUnavailableException $e) {
+      return response()->json(['error' => $e->getMessage()], 403);
+    }
+
+    $sale = 0;
+    $sum = 0;
+    foreach ($data['items'] as $item) {
+
+      $countBrandsEnabled = $record
+        ->brandsEnabled()
+        ->count();
+      $countProductsEnabled = $record
+        ->productsEnabled()
+        ->count();
+      $countCategoriesEnabled = $record
+        ->categoriesEnabled()
+        ->count();
+
+      $product = Product::find($item['id']);
+
+      if ($record->disabled_other_sales && $product->on_sale) {
+        continue;
+      }
+
+      if ($record->productsDisabled()->where('product_id', $product->id)->exists()) {
+        continue;
+      }
+      if ($record->brandsDisabled()->where('brand_id', $product->brand)->exists()) {
+        continue;
+      }
+
+      if ($record->categoriesDisabled()->where('category_id', $product->category)->exists()) {
+        continue;
+      }
+
+      if ($countBrandsEnabled > 0) {
+        if (!$record->brandsEnabled()->where('brand_id', $product->brand)->exists()) {
+          continue;
+        }
+      }
+      if ($countProductsEnabled > 0) {
+        if (!$record->productsEnabled()->where('product_id', $product->id)->exists()) {
+          continue;
+        }
+      }
+
+      if ($countCategoriesEnabled > 0) {
+        if (!$record->categoriesEnabled()->whereIn('category_id', $product->categories)->exists()) {
+         continue;
+        }
+      }
+      $sum += ($product->on_sale ? $product->price_sale : $product->price) * $item['item']['amount'];
+    }
+
+    if ($sum > 0) {
+      if ($record->type === CouponCode::TYPE_FIXED) {
+        if ($sum - $record->value < 1)
+          $sale = $sum - 1;
+
+        else
+          $sale = $record->value;
+      } elseif ($record->type = CouponCode::TYPE_PERCENT) {
+        $sale = $sum / 100 * $record->value;
+      }
+
+      if ($sale > $record->max_amount) {
+        $sale = $record->max_amount;
+      }
+    }
+
+    return response()->json(['sale' => $sale]);
   }
 }

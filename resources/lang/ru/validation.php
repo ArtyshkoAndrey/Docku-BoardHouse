@@ -164,7 +164,9 @@ return [
     'info.email' => 'email',
     'info.name' => 'ФИО',
     'info.address' => 'точный адрес',
-    'info.post_code' => 'почтовый индекс'
+    'info.post_code' => 'почтовый индекс',
+    'code' => 'код',
+    'total' => 'Кол-во',
   ],
 
 ];

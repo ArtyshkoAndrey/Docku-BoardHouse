@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\CouponCode;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductSkus;
@@ -12,10 +13,10 @@ use Carbon\Carbon;
 
 class OrderService
 {
-  public function store(User $user, array $items, string $method_pay, array $transfer, string $price, string $sale)
+  public function store(User $user, array $items, string $method_pay, array $transfer, string $price, string $sale, string $code = null)
   {
 
-    return \DB::transaction(function () use ($user, $items, $method_pay, $transfer, $price, $sale) {
+    return \DB::transaction(function () use ($user, $items, $method_pay, $transfer, $price, $sale, $code) {
 
       $order   = new Order([
         'address'      => [
@@ -32,6 +33,7 @@ class OrderService
         'ship_status' => $method_pay === Order::PAYMENT_METHODS_CARD ? Order::SHIP_STATUS_PAID : Order::SHIP_STATUS_PENDING
       ]);
       $order->user()->associate($user);
+      $order->couponCode()->associate(CouponCode::firstWhere('code', $code));
       $order->save();
 
       foreach ($items as $item) {

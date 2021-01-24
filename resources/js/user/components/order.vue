@@ -90,6 +90,27 @@ export default {
         name: null
       }
     },
+
+    checkSale () {
+      window.axios.post('/api/coupon', {
+        code: this.code,
+        items: this.$store.getters.productsCart
+      })
+      .then(response => {
+        if(response.data.sale) {
+          this.sale = true
+          this.price_with_sale = response.data.sale
+        }
+      })
+      .catch(error => {
+        window.Swal.fire({
+          icon: "error",
+          title: 'Ошибка',
+          text: error.response.data.error
+        })
+        this.code = null
+      })
+    },
     pay () {
       !this.$root.test ? this.$store.commit('clearCart') : null
       let widget = new cp.CloudPayments();
@@ -150,7 +171,7 @@ export default {
         info: this.info,
         method_pay: this.method_pay,
         transfer: this.transfer,
-        items: this.$root.productsCart,
+        items: this.$store.getters.productsCart,
         code: this.code,
         price: this.priceAmount,
         sale: this.price_with_sale
@@ -260,6 +281,14 @@ export default {
         disabled = true
 
       return disabled
+    },
+    disabledButtonCode () {
+      if (this.sale)
+        return true
+
+      return !this.sale && (this.code === null || this.code === '')
+
+
     },
     disabledButtonAfter () {
       let disabled = this.disabled

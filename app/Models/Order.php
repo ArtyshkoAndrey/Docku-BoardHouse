@@ -171,6 +171,11 @@ class Order extends Model
     return $this->hasMany(OrderItem::class);
   }
 
+  public function couponCode ()
+  {
+    return $this->belongsTo(CouponCode::class);
+  }
+
   public static function getColorColumn ($status): string
   {
     if ($status === Order::SHIP_STATUS_CANCEL) {

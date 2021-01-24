@@ -88,7 +88,7 @@
                      <div class="size-box p-2 {{ $skus->pivot->stock === 0 ? 'disabled' : null }}"
                           :class="selectSkus === {{$skus->pivot->id}} ? 'selected' : null"
                           @click="selectSkus = {{$skus->pivot->stock ? $skus->pivot->id : 'null'}}">
-                       {{ $skus->pivot->id }}
+                       {{ $skus->title }}
                      </div>
                    </div>
                  @endforeach

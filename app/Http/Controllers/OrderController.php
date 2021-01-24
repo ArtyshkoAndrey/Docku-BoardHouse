@@ -18,6 +18,7 @@ use App\Notifications\CreateOrderNotification;
 use App\Notifications\RegisterPassword;
 use App\Services\CartService;
 use App\Services\OrderService;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -78,11 +79,13 @@ class OrderController extends Controller
         $data['method_pay'],
         $data['transfer'],
         $data['price'],
-        $data['sale']
+        $data['sale'],
+        $data['code']
       );
 
     $user->notify(new CreateOrderNotification($order));
-    CloseOrder::dispatch($order, now(), $this->orderService);
+    Auth::login($user);
+    CloseOrder::dispatch($order, now()->addHours(3), $this->orderService);
 
     return response()->json([
       'order' => $order,

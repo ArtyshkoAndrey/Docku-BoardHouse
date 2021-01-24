@@ -73,6 +73,12 @@
                   <div class="col-12">
                     <p class="m-0"><span class="font-weight-bold">Скидка:</span> {{ number_format($order->sale, 0,',', ' ') }} ₸</p >
                   </div>
+                  @if($order->couponCode)
+                    <div class="col-12">
+                      <p class="m-0"><span class="font-weight-bold">Промокод:</span> {{ $order->couponCode->code }}</p>
+                    </div>
+                  @endif
+
                   <div class="col-12">
                     <p class="m-0"><span class="font-weight-bold">Итого:</span> {{ number_format($order->price + $order->ship_price - $order->sale, 0,',', ' ') }} ₸</p >
                   </div>

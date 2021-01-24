@@ -72,12 +72,10 @@ const store = new Vuex.Store({
       }, 0);
     },
     productsCart: state => {
-      if (state.cart.products.length < 1) {
+      if(state.cart.products.length < 1)
         return []
-      }
       return state.cart.items.map(item => {
         let product = state.cart.products.find(el => el.product_skuses.some(sk => sk.id === item.id))
-
         if (product) {
           product = Object.assign({}, product)
           product.item = item

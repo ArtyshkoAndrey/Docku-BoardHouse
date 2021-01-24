@@ -138,7 +138,7 @@
             </a>
             <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
-              <div class="row mt-2" v-for="product in productsCart" v-if="product">
+              <div class="row mt-2" v-for="product in $store.getters.productsCart" v-if="product">
                 <div class="col-3 col-sm-2 d-flex align-items-center">
                   <img :src="product.thumbnail_jpg" alt="" class="img-fluid pb-2">
                 </div>

@@ -266,7 +266,7 @@
                 </div>
               </div>
               <div class="col-12 mb-5">
-                <button class="btn btn-dark d-block w-100 mt-2 py-3 promocode-button" :class="!code ? 'disabled' : ''">Активировать промокод</button>
+                <button @click="checkSale" class="btn btn-dark d-block w-100 mt-2 py-3 promocode-button" :disabled="disabledButtonCode">Активировать промокод</button>
               </div>
 
               <div class="col-12">
@@ -277,7 +277,7 @@
                   <transition name="slide-fade" mode="out-in" appear>
                     <div class="col-12" v-if="!$root.cartLoader" key="products">
                       <div class="row">
-                        <div class="col-12 mb-3" v-for="product in $root.productsCart">
+                        <div class="col-12 mb-3" v-for="product in $store.getters.productsCart">
                           <div class="row">
                             <div class="col-3">
                               <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100" style="object-fit: cover">

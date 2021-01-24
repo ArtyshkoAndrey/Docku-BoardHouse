@@ -81,6 +81,27 @@ const app = new Vue({
     })
       .then(response => {
         this.$store.commit('setProducts', response.data)
+        let flag = false
+        try {
+          console.log('123', this.$store.state.cart.items)
+          this.$store.state.cart.items.map(item => {
+            let product = this.$store.state.cart.products.find(el => el.product_skuses.some(sk => sk.id === item.id))
+            if (product === undefined) {
+              flag = true
+              this.$store.commit('removeItem', item.id)
+            }
+          })
+        } catch ($e) {
+          console.log($e)
+        }
+        if (flag)
+          window.Swal.fire({
+            icon: 'info',
+            title: 'Товар в вашей корзине закончился',
+            text: 'Товар из вашей корзины только-что закончился и был автоматически удален из корзины',
+            width: '40rem'
+          })
+
       })
       .catch(error => {
         alert(error.response.data)
@@ -90,9 +111,6 @@ const app = new Vue({
   },
   computed: {
     productsCart() {
-      if (this.$store.state.cart.products.length < 1) {
-        return []
-      }
       return this.$store.state.cart.items.map(item => {
         let product = this.$store.state.cart.products.find(el => el.product_skuses.some(sk => sk.id === item.id))
 
@@ -103,6 +121,8 @@ const app = new Vue({
           product.skus = product.product_skuses
           product.skus = product.product_skuses.find(el => el.id === item.id)
           return product
+        } else {
+          this.$store.commit('removeItem', item.id)
         }
       })
     }

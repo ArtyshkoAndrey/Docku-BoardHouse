@@ -11,7 +11,7 @@
           <div class="row" key="products" v-if="!cartLoader">
             <div class="col-12">
 
-              <div class="row mt-3 mx-0 p-2 border" v-for="product in productsCart" style="border-color: #A9AEB5 !important; border-radius: 16px;">
+              <div class="row mt-3 mx-0 p-2 border" v-for="product in $store.getters.productsCart" style="border-color: #A9AEB5 !important; border-radius: 16px;">
                 <div class="col-3 p-1">
                   <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100 img-fluid" style="object-fit: cover">
                 </div>
