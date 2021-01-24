@@ -126,7 +126,7 @@
             @if($filter['order'] === 'sort-old')
               <i class="fas fa-sort-amount-down"></i> С начало старые
             @elseif($filter['order'] === 'sort-new')
-              <i class="fas fa-sort-amount-up"></i> Сначало новые
+              <i class="fas fa-sort-amount-up"></i> С начало новые
             @elseif($filter['order'] === 'sort-expensive')
               <i class="fas fa-sort-amount-up"></i> С начало дорогие
             @elseif($filter['order'] === 'sort-cheap')
