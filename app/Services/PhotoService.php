@@ -7,13 +7,12 @@
 namespace App\Services;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\File;
-use phpDocumentor\Reflection\Types\Integer;
 
 
 class PhotoService
 {
   protected static array $type = [
-    'png',
+    'jpg',
     'webp'
   ];
 

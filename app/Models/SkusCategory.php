@@ -23,6 +23,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|SkusCategory whereName($value)
  * @method static Builder|SkusCategory whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Skus[] $skuses
+ * @property-read int|null $skuses_count
  */
 class SkusCategory extends Model
 {

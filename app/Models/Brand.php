@@ -2,24 +2,31 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Brand
  *
  * @property int $id
  * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Brand newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Brand newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Brand query()
- * @method static \Illuminate\Database\Eloquent\Builder|Brand whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Brand whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Brand whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Brand whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Brand newModelQuery()
+ * @method static Builder|Brand newQuery()
+ * @method static Builder|Brand query()
+ * @method static Builder|Brand whereCreatedAt($value)
+ * @method static Builder|Brand whereId($value)
+ * @method static Builder|Brand whereName($value)
+ * @method static Builder|Brand whereUpdatedAt($value)
+ * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class Brand extends Model
 {
@@ -33,4 +40,9 @@ class Brand extends Model
   protected $fillable = [
     'name'
   ];
+
+  public function products (): \Illuminate\Database\Eloquent\Relations\HasMany
+  {
+    return $this->hasMany(Product::class);
+  }
 }

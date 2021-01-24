@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Skus;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -33,6 +34,19 @@ class ProductController extends Controller
     $items = Product::query();
     $order = $request->input('order', 'sort-new');
 
+    $sale = $request->get('sale', false);
+    $new = $request->get('new', false);
+
+    $size = $request->get('size', []);
+
+    if($sale) {
+      $items = $items->whereOnSale(true);
+    }
+
+    if($new) {
+      $items = $items->whereOnNew(true);
+    }
+
     if ($order) {
       if ($order === 'sort-new') {
         $items = $items->orderBy('created_at', 'desc');
@@ -43,6 +57,11 @@ class ProductController extends Controller
       } else if ($order === 'sort-cheap') {
         $items = $items->orderBy('price');
       }
+    }
+
+    if ($sex = $request->input('sex', [])) {
+      !is_array($sex) ? $sex = [$sex] : null;
+      $items = $items->whereIn('sex', $sex);
     }
 
     if ($categoryArr = $request->input('category', [])) {
@@ -60,27 +79,91 @@ class ProductController extends Controller
       }
     }
 
-//    if ($sizeArr = $request->input('skus', [])) {
-//      !is_array($sizeArr) ? $sizeArr = [$sizeArr] : null;
-//      foreach ($sizeArr as $index => $size) {
+    if ($brandArr = $request->input('brand', [])) {
+      !is_array($brandArr) ? $brandArr = [$brandArr] : null;
+      foreach ($brandArr as $index => $brand) {
+        if ($index == 0) {
+          $items = $items->whereHas('brand', function ($query) use ($brand) {
+            return $query->where('brands.id', '=', $brand);
+          });
+        } else {
+          $items = $items->orWhereHas('brand', function ($query) use ($brand) {
+            return $query->where('brands.id', '=', $brand);
+          });
+        }
+      }
+    }
+
+    if ($brandArr !== [] && $categoryArr !== []) {
+      $attributes = Skus::whereHas('products.brand', function ($q) use ($brandArr) {
+        $q->whereIn('products.brand_id', $brandArr);
+      })
+        ->whereHas('products.category', function ($q) use ($categoryArr) {
+          $q->whereIn('products.category_id', $categoryArr);
+        })->get();
+    } else if ($categoryArr !== [] && $brandArr === []) {
+      $attributes = Skus::whereHas('products.category', function ($q) use ($categoryArr) {
+        $q->whereIn('products.category_id', $categoryArr);
+      })->get();
+    } else if ($categoryArr === [] && $brandArr !== []) {
+      $attributes = Skus::whereHas('products.brand', function ($q) use ($brandArr) {
+        $q->whereIn('products.brand_id', $brandArr);
+      })->get();
+    } else {
+      $attributes = Skus::all();
+    }
+
+    if ($size) {
+      !is_array($size) ? $size = [$size] : null;
+      $items = $items->whereHas('skuses', function ($query) use ($size) {
+        return $query->whereIn('skus_id', $size);
+      });
+//      foreach ($size as $index => $s) {
 //        if ($index == 0) {
-//          $items = $items->whereHas('skus', function ($query) use ($size) {
-//            return $query->where('id', '=', $size);
+//          $items = $items->whereHas('skuses', function ($query) use ($s) {
+//            return $query->where('id', '=', $s);
 //          });
 //        } else {
-//          $items = $items->orWhereHas('skus', function ($query) use ($size) {
-//            return $query->where('id', '=', $size);
+//          $items = $items->orWhereHas('skuses', function ($query) use ($s) {
+//            return $query->where('id', '=', $s);
 //          });
 //        }
 //      }
-//    }
+    }
 
-
+    $itemsCount = $items->count();
     $items = $items->paginate(15);
     $filter = [
       'category' => $categoryArr,
-      'order' => $order
+      'order' => $order,
+      'brand' => $brandArr,
+      'sale'  => $sale,
+      'new'   => $new,
+      'sex'   => $sex,
+      'size'  => $size
     ];
-    return view('user.product.catalog', compact('items', 'filter'));
+    return view('user.product.catalog', compact('items', 'filter', 'itemsCount', 'attributes'));
+  }
+
+  /**
+   * @param int $id
+   * @return View
+   */
+  public function show (int $id): View
+  {
+    $product = Product::find($id);
+    try {
+      $childCategory = $product->category()->first();
+      $categories = [];
+      while($category = $childCategory->parents()->first()) {
+        array_unshift($categories, $category);
+        $childCategory = $category;
+      }
+      array_push($categories, $product->category()->first());
+    } catch (\Error $exception) {
+      $categories = [];
+    }
+
+    return view('user.product.show', compact('product', 'categories'));
   }
 }

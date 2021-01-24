@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,7 +25,7 @@ class CreateProductsTable extends Migration
       $table->decimal('price', 10, 0);
       $table->decimal('price_sale', 10, 0)->nullable();
       $table->decimal('weight', 10, 2);
-      $table->string('sex')->default(\App\Models\Product::SEX_UNISEX);
+      $table->string('sex')->default(Product::SEX_UNISEX);
       $table->json('meta');
       $table->foreignId('brand_id')
         ->nullable()
@@ -33,8 +34,8 @@ class CreateProductsTable extends Migration
         ->onDelete('set null');
       $table->foreignId('category_id')
         ->constrained('categories')
-        ->onUpdate('cascade')
-        ->onDelete('cascade');
+        ->onUpdate('set null')
+        ->onDelete('set null');
       $table->timestamps();
       $table->softDeletes();
     });

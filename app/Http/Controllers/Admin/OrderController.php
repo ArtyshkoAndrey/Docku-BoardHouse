@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Swift_TransportException;
 
 class OrderController extends Controller
 {
@@ -23,10 +24,17 @@ class OrderController extends Controller
    */
   public function index(Request $request)
   {
-    $name = $request->get('user_name', null);
-    $email = $request->get('user_email', null);
-    $no = $request->get('no', null);
-    $orders = Order::query();
+    $name = $request->get('user_name');
+    $email = $request->get('user_email');
+    $type = $request->get('type');
+    $no = $request->get('no');
+    $orders = Order::query()->orderBy('id', 'desc');
+    if ($type) {
+      foreach (Order::SHIP_STATUS_MAP as $status) {
+        if ($status === $type)
+          $orders = $orders->whereShipStatus($status);
+      }
+    }
     if ($no) {
       $orders = $orders->where('no', 'like', '%' . $no . '%');
     }
@@ -45,7 +53,8 @@ class OrderController extends Controller
     $filter = [
       'user_name'   => $name,
       'user_email'  => $email,
-      'no'          => $no
+      'no'          => $no,
+      'type'        => $type
     ];
     $orders->appends($filter);
     return view('admin.order.index', compact('orders', 'filter'));
@@ -75,10 +84,10 @@ class OrderController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param Order $order
+   * @param int $id
    * @return Response
    */
-  public function show(Order $order)
+  public function show(int $id)
   {
       //
   }
@@ -86,11 +95,12 @@ class OrderController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param Order $order
+   * @param int $id
    * @return Application|Factory|View|Response
    */
-  public function edit(Order $order)
+  public function edit(int $id)
   {
+    $order = Order::find($id);
     return view('admin.order.edit', compact('order'));
   }
 
@@ -98,10 +108,10 @@ class OrderController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param Order $order
+   * @param int $id
    * @return RedirectResponse
    */
-  public function update(Request $request, Order $order): RedirectResponse
+  public function update(Request $request, int $id): RedirectResponse
   {
     $request->validate([
       'ship_status' => 'required|string'
@@ -110,7 +120,7 @@ class OrderController extends Controller
     if (!in_array($data['ship_status'], Order::SHIP_STATUS_MAP)) {
       return redirect()->back()->withInput($data)->withErrors('Не правильно выбран статус');
     }
-
+    $order = Order::find($id);
     $order->ship_status = $data['ship_status'];
     if (isset($data['track'])) {
       $order->ship_data = (object) ['track' => $data['track']];
@@ -119,22 +129,28 @@ class OrderController extends Controller
     }
 
     $order->save();
-    $order->user->notify(new ChangeOrderUser($order));
+    try {
+      $order->user->notify(new ChangeOrderUser($order));
+    } catch (Swift_TransportException $exception) {
+      $errors = $exception->getMessage();
+    }
 
-    return redirect()->route('admin.order.edit', $order)->withSuccess(['Заказ успешно обновлён']);
+
+    return redirect()->route('admin.order.edit', $order)->with('success', ['Заказ успешно обновлён'])->withErrors($errors ?? null);
   }
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param Order $order
+   * @param int $id
    * @return RedirectResponse
    * @throws Exception
    */
-  public function destroy(Order $order): RedirectResponse
+  public function destroy(int $id): RedirectResponse
   {
+    $order = Order::find($id);
     if ($order->delete()) {
-      return redirect()->route('admin.order.index')->withSuccess(['Заказ был удалён']);
+      return redirect()->route('admin.order.index')->with('success',['Заказ был удалён']);
     }
     return redirect()->route('admin.order.index')->withErrors(['Ошибка при удалении, обратитесь к администратору']);
   }

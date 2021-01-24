@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -26,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Skus whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Skus whereWeight($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class Skus extends Model
 {
@@ -39,10 +43,16 @@ class Skus extends Model
   protected $fillable = [
     'title',
     'weight',
+    'skus_category_id'
   ];
 
-  public function category (): HasOne
+  public function category (): BelongsTo
   {
-    return $this->hasOne(SkusCategory::class, 'id', 'skus_category_id');
+    return $this->belongsTo(SkusCategory::class, 'skus_category_id', 'id', 'skus_categories');
+  }
+
+  public function products (): BelongsToMany
+  {
+    return $this->belongsToMany(Product::class, 'product_skuses', 'skus_id', 'product_id', 'id');
   }
 }

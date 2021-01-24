@@ -151,7 +151,22 @@ return [
     'title' => 'заголовок (Название)',
     'category' => 'категория',
     'brand' => 'бренд',
-    'description' => 'описание'
+    'description' => 'описание',
+    'weight' => 'вес',
+    'id' => 'идентификатор',
+    'items.*.id' => 'товары',
+    'items' => 'товары',
+    'info' => 'информация о пользователе',
+    'items.*.amount' => 'колличество товара',
+    'method_pay' => 'способ оплаты',
+    'transfer.name' => 'способ доставки',
+    'info.phone' => 'телефон',
+    'info.email' => 'email',
+    'info.name' => 'ФИО',
+    'info.address' => 'точный адрес',
+    'info.post_code' => 'почтовый индекс',
+    'code' => 'код',
+    'total' => 'Кол-во',
   ],
 
 ];

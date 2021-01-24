@@ -1,11 +1,11 @@
 {
-  "name": "Docku",
+  "name": "fulliton/docku",
   "type": "project",
-  "description": "Интернет магазин",
+  "description": "shop",
   "keywords": [
     "framework",
     "laravel",
-    "Docku"
+    "docku"
   ],
   "license": "MIT",
   "require": {
@@ -18,7 +18,8 @@
     "laravel/framework": "^8.12",
     "laravel/telescope": "^4.4",
     "laravel/tinker": "^2.5",
-    "laravel/ui": "^3.1"
+    "laravel/ui": "^3.1",
+    "ext-simplexml": "*"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.8",

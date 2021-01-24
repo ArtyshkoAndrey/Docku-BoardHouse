@@ -16,6 +16,7 @@ class CreateCitiesTable extends Migration
     Schema::create('cities', function (Blueprint $table) {
       $table->id();
       $table->string('name');
+      $table->boolean('pickup')->default(0);
       $table->foreignId('country_id')
         ->constrained()
         ->onUpdate('cascade')

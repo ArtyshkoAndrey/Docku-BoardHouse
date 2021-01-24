@@ -25,7 +25,7 @@
           <div class="card-body p-4">
             <div class="row">
               <div class="col-12">
-                <h5 class="text-center font-weight-light w-100">Регистрация черз соц сеть</h5>
+                <h5 class="text-center font-weight-light w-100">Регистрация через соц. сеть</h5>
               </div>
               <div class="col-12">
                 <div class="row p-0 m-0">
@@ -78,7 +78,7 @@
                   <div class="form-outline form-password mb-4">
                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required/>
                     <label class="form-label" for="password">Пароль</label>
-                    <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="bx bxs-lock-open-alt"></i></button>
                   </div>
                   @error('password')
                   <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                   <div class="form-outline form-password mb-4">
                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required/>
                     <label class="form-label" for="password_confirmation">Повторите пароль</label>
-                    <button type="button" class="hide-show-btn" onclick="alert(1)"><i class="bx bxs-lock-alt"></i></button>
+                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password_confirmation')"><i class="bx bxs-lock-open-alt"></i></button>
                   </div>
 
                   <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;" disabled>Зарегистрироваться</button>

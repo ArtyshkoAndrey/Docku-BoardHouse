@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
       'password'    => Hash::make('123123'),
       'address'     => 'ул.Горького 24, кв. 25',
       'post_code'   => '660099',
+      'phone'       => '+7(902)9999999',
       'country_id'  => 1,
       'city_id'     => 1,
       'avatar'      => null,
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
       'password'    => Hash::make('123123'),
       'address'     => 'Казахстан',
       'post_code'   => '660099',
+      'phone'       => '+7(902)9999999',
       'country_id'  => 82,
       'city_id'     => 10451,
       'avatar'      => null,
@@ -215,6 +217,20 @@ class DatabaseSeeder extends Seeder
       'amount'      => 2,
       'skus_id'     => 1,
       'price'       => 10000
+    ]);
+
+    DB::table('settings')->insert([
+      'name'        => 'cash',
+      'data'        => 'true',
+      'created_at'  => now(),
+      'updated_at'  => now(),
+    ]);
+
+    DB::table('settings')->insert([
+      'name'        => 'cloudPayment',
+      'data'        => 'true',
+      'created_at'  => now(),
+      'updated_at'  => now(),
     ]);
   }
 }

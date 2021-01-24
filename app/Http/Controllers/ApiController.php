@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\JsonResponse;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller {
   public function countries (Request $request): JsonResponse
@@ -49,5 +50,14 @@ class ApiController extends Controller {
       $brands = Brand::limit(5)->get();
     }
     return response()->json(['brands'=> $brands], 200);
+  }
+
+  public function check (): JsonResponse
+  {
+    $data = (object) [
+      'auth' => Auth::check(),
+      'user' => Auth::user()
+    ];
+    return response()->json($data, 200);
   }
 }

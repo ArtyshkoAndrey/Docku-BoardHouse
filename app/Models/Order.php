@@ -2,47 +2,55 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Log;
 
 /**
  * App\Models\Order
  *
  * @property int $id
- * @property int $no
+ * @property string $no
  * @property int $user_id
  * @property object $address
  * @property string $price
  * @property string $ship_price
- * @property \Illuminate\Support\Carbon|null $paid_at
+ * @property Carbon|null $paid_at
  * @property string $payment_method
  * @property string $ship_status
  * @property object|null $ship_data
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderItem[] $items
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|OrderItem[] $items
  * @property-read int|null $items_count
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Order query()
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereNo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaidAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentMethod($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereShipStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
- * @mixin \Eloquent
+ * @property-read User $user
+ * @method static Builder|Order newModelQuery()
+ * @method static Builder|Order newQuery()
+ * @method static Builder|Order query()
+ * @method static Builder|Order whereAddress($value)
+ * @method static Builder|Order whereCreatedAt($value)
+ * @method static Builder|Order whereId($value)
+ * @method static Builder|Order whereNo($value)
+ * @method static Builder|Order wherePaidAt($value)
+ * @method static Builder|Order wherePaymentMethod($value)
+ * @method static Builder|Order wherePrice($value)
+ * @method static Builder|Order whereShipData($value)
+ * @method static Builder|Order whereShipPrice($value)
+ * @method static Builder|Order whereShipStatus($value)
+ * @method static Builder|Order whereUpdatedAt($value)
+ * @method static Builder|Order whereUserId($value)
+ * @mixin Eloquent
+ * @property int|null $coupon_code_id
+ * @property string $sale
+ * @method static Builder|Order whereCouponCodeId($value)
+ * @method static Builder|Order whereSale($value)
  */
 class Order extends Model
 {
@@ -61,7 +69,9 @@ class Order extends Model
     'paid_at',
     'payment_method',
     'ship_status',
-    'ship_data'
+    'ship_data',
+    'sale',
+    'transfer'
   ];
 
   protected $casts = [
@@ -85,21 +95,32 @@ class Order extends Model
   ];
 
   const PAYMENT_METHODS_CASH = 'cash';
-  const PAYMENT_METHODS_CARD = 'card';
+  const PAYMENT_METHODS_CARD = 'cloudPayment';
+
+  const TRANSFER_METHODS_PICKUP = 'pickup';
+  const TRANSFER_METHODS_EMS = 'ems';
 
   public static array $paymentMethodsMap = [
     self::PAYMENT_METHODS_CASH  => 'Оплата в магазине',
-    self::PAYMENT_METHODS_CARD  => 'Оплата картой',
+    self::PAYMENT_METHODS_CARD  => 'Оплата онлайн',
+  ];
+
+  public static array $transferMethodsMap = [
+    self::TRANSFER_METHODS_PICKUP => 'Самовывоз',
+    self::TRANSFER_METHODS_EMS => 'EMS'
   ];
 
   public static array $shipStatusMap = [
-    self::SHIP_STATUS_PAID       => 'Не оплачен',
+    self::SHIP_STATUS_PAID      => 'Не оплачен',
     self::SHIP_STATUS_PENDING   => 'В обработке',
     self::SHIP_STATUS_DELIVERED => 'Отправлен',
     self::SHIP_STATUS_RECEIVED  => 'Получен',
     self::SHIP_STATUS_CANCEL    => 'Отменён',
   ];
 
+  /**
+   * Перегразка boot. Создание номера заказа
+   */
   protected static function boot()
   {
     parent::boot();
@@ -117,27 +138,29 @@ class Order extends Model
     });
   }
 
+  /**
+   * Генерация номера заказа
+   *
+   * @return false|string
+   * @throws Exception
+   */
   public static function findAvailableNo ()
   {
     // Префикс серийного номера заказа
     $prefix = date('YmdHis');
     for ($i = 0; $i < 10; $i++) {
       // Случайно сгенерированный 6-значный номер
-      try {
-        $no = $prefix . str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-      } catch (Exception $e) {
-        Log::warning('find order no failed');
-        return false;
-      }
+      $no = $prefix.str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
       // Определите, существует ли он уже
       if (!static::query()->where('no', $no)->exists()) {
         return $no;
       }
     }
-    Log::warning('find order no failed');
+    \Log::warning('find order no failed');
 
     return false;
   }
+
   public function user (): BelongsTo
   {
     return $this->belongsTo(User::class);
@@ -146,6 +169,11 @@ class Order extends Model
   public function items (): HasMany
   {
     return $this->hasMany(OrderItem::class);
+  }
+
+  public function couponCode ()
+  {
+    return $this->belongsTo(CouponCode::class);
   }
 
   public static function getColorColumn ($status): string

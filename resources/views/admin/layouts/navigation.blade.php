@@ -8,9 +8,9 @@
     </button>
   </div>
   <!-- Navbar brand -->
-  <a href="{{ route('admin.index') }}" class="navbar-brand d-none d-md-block">
-    <img src="{{ asset('images/logo-admin.svg') }}" class="invisible visible-dm position-absolute" alt="logo" style="opacity: 0.5">
-    <img src="{{ asset('images/logo-admin-light.png') }}" class="invisible visible-lm" alt="logo">
+  <a href="{{ route('admin.index') }}" class="navbar-brand d-none d-md-block w-100">
+    <img src="{{ asset('images/logo-admin.svg') }}" class="invisible visible-dm position-absolute img-fluid my-auto w-100" alt="logo">
+    <img src="{{ asset('images/logo-admin-light.svg') }}" class="invisible visible-lm img-fluid w-100 my-auto" alt="logo">
   </a>
   <!-- Navbar text -->
   <span class="navbar-text text-monospace">v0.1</span> <!-- text-monospace = font-family shifted to monospace -->
@@ -34,7 +34,10 @@
         <i class="bx bxs-chevron-down" aria-hidden="true"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-right w-200" aria-labelledby="navbar-dropdown-toggle-btn-1"> <!-- w-200 = width: 20rem (200px) -->
-        <p class="dropdown-item d-flex align-items-center m-0"><img src="{{ asset('images/user-photo.JPG') }}" alt="person" class="img-fluid rounded-circle h-25 mr-10"> Артышко Андрей</p>
+        <p class="dropdown-item d-flex align-items-center m-0">
+          <img src="{{ auth()->user()->avatar_image }}" alt="person" class="img-fluid rounded-circle h-25 mr-10">
+          {{ auth()->user()->name }}
+        </p>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item text-danger"><i class="bx bxs-log-out-circle mx-10"></i> Выйти</a>
 
@@ -54,12 +57,12 @@
 
     <a href="{{ route('admin.order.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.order.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
-        <i class="bx bxs-package" aria-hidden="true"></i>
+        <i class="bx bx-package" aria-hidden="true"></i>
       </span>
       Заказы
     </a>
 
-    <a href="#" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.coupon-codes.*') ? 'active' : '' }}">
+    <a href="{{ route('admin.coupon.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.coupon.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bxs-coupon" aria-hidden="true"></i>
       </span>
@@ -77,9 +80,30 @@
       Товары
     </a>
 
-    <a href="{{ route('telescope') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.product.*') ? 'active' : '' }}">
+    <a href="{{ route('admin.brand.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.brand.*') ? 'active' : '' }}">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
-        <i class="bx bxs-t-shirt" aria-hidden="true"></i>
+        <i class="bx bx-purchase-tag-alt" aria-hidden="true"></i>
+      </span>
+      Бренды
+    </a>
+
+    <a href="{{ route('admin.skus.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.skus.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-purchase-tag" aria-hidden="true"></i>
+      </span>
+      Размеры
+    </a>
+
+    <a href="{{ route('admin.category.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.category.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-purchase-tag" aria-hidden="true"></i>
+      </span>
+      Категории
+    </a>
+
+    <a href="{{ route('telescope') }}" target="_blank" class="sidebar-link sidebar-link-with-icon">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-bug" aria-hidden="true"></i>
       </span>
       Telescope
     </a>

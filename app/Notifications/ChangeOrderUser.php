@@ -47,7 +47,7 @@ class ChangeOrderUser extends Notification
       ->greeting('Здраствуйте')
       ->subject('Ваш заказ был обновлён')
       ->line('Статус вашего заказ был изменён. Зайдите в прочиль что бы узать подробнее.')
-      ->action('Профиль', url('/'))
+      ->action('Профиль', route('order.index'))
 //      TODO: Изменить ссылку
       ->line('Спасибо что покупаете у нас!');
   }

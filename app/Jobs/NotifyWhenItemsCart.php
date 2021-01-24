@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Swift_TransportException;
 
 /**
 * Class NotifyWhenItemsCart для уведомления пользователя об товарах в корзине, напоминие о том что он был на сайте. Раз в сутки
@@ -43,7 +44,12 @@ class NotifyWhenItemsCart implements ShouldQueue
   public function handle()
   {
     if ($this->user->cartItems->toArray() === $this->items) {
-      $this->user->notify(new HasItemsInCart($this->user->cartItems));
+      try {
+        $this->user->notify(new HasItemsInCart($this->user->cartItems));
+      } catch (Swift_TransportException $exception) {
+
+      }
+
     }
   }
 }

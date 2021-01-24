@@ -70,6 +70,23 @@
         </div>
 
         <div class="col-12">
+          <div class="card m-0 p-10 bg-dark-dm">
+            <a href="{{ route('admin.order.index', ['type' => null]) }}"
+               class="mr-10 {{ $filter['type'] === null ? 'text-danger' : 'text-white' }}">
+              Все заказы ({{ \App\Models\Order::count() }})
+            </a>
+
+            @foreach(\App\Models\Order::SHIP_STATUS_MAP as $status)
+              <a href="{{ route('admin.order.index', ['type' => $status]) }}"
+                 class="mr-10 {{ $filter['type'] === $status ? 'text-danger' : 'text-white' }}">
+                {{ \App\Models\Order::$shipStatusMap[$status] }} ({{ \App\Models\Order::whereShipStatus($status)->count() }})
+              </a>
+            @endforeach
+
+          </div>
+        </div>
+
+        <div class="col-12">
           <div class="row">
             <div class="col-md">
               {{ $orders->links('vendor.pagination.halfmoon') }}
@@ -97,8 +114,9 @@
                       <p class="font-size-9 my-0 font-weight-normal">{{ $order->created_at->format('d.m.Y') }} <span class="text-muted">{{ $order->created_at->format('H:i') }}</span></p>
                     </th>
                     <td>
-                      <p class="my-0" data-toggle="tooltip" data-title="{{ 'Товары: ' .  number_format((int)$order->price, 0, ',', ' ') . '  ₸' }} {{ 'Доставка: ' .  number_format((int)$order->ship_price, 0, ',', ' ') . '  ₸' }}">
-                        {{ number_format((int)($order->price + $order->ship_price), 0, ',', ' ') }}  ₸
+                      <p class="my-0" data-toggle="tooltip" data-title="{{ 'Товары: ' .  number_format((int)$order->price, 0, ',', ' ') . '  ₸' }}
+                        {{ 'Доставка: ' .  number_format((int)$order->ship_price, 0, ',', ' ') . '  ₸' }}">
+                        {{ number_format((int)($order->price + $order->ship_price - $order->sale), 0, ',', ' ') }}  ₸
                       </p>
                       <p class="my-0 font-size-9 text-muted">{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</p>
                     </td>

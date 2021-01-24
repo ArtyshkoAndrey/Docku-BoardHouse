@@ -29,13 +29,22 @@ class ProductController extends Controller
    */
   public function index(Request $request): View
   {
-    $name = $request->get('name', null);
-    $products = Product::query()->withTrashed();
+    $name = $request->get('name');
+    $type = $request->get('type', 'isset');
+    $products = Product::query();
+    if ($type === 'all') {
+      $products = $products->withTrashed();
+    } else if ($type === 'deleted') {
+      $products = $products->onlyTrashed();
+    }
     if ($name) {
       $products = $products->where('title', 'like', '%' . $name . '%');
     }
     $products = $products->paginate(10);
-    $filter = ['name' => $name];
+    $filter = [
+      'name' => $name,
+      'type' => $type
+    ];
     return view('admin.product.index', compact('products', 'filter'));
   }
 
@@ -103,10 +112,10 @@ class ProductController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param Product $product
+   * @param int $id
    * @return Response
    */
-  public function show(Product $product)
+  public function show(int $id)
   {
       //
   }
@@ -114,11 +123,12 @@ class ProductController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param Product $product
+   * @param int $id
    * @return Application|Factory|View|Response
    */
-  public function edit(Product $product)
+  public function edit(int $id)
   {
+    $product = Product::find($id);
     return view('admin.product.edit', compact('product'));
   }
 
@@ -126,11 +136,11 @@ class ProductController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param Product $product
+   * @param int $id
    * @return RedirectResponse
    * @throws Exception
    */
-  public function update(Request $request, Product $product): RedirectResponse
+  public function update(Request $request, int $id): RedirectResponse
   {
     $request->validate([
       'title' => 'required|string|max:255',
@@ -145,7 +155,7 @@ class ProductController extends Controller
       'on_top' => 'boolean',
       'on_new' => 'boolean',
     ]);
-
+    $product = Product::find($id);
     $ids = [];
     foreach ($request->get('skus', []) as $id => $stock) {
       array_push($ids, $id);
@@ -165,7 +175,7 @@ class ProductController extends Controller
     }
 
     $idsPS = $product->productSkuses()->pluck('skus_id')->toArray();
-//    dd($idsPS, $ids);
+
     $ids = array_diff($idsPS, $ids);
 
     foreach ($ids as $id) {
@@ -179,11 +189,12 @@ class ProductController extends Controller
     $product->update($data);
     $product
       ->brand()
-      ->associate($request->brand_id);
+      ->associate($request->brand);
 
     $product
       ->category()
-      ->associate($request->category_id);
+      ->associate($request->category);
+    $product->save();
     return redirect()->back()->with('success', ['Товар успешно обновлён']);
   }
 

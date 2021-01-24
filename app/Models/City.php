@@ -27,6 +27,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|City whereName($value)
  * @method static Builder|City whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property bool $pickup
+ * @property-read string $search_name
+ * @method static Builder|City wherePickup($value)
  */
 class City extends Model
 {
@@ -39,6 +42,15 @@ class City extends Model
    */
   protected $fillable = [
     'name',
+    'pickup'
+  ];
+
+  protected $casts = [
+    'pickup' => 'boolean'
+  ];
+
+  protected $appends = [
+    'search_name'
   ];
 
   /**
@@ -49,5 +61,10 @@ class City extends Model
   public function country (): HasOne
   {
     return $this->hasOne(Country::class, 'id', 'country_id');
+  }
+
+  public function getSearchNameAttribute (): string
+  {
+    return $this->name . '(' . $this->country->name . ')';
   }
 }
