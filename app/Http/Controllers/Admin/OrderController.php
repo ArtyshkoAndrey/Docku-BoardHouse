@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Notifications\ChangeOrderUser;
+use App\Services\OrderService;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -16,6 +17,14 @@ use Swift_TransportException;
 
 class OrderController extends Controller
 {
+
+  protected OrderService $orderService;
+
+  public function __construct(OrderService $orderService)
+  {
+    $this->orderService = $orderService;
+  }
+
   /**
    * Просмотр всех заказов, так же фильтрация.
    *
@@ -129,6 +138,11 @@ class OrderController extends Controller
     }
 
     $order->save();
+
+    if ($data['ship_status'] === Order::SHIP_STATUS_CANCEL) {
+      $this->orderService->canceled($order);
+    }
+
     try {
       $order->user->notify(new ChangeOrderUser($order));
     } catch (Swift_TransportException $exception) {
