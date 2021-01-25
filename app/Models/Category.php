@@ -92,6 +92,9 @@ class Category extends Model
     if ($this->parents()->count() > 0)
       return $this->name . '(' . $this->parents()->first()->name .')';
 
-    return $this->name . '(' . $this->child()->first()->name .')';
+    if ($this->child()->count() > 0)
+      return $this->name . '(' . $this->child()->first()->name .')';
+
+    return '()';
   }
 }
