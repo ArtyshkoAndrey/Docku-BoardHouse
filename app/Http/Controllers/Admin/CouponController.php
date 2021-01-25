@@ -105,10 +105,10 @@ class CouponController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param  int  $id
+   * @param int $id
    * @return RedirectResponse
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, int $id): RedirectResponse
   {
     $request->validate([
       'code' => 'required|unique:coupon_codes,code,'.$id,
@@ -140,14 +140,15 @@ class CouponController extends Controller
     $coupon->categoriesDisabled()->sync($request->disabled_categories);
     return redirect()->route('admin.coupon.edit', $id)->with('success', ['Промокод обнавлён']);
   }
+//  TODO: Дописать удаление
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param  int  $id
+   * @param int $id
    * @return Response
    */
-  public function destroy($id)
+  public function destroy(int $id)
   {
       //
   }
