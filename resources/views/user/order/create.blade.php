@@ -153,20 +153,6 @@
                 </div>
               </transition>
 
-              {{--            <div class="col-12 mb-5">--}}
-              {{--              <div class="choosable-field">--}}
-              {{--                <div class="row">--}}
-              {{--                  <div class="col-8 d-flex flex-column">--}}
-              {{--                    <span class="title">Стандартная доставка</span>--}}
-              {{--                    <span class="description">Доставка осуществляется от 4 до 7 дней сервисом Kaz Post</span>--}}
-              {{--                  </div>--}}
-              {{--                  <div class="col-4 d-flex justify-content-end">--}}
-              {{--                    <span class="price">1000 тг.</span>--}}
-              {{--                  </div>--}}
-              {{--                </div>--}}
-              {{--              </div>--}}
-              {{--            </div>--}}
-
               <transition name="slide-fade" mode="out-in" appear>
                 <div class="col-12" v-if="transfer.name !== null">
                   <div class="row">

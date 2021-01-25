@@ -132,10 +132,6 @@
 
 @section('js')
 <script>
-  // $(window).on('resize ready', function() {
-  //   console.log(1)
-  //   $('.slider-nav').height($('.slider-for .img-wrapper').height());
-  // });
   let showItemAmount = 4
   let currentPosition = 0
   let currentItem = 0

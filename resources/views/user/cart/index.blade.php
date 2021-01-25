@@ -82,22 +82,7 @@
               <p class="font-weight-normal m-0">Итог заказа</p>
               <p class="font-weight-bold m-0">@{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
             </div>
-{{--            <p class="text-muted">*Без учёта доставки</p>--}}
           </div>
-{{--          <div class="col-12 my-2">--}}
-{{--            <hr>--}}
-{{--          </div>--}}
-{{--          <div class="col-12 mb-3">--}}
-{{--            <form>--}}
-{{--              <div class="form-outline">--}}
-{{--                <input type="email" id="promocode" name="promocode" class="form-control" />--}}
-{{--                <label class="form-label" for="promocode">Введите промокод (при наличии)</label>--}}
-{{--              </div>--}}
-{{--            </form>--}}
-{{--          </div>--}}
-{{--          <div class="col-12">--}}
-{{--            <button class="btn btn-dark d-block w-100 mt-2 py-3 promocode-button">Активировать промокод</button>--}}
-{{--          </div>--}}
         </div>
       </div>
     </div>

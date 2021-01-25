@@ -71,6 +71,12 @@ body {
   button {
     margin-left: .5em;
   }
+
+  @include media-breakpoint-down(md) {
+    width: 90%;
+    top: 1em;
+    left: 5%;
+  }
 }
 
 .form-outline-wrapper.invalid {
