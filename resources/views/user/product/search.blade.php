@@ -1,5 +1,6 @@
 @extends('user.layouts.app')
 
+@section('title', count($products) > 0 ? 'DOCKU | Резултаты поиска' : 'DOCKU | Ничего не найдено')
 @section('content')
 {{--  Это один из вариантов, если будут товар то начнёт перебирать, если нет то будет вывводить всё что между empty и endforelse--}}
   <div class="container search-page pb-5">

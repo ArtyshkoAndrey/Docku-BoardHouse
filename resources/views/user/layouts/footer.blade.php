@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-lg-4 justify-content-between">
-        <div class="d-flex flex-column align-items-center">
+        <div class="d-flex flex-column">
           <span>Есть вопросы? Свяжитесь с нами :)</span>
           <a href="tel:+77475562383" class="number">+7 (747) 556-23-83</a>
         </div>
-        <span class="text-center">© dockuboardhouse.com 2020 – магазин сноубордов</span>
+        <span>© dockuboardhouse.com 2020 – магазин сноубордов</span>
       </div>
       <div class="col-md-6 col-lg-3">
         <span class="title">Помощь по заказам</span>
@@ -29,8 +29,9 @@
     <div class="row">
       <div class="col-12 text-center d-inline-block">
         <span>
-          Powered by <a href="https://www.vk.com/Fulliton" style="color: #1266f1;" target="_blank">Fulliton</a>
-          and <a href="https://hugant.github.io" style="color: #1266f1;" target="_blank">Hugant Mirron</a>
+          Разработано shopper при поддержке
+          <a href="{{ env('PROGRAMMER_LINK', 'https://vk.com') }}" style="color: #1266f1;" target="_blank">{{ env('PROGRAMMER_NAME', 'Fulliton') }}</a>
+          и <a href="https://hugant.github.io" style="color: #1266f1;" target="_blank">Hugant Mirron</a>
         </span>
       </div>
     </div>

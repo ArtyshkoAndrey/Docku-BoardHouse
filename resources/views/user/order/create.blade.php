@@ -1,5 +1,5 @@
 @extends('user.layouts.app')
-@section('title', 'Создание заказа')
+@section('title', 'DOCKU | Оплата')
 
 @section('style')
   <style>

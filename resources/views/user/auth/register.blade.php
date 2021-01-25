@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Регистрация профиля')
+
 @section('content')
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row w-100 d-flex justify-content-center">
@@ -24,10 +26,10 @@
           </div>
           <div class="card-body p-4">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 d-none">
                 <h5 class="text-center font-weight-light w-100">Регистрация через соц. сеть</h5>
               </div>
-              <div class="col-12">
+              <div class="col-12 d-none">
                 <div class="row p-0 m-0">
                   <div class="col-4 p-0 pr-1">
                     <a href="#" class="btn social-signup" id="google">
@@ -35,13 +37,13 @@
                       <span class="d-none d-md-block">Google</span>
                     </a>
                   </div>
-                  <div class="col-4 p-0 px-1">
+                  <div class="col-4 p-0 px-1 d-none">
                     <a href="#" class="btn social-signup" id="fb">
                       <i class="bx bxl-facebook mr-md-1"></i>
                       <span class="d-none d-md-block">Facebook</span>
                     </a>
                   </div>
-                  <div class="col-4 p-0 pl-1">
+                  <div class="col-4 p-0 pl-1 d-none">
                     <a href="#" class="btn social-signup" id="vk">
                       <i class="bx bxl-vk mr-md-1"></i>
                       <span class="d-none d-md-block">VKontakte</span>
@@ -50,7 +52,7 @@
                 </div>
               </div>
               <div class="col-12 mt-3">
-                <h5 class="text-center font-weight-light">Или укажите логин и пароль</h5>
+                <h5 class="text-center font-weight-light"><!--Или-->Укажите логин и пароль</h5>
               </div>
               <div class="col-12 mt-3">
                 <form action="{{ route('register') }}" method="post">

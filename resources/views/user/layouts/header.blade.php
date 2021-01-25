@@ -175,7 +175,7 @@
               </div>
               <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3">
                 <div class="col-12 col-md-6 d-flex align-items-end align-self-start">
-                  <a href="{{ route('cart.index') }}" class="btn btn-dark w-100" >Перейти в корзину</a>
+                  <a href="{{ route('cart.index') }}" class="btn btn-dark w-100" :class="$store.getters.productsCart.length < 1 ? 'disabled' : null">Перейти в корзину</a>
                 </div>
                 <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
                   <div class="col-6 col-md-12 d-flex justify-content-start justify-content-md-end align-items-center p-0">

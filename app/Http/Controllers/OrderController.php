@@ -20,6 +20,7 @@ use App\Services\CartService;
 use App\Services\OrderService;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Swift_TransportException;
@@ -47,7 +48,7 @@ class OrderController extends Controller
     return view('user.order.create', compact('cash', 'cloudPayment'));
   }
 
-  public function store (OrderStoreRequest $request)
+  public function store (OrderStoreRequest $request): JsonResponse
   {
     $data = $request->all();
     $info = $data['info'];
@@ -85,7 +86,10 @@ class OrderController extends Controller
 
     $user->notify(new CreateOrderNotification($order));
     Auth::login($user);
-    CloseOrder::dispatch($order, now()->addHours(3), $this->orderService);
+    $delay = env('CANCELLATION_ORDER_TEST', false) ?
+      now()->addMinutes(env('DELAY_CANCELLATION_ORDER_MINUTES_FOR_TEST', 5)) :
+      now()->addHours(env('DELAY_CANCELLATION_ORDER_HOURS', 3));
+    CloseOrder::dispatch($order, $delay, $this->orderService);
 
     return response()->json([
       'order' => $order,

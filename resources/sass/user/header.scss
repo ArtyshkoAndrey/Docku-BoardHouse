@@ -255,7 +255,7 @@
   background-image: linear-gradient(176.46deg,
     rgba(64, 106, 130, 0.61) 0%,
     rgba(64, 106, 130, 0) 100%),
-  url('../images/test/3.jpg');
+  url('../images/intro-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -296,13 +296,15 @@
     color: white;
     padding: 16px 40px;
     background: #ffffff29;
-    border: 2px solid transparent;
+    //border: 2px solid transparent;
+    border: 2px solid rgba(229, 233, 239, 0.53);
     border-radius: 6px;
     margin-top: 20px;
     font-weight: 600;
     font-size: 1em;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to right, rgba(229, 233, 239, 0.53), rgba(229, 233, 239, 0));
+    //border-image-source: linear-gradient(to right,
+    //  rgba(229, 233, 239, 0.53), rgba(229, 233, 239, 0));
     transition-duration: .5s;
 
     i {

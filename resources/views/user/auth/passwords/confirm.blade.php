@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Подтверждение пароля')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

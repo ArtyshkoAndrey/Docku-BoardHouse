@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
   protected function schedule(Schedule $schedule)
   {
     $schedule->job(new UpdateCurrencies, 'currency', 'database')->dailyAt('8:00');
+    $schedule->command('telescope:prune --hours=100')->daily();
   }
 
   /**

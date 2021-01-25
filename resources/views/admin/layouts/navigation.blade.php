@@ -13,7 +13,7 @@
     <img src="{{ asset('images/logo-admin-light.svg') }}" class="invisible visible-lm img-fluid w-100 my-auto" alt="logo">
   </a>
   <!-- Navbar text -->
-  <span class="navbar-text text-monospace">v0.1</span> <!-- text-monospace = font-family shifted to monospace -->
+  <span class="navbar-text text-monospace">{{ env('ADMIN_VERSION', 'CRACKED VERSION') }}</span> <!-- text-monospace = font-family shifted to monospace -->
   <!-- Navbar nav -->
   <ul class="navbar-nav d-none d-md-flex"> <!-- d-none = display: none, d-md-flex = display: flex on medium screens and up (width > 768px) -->
     <li class="nav-item {{ Route::currentRouteNamed('admin.index') ? 'active' : '' }}">
@@ -100,6 +100,25 @@
       </span>
       Категории
     </a>
+
+    <br />
+    <h5 class="sidebar-title">Настройки</h5>
+    <div class="sidebar-divider"></div>
+
+    <a href="{{ route('admin.settings.money.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.settings.money.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-money" aria-hidden="true"></i>
+      </span>
+      Виды оплат
+    </a>
+
+    <a href="{{ route('admin.settings.pickup.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.settings.pickup.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-store" aria-hidden="true"></i>
+      </span>
+      Самовывоз
+    </a>
+
 
     <a href="{{ route('telescope') }}" target="_blank" class="sidebar-link sidebar-link-with-icon">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">

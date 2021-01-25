@@ -1,5 +1,5 @@
 @extends('user.layouts.app')
-@section('title', 'Личный кабинет')
+@section('title', 'DOCKU | Линый кабинет')
 
 @section('content')
 

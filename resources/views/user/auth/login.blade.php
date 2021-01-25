@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Вход в профиль')
+
 @section('content')
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row w-100 d-flex justify-content-center">
@@ -64,7 +66,7 @@
                     <label class="form-label" for="password">Пароль</label>
                     <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="bx bxs-lock-open-alt"></i></button>
                   </div>
-                  <a href="#!">Забыли пароль?</a>
+                  <a href="{{ route('password.request') }}">Забыли пароль?</a>
 {{--                  TODO: forgot password--}}
                   <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;">Войти</button>
                 </form>

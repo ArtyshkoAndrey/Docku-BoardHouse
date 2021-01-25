@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Сброс пароля')
+
 @section('content')
   {{--  TODO: Backend part --}}
 <div class="container-fluid d-flex align-items-center justify-content-center">
@@ -10,6 +12,11 @@
           <img src="{{ asset('images/logo-dark.svg') }}" alt="logo" class="img-fluid mb-5 mx-auto d-block logo">
         </div>
       </div>
+      @if (session('status'))
+        <div class="alert alert-success" role="alert">
+          {{ session('status') }}
+        </div>
+      @endif
       <div class="card rounded-0">
         <div class="card-body p-4">
           <div class="row">
@@ -17,7 +24,7 @@
               <h5 class="text-center font-weight-light">Сброс пароля</h5>
             </div>
             <div class="col-12 mt-3">
-              <form action="{{ route('login') }}" method="post">
+              <form method="POST" action="{{ route('password.email') }}">
                 @csrf
                 <div class="form-outline mb-4">
                   <input type="email" id="email" name="email" class="form-control" />

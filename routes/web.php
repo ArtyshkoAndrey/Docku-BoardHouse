@@ -45,13 +45,30 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   Route::get('/', [HomeController::class, 'index'])->name('index');
   Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 
-  Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
-  Route::resource('product', App\Http\Controllers\Admin\ProductController::class);
-  Route::resource('skus', App\Http\Controllers\Admin\SkusController::class);
-  Route::resource('skus-category', App\Http\Controllers\Admin\SkusCategoryController::class);
-  Route::resource('brand', App\Http\Controllers\Admin\BrandController::class);
-  Route::resource('category', App\Http\Controllers\Admin\CategoryController::class);
-  Route::resource('coupon', App\Http\Controllers\Admin\CouponController::class);
+  Route::resource('order', App\Http\Controllers\Admin\OrderController::class)->except([
+    'create', 'store', 'show'
+  ]);
+
+  Route::resource('product', App\Http\Controllers\Admin\ProductController::class)->except([
+    'show'
+  ]);
+
+  Route::resource('skus', App\Http\Controllers\Admin\SkusController::class)->except([
+    'create'
+  ]);
+
+  Route::resource('skus-category', App\Http\Controllers\Admin\SkusCategoryController::class)->only([
+    'store', 'destroy'
+  ]);
+  Route::resource('brand', App\Http\Controllers\Admin\BrandController::class)->except([
+    'create', 'show', 'edit'
+  ]);
+  Route::resource('category', App\Http\Controllers\Admin\CategoryController::class)->except([
+    'create', 'show', 'edit'
+  ]);
+  Route::resource('coupon', App\Http\Controllers\Admin\CouponController::class)->except([
+    'show'
+  ]);
 
   Route::post('product/photo/store', [\App\Http\Controllers\Admin\ProductController::class, 'photoStore'])->name('product.store.photo');
   Route::post('product/photo/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'photo'])->name('product.photo');
