@@ -101,6 +101,25 @@
       Категории
     </a>
 
+    <br />
+    <h5 class="sidebar-title">Настройки</h5>
+    <div class="sidebar-divider"></div>
+
+    <a href="{{ route('admin.settings.money.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.settings.money.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-money" aria-hidden="true"></i>
+      </span>
+      Виды оплат
+    </a>
+
+    <a href="{{ route('admin.settings.pickup.index') }}" class="sidebar-link sidebar-link-with-icon {{ Route::currentRouteNamed('admin.settings.pickup.*') ? 'active' : '' }}">
+      <span class="sidebar-icon bg-transparent justify-content-start mr-0">
+        <i class="bx bx-store" aria-hidden="true"></i>
+      </span>
+      Самовывоз
+    </a>
+
+
     <a href="{{ route('telescope') }}" target="_blank" class="sidebar-link sidebar-link-with-icon">
       <span class="sidebar-icon bg-transparent justify-content-start mr-0">
         <i class="bx bx-bug" aria-hidden="true"></i>
