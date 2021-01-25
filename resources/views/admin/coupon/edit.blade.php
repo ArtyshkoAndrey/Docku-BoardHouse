@@ -80,7 +80,7 @@
 
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="min_amount" class="required">Минимальная скидка</label>
+                      <label for="min_amount" class="required">Минимальная стоимость заказа</label>
                       <input type="number" class="form-control" name="min_amount" id="min_amount" placeholder="Стоимость" value="{{ old('min_amount', $cp->min_amount) }}" required>
                     </div>
                   </div>
