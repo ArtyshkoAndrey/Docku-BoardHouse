@@ -30,8 +30,8 @@
       <div class="col-12 text-center d-inline-block">
         <span>
           Разработано shopper при поддержке
-          <a href="https://www.vk.com/Fulliton" style="color: #1266f1;" target="_blank">Fulliton</a>
-          и <a href="https://hugant.github.io" style="color: #1266f1;" target="_blank">Hugant Mirron</a>
+          <a href="{{ env('PROGRAMMER_LINK', 'https://vk.com') }}" style="color: #1266f1;" target="_blank">Fulliton</a>
+          и <a href="https://hugant.github.io" style="color: #1266f1;" target="_blank">{{ env('PROGRAMMER_NAME', 'Fulliton') }}</a>
         </span>
       </div>
     </div>
