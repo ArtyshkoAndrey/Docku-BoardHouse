@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Сброс пароля')
+
 @section('content')
   {{--  TODO: Backend part --}}
 <div class="container-fluid d-flex align-items-center justify-content-center">

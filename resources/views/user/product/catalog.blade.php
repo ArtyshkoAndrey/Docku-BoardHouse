@@ -1,5 +1,6 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Каталог товаров')
 
 @section('content')
   <div class="container" id="catalog">

@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Регистрация профиля')
+
 @section('content')
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row w-100 d-flex justify-content-center">

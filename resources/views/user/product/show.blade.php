@@ -1,5 +1,6 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | ' . $product->title)
 
 @section('content')
   <div class="container item-page">

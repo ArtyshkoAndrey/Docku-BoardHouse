@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
 
+@section('title', 'DOCKU | Корзина')
+
 @section('content')
   <div class="container mt-2 cart-page">
     <div class="row justify-content-center">

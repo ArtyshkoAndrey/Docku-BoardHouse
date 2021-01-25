@@ -2,6 +2,8 @@
 {{--@extends('user.layouts.app') Это без параметра и следовательно меню придёт dark автоматически --}}
 {{-- Говорим шаблону что будет переменная в нём с значением --}}
 
+@section('title', 'DOCKU | Главаня страница')
+
 @section('content')
   <section id="intro" class="container-fluid m-0 d-flex align-items-center">
     <div class="row">

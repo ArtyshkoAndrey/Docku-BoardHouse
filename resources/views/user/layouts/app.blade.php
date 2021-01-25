@@ -7,7 +7,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Docku') }}</title>
+  <title>@yield('title', 'Docku')</title>
 
   <!-- Fonts -->
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />
