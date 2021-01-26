@@ -86,9 +86,9 @@ class OrderController extends Controller
 
     $user->notify(new CreateOrderNotification($order));
     Auth::login($user);
-    $delay = env('CANCELLATION_ORDER_TEST', false) ?
-      now()->addMinutes(env('DELAY_CANCELLATION_ORDER_MINUTES_FOR_TEST', 5)) :
-      now()->addHours(env('DELAY_CANCELLATION_ORDER_HOURS', 3));
+    $delay = config('app.order.test') ?
+      now()->addMinutes(config('app.order.delay.minutes')) :
+      now()->addHours(config('app.order.delay.hours'));
     CloseOrder::dispatch($order, $delay, $this->orderService);
 
     return response()->json([
