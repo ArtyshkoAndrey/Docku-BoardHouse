@@ -96,7 +96,7 @@
             <p>При поддержке <a href="https://www.gethalfmoon.com" class="text-danger">Halfmoon</a></p>
           </div>
           <div class="col-auto mx-10">
-            <p>Powered by <a href="{{ env('PROGRAMMER_LINK', 'https://vk.com') }}" class="text-danger">{{ env('PROGRAMMER_NAME', 'Fulliton') }}</a></p>
+            <p>Powered by <a href="{{ config('app.admin.link') }}" class="text-danger">{{ config('app.admin.name') }}</a></p>
           </div>
         </div>
       </div>

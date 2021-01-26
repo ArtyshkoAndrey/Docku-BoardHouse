@@ -13,7 +13,7 @@
     <img src="{{ asset('images/logo-admin-light.svg') }}" class="invisible visible-lm img-fluid w-100 my-auto" alt="logo">
   </a>
   <!-- Navbar text -->
-  <span class="navbar-text text-monospace">{{ env('ADMIN_VERSION', 'CRACKED VERSION') }}</span> <!-- text-monospace = font-family shifted to monospace -->
+  <span class="navbar-text text-monospace">{{ config('app.admin.version') }}</span> <!-- text-monospace = font-family shifted to monospace -->
   <!-- Navbar nav -->
   <ul class="navbar-nav d-none d-md-flex"> <!-- d-none = display: none, d-md-flex = display: flex on medium screens and up (width > 768px) -->
     <li class="nav-item {{ Route::currentRouteNamed('admin.index') ? 'active' : '' }}">

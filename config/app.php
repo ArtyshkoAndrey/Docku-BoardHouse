@@ -14,6 +14,19 @@ return [
   */
 
   'name' => env('APP_NAME', 'Docku'),
+  'admin' => [
+    'version' => env('ADMIN_VERSION', 'CRACKED VERSION'),
+    'name' => env('PROGRAMMER_NAME', 'Fulliton'),
+    'link' => env('PROGRAMMER_LINK', 'www.vk.com/fulliton')
+  ],
+
+  'order' => [
+    'test' => env('CANCELLATION_ORDER_TEST', false),
+    'delay' => [
+      'hours' => env('DELAY_CANCELLATION_ORDER_HOURS', 3),
+      'minutes' => env('DELAY_CANCELLATION_ORDER_MINUTES_FOR_TEST', 5)
+    ]
+  ],
 
   /*
   |--------------------------------------------------------------------------

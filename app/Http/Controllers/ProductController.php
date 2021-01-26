@@ -8,6 +8,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -66,6 +68,14 @@ class ProductController extends Controller
 
     if ($categoryArr = $request->input('category', [])) {
       !is_array($categoryArr) ? $categoryArr = [$categoryArr] : null;
+      $rules = [
+        'categories' => 'required|array',
+        'categories.*' => 'exists:categories,id', // check each item in the array
+      ];
+      $validator = Validator::make(['categories' => $categoryArr], $rules);
+      if ($validator->fails()) {
+        throw new NotFoundHttpException();
+      }
       foreach ($categoryArr as $index => $category) {
         if ($index == 0) {
           $items = $items->whereHas('category', function ($query) use ($category) {
@@ -81,6 +91,16 @@ class ProductController extends Controller
 
     if ($brandArr = $request->input('brand', [])) {
       !is_array($brandArr) ? $brandArr = [$brandArr] : null;
+
+      $rules = [
+        'brands' => 'required|array',
+        'brands.*' => 'exists:brands,id', // check each item in the array
+      ];
+      $validator = Validator::make(['brands' => $brandArr], $rules);
+      if ($validator->fails()) {
+        throw new NotFoundHttpException();
+      }
+
       foreach ($brandArr as $index => $brand) {
         if ($index == 0) {
           $items = $items->whereHas('brand', function ($query) use ($brand) {
@@ -115,6 +135,16 @@ class ProductController extends Controller
 
     if ($size) {
       !is_array($size) ? $size = [$size] : null;
+
+      $rules = [
+        'skuses' => 'required|array',
+        'skuses.*' => 'exists:skuses,id', // check each item in the array
+      ];
+      $validator = Validator::make(['skuses' => $size], $rules);
+      if ($validator->fails()) {
+        throw new NotFoundHttpException();
+      }
+
       $items = $items->whereHas('skuses', function ($query) use ($size) {
         return $query->whereIn('skus_id', $size);
       });
@@ -147,23 +177,26 @@ class ProductController extends Controller
 
   /**
    * @param int $id
-   * @return View
+   * @return View|void
    */
   public function show (int $id): View
   {
     $product = Product::find($id);
-    try {
-      $childCategory = $product->category()->first();
-      $categories = [];
-      while($category = $childCategory->parents()->first()) {
-        array_unshift($categories, $category);
-        $childCategory = $category;
+    if ($product) {
+      try {
+        $childCategory = $product->category()->first();
+        $categories = [];
+        while($category = $childCategory->parents()->first()) {
+          array_unshift($categories, $category);
+          $childCategory = $category;
+        }
+        array_push($categories, $product->category()->first());
+      } catch (\Error $exception) {
+        $categories = [];
       }
-      array_push($categories, $product->category()->first());
-    } catch (\Error $exception) {
-      $categories = [];
-    }
 
-    return view('user.product.show', compact('product', 'categories'));
+      return view('user.product.show', compact('product', 'categories'));
+    }
+    throw new NotFoundHttpException();
   }
 }
