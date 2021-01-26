@@ -75,7 +75,7 @@
                 <div class="custom-switch d-inline-block mr-10">
                   <input type="hidden" name="on_top" value="0"><!-- d-inline-block = display: inline-block, mr-10 = margin-right: 1rem (10px) -->
                   <input type="checkbox" name="on_top" id="switch-3" value="1" {{ old('on_top', $product->on_top) ? 'checked' : null }}>
-                  <label for="switch-3">На главной</label>
+                  <label for="switch-3">Хит продаж</label>
                 </div>
 
               </div>
