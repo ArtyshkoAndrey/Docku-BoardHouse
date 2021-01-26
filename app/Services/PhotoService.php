@@ -59,8 +59,10 @@ class PhotoService
   public static  function delete ($name): bool
   {
     foreach (PhotoService::$type as $type) {
-      File::delete(public_path('storage/images/photos/' . $name . '.' . $type));
-      File::delete(public_path('storage/images/thumbnails/' . $name . '.' . $type));
+      if (file_exists(public_path('storage/images/photos/' . $name . '.' . $type)))
+        File::delete(public_path('storage/images/photos/' . $name . '.' . $type));
+      if (file_exists(public_path('storage/images/thumbnails/' . $name . '.' . $type)))
+        File::delete(public_path('storage/images/thumbnails/' . $name . '.' . $type));
     }
     return true;
   }
