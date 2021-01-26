@@ -46971,17 +46971,36 @@ section.instagram a:hover {
   left: 0;
   width: 100%;
   border-radius: 10px;
-  opacity: 0;
-  transition-duration: 0.5s;
+  display: none;
 }
 .item-page .slider .slider-for .img-wrapper.active {
-  opacity: 1;
-  transition-duration: 0.5s;
-  z-index: 10;
+  display: block;
+  -webkit-animation: fade-in 0.5s;
+          animation: fade-in 0.5s;
+}
+.item-page .slider .slider-for .img-wrapper:not(.active) {
+  -webkit-animation: fade-out 0.5s;
+          animation: fade-out 0.5s;
 }
 .item-page .slider .slider-for .img-wrapper img {
   border-radius: 10px;
   padding-right: 0.7em;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 .item-page .slider .slider-for .expand-button {
   position: absolute;
@@ -46999,6 +47018,9 @@ section.instagram a:hover {
 }
 .item-page .slider .slider-for .expand-button i {
   font-size: 1.5em;
+}
+.item-page .slider .hidden-overflow {
+  overflow: hidden;
 }
 .item-page .slider-button {
   border: none;
@@ -47091,7 +47113,7 @@ section.instagram a:hover {
 }
 .item-page .btn-to-cart i {
   font-size: 1.1em;
-  margin-right: 0.3em;
+  margin-left: 0.3em;
 }
 .item-page .description-wrapper .title {
   font-weight: bold;

@@ -47,18 +47,38 @@
         left: 0;
         width: 100%;
         border-radius: 10px;
-        opacity: 0;
-        transition-duration: .5s;
+        display: none;
 
         &.active {
-          opacity: 1;
-          transition-duration: .5s;
-          z-index: 10;
+          display: block;
+          animation: fade-in .5s;
+        }
+
+        &:not(.active) {
+          animation: fade-out .5s;
         }
 
         img {
           border-radius: 10px;
           padding-right: .7em;
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes fade-out {
+          from {
+            opacity: 1;
+          }
+          to {
+            opacity: 0;
+          }
         }
       }
 
@@ -80,6 +100,10 @@
           font-size: 1.5em;
         }
       }
+    }
+
+    .hidden-overflow {
+      overflow: hidden;
     }
   }
 
@@ -200,7 +224,7 @@
 
     i {
       font-size: 1.1em;
-      margin-right: .3em;
+      margin-left: .3em;
     }
   }
 

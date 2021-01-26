@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-12 col-md-7 slider">
-        <div class="row" style="overflow: hidden;">
+        <div class="row">
           <div class="col-3 slider-nav">
             <div class="scroll-wrapper">
 
@@ -45,9 +45,6 @@
                 </picture>
               </div>
             @endforeach
-            <button class="expand-button" onclick="alert(1)">
-              <i class="bx bx-expand"></i>
-            </button>
 
           </div>
           <div class="col-12">
@@ -154,6 +151,18 @@
     return itemHeight
   }
 
+  document.addEventListener('animationstart', function (e) {
+    if (e.animationName === 'fade-in') {
+      e.target.classList.add('did-fade-in');
+    }
+  });
+
+  document.addEventListener('animationend', function (e) {
+    if (e.animationName === 'fade-out') {
+      e.target.classList.remove('did-fade-in');
+    }
+  });
+
   $(window).resize(function() {
     itemHeight = initSliderSize()
     scrollStep = itemHeight + parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
@@ -195,9 +204,11 @@
   new Zooming({
     onBeforeOpen: () => {
       $('body').css('overflow','hidden')
+      $('hidden-overflow').css('overflow', 'auto')
     },
     onBeforeClose: () => {
       $('body').css('overflow','auto')
+      $('hidden-overflow').css('overflow', 'hidden')
     },
     scaleBase: 1.5,
     scaleExtra: 2,
