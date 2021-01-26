@@ -3,14 +3,14 @@
   <div class="card-body d-flex flex-column">
     <div class="row">
       <div class="col-12">
-        <div class="img-wrapper">
+        <a href="{{ route('product.show', $item->id) }}" class="img-wrapper d-block">
           <div class="sale-badge">Sale</div>
           <picture>
             <source type="image/webp" srcset="{{ $item->thumbnail_webp }}">
             <source type="image/jpeg" srcset="{{ $item->thumbnail_jpg }}">
             <img src="{{ $item->thumbnail_jpg }}" class="w-100 h-100" alt="{{ $item->name }}">
           </picture>
-        </div>
+        </a>
       </div>
     </div>
     <div class="row pt-3 mb-auto">

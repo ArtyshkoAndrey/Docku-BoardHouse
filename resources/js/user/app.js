@@ -12,10 +12,12 @@
 import * as mdb from 'mdb-ui-kit'
 require('./bootstrap.js')
 
+import Zooming from 'zooming'
 import store from "./store";
+
 window.Vue = require('vue')
 window.Swal = require('sweetalert2')
-
+window.zooming = require('zooming')
 
 /**
  * The following block of code may be used to automatically register your

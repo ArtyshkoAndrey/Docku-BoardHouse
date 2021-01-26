@@ -102,14 +102,13 @@
     let icon = $(button).children('i')
     if (el.attr('type') === 'password') {
       el.attr('type', 'text')
-      icon.removeClass('bxs-lock-open-alt')
-      icon.addClass('bxs-lock-alt')
+      icon.removeClass('fa-eye')
+      icon.addClass('fa-eye-slash')
     } else if (el.attr('type') === 'text') {
       el.attr('type', 'password')
-      icon.addClass('bxs-lock-open-alt')
-      icon.removeClass('bxs-lock-alt')
+      icon.addClass('fa-eye')
+      icon.removeClass('fa-eye-slash')
     }
-    console.log()
   }
 
   (() => {

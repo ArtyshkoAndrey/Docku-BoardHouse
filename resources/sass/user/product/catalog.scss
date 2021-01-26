@@ -28,6 +28,18 @@
       font-weight: 400;
       margin-left: 1em;
     }
+
+    .filter-badge {
+      line-height: unset;
+      background: #E9EAEC;
+      color: #2D3134;
+      font-weight: 400;
+      position: absolute;
+      right: -3px;
+      top: 0;
+      font-size: 0.5em;
+      padding: 0 4px;
+    }
   }
 
   #product-all {
@@ -40,9 +52,15 @@
       .dropdown-toggle {
         display: flex;
         align-items: center;
+        width: 100%;
 
         &:after {
           color: #2D3134;
+          margin-left: auto;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 1.6em;
+          }
         }
       }
 
