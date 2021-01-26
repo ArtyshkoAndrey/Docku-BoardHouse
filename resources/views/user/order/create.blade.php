@@ -166,7 +166,7 @@
               {{--                </div>--}}
               {{--              </div>--}}
               {{--            </div>--}}
-              
+
               <transition name="slide-fade" mode="out-in" appear>
                 <div class="col-12" v-if="transfer.name !== null">
                   <div class="row">
