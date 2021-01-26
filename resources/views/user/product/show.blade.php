@@ -41,7 +41,7 @@
                 <picture>
                   <source type="image/webp" srcset="{{  $photo->url_webp }}">
                   <source type="image/jpeg" srcset="{{  $photo->url_jpg }}">
-                  <img class="w-100" src="{{ $photo->url_jpg }}" alt="{{ $photo->name }}">
+                  <img class="w-100 img-product" src="{{ $photo->url_jpg }}" alt="{{ $photo->name }}">
                 </picture>
               </div>
             @endforeach
@@ -131,6 +131,7 @@
 @endsection
 
 @section('js')
+  <script src="https://unpkg.com/zooming"></script>
 <script>
   let showItemAmount = 4
   let currentPosition = 0
@@ -190,5 +191,19 @@
     $('.slider-for .img-wrapper.active').removeClass('active')
     $('.slider-for .img-wrapper[data-id=' + imageID + ']').addClass('active')
   })
+
+  new Zooming({
+    onBeforeOpen: () => {
+      $('body').css('overflow','hidden')
+    },
+    onBeforeClose: () => {
+      $('body').css('overflow','auto')
+    },
+    scaleBase: 1.5,
+    scaleExtra: 2,
+    scrollThreshold: 99999
+  }).listen('.img-product')
+
+
 </script>
 @endsection

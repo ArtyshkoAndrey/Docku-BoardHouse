@@ -209,18 +209,6 @@
       });
     }
 
-    window.zooming({
-      onBeforeOpen: () => {
-        $('body').css('overflow','hidden')
-      },
-      onBeforeClose: () => {
-        $('body').css('overflow','auto')
-      },
-      scaleBase: 1.5,
-      scaleExtra: 2,
-      scrollThreshold: 99999
-    }).listen('img')
-
     function uncheckProps(el) {
       el.prop('checked', false)
       $('#product-all').submit()
