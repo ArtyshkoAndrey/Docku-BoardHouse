@@ -83,7 +83,6 @@ const app = new Vue({
         this.$store.commit('setProducts', response.data)
         let flag = false
         try {
-          console.log('123', this.$store.state.cart.items)
           this.$store.state.cart.items.map(item => {
             let product = this.$store.state.cart.products.find(el => el.product_skuses.some(sk => sk.id === item.id))
             if (product === undefined) {

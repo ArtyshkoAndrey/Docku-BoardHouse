@@ -42,7 +42,7 @@
     @if($errors->any())
       @foreach ($errors->all() as $error)
         <div class="alert alert-danger fade show info-alert" data-mdb-color="danger" role="alert">
-          <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex flex-column justify-content-center w-100">
             <strong>Ошибка!</strong>
             <span>{{ $error }}</span>
           </div>
@@ -56,7 +56,7 @@
   @if (session()->has('success'))
     @foreach (session('success') as $message)
         <div class="alert alert-success fade show info-alert" data-mdb-color="success" role="alert">
-          <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex flex-column justify-content-center w-100">
             <strong>Успешно!</strong>
             <span>{{ $message }}</span>
           </div>

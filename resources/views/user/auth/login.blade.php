@@ -26,10 +26,10 @@
           </div>
           <div class="card-body p-4">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 d-none">
                 <h5 class="text-center font-weight-light w-100">Вход через соц. сеть</h5>
               </div>
-              <div class="col-12">
+              <div class="col-12 d-none">
                 <div class="row p-0 m-0">
                   <div class="col-4 p-0 pr-1">
                     <a href="#" class="btn social-signin" id="google">

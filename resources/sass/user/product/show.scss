@@ -187,10 +187,20 @@
   .btn-to-cart {
     display: flex;
     align-items: center;
-    border: none;
+    justify-content: center;
+    border: 1px solid #a9aeb5;
+
+    &:disabled {
+      border: none;
+    }
+
+    span {
+      font-size: 1.2em;
+    }
 
     i {
-      margin-left: .3em;
+      font-size: 1.1em;
+      margin-right: .3em;
     }
   }
 
