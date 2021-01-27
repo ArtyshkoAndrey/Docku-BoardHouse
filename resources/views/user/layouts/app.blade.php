@@ -144,8 +144,11 @@
       }
     })(jQuery)
 
-    if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
-      $('#intro').css('background-attachment', '')
+    let isDesktopSafari = (navigator.userAgent.toLowerCase().indexOf('safari') !== -1 && navigator.userAgent.toLowerCase().indexOf('chrome') === -1) && typeof window.ontouchstart === 'undefined';
+    let isMobileSafari = (navigator.userAgent.toLowerCase().indexOf('safari') !== -1 && navigator.userAgent.toLowerCase().indexOf('chrome') === -1) && typeof window.ontouchstart !== 'undefined';
+
+    if (!isDesktopSafari && !isMobileSafari) {
+      $('#intro').css('background-attachment', 'fixed')
     }
     // $('.img-wrapper').height($('.img-wrapper').width())
     // $('.img-wrapper:hover').css({'margin-left': '-' + ($('.img-wrapper').width / 2) + 'px'})
