@@ -45952,7 +45952,9 @@ readers do not read off random characters that represent icons */
   }
 }
 .navbar .dropdown-menu.full-height {
-  width: auto;
+  overflow-y: auto;
+  height: calc(100vh - 72px);
+  width: 100vw;
   min-width: auto;
   padding-bottom: 50px;
 }

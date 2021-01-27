@@ -138,7 +138,7 @@
             </a>
             <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
-              <div class="row mb-2" v-for="product in $store.getters.productsCart" v-if="product">
+              <div class="row ml-0 mb-2" v-for="product in $store.getters.productsCart" v-if="product">
                 <div class="col-3 col-sm-2 d-flex align-items-start p-0">
                   <img :src="product.thumbnail_jpg" alt="" class="img-fluid pb-2">
                 </div>
@@ -171,7 +171,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3">
+              <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3 ml-0">
                 <div class="col-12 col-md-5 d-flex align-items-end align-self-start p-0">
                   <a href="{{ route('cart.index') }}" class="btn btn-dark py-3 w-100" style="font-size: 1em;" :class="$store.getters.productsCart.length < 1 ? 'disabled' : null">Перейти в корзину</a>
                 </div>
