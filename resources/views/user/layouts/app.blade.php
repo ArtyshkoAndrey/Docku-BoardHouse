@@ -144,6 +144,10 @@
       }
     })(jQuery)
 
+    if (navigator.userAgent.match(/Chrome/)) {
+      console.log(1)
+      $('#intro').css('background-attachment', '')
+    }
     // $('.img-wrapper').height($('.img-wrapper').width())
     // $('.img-wrapper:hover').css({'margin-left': '-' + ($('.img-wrapper').width / 2) + 'px'})
     // $('.img-wrapper:hover').css({'margin-top': '-' + ($('.img-wrapper').width / 2) + 'px'})
