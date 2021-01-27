@@ -60,7 +60,7 @@
           <div class="col-12 breadcrumb">
 
             @foreach($categories as $category)
-              {{ $category->name }} /
+              <a class="breadcrumb-link" href="#">{{ $category->name }}</a> /
             @endforeach
             {{ $product->title }}
 

@@ -10,7 +10,7 @@
   <div class="container mt-2 order-create-page">
     <order inline-template >
       <transition name="slide-fade" mode="out-in" appear>
-        <div key="windowOrder" class="row justify-content-center flex-column-reverse flex-md-row mt-5" v-if="!windowsLoader">
+        <div key="windowOrder" class="row justify-content-start flex-column flex-md-row mt-5" v-if="!windowsLoader">
           <div class="col-12 col-md-7">
             <div class="row">
 
@@ -153,20 +153,6 @@
                 </div>
               </transition>
 
-              {{--            <div class="col-12 mb-5">--}}
-              {{--              <div class="choosable-field">--}}
-              {{--                <div class="row">--}}
-              {{--                  <div class="col-8 d-flex flex-column">--}}
-              {{--                    <span class="title">Стандартная доставка</span>--}}
-              {{--                    <span class="description">Доставка осуществляется от 4 до 7 дней сервисом Kaz Post</span>--}}
-              {{--                  </div>--}}
-              {{--                  <div class="col-4 d-flex justify-content-end">--}}
-              {{--                    <span class="price">1000 тг.</span>--}}
-              {{--                  </div>--}}
-              {{--                </div>--}}
-              {{--              </div>--}}
-              {{--            </div>--}}
-
               <transition name="slide-fade" mode="out-in" appear>
                 <div class="col-12" v-if="transfer.name !== null">
                   <div class="row">
@@ -206,29 +192,7 @@
                   </div>
                 </div>
               </transition>
-
-
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <button class="btn btn-dark complete" id="checkout" @click="orderedNow" :disabled="disabledButton">
-                  <span v-if="!loaderButton">Завершить и перейти к оплате</span>
-                  <div v-else class="spinner-border text-light" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-dark complete" @click="orderAfter" data-mdb-ripple-color="dark" id="checkout" :disabled="disabledButtonAfter">
-                  <span v-if="!loaderButtonAfter">Завершить и оплатить позже</span>
-
-                  <div v-else class="spinner-border text-dark" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-
           </div>
           <div class="col-12 col-md-5">
             <div class="row">
@@ -309,7 +273,29 @@
               </div>
             </div>
           </div>
+          <div class="col-12 col-md-7">
+            <div class="row">
+              <div class="col-md-6 d-flex">
+                <button class="btn btn-dark complete" id="checkout" @click="orderedNow" :disabled="disabledButton">
+                  <span v-if="!loaderButton">Завершить и перейти к оплате</span>
+                  <div v-else class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </button>
+              </div>
+              <div class="col-md-6 d-flex">
+                <button class="btn btn-outline-dark complete" @click="orderAfter" data-mdb-ripple-color="dark" id="checkout" :disabled="disabledButtonAfter">
+                  <span v-if="!loaderButtonAfter">Завершить и оплатить позже</span>
+
+                  <div v-else class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div v-else key="loaderWindow" class="mt-5">
           <div class="row">
             <div class="col-12 text-center">

@@ -201,12 +201,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 4px;
+
+      @include media-breakpoint-down(sm) {
+        min-width: 20px;
+        min-height: 20px;
+      }
     }
   }
 
   .dropdown-menu.full-height {
-    height: calc(100vh - 72px);
-    width: 100vw;
+    //height: calc(100vh - 72px);
+    //width: 100vw;
+    width: auto;
     min-width: auto;
     padding-bottom: 50px;
   }

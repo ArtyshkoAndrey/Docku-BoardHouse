@@ -120,6 +120,14 @@
   .breadcrumb {
     font-size: 0.9em;
     color: #2D3134;
+
+    .breadcrumb-link {
+      color: #2D3134;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .title-wrapper {

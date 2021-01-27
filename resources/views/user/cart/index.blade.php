@@ -26,7 +26,7 @@
                       </p>
                     </div>
 
-                    <div class="col-2 d-flex justify-content-end px-0 px-md-2 mt-1 mt-md-2">
+                    <div class="col-2 d-flex align-items-start justify-content-end px-0 px-md-2 mt-1 mt-md-2">
                       <button type="button" @click="$store.commit('removeItem', product.item.id)" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
                         <i class="bx bxs-trash bx-sm"></i>
                       </button>
@@ -47,8 +47,8 @@
                       </div>
                     </div>
 
-                    <div class="col-6 px-0 px-md-3 mb-md-1 mt-2 mt-md-0 d-flex justify-content-end align-items-end">
-                      <span class="h4 font-weight-bold m-0">
+                    <div class="col-6 px-0 px-md-3 mb-md-1 mt-2 mt-md-0 d-flex justify-content-end align-items-center">
+                      <span class="h6 font-weight-bold m-0">
                         @{{ $cost( (product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}
                       </span>
                     </div>
