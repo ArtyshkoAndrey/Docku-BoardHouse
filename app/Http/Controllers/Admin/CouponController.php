@@ -139,7 +139,7 @@ class CouponController extends Controller
     $coupon->brandsDisabled()->sync($request->disabled_brands);
     $coupon->categoriesEnabled()->sync($request->categories);
     $coupon->categoriesDisabled()->sync($request->disabled_categories);
-    return redirect()->route('admin.coupon.edit', $id)->with('success', ['Промокод обнавлён']);
+    return redirect()->route('admin.coupon.edit', $id)->with('success', ['Промокод обновлён']);
   }
 //  TODO: Дописать удаление
 
