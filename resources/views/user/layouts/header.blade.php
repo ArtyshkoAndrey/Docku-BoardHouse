@@ -126,7 +126,7 @@
             </li>
           <li class="nav-item icon dropdown">
             <a
-              class="nav-link"
+              class="nav-link position-relative"
               href="#"
               id="cart-dropdown"
               role="button"

@@ -45,6 +45,13 @@
     width: 100%;
   }
 
+  .badge.badge-notification {
+    top: 5px;
+    right: 0;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
   &.dark-menu {
     .dark-logo {
       display: block;
