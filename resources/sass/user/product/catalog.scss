@@ -68,6 +68,12 @@
         width: 300px!important;
         max-height: 300px!important;
 
+        @include media-breakpoint-down(sm) {
+          width: 100vw!important;
+          transform: translate(0, 40px)!important;
+          margin-left: -12px;
+        }
+
         .checkbox {
           margin-top: 5px;
           margin-bottom: 5px;

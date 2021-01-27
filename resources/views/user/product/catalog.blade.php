@@ -8,8 +8,8 @@
       <span class="title">Каталог товаров</span>
       <span class="badge">{{ $itemsCount }}</span>
       <button class="ml-auto mr-2 d-block d-md-none position-relative" style="border: none; background: transparent; color: #2D3134;" onclick="toggleFilters()">
-        <span class="bx bxs-filter-alt" style="font-size: 1.3em;"></span>
-        <span class="badge rounded-pill badge-notification bg-white text-black filter-badge">4</span>
+        <span class="bx bx-filter-alt" style="font-size: 1.4em;"></span>
+        <span class="badge rounded-pill badge-notification bg-dark text-white filter-badge">4</span>
       </button>
     </div>
 
