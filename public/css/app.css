@@ -45988,7 +45988,6 @@ readers do not read off random characters that represent icons */
   background-size: cover;
   color: #ffffff;
   padding-left: 2em;
-  background-attachment: fixed;
   position: relative;
 }
 #intro::after {
