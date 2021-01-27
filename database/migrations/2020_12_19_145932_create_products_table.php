@@ -33,6 +33,7 @@ class CreateProductsTable extends Migration
         ->onUpdate('set null')
         ->onDelete('set null');
       $table->foreignId('category_id')
+        ->nullable()
         ->constrained('categories')
         ->onUpdate('set null')
         ->onDelete('set null');
