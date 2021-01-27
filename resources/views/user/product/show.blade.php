@@ -210,8 +210,8 @@
       $('body').css('overflow','auto')
       $('hidden-overflow').css('overflow', 'hidden')
     },
-    scaleBase: 1.5,
-    scaleExtra: 2,
+    scaleBase: 1,
+    scaleExtra: 1.5,
     scrollThreshold: 99999
   }).listen('.img-product')
 
