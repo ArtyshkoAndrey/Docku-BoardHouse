@@ -29,15 +29,15 @@
       margin-left: 1em;
     }
 
-    .filter-badge {
+    .badge-notification {
       line-height: unset;
       background: #E9EAEC;
       color: #2D3134;
-      font-weight: 400;
+      font-weight: 500;
       position: absolute;
       right: -3px;
       top: 0;
-      font-size: 0.5em;
+      font-size: 0.6em;
       padding: 0 4px;
     }
   }
@@ -97,6 +97,10 @@
       align-items: center;
       margin: 0 0 0 .3em;
     }
+  }
+
+  .badge.badge-notification {
+    margin-left: 0 !important;
   }
 
   .clear-filters {
