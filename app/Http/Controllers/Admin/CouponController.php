@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CouponCode;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -146,10 +147,16 @@ class CouponController extends Controller
    * Remove the specified resource from storage.
    *
    * @param int $id
-   * @return Response
+   * @return RedirectResponse
+   * @throws Exception
    */
-  public function destroy(int $id)
+  public function destroy(int $id): RedirectResponse
   {
-      //
+    try {
+      CouponCode::find($id)->delete();
+      return redirect()->back()->with('success', ['Промокод успешно удалён']);
+    } catch(Exception $e) {
+      return redirect()->back()->withErrors(['Ошибка удаления промокода']);
+    }
   }
 }
