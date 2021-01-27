@@ -122,6 +122,33 @@ sup {
   .link-product {
     color: #ffffff;
   }
+
+  .select2-container--default .select2-selection--multiple, .select2-dropdown {
+    color: var(--dm-input-text-color);
+    background-color: #25282B;
+    border-color: var(--dm-input-border-color);
+    box-shadow: var(--dm-input-box-shadow);
+  }
+
+  .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: black;
+    &:hover {
+      background-color: #25282B;
+    }
+  }
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    height: 100% !important;
+  }
+
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+    background-color: #25282B;
+    color: white;
+    height: 100% !important;
+  }
+
+  .select2-container--default .select2-results__option--selected {
+    background-color: black;
+  }
 }
 
 
