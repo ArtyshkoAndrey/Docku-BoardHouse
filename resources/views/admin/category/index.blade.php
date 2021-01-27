@@ -103,10 +103,18 @@
                       <option value="">Без родителя</option>
                       @foreach(\App\Models\Category::all() as $categoryForm)
                         @if($category->id !== $categoryForm->id)
-                          <option value="{{ $categoryForm->id }}" {{ $category->parents->first()->id ?? null === $categoryForm->id ? 'selected' : '' }}>{{ $categoryForm->name }}</option>
+                          <option value="{{ $categoryForm->id }}" {{ ($category->parents()->first()->id ?? 0) === $categoryForm->id ? 'selected' : '' }}>{{ $categoryForm->name }}</option>
                         @endif
                       @endforeach
                     </select>
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" name="to_menu" value="0">
+                    <div class="custom-switch d-inline-block mr-10"> <!-- d-inline-block = display: inline-block, mr-10 = margin-right: 1rem (10px) -->
+                      <input type="checkbox" id="to_menu" name="to_menu" value="1" {{ $category->to_menu ? 'checked' : null }}>
+                      <label for="to_menu">На главный экран</label>
+                    </div>
+
                   </div>
 
                   <input class="btn btn-primary btn-block" type="submit" value="Обновить">
@@ -147,6 +155,13 @@
                       <option value="{{ $category->id }}" {{ (end($categoriesLink)->id ?? 0) === $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                   </select>
+                </div>
+                <div class="form-group">
+                  <input type="hidden" name="to_menu" value="0">
+                  <div class="custom-switch d-inline-block mr-10"> <!-- d-inline-block = display: inline-block, mr-10 = margin-right: 1rem (10px) -->
+                    <input type="checkbox" name="to_menu" id="to_menu" value="1" {{ old('to_menu') ? 'checked' : null }}>
+                    <label for="to_menu">На главный экран</label>
+                  </div>
                 </div>
 
                 <input class="btn btn-primary btn-block" type="submit" value="Создать">
