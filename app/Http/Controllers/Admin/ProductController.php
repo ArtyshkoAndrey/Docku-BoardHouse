@@ -222,8 +222,8 @@ class ProductController extends Controller
 
   public function photo(Request $request, $id) {
 
-    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
-    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 500);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 1200);
     $photo = new Photo(['name' => $name]);
     $photo->product()->associate($id);
     $photo->save();
@@ -244,8 +244,8 @@ class ProductController extends Controller
   }
 
   public function photoStore(Request $request) {
-    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
-    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 500);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 1200);
     try {
       $photo = new Photo(['name' => $name]);
       $photo->product()->associate(null);
