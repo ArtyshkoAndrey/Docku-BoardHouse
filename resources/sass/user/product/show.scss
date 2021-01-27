@@ -98,7 +98,7 @@
   .slider-button {
     border: none;
     background: transparent;
-    color: #A9AEB5;
+    color: #4F545B;
 
     i {
       font-size: 1.8em;
@@ -131,7 +131,7 @@
   .prices-wrapper {
     .old-price {
       display: none;
-      color: #a9aeb5;
+      color: #4F545B;
       font-size: 0.9em;
       text-align: left;
       width: 100%;
@@ -175,7 +175,7 @@
         }
 
         &.disabled {
-          color: #A9AEB5;
+          color: #4F545B;
           cursor: default;
 
           &::before {
@@ -203,7 +203,7 @@
     }
 
     .description {
-      color: #A9AEB5;
+      color: #4F545B;
       font-size: .9em;
     }
   }

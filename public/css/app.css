@@ -45852,7 +45852,7 @@ readers do not read off random characters that represent icons */
   background: #000 !important;
 }
 .header.dark-menu hr {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.0205) 0%, rgba(169, 174, 181, 0) 10%, #A9AEB5 47.45%, rgba(255, 255, 255, 0) 90%, rgba(169, 174, 181, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.0205) 0%, rgba(169, 174, 181, 0) 10%, #4F545B 47.45%, rgba(255, 255, 255, 0) 90%, rgba(169, 174, 181, 0) 100%);
 }
 .header.dark-menu .search .input-group a {
   color: #2D3134;
@@ -46259,7 +46259,7 @@ footer .container .row > div {
 }
 footer .container .row > div span, footer .container .row > div a {
   font-size: 0.9em;
-  color: #A9AEB5;
+  color: #4F545B;
   margin-bottom: 12px;
 }
 footer .container .row > div .title {
@@ -46555,7 +46555,7 @@ section.instagram a:hover {
   font-weight: bold;
 }
 .search-page .not-found span.another {
-  color: #A9AEB5;
+  color: #4F545B;
   font-size: 0.8em;
 }
 
@@ -46713,7 +46713,7 @@ section.instagram a:hover {
 }
 #cart-index-page .cart-page .item-size {
   font-size: 1em;
-  color: #A9AEB5;
+  color: #4F545B;
   font-weight: normal;
 }
 @media (max-width: 991.98px) {
@@ -46744,7 +46744,7 @@ section.instagram a:hover {
   background: transparent;
   color: black;
   box-shadow: none;
-  border: 1px solid #A9AEB5;
+  border: 1px solid #4F545B;
 }
 
 /*!
@@ -47030,7 +47030,7 @@ section.instagram a:hover {
 .item-page .slider-button {
   border: none;
   background: transparent;
-  color: #A9AEB5;
+  color: #4F545B;
 }
 .item-page .slider-button i {
   font-size: 1.8em;
@@ -47052,7 +47052,7 @@ section.instagram a:hover {
 }
 .item-page .prices-wrapper .old-price {
   display: none;
-  color: #a9aeb5;
+  color: #4F545B;
   font-size: 0.9em;
   text-align: left;
   width: 100%;
@@ -47088,7 +47088,7 @@ section.instagram a:hover {
   color: #fff;
 }
 .item-page .sizes-wrapper .size-table .size-box.disabled {
-  color: #A9AEB5;
+  color: #4F545B;
   cursor: default;
 }
 .item-page .sizes-wrapper .size-table .size-box.disabled::before {
@@ -47109,7 +47109,7 @@ section.instagram a:hover {
   color: #2D3134;
 }
 .item-page .description-wrapper .description {
-  color: #A9AEB5;
+  color: #4F545B;
   font-size: 0.9em;
 }
 .item-page .item-details .btn-to-cart {
@@ -47187,10 +47187,10 @@ section.instagram a:hover {
   color: #ff5200;
 }
 .order-create-page select.form-control label.form-label, .order-create-page .form-outline label.form-label {
-  color: #A9AEB5;
+  color: #4F545B;
 }
 .order-create-page .choosable-field {
-  border: 2px solid #A9AEB5;
+  border: 2px solid #4F545B;
   border-radius: 10px;
   padding: 1.5em;
   cursor: pointer;
@@ -47202,7 +47202,7 @@ section.instagram a:hover {
 }
 .order-create-page .choosable-field .description {
   font-size: 0.9em;
-  color: #A9AEB5;
+  color: #4F545B;
 }
 .order-create-page .choosable-field .price {
   font-weight: bold;
@@ -47216,7 +47216,7 @@ section.instagram a:hover {
   font-size: 1em;
 }
 .order-create-page .order-results {
-  border: 1px solid #A9AEB5;
+  border: 1px solid #4F545B;
   border-radius: 10px;
   padding: 0.5em 1em;
 }
