@@ -39,8 +39,10 @@
           {{ auth()->user()->name }}
         </p>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item text-danger"><i class="bx bxs-log-out-circle mx-10"></i> Выйти</a>
-
+        <a href="#" onclick="event.preventDefault();$('#logout').submit()" class="dropdown-item text-danger"><i class="bx bxs-log-out-circle mx-10"></i> Выйти</a>
+        <form action="{{ route('logout') }}" id="logout" method="POST" class="d-none">
+          @csrf
+        </form>
       </div>
     </div>
   </div>
