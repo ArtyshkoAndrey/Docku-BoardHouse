@@ -279,8 +279,7 @@
 
                 <div class="row">
                   <?php
-                    $countBrands = App\Models\Brand::count();
-                    $countBrands /= 4;
+                    $countBrands = (int) (App\Models\Brand::count() / 4);
 
                     \App\Models\Brand::chunk($countBrands, function ($brands) {
                       echo '<div class="col-6 col-md-4 col-lg-3 flex-column" >';
