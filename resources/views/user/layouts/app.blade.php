@@ -144,8 +144,7 @@
       }
     })(jQuery)
 
-    if (navigator.userAgent.match(/Chrome/)) {
-      console.log(1)
+    if (navigator.userAgent.match(/AppleWebKit/) && !navigator.userAgent.match(/Chrome/)) {
       $('#intro').css('background-attachment', '')
     }
     // $('.img-wrapper').height($('.img-wrapper').width())
