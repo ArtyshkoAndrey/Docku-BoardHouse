@@ -132,6 +132,7 @@ class CouponController extends Controller
     $coupon->disabled_other_sales = $request->disabled_other_sales;
     $coupon->not_after = Carbon::parse($request->not_after);
     $coupon->not_before = Carbon::parse($request->not_before);
+    $coupon->enabled = $request->enabled;
     $coupon->save();
     $coupon->productsEnabled()->sync($request->products);
     $coupon->productsDisabled()->sync($request->disabled_products);
