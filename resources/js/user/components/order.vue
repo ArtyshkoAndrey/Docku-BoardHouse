@@ -223,6 +223,7 @@ export default {
           this.pay()
         })
         .catch(error => {
+          console.log(error)
           let errors = Object.values(error.response.data.errors)
           errors = errors.flat()
           console.log(errors)
