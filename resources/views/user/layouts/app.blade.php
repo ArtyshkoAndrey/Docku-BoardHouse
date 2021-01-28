@@ -12,8 +12,6 @@
   <!-- Fonts -->
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />
   <link rel="preload" href="{{ asset('css/boxicons.min.css') }}" as="style" />
-{{--  <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" as="style" />--}}
-
   <link rel="preload" href="{{ asset('fonts/boxicons.eot') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/boxicons.svg') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/boxicons.ttf') }}" as="font" crossorigin="anonymous" />
@@ -33,8 +31,13 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
 
   <!-- Styles -->
-  <link rel="preload" href="{{ mix('css/app.css') }}" as="style" />
-  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+  @if (config('app.env') == 'local')
+    <link rel="preload" href="{{ asset('css/app.css') }}" as="style" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  @else
+    <link rel="preload" href="{{ asset(mix('css/app.css'), true) }}" as="style" />
+    <link rel="stylesheet" href="{{ asset(mix('css/app.css'), true) }}">
+  @endif
 </head>
 <body id="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
@@ -78,7 +81,12 @@
 </body>
 
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+
+@if (config('app.env') == 'local')
+  <script src="{{asset('js/app.js')}}"></script>
+@else
+  <script src="{{asset(mix('js/app.js'), true)}}"></script>
+@endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

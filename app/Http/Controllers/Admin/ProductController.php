@@ -97,9 +97,11 @@ class ProductController extends Controller
 
     $product->save();
 
-    foreach ($request->get('skus', []) as $id => $stock) {
-      $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
-      $ps->save();
+    if (is_array($request->get('skus', []))) {
+      foreach ($request->get('skus', []) as $id => $stock) {
+        $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+        $ps->save();
+      }
     }
 
     foreach ($data['photos'] as $name) {
@@ -157,20 +159,23 @@ class ProductController extends Controller
     ]);
     $product = Product::find($id);
     $ids = [];
-    foreach ($request->get('skus', []) as $id => $stock) {
-      array_push($ids, $id);
-      $flag = false;
-      foreach ($product->productSkuses as $productSkus) {
-        if ($productSkus->skus_id === $id) {
-          $flag = true;
 
-          $productSkus->stock = $stock;
-          $productSkus->save();
+    if (is_array($request->get('skus', []))) {
+      foreach ($request->get('skus', []) as $id => $stock) {
+        array_push($ids, $id);
+        $flag = false;
+        foreach ($product->productSkuses as $productSkus) {
+          if ($productSkus->skus_id === $id) {
+            $flag = true;
+
+            $productSkus->stock = $stock;
+            $productSkus->save();
+          }
         }
-      }
-      if (!$flag) {
-        $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
-        $ps->save();
+        if (!$flag) {
+          $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+          $ps->save();
+        }
       }
     }
 

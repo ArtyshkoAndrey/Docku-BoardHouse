@@ -9,7 +9,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ mix('css/admin/app.css') }}">
+  @if (config('app.env') == 'local')
+    <link rel="stylesheet" href="{{asset('css/admin/app.css')}}">
+  @else
+    <link rel="stylesheet" href="{{asset(mix('css/admin/app.css'), true)}}">
+  @endif
   <link rel="stylesheet" href="{{ asset('css/boxicons.min.css') }}">
   @yield('css')
   <title>@yield('title')</title>
@@ -104,7 +108,11 @@
   </div>
 
   <!-- Scripts -->
-  <script src="{{ mix('js/admin/app.js') }}"></script>
+  @if (config('app.env') == 'local')
+    <script src="{{asset('js/admin/app.js')}}"></script>
+  @else
+    <script src="{{asset(mix('js/admin/app.js'), true)}}"></script>
+  @endif
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
     window.onload = function() {
