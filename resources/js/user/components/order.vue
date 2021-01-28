@@ -112,7 +112,6 @@ export default {
       })
     },
     pay () {
-      !this.$root.test ? this.$store.commit('clearCart') : null
       let widget = new cp.CloudPayments();
       widget.pay('auth', // или 'charge'
         { //options
@@ -130,6 +129,7 @@ export default {
         {
           onSuccess: (options) => { // success
             //действие при успешной оплате
+            !this.$root.test ? this.$store.commit('clearCart') : null
             console.log(options)
             this.windowsLoader = true
             window.axios.post('/order/update/status', {
