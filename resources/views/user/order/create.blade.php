@@ -154,16 +154,48 @@
               </transition>
 
               <transition name="slide-fade" mode="out-in" appear>
+
+                <div class="col-12 mb-3" v-if="errors.ems !== null" :key="1">
+                  <div class="choosable-field" style="cursor: default">
+                    <div class="row">
+                      <div class="col-8 d-flex flex-column">
+                        <span class="title">Стандартная доставка</span>
+                        <span class="description text-danger">@{{ errors.ems }}</span>
+                        <a target="_blank" href="https://wa.me/+77475562383?text=Здравствуйте!%20На%20вашем%20сайте%20нет%20моего%20города%20для%20доставки">Написать в поддержку</a>
+                      </div>
+                      <div class="col-4 d-flex justify-content-end">
+{{--                        <span class="price">1123</span>--}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mb-3" v-if="!ems.error && ems.price !== null" :key="2">
+                  <div class="choosable-field" :class="transfer.name === 'ems' ? 'active' : null" @click="setEmsTransfer">
+                    <div class="row">
+                      <div class="col-8 d-flex flex-column">
+                        <span class="title">Стандартная доставка</span>
+                        <span class="description">Доставка осуществляется от 4 до 7 дней сервисом Kaz Post</span>
+                      </div>
+                      <div class="col-4 d-flex justify-content-end">
+                        <span class="price">@{{ $cost(ems.price * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </transition>
+
+              <transition name="slide-fade" mode="out-in" appear>
                 <div class="col-12" v-if="transfer.name !== null">
                   <div class="row">
                     <div class="col-12 mb-4">
                       <p class="h4 title">Оплата</p>
                     </div>
                     @if($cash ? ($cash->data === '1') : false)
-                      <div class="col-12 mb-3">
+                      <div class="col-12 mb-3" v-if="transfer.name !== 'ems'">
                         <div class="choosable-field"
                              :class="method_pay === 'cash' ? 'active' : null"
-                             @click="method_pay = 'cash'">
+                             @click="setCashMethod">
                           <div class="row">
                             <div class="col-8 d-flex flex-column">
                               <span class="title">Оплата при получении</span>
@@ -178,7 +210,7 @@
                       <div class="col-12 mb-5">
                         <div class="choosable-field"
                              :class="method_pay === 'cloudPayment' ? 'active' : null"
-                             @click="method_pay = 'cloudPayment'">
+                             @click="setCloudPaymentMethod">
                           <div class="row">
                             <div class="col-8 d-flex flex-column">
                               <span class="title">Оплатить онлайн</span>
