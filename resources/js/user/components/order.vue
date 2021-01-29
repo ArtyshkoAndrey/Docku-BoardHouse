@@ -37,6 +37,13 @@ export default {
       order: {
         no: null,
         id: null
+      },
+      errors: {
+        ems: null
+      },
+      ems: {
+        price: null,
+        error: false,
       }
     }
   },
@@ -82,6 +89,15 @@ export default {
         price: 0,
         name: 'pickup'
       }
+      this.method_pay = null
+    },
+
+    setEmsTransfer () {
+      this.transfer = {
+        price: this.ems.price,
+        name: 'ems'
+      }
+      this.method_pay = null
     },
 
     resetTransfer () {
@@ -89,6 +105,15 @@ export default {
         price: 0,
         name: null
       }
+      this.method_pay = null
+    },
+
+    setCloudPaymentMethod () {
+      this.method_pay = 'cloudPayment'
+    },
+
+    setCashMethod () {
+      this.method_pay = 'cash'
     },
 
     checkSale () {
@@ -247,6 +272,23 @@ export default {
     orderAfter () {
       this.loaderButtonAfter = true
       this.cashPay()
+    },
+    getEmsCost () {
+      this.errors.ems = null
+      this.ems.price = null
+      this.ems.error = true
+      window.axios.post('/api/cost-ems', {
+        country_code: this.info.country.code,
+        post_code: this.info.post_code,
+        weight: this.$store.getters.weight
+      })
+      .then(response => {
+        this.ems.price = Number(response.data)
+        this.ems.error = false
+      })
+      .catch(error => {
+        this.errors.ems = error.response.data
+      })
     }
   },
   computed: {
@@ -308,6 +350,15 @@ export default {
       handler: function (after, before) {
         this.resetTransfer()
         this.method_pay = null
+        if (after.name !== null && after.name !== '' && this.info.post_code !== null && this.info.post_code !== '') {
+          if(this.info.post_code.length === 6)
+            this.getEmsCost()
+          else {
+            this.resetTransfer()
+            this.errors.ems = 'Почтовый индекс должен иметь 6 символов'
+            this.ems.error = true
+          }
+        }
       },
       deep: true
     },
@@ -318,7 +369,24 @@ export default {
         this.method_pay = null
       },
       deep: true
-    }
+    },
+
+    'info.post_code': {
+      handler: function (after, before) {
+        this.resetTransfer()
+        this.method_pay = null
+        if (after !== null && after !== '' && this.info.country.name !== null && this.info.country.name !== '') {
+          if(after.length === 6)
+            this.getEmsCost()
+          else {
+            this.resetTransfer()
+            this.errors.ems = 'Почтовый индекс должен иметь 6 символов'
+            this.ems.error = true
+          }
+        }
+      },
+      deep: true
+    },
   }
 }
 </script>
