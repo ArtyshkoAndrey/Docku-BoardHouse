@@ -71,6 +71,11 @@ const store = new Vuex.Store({
         return sum + (item.on_sale ? Number(item.price_sale) : Number(item.price)) * item.item.amount
       }, 0);
     },
+    weight: (state, getters) => {
+      return getters.productsCart.reduce((sum, item) => {
+        return sum + (Number(item.weight) * item.item.amount)
+      }, 0);
+    },
     productsCart: state => {
       if(state.cart.products.length < 1)
         return []
@@ -91,7 +96,7 @@ const store = new Vuex.Store({
     },
     itemByProduct: state => product => {
       return state.cart.items.find(el => product.product_skuses.some(sk => sk.id === el.id) )
-    }
+    },
   },
   actions: {
     set_currency: ({commit, state}, data) => {
