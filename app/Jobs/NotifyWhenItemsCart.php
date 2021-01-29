@@ -33,7 +33,7 @@ class NotifyWhenItemsCart implements ShouldQueue
   {
     $this->items = $items;
     $this->user = $user;
-    $this->delay(now()->addDays(env('DELAY_CART_NOTIFY')));
+    $this->delay(now()->addDays(config('app.cart.delay')));
   }
 
   /**

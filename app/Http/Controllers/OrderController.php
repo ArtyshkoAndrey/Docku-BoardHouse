@@ -64,14 +64,15 @@ class OrderController extends Controller
       $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
       $password = substr($random, 0, 10);
       $user->password = Hash::make($password);
-      $user->save();
       try {
         $user->notify(new RegisterPassword($user->email, $password));
       } catch (Swift_TransportException $e) {
 
       }
-    } else
-      $user->save();
+    }
+    $user->country()->associate($info['country']['id']);
+    $user->city()->associate($info['city']['id']);
+    $user->save();
 
     $order = $this->orderService
       ->store(

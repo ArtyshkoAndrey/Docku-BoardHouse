@@ -18,6 +18,7 @@ class HomeController extends Controller
    */
   public function index () :View
   {
+
     $categories = Category::whereToMenu(true)->get();
     $newProducts = Product::whereOnNew(true)
       ->orderByDesc('id')

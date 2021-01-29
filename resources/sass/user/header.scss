@@ -45,6 +45,13 @@
     width: 100%;
   }
 
+  .badge.badge-notification {
+    top: 5px;
+    right: 0;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
   &.dark-menu {
     .dark-logo {
       display: block;
@@ -79,7 +86,7 @@
       background: linear-gradient(90deg,
         rgba(255, 255, 255, 0.0205) 0%,
         rgba(169, 174, 181, 0) 10%,
-        #A9AEB5 47.45%,
+        #4F545B 47.45%,
         rgba(255, 255, 255, 0) 90%,
         rgba(169, 174, 181, 0) 100%);
     }
@@ -201,10 +208,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 4px;
+
+      @include media-breakpoint-down(sm) {
+        min-width: 20px;
+        min-height: 20px;
+      }
     }
   }
 
   .dropdown-menu.full-height {
+    overflow-y: auto;
     height: calc(100vh - 72px);
     width: 100vw;
     min-width: auto;
@@ -263,7 +277,7 @@
   background-size: cover;
   color: #ffffff;
   padding-left: 2em;
-  background-attachment: fixed;
+  //background-attachment: fixed;
   position: relative;
 
   &::after {
@@ -416,7 +430,7 @@
         }
 
         >div {
-          padding-bottom: 2em;
+          //padding-bottom: 2em;
         }
 
         .item {

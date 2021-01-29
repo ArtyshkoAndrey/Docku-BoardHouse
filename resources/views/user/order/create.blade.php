@@ -10,7 +10,7 @@
   <div class="container mt-2 order-create-page">
     <order inline-template >
       <transition name="slide-fade" mode="out-in" appear>
-        <div key="windowOrder" class="row justify-content-center flex-column-reverse flex-md-row mt-5" v-if="!windowsLoader">
+        <div key="windowOrder" class="row justify-content-start flex-column flex-md-row mt-5" v-if="!windowsLoader">
           <div class="col-12 col-md-7">
             <div class="row">
 
@@ -34,7 +34,7 @@
                       ref="city"></city>
               </div>
 
-              <div class="col-md-6 mb-5">
+              <div class="col-md-6 mb-3">
                 <div class="form-outline">
                   <input type="text"
                          id="address"
@@ -153,19 +153,37 @@
                 </div>
               </transition>
 
-              {{--            <div class="col-12 mb-5">--}}
-              {{--              <div class="choosable-field">--}}
-              {{--                <div class="row">--}}
-              {{--                  <div class="col-8 d-flex flex-column">--}}
-              {{--                    <span class="title">Стандартная доставка</span>--}}
-              {{--                    <span class="description">Доставка осуществляется от 4 до 7 дней сервисом Kaz Post</span>--}}
-              {{--                  </div>--}}
-              {{--                  <div class="col-4 d-flex justify-content-end">--}}
-              {{--                    <span class="price">1000 тг.</span>--}}
-              {{--                  </div>--}}
-              {{--                </div>--}}
-              {{--              </div>--}}
-              {{--            </div>--}}
+              <transition name="slide-fade" mode="out-in" appear>
+
+                <div class="col-12 mb-3" v-if="errors.ems !== null" :key="1">
+                  <div class="choosable-field" style="cursor: default">
+                    <div class="row">
+                      <div class="col-8 d-flex flex-column">
+                        <span class="title">Стандартная доставка</span>
+                        <span class="description text-danger">@{{ errors.ems }}</span>
+                        <a target="_blank" href="https://wa.me/+77475562383?text=Здравствуйте!%20На%20вашем%20сайте%20нет%20моего%20города%20для%20доставки">Написать в поддержку</a>
+                      </div>
+                      <div class="col-4 d-flex justify-content-end">
+{{--                        <span class="price">1123</span>--}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mb-3" v-if="!ems.error && ems.price !== null" :key="2">
+                  <div class="choosable-field" :class="transfer.name === 'ems' ? 'active' : null" @click="setEmsTransfer">
+                    <div class="row">
+                      <div class="col-8 d-flex flex-column">
+                        <span class="title">Стандартная доставка</span>
+                        <span class="description">Доставка осуществляется от 4 до 7 дней сервисом Kaz Post</span>
+                      </div>
+                      <div class="col-4 d-flex justify-content-end">
+                        <span class="price">@{{ $cost(ems.price * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </transition>
 
               <transition name="slide-fade" mode="out-in" appear>
                 <div class="col-12" v-if="transfer.name !== null">
@@ -174,10 +192,10 @@
                       <p class="h4 title">Оплата</p>
                     </div>
                     @if($cash ? ($cash->data === '1') : false)
-                      <div class="col-12 mb-3">
+                      <div class="col-12 mb-3" v-if="transfer.name !== 'ems'">
                         <div class="choosable-field"
                              :class="method_pay === 'cash' ? 'active' : null"
-                             @click="method_pay = 'cash'">
+                             @click="setCashMethod">
                           <div class="row">
                             <div class="col-8 d-flex flex-column">
                               <span class="title">Оплата при получении</span>
@@ -192,7 +210,7 @@
                       <div class="col-12 mb-5">
                         <div class="choosable-field"
                              :class="method_pay === 'cloudPayment' ? 'active' : null"
-                             @click="method_pay = 'cloudPayment'">
+                             @click="setCloudPaymentMethod">
                           <div class="row">
                             <div class="col-8 d-flex flex-column">
                               <span class="title">Оплатить онлайн</span>
@@ -206,29 +224,7 @@
                   </div>
                 </div>
               </transition>
-
-
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <button class="btn btn-dark complete" id="checkout" @click="orderedNow" :disabled="disabledButton">
-                  <span v-if="!loaderButton">Завершить и перейти к оплате</span>
-                  <div v-else class="spinner-border text-light" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-dark complete" @click="orderAfter" data-mdb-ripple-color="dark" id="checkout" :disabled="disabledButtonAfter">
-                  <span v-if="!loaderButtonAfter">Завершить и оплатить позже</span>
-
-                  <div v-else class="spinner-border text-dark" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-
           </div>
           <div class="col-12 col-md-5">
             <div class="row">
@@ -309,7 +305,29 @@
               </div>
             </div>
           </div>
+          <div class="col-12 col-md-7">
+            <div class="row">
+              <div class="col-md-6 d-flex">
+                <button class="btn btn-dark complete" id="checkout" @click="orderedNow" :disabled="disabledButton">
+                  <span v-if="!loaderButton">Завершить и перейти к оплате</span>
+                  <div v-else class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </button>
+              </div>
+              <div class="col-md-6 d-flex">
+                <button class="btn btn-outline-dark complete" @click="orderAfter" data-mdb-ripple-color="dark" id="checkout" :disabled="disabledButtonAfter">
+                  <span v-if="!loaderButtonAfter">Завершить и оплатить позже</span>
+
+                  <div v-else class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div v-else key="loaderWindow" class="mt-5">
           <div class="row">
             <div class="col-12 text-center">

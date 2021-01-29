@@ -33,7 +33,9 @@
               <div class="card p-10 bg-dark-dm m-0">
                 <div class="row align-items-center">
                   <div class="col-auto col-md-auto">
-                    <a href="{{ route('admin.coupon.edit', $cp->id) }}" class="text-decoration-none text-danger m-0 p-0"><h5 class="p-0 m-0 d-block">{{ $cp->code }}</h5></a>
+                    <a href="{{ route('admin.coupon.edit', $cp->id) }}" class="text-decoration-none m-0 p-0 {{ $cp->enabled ? 'text-success' : 'text-danger' }}">
+                      <h5 class="p-0 m-0 d-block">{{ $cp->code }}</h5>
+                    </a>
                   </div>
                   <div class="col-md-auto col-auto pl-10">
                     <span>{{$cp->not_before->format('d.m.y')}} - {{$cp->not_after->format('d.m.y')}}</span>

@@ -144,6 +144,8 @@ $link-color-hover: #1e5f98;
   display: flex;
   align-items: center;
   height: 100%;
+  justify-content: center;
+  width: 25px;
 
   &:hover {
     cursor: pointer;

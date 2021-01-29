@@ -44,17 +44,24 @@ class UpdateCurrencies implements ShouldQueue
     try {
       $assertion = file_get_contents($this->url, false, stream_context_create($arrContextOptions));
       $ar = simplexml_load_string($assertion);
-      foreach ($ar->channel->item as $item) {
-        if ((string)$item->title === 'USD') {
-          $currency = Currency::where('short_name', 'USD')->first();
-          $currency->ratio = 1 / $item->description;
-          $currency->save();
-        } else if ((string)$item->title === 'RUB') {
-          $currency = Currency::where('short_name', 'RUB')->first();
-          $currency->ratio = 1 / $item->description;
-          $currency->save();
+      if (isset($ar->channel)) {
+        if(isset($ar->channel->item)) {
+          foreach ($ar->channel->item as $item) {
+            if (isset($item->title) && isset($item->description)) {
+              if ((string)$item->title === 'USD') {
+                $currency = Currency::where('short_name', 'USD')->first();
+                $currency->ratio = 1 / $item->description;
+                $currency->save();
+              } else if ((string)$item->title === 'RUB') {
+                $currency = Currency::where('short_name', 'RUB')->first();
+                $currency->ratio = 1 / $item->description;
+                $currency->save();
+              }
+            }
+          }
         }
       }
+
       $currency = Currency::where('name', 'Тенге')->first();
       $currency->updated_at = Carbon::now();
       $currency->save();

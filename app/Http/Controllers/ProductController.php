@@ -172,7 +172,15 @@ class ProductController extends Controller
       'sex'   => $sex,
       'size'  => $size
     ];
-    return view('user.product.catalog', compact('items', 'filter', 'itemsCount', 'attributes'));
+    $counter = 0;
+    foreach ($filter as $name => $f) {
+      if ($name !== 'sale' && $name !== 'new' && $name !== 'order')
+        $counter += count($f);
+      else
+        if ($f && $name !== 'order')
+          $counter++;
+    }
+    return view('user.product.catalog', compact('items', 'filter', 'itemsCount', 'attributes', 'counter'));
   }
 
   /**

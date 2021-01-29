@@ -12,8 +12,6 @@
   <!-- Fonts -->
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />
   <link rel="preload" href="{{ asset('css/boxicons.min.css') }}" as="style" />
-{{--  <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" as="style" />--}}
-
   <link rel="preload" href="{{ asset('fonts/boxicons.eot') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/boxicons.svg') }}" as="font" crossorigin="anonymous" />
   <link rel="preload" href="{{ asset('fonts/boxicons.ttf') }}" as="font" crossorigin="anonymous" />
@@ -33,8 +31,13 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
 
   <!-- Styles -->
-  <link rel="preload" href="{{ mix('css/app.css') }}" as="style" />
-  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+  @if (config('app.env') == 'local')
+    <link rel="preload" href="{{ asset('css/app.css') }}" as="style" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  @else
+    <link rel="preload" href="{{ asset(mix('css/app.css'), true) }}" as="style" />
+    <link rel="stylesheet" href="{{ asset(mix('css/app.css'), true) }}">
+  @endif
 </head>
 <body id="{{ str_replace('.', '-', Route::currentRouteName()) . '-page' }}">
 <div id="app">
@@ -68,17 +71,20 @@
   @endif
 
   @include('user.layouts.header', ['theme_menu' => $theme_menu ?? 'dark-menu'])
-
   <main>
     @yield('content')
   </main>
-
   @include('user.layouts.footer')
 </div>
 </body>
 
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+
+@if (config('app.env') == 'local')
+  <script src="{{asset('js/app.js')}}"></script>
+@else
+  <script src="{{asset(mix('js/app.js'), true)}}"></script>
+@endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -102,14 +108,13 @@
     let icon = $(button).children('i')
     if (el.attr('type') === 'password') {
       el.attr('type', 'text')
-      icon.removeClass('bxs-lock-open-alt')
-      icon.addClass('bxs-lock-alt')
+      icon.removeClass('fa-eye')
+      icon.addClass('fa-eye-slash')
     } else if (el.attr('type') === 'text') {
       el.attr('type', 'password')
-      icon.addClass('bxs-lock-open-alt')
-      icon.removeClass('bxs-lock-alt')
+      icon.addClass('fa-eye')
+      icon.removeClass('fa-eye-slash')
     }
-    console.log()
   }
 
   (() => {
@@ -145,9 +150,12 @@
       }
     })(jQuery)
 
-    // $('.img-wrapper').height($('.img-wrapper').width())
-    // $('.img-wrapper:hover').css({'margin-left': '-' + ($('.img-wrapper').width / 2) + 'px'})
-    // $('.img-wrapper:hover').css({'margin-top': '-' + ($('.img-wrapper').width / 2) + 'px'})
+    let isDesktopSafari = (navigator.userAgent.toLowerCase().indexOf('safari') !== -1 && navigator.userAgent.toLowerCase().indexOf('chrome') === -1) && typeof window.ontouchstart === 'undefined';
+    let isMobileSafari = (navigator.userAgent.toLowerCase().indexOf('safari') !== -1 && navigator.userAgent.toLowerCase().indexOf('chrome') === -1) && typeof window.ontouchstart !== 'undefined';
+
+    if (!isDesktopSafari && !isMobileSafari) {
+      $('#intro').css('background-attachment', 'fixed')
+    }
 
     function checkOpenCart() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {

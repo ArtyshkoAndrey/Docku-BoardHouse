@@ -27,6 +27,9 @@ return [
       'minutes' => env('DELAY_CANCELLATION_ORDER_MINUTES_FOR_TEST', 5)
     ]
   ],
+  'cart' => [
+    'delay' => env('DELAY_CART_NOTIFY')
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -188,7 +191,9 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
-    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+//    Barryvdh\Debugbar\ServiceProvider::class,
+//    TODO: Коментить для Прод
+//    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
   ],
 
@@ -241,6 +246,7 @@ return [
     'URL' => Illuminate\Support\Facades\URL::class,
     'Validator' => Illuminate\Support\Facades\Validator::class,
     'View' => Illuminate\Support\Facades\View::class,
+//    'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
   ],
 

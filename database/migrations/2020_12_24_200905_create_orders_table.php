@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,7 +26,7 @@ class CreateOrdersTable extends Migration
       $table->decimal('ship_price', 10,2)->default(0);
       $table->timestamp('paid_at')->nullable();
       $table->text('payment_method');
-      $table->text('ship_status')->default(\App\Models\Order::SHIP_STATUS_PAID);
+      $table->string('ship_status')->default(Order::SHIP_STATUS_PAID);
       $table->json('ship_data')->nullable();
       $table->timestamps();
     });

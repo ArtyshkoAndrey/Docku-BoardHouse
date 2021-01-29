@@ -5,7 +5,7 @@
 @section('content')
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row w-100 d-flex justify-content-center">
-      <div class="col-lg-5 col-md-6 col-12">
+      <div class="col-lg-4 col-md-5 col-sm-8 col-12">
         <div class="row justify-content-center">
           <div class="col-md-5 col-6">
             <img src="{{ asset('images/logo-dark.svg') }}" alt="logo" class="img-fluid mb-5 mx-auto d-block logo">
@@ -64,7 +64,7 @@
                   <div class="form-outline form-password mb-2">
                     <input type="password" id="password" name="password" class="form-control" />
                     <label class="form-label" for="password">Пароль</label>
-                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="bx bxs-lock-open-alt"></i></button>
+                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="fas fa-eye"></i></button>
                   </div>
                   <a href="{{ route('password.request') }}">Забыли пароль?</a>
 {{--                  TODO: forgot password--}}

@@ -126,7 +126,7 @@
             </li>
           <li class="nav-item icon dropdown">
             <a
-              class="nav-link"
+              class="nav-link position-relative"
               href="#"
               id="cart-dropdown"
               role="button"
@@ -138,51 +138,51 @@
             </a>
             <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
-              <div class="row mt-2" v-for="product in $store.getters.productsCart" v-if="product">
-                <div class="col-3 col-sm-2 d-flex align-items-center">
-                  <img :src="product.thumbnail_jpg" alt="" class="img-fluid pb-2">
+              <div class="row ml-0 mb-2" v-for="product in $store.getters.productsCart" v-if="product">
+                <div class="col-3 col-sm-2 d-flex align-items-start p-0 pb-2">
+                  <img :src="product.thumbnail_jpg" alt="" class="img-fluid" style="border-radius: 6px;">
                 </div>
-                <div class="col-9 col-sm-10 border-bottom">
+                <div class="col-9 col-sm-10">
                   <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-5 order-1 d-flex align-self-stretch align-self-sm-auto">
                       <p class="m-0 font-weight-bold">@{{ product.title }} -  @{{ product.skus.skus.title }}</p>
                     </div>
-                    <div class="col-12 col-sm-6 d-flex">
-                      <div class="col-auto ml-auto d-flex align-items-center">
-                        <p class="m-0">
-                          @{{ $cost( (product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}
-                        </p>
-                      </div>
-                      <div class="col-4 d-flex justify-content-around align-items-center">
-                        <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })">
-                          <i class="bx bx-minus"></i>
-                        </button>
-                        <p id="cart-item-amount-1" class="mx-2 my-auto">
-                          @{{ product.item.amount }}
-                        </p>
-                        <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: 1 })">
-                          <i class="bx bx-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-3 d-flex align-items-center justify-content-center">
-                        <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" onclick="event.stopPropagation();" @click="$store.commit('removeItem', product.item.id)">
-                          <i class="bx bxs-trash bx-sm"></i>
-                        </button>
-                      </div>
+                    <div class="col-7 col-sm-auto order-3 order-sm-2 ml-sm-auto mt-auto mt-sm-0">
+                      <p class="m-0" style="font-size: 1.3em;">
+                        @{{ $cost( (product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}
+                      </p>
+                    </div>
+                    <div class="col-5 col-sm-auto order-4 order-sm-3 d-flex justify-content-between align-items-center mt-auto mt-sm-0">
+                      <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })">
+                        <i class="bx bx-minus"></i>
+                      </button>
+                      <p id="cart-item-amount-1" class="mx-2 my-auto">
+                        @{{ product.item.amount }}
+                      </p>
+                      <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: 1 })">
+                        <i class="bx bx-plus"></i>
+                      </button>
+                    </div>
+                    <div class="col-6 col-sm-auto order-2 order-sm-4 d-flex align-items-start justify-content-end align-self-stretch align-self-sm-auto">
+                      <button type="button" name="submit" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D" onclick="event.stopPropagation();" @click="$store.commit('removeItem', product.item.id)">
+                        <i class="bx bxs-trash bx-sm"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3">
-                <div class="col-12 col-md-6 d-flex align-items-end align-self-start">
-                  <a href="{{ route('cart.index') }}" class="btn btn-dark w-100" :class="$store.getters.productsCart.length < 1 ? 'disabled' : null">Перейти в корзину</a>
+              <div class="row align-items-center flex-wrap-reverse justify-content-between mt-3 ml-0">
+                <div class="col-12 col-md-5 d-flex align-items-end align-self-start p-0">
+                  <a href="{{ route('cart.index') }}" class="btn btn-dark py-3 w-100" style="font-size: 1em;" :class="$store.getters.productsCart.length < 1 ? 'disabled' : null">Перейти в корзину</a>
                 </div>
-                <div class="col-12 col-md-6 d-flex d-md-block justify-content-between mb-3 mb-md-0" style="text-align: right;">
-                  <div class="col-6 col-md-12 d-flex justify-content-start justify-content-md-end align-items-center p-0">
-                    <p class="h6 font-weight-bold mb-0 mb-md-2">Итого: @{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
-                  </div>
-                  <div class="col-6 col-md-12 pr-md-0">
-                    <button class="bg-transparent border-0 text-decoration-none pr-0" onclick="event.stopPropagation();" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
+                <div class="col-12 col-md-6 d-flex d-md-block justify-content-between ml-2 mb-3 mb-md-0" style="text-align: right;">
+                  <div class="row">
+                    <div class="col-6 col-12 d-flex justify-content-start justify-content-md-end align-items-center p-0">
+                      <p class="h6 font-weight-bold mb-1">Итого: @{{ $cost($store.getters.priceAmount) }} @{{ $store.state.currency.symbol }}</p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-start justify-content-md-end p-0">
+                      <button class="bg-transparent border-0 text-decoration-none p-0" onclick="event.stopPropagation();" @click="$store.commit('clearCart')" style="color: #DE6D2D">Очистить корзину</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -279,8 +279,7 @@
 
                 <div class="row">
                   <?php
-                    $countBrands = App\Models\Brand::count();
-                    $countBrands /= 4;
+                    $countBrands = (int) (App\Models\Brand::count() / 4);
 
                     \App\Models\Brand::chunk($countBrands, function ($brands) {
                       echo '<div class="col-6 col-md-4 col-lg-3 flex-column" >';

@@ -30,7 +30,7 @@ class NotifyAboutCancellationOrderForNonPayment implements ShouldQueue
   public function __construct(Order $order)
   {
     $this->order = $order;
-    $this->delay(now()->addHours(env('DELAY_CANCELLATION_ORDER')));
+    $this->delay(now()->addHours(config('app.order.delay.hours')));
   }
 
   /**

@@ -71,7 +71,8 @@ class CategoryController extends Controller
 
     $request->validate([
       'name' => 'required|string',
-      'category_id' => 'required|exists_or_null:categories,id'
+      'category_id' => 'required|exists_or_null:categories,id',
+      'to_menu' => 'required|boolean'
     ]);
 
     $category = new Category($request->all());
@@ -115,7 +116,8 @@ class CategoryController extends Controller
   public function update(Request $request, int $id)
   {
     $request->validate([
-      'name' => 'required|string'
+      'name' => 'required|string',
+      'to_menu' => 'required|boolean'
     ]);
     Category::find($id)->update($request->all());
     return redirect()->back()->with('success', ['Категория успешна изменена']);

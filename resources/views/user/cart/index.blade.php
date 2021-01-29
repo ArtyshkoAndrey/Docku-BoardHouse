@@ -13,9 +13,9 @@
           <div class="row" key="products" v-if="!cartLoader">
             <div class="col-12">
 
-              <div class="row mt-3 mx-0 p-2 border" v-for="product in $store.getters.productsCart" style="border-color: #A9AEB5 !important; border-radius: 16px;">
+              <div class="row mt-3 mx-0 p-2" v-for="product in $store.getters.productsCart" style="border-color: #4F545B !important; border-radius: 16px;">
                 <div class="col-3 p-1">
-                  <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100 img-fluid" style="object-fit: cover">
+                  <img :src="product.thumbnail_jpg" :alt="product.title" class="w-100 img-fluid" style="object-fit: cover; border-radius: 6px;">
                 </div>
                 <div class="col-9">
                   <div class="row h-100 align-items-between">
@@ -26,13 +26,13 @@
                       </p>
                     </div>
 
-                    <div class="col-2 d-flex justify-content-end px-0 px-md-2 mt-1 mt-md-2">
+                    <div class="col-2 d-flex align-items-start justify-content-end px-0 px-md-2 mt-1 mt-md-2">
                       <button type="button" @click="$store.commit('removeItem', product.item.id)" class="p-0 btn bg-transparent shadow-0 border-0" style="color: #DE6D2D">
                         <i class="bx bxs-trash bx-sm"></i>
                       </button>
                     </div>
 
-                    <div class="col-6 px-0 px-md-3 mb-md-1 mr-auto mt-2 mt-md-0 d-flex justify-content-center justify-content-md-start align-items-end">
+                    <div class="col-6 px-md-3 mb-md-1 mr-auto mt-2 mt-md-0 d-flex align-items-end">
                       <div class="d-flex align-items-center">
 
                         <button type="button" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })" class="btn btn-dark cart-button">
@@ -47,8 +47,8 @@
                       </div>
                     </div>
 
-                    <div class="col-6 px-0 px-md-3 mb-md-1 mt-2 mt-md-0 d-flex justify-content-end align-items-end">
-                      <span class="h4 font-weight-bold m-0">
+                    <div class="col-6 px-0 px-md-3 mb-md-1 mt-auto d-flex justify-content-end align-items-center">
+                      <span class="h6 font-weight-bold m-0">
                         @{{ $cost( (product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}
                       </span>
                     </div>

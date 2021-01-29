@@ -13,9 +13,9 @@ import * as mdb from 'mdb-ui-kit'
 require('./bootstrap.js')
 
 import store from "./store";
+
 window.Vue = require('vue')
 window.Swal = require('sweetalert2')
-
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,7 +30,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 // Vue.component('example-component', import('./components/ExampleComponent.vue'));
 Vue.prototype.$cost = function (number) {
-  return new Intl.NumberFormat('ru-RU').format(Math.round(number))
+  return new Intl.NumberFormat('ru-RU').format(Math.ceil(number))
 }
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -31,7 +31,7 @@ class ProductController extends Controller
   {
     $name = $request->get('name');
     $type = $request->get('type', 'isset');
-    $products = Product::query();
+    $products = Product::query()->orderByDesc('id');
     if ($type === 'all') {
       $products = $products->withTrashed();
     } else if ($type === 'deleted') {
@@ -97,9 +97,11 @@ class ProductController extends Controller
 
     $product->save();
 
-    foreach ($request->get('skus', []) as $id => $stock) {
-      $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
-      $ps->save();
+    if (is_array($request->get('skus', []))) {
+      foreach ($request->get('skus', []) as $id => $stock) {
+        $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+        $ps->save();
+      }
     }
 
     foreach ($data['photos'] as $name) {
@@ -157,20 +159,23 @@ class ProductController extends Controller
     ]);
     $product = Product::find($id);
     $ids = [];
-    foreach ($request->get('skus', []) as $id => $stock) {
-      array_push($ids, $id);
-      $flag = false;
-      foreach ($product->productSkuses as $productSkus) {
-        if ($productSkus->skus_id === $id) {
-          $flag = true;
 
-          $productSkus->stock = $stock;
-          $productSkus->save();
+    if (is_array($request->get('skus', []))) {
+      foreach ($request->get('skus', []) as $id => $stock) {
+        array_push($ids, $id);
+        $flag = false;
+        foreach ($product->productSkuses as $productSkus) {
+          if ($productSkus->skus_id === $id) {
+            $flag = true;
+
+            $productSkus->stock = $stock;
+            $productSkus->save();
+          }
         }
-      }
-      if (!$flag) {
-        $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
-        $ps->save();
+        if (!$flag) {
+          $ps = new ProductSkus(['skus_id' => $id, 'stock' => $stock, 'product_id' => $product->id]);
+          $ps->save();
+        }
       }
     }
 
@@ -222,8 +227,8 @@ class ProductController extends Controller
 
   public function photo(Request $request, $id) {
 
-    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
-    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 500);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 1200);
     $photo = new Photo(['name' => $name]);
     $photo->product()->associate($id);
     $photo->save();
@@ -244,8 +249,8 @@ class ProductController extends Controller
   }
 
   public function photoStore(Request $request) {
-    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 300);
-    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 800);
+    $name = PhotoService::create($request->file('file'), 'storage/images/thumbnails', true, 30, 500);
+    PhotoService::create($request->file('file'), 'storage/images/photos', true, 80, 1200);
     try {
       $photo = new Photo(['name' => $name]);
       $photo->product()->associate(null);

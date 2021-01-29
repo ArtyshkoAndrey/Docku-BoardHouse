@@ -68,7 +68,7 @@
                     <p class="m-0"><span class="font-weight-bold">Оплата:</span> {{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</p >
                   </div>
                   <div class="col-12">
-                    <p class="m-0"><span class="font-weight-bold">Стоимость доставки:</span> {{ number_format($order->ыршз_price, 0,',', ' ') }} ₸</p >
+                    <p class="m-0"><span class="font-weight-bold">Стоимость доставки:</span> {{ number_format($order->ship_price, 0,',', ' ') }} ₸</p >
                   </div>
                   <div class="col-12">
                     <p class="m-0"><span class="font-weight-bold">Скидка:</span> {{ number_format($order->sale, 0,',', ' ') }} ₸</p >

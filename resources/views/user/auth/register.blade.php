@@ -5,7 +5,7 @@
 @section('content')
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row w-100 d-flex justify-content-center">
-      <div class="col-lg-5 col-md-6 col-12">
+      <div class="col-lg-4 col-md-5 col-sm-8 col-12">
         <div class="row justify-content-center">
           <div class="col-md-5 col-6">
             <img src="{{ asset('images/logo-dark.svg') }}" alt="logo" class="img-fluid mb-5 mx-auto d-block">
@@ -58,8 +58,8 @@
                 <form action="{{ route('register') }}" method="post">
                   @csrf
                   <div class="form-outline mb-4">
-                    <input type="text" id="first_name" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required/>
-                    <label class="form-label" for="first_name">Имя</label>
+                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required/>
+                    <label class="form-label" for="name">Имя</label>
                   </div>
                   @error('first_name')
                   <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                   <div class="form-outline form-password mb-4">
                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required/>
                     <label class="form-label" for="password">Пароль</label>
-                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="bx bxs-lock-open-alt"></i></button>
+                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password')"><i class="fas fa-eye"></i></button>
                   </div>
                   @error('password')
                   <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                   <div class="form-outline form-password mb-4">
                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required/>
                     <label class="form-label" for="password_confirmation">Повторите пароль</label>
-                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password_confirmation')"><i class="bx bxs-lock-open-alt"></i></button>
+                    <button type="button" class="hide-show-btn" onclick="passwordTypeToggle(this, 'password_confirmation')"><i class="fas fa-eye"></i></button>
                   </div>
 
                   <button id="submitter" class="btn btn-dark w-100 d-block mt-3" style="height: 43px;" disabled>Зарегистрироваться</button>
@@ -108,7 +108,7 @@
 @section('js')
   <script>
     let checker = {
-      first_name: false,
+      name: false,
       password: false,
       password_confirmation: false,
       email: false

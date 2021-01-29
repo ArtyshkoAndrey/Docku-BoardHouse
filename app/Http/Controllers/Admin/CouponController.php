@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CouponCode;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -131,6 +132,7 @@ class CouponController extends Controller
     $coupon->disabled_other_sales = $request->disabled_other_sales;
     $coupon->not_after = Carbon::parse($request->not_after);
     $coupon->not_before = Carbon::parse($request->not_before);
+    $coupon->enabled = $request->enabled;
     $coupon->save();
     $coupon->productsEnabled()->sync($request->products);
     $coupon->productsDisabled()->sync($request->disabled_products);
@@ -138,7 +140,7 @@ class CouponController extends Controller
     $coupon->brandsDisabled()->sync($request->disabled_brands);
     $coupon->categoriesEnabled()->sync($request->categories);
     $coupon->categoriesDisabled()->sync($request->disabled_categories);
-    return redirect()->route('admin.coupon.edit', $id)->with('success', ['Промокод обнавлён']);
+    return redirect()->route('admin.coupon.edit', $id)->with('success', ['Промокод обновлён']);
   }
 //  TODO: Дописать удаление
 
@@ -146,10 +148,16 @@ class CouponController extends Controller
    * Remove the specified resource from storage.
    *
    * @param int $id
-   * @return Response
+   * @return RedirectResponse
+   * @throws Exception
    */
-  public function destroy(int $id)
+  public function destroy(int $id): RedirectResponse
   {
-      //
+    try {
+      CouponCode::find($id)->delete();
+      return redirect()->back()->with('success', ['Промокод успешно удалён']);
+    } catch(Exception $e) {
+      return redirect()->back()->withErrors(['Ошибка удаления промокода']);
+    }
   }
 }

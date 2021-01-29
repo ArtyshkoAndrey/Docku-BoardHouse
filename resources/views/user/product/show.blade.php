@@ -5,7 +5,7 @@
 @section('content')
   <div class="container item-page">
     <div class="row">
-      <div class="col-12 col-md-7">
+      <div class="col-12 col-md-7 d-none d-md-block">
         <div class="row">
           <div class="col-3 d-flex justify-content-center">
             <button id="prev" class="slider-button"><i class="far fa-chevron-up"></i></button>
@@ -13,9 +13,9 @@
         </div>
       </div>
       <div class="col-12 col-md-7 slider">
-        <div class="row" style="overflow: hidden;">
-          <div class="col-3 slider-nav">
-            <div class="scroll-wrapper">
+        <div class="row flex-column-reverse flex-md-row">
+          <div class="col-12 col-md-3 slider-nav">
+            <div class="scroll-wrapper flex-row flex-md-column justify-content-start">
 
               @foreach($product->photos as $photo)
 
@@ -34,23 +34,19 @@
 
             </div>
           </div>
-          <div class="col-9 slider-for">
-
+          <div class="col-12 col-md-9 slider-for">
             @foreach($product->photos as $index => $photo)
               <div class="img-wrapper {{ $index === 0 ? 'active' : null }}" data-id="{{ $photo->id }}">
                 <picture>
                   <source type="image/webp" srcset="{{  $photo->url_webp }}">
                   <source type="image/jpeg" srcset="{{  $photo->url_jpg }}">
-                  <img class="w-100" src="{{ $photo->url_jpg }}" alt="{{ $photo->name }}">
+                  <img class="w-100 img-product" src="{{ $photo->url_jpg }}" alt="{{ $photo->name }}">
                 </picture>
               </div>
             @endforeach
-            <button class="expand-button" onclick="alert(1)">
-              <i class="bx bx-expand"></i>
-            </button>
 
           </div>
-          <div class="col-12">
+          <div class="col-12 d-none d-md-block">
             <div class="row">
               <div class="col-3 d-flex justify-content-center">
                 <button id="next" class="slider-button"><i class="far fa-chevron-down"></i></button>
@@ -59,12 +55,12 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-5 pl-3 pl-md-4">
+      <div class="col-12 col-md-5 pl-3 pl-md-4 item-details">
         <div class="row flex-column">
           <div class="col-12 breadcrumb">
 
             @foreach($categories as $category)
-              {{ $category->name }} /
+              <a class="breadcrumb-link" href="{{ route('product.all', ['category' => $category->id]) }}">{{ $category->name }}</a> /
             @endforeach
             {{ $product->title }}
 
@@ -131,6 +127,7 @@
 @endsection
 
 @section('js')
+  <script src="https://unpkg.com/zooming"></script>
 <script>
   let showItemAmount = 4
   let currentPosition = 0
@@ -138,13 +135,14 @@
   let scrollStep = 0
   let itemAmount = {{ count($product->photos) }};
   let itemHeight = 0
+  // let itemMarginBottom = parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
+  let itemMarginBottom = 20
 
   function initSliderSize() {
     let previewImageHeight = $('.slider-for .img-wrapper').height()
     $('.slider-nav').height(previewImageHeight)
-    let itemMarginBottom = parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
-
     itemHeight = previewImageHeight / showItemAmount - itemMarginBottom + itemMarginBottom / 4
+
     for (let item of $('.slider-nav .item .img-wrapper')) {
       $(item).css('height', itemHeight)
       $(item).css('width', itemHeight)
@@ -153,9 +151,21 @@
     return itemHeight
   }
 
+  document.addEventListener('animationstart', function (e) {
+    if (e.animationName === 'fade-in') {
+      e.target.classList.add('did-fade-in');
+    }
+  });
+
+  document.addEventListener('animationend', function (e) {
+    if (e.animationName === 'fade-out') {
+      e.target.classList.remove('did-fade-in');
+    }
+  });
+
   $(window).resize(function() {
     itemHeight = initSliderSize()
-    scrollStep = itemHeight + parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
+    scrollStep = itemHeight + itemMarginBottom
     currentPosition = currentItem * scrollStep
     $('.slider-nav .scroll-wrapper').css('top', '-' + currentPosition + 'px')
   })
@@ -164,7 +174,7 @@
     itemHeight = initSliderSize()
 
     currentPosition = 0
-    scrollStep = itemHeight + parseInt($('.slider-nav .item .img-wrapper').css('marginBottom'))
+    scrollStep = itemHeight + itemMarginBottom
     $('.slider-nav .scroll-wrapper').css('top', '-' + currentPosition + 'px')
   })
 
@@ -190,5 +200,21 @@
     $('.slider-for .img-wrapper.active').removeClass('active')
     $('.slider-for .img-wrapper[data-id=' + imageID + ']').addClass('active')
   })
+
+  new Zooming({
+    onBeforeOpen: () => {
+      $('body').css('overflow','hidden')
+      $('hidden-overflow').css('overflow', 'auto')
+    },
+    onBeforeClose: () => {
+      $('body').css('overflow','auto')
+      $('hidden-overflow').css('overflow', 'hidden')
+    },
+    scaleBase: 1,
+    scaleExtra: 1.5,
+    scrollThreshold: 99999
+  }).listen('.img-product')
+
+
 </script>
 @endsection

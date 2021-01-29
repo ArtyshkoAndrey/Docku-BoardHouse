@@ -28,6 +28,18 @@
       font-weight: 400;
       margin-left: 1em;
     }
+
+    .badge-notification {
+      line-height: unset;
+      background: #E9EAEC;
+      color: #2D3134;
+      font-weight: 500;
+      position: absolute;
+      right: -3px;
+      top: 0;
+      font-size: 0.6em;
+      padding: 0 4px;
+    }
   }
 
   #product-all {
@@ -40,15 +52,27 @@
       .dropdown-toggle {
         display: flex;
         align-items: center;
+        width: 100%;
 
         &:after {
           color: #2D3134;
+          margin-left: auto;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 1.6em;
+          }
         }
       }
 
       .dropdown-menu {
         width: 300px!important;
         max-height: 300px!important;
+
+        @include media-breakpoint-down(sm) {
+          width: 100vw!important;
+          transform: translate(0, 40px)!important;
+          margin-left: -12px;
+        }
 
         .checkbox {
           margin-top: 5px;
@@ -73,6 +97,10 @@
       align-items: center;
       margin: 0 0 0 .3em;
     }
+  }
+
+  .badge.badge-notification {
+    margin-left: 0 !important;
   }
 
   .clear-filters {

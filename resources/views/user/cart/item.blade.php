@@ -31,8 +31,8 @@
       </div>
     </div>
 
-    <div class="col-6 px-0 px-md-3 mb-md-1 mt-2 mt-md-0 d-flex justify-content-end align-items-end">
-      <span class="h4 font-weight-bold m-0">101 000 ₸</span>
+    <div class="col-6 px-0 px-md-3 mb-md-1 mt-2 mt-md-0 d-flex justify-content-end align-items-center">
+      <span class="h6 font-weight-bold m-0">101 000 ₸</span>
     </div>
   </div>
 </div>

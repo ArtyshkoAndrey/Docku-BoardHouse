@@ -25,7 +25,8 @@
              :id="id">
 
       <div class="dropdown-menu mt-2"
-           :class="this.show ? 'show' : ''">
+           :class="this.show ? 'show' : ''"
+           style="width: 100%!important;">
         <h6 class="dropdown-header">
           Выберите страну
         </h6>
