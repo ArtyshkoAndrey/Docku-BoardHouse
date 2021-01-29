@@ -57,7 +57,7 @@ class OrderStoreRequest extends FormRequest
       ],
       'transfer.name' => ['required',
         function ($attribute, $value, $fail) {
-          if ($value !== 'pickup') {
+          if ($value !== 'pickup' && $value !== 'ems') {
             return $fail('Выбаран несуществующий метод доставки');
           }
         }
