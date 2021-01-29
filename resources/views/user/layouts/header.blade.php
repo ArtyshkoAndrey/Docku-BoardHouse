@@ -139,20 +139,20 @@
             <div class="dropdown-menu full-height dropdown-menu-end" aria-labelledby="cart-dropdown">
 
               <div class="row ml-0 mb-2" v-for="product in $store.getters.productsCart" v-if="product">
-                <div class="col-3 col-sm-2 d-flex align-items-start p-0">
-                  <img :src="product.thumbnail_jpg" alt="" class="img-fluid pb-2">
+                <div class="col-3 col-sm-2 d-flex align-items-start p-0 pb-2">
+                  <img :src="product.thumbnail_jpg" alt="" class="img-fluid" style="border-radius: 6px;">
                 </div>
                 <div class="col-9 col-sm-10">
                   <div class="row align-items-center justify-content-between h-100 pb-2 pb-md-0">
                     <div class="col-6 col-sm-5 order-1 d-flex align-self-stretch align-self-sm-auto">
                       <p class="m-0 font-weight-bold">@{{ product.title }} -  @{{ product.skus.skus.title }}</p>
                     </div>
-                    <div class="col-7 col-sm-auto order-3 order-sm-2 ml-sm-auto">
-                      <p class="m-0" style="font-size: 1.1em;">
+                    <div class="col-7 col-sm-auto order-3 order-sm-2 ml-sm-auto mt-auto mt-sm-0">
+                      <p class="m-0" style="font-size: 1.3em;">
                         @{{ $cost( (product.on_sale ? product.price_sale : product.price) * $store.state.currency.ratio) }} @{{ $store.state.currency.symbol }}
                       </p>
                     </div>
-                    <div class="col-5 col-sm-auto order-4 order-sm-3 d-flex justify-content-between align-items-center">
+                    <div class="col-5 col-sm-auto order-4 order-sm-3 d-flex justify-content-between align-items-center mt-auto mt-sm-0">
                       <button type="button" class="btn btn-dark cart-button" onclick="event.stopPropagation();" @click="$store.commit('addItem', {id: product.item.id, amount: -1 })">
                         <i class="bx bx-minus"></i>
                       </button>

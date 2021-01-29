@@ -156,9 +156,6 @@
     if (!isDesktopSafari && !isMobileSafari) {
       $('#intro').css('background-attachment', 'fixed')
     }
-    // $('.img-wrapper').height($('.img-wrapper').width())
-    // $('.img-wrapper:hover').css({'margin-left': '-' + ($('.img-wrapper').width / 2) + 'px'})
-    // $('.img-wrapper:hover').css({'margin-top': '-' + ($('.img-wrapper').width / 2) + 'px'})
 
     function checkOpenCart() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
