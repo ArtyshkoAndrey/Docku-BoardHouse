@@ -8,6 +8,7 @@ use App\Models\CouponCode;
 use App\Models\Currency;
 use App\Models\Product;
 use App\Models\User;
+use App\Services\ParserEmsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Validator;
@@ -161,5 +162,16 @@ class ApiController extends Controller
     }
 
     return response()->json(['sale' => $sale]);
+  }
+
+  public function getCostEms (Request $request): JsonResponse
+  {
+    try {
+      $emsService = new ParserEmsService($request->post_code, $request->country_code, $request->weight);
+      $price = $emsService->getPrice();
+      return response()->json($price);
+    } catch (\Exception $exception) {
+      return response()->json('Возможно в ваш город нет доставки', 500);
+    }
   }
 }
