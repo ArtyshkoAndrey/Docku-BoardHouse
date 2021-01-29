@@ -31,7 +31,7 @@ class ProductController extends Controller
   {
     $name = $request->get('name');
     $type = $request->get('type', 'isset');
-    $products = Product::query();
+    $products = Product::query()->orderByDesc('id');
     if ($type === 'all') {
       $products = $products->withTrashed();
     } else if ($type === 'deleted') {
