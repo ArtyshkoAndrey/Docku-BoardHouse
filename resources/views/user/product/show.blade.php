@@ -60,7 +60,7 @@
           <div class="col-12 breadcrumb">
 
             @foreach($categories as $category)
-              <a class="breadcrumb-link" href="#">{{ $category->name }}</a> /
+              <a class="breadcrumb-link" href="{{ route('product.all', ['category' => $category->id]) }}">{{ $category->name }}</a> /
             @endforeach
             {{ $product->title }}
 

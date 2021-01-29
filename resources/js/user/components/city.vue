@@ -26,9 +26,10 @@
              :id="id">
 
       <div class="dropdown-menu mt-2"
-           :class="this.show ? 'show' : ''">
+           :class="this.show ? 'show' : ''"
+            style="width: 100%!important;">
         <h6 class="dropdown-header">
-          Выберите страну
+          Выберите город
         </h6>
         <a v-if="cities.length > 0"
            @click="setCity(city)"
@@ -38,7 +39,7 @@
         </a>
         <h5 v-if="cities.length === 0"
             class="dropdown-header">
-          Нет стран
+          Нет городов
         </h5>
       </div>
     </div>
