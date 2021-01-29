@@ -31,3 +31,5 @@ Route::post('update-cart', [ApiController::class, 'update_cart']);
 Route::post('cart-items-auth', [ApiController::class, 'cart_items_auth']);
 
 Route::post('coupon', [ApiController::class, 'coupon']);
+
+Route::post('cost-ems', [ApiController::class, 'getCostEms']);
