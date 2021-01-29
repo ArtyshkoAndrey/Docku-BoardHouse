@@ -71,11 +71,9 @@
   @endif
 
   @include('user.layouts.header', ['theme_menu' => $theme_menu ?? 'dark-menu'])
-
   <main>
     @yield('content')
   </main>
-
   @include('user.layouts.footer')
 </div>
 </body>
