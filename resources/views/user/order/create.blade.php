@@ -34,7 +34,7 @@
                       ref="city"></city>
               </div>
 
-              <div class="col-md-6 mb-5">
+              <div class="col-md-6 mb-3">
                 <div class="form-outline">
                   <input type="text"
                          id="address"
