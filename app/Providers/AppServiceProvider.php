@@ -15,10 +15,12 @@ class AppServiceProvider extends ServiceProvider
   public function register()
   {
 //    TODO: Коментить для прода
-//    if ($this->app->isLocal()) {
+    if (config('app.env', 'local') === 'local') {
 //      $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-
-//    }
+        $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        $this->app->alias('Debugbar', 'Barryvdh\Debugbar\Facade::class');
+        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+    }
     $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
     $this->app->register(TelescopeServiceProvider::class);
   }
