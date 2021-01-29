@@ -9,7 +9,7 @@
       <span class="badge">{{ $itemsCount }}</span>
       <button class="ml-auto d-flex d-md-none position-relative" style="border: none; background: transparent; color: #2D3134;" onclick="toggleFilters()">
         <span class="bx bx-filter-alt" style="font-size: 1.4em;"></span>
-        <span class="badge rounded-pill badge-notification bg-dark text-white">4</span>
+        <span class="badge rounded-pill badge-notification bg-dark text-white">{{ $counter }}</span>
       </button>
     </div>
 
@@ -18,7 +18,7 @@
       <div class="row m-0 w-100 align-items-center">
         <div class="col-12 col-md-auto dropdown">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownCategoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>Категории</span>
+            <span class="{{ count($filter['category']) > 0 ? 'font-weight-bolder' : null }}">Категории</span>
           </a>
           <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownCategoryLink">
             @foreach(\App\Models\Category::all() as $category)
@@ -38,7 +38,7 @@
 
         <div class="col-12 col-md-auto dropdown d-none d-md-block hiddable-filter">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownBrandLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>Бренды</span>
+            <span class="{{ count($filter['brand']) > 0 ? 'font-weight-bolder' : null }}">Бренды</span>
           </a>
           <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownBrandLink">
             @foreach($brands = \App\Models\Brand::all() as $brand)
@@ -58,7 +58,7 @@
 
         <div class="col-12 col-md-auto dropdown">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownBrandLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>Размеры</span>
+            <span class="{{ count($filter['size']) > 0 ? 'font-weight-bolder' : null }}">Размеры</span>
           </a>
           <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownBrandLink">
             @foreach($attributes as $attr)
@@ -78,7 +78,7 @@
 
         <div class="col-12 col-md-auto dropdown d-none d-md-block hiddable-filter">
           <a href="#" class="text-dark dropdown-toggle border-hover text-decoration-none" role="button" id="dropdownBrandLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>Пол</span>
+            <span class="{{ count($filter['sex']) > 0 ? 'font-weight-bolder' : null }}">Пол</span>
           </a>
           <div class="dropdown-menu dropdown-shadow rounded-0 border-0 py-3 px-4 overflow-auto" aria-labelledby="dropdownBrandLink">
             @foreach(\App\Models\Product::SEX_MAP as $sex)
