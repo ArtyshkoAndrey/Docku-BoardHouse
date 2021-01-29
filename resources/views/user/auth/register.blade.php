@@ -58,8 +58,8 @@
                 <form action="{{ route('register') }}" method="post">
                   @csrf
                   <div class="form-outline mb-4">
-                    <input type="text" id="first_name" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required/>
-                    <label class="form-label" for="first_name">Имя</label>
+                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required/>
+                    <label class="form-label" for="name">Имя</label>
                   </div>
                   @error('first_name')
                   <span class="invalid-feedback" role="alert">
