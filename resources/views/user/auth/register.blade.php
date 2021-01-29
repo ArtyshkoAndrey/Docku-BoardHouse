@@ -108,7 +108,7 @@
 @section('js')
   <script>
     let checker = {
-      first_name: false,
+      name: false,
       password: false,
       password_confirmation: false,
       email: false
