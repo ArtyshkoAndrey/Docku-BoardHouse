@@ -129,13 +129,13 @@
         <div class="col-12 col-md-auto dropdown ml-auto mt-2 mt-md-0">
           <a href="#" class="text-dark dropdown-toggle text-decoration-none" role="button" id="dropdownOrderLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             @if($filter['order'] === 'sort-old')
-              <i class="fas fa-sort-amount-down"></i> С начало старые
+              <i class="fas fa-sort-amount-down"></i> Сначала старые
             @elseif($filter['order'] === 'sort-new')
-              <i class="fas fa-sort-amount-up"></i> С начало новые
+              <i class="fas fa-sort-amount-up"></i> Сначала новые
             @elseif($filter['order'] === 'sort-expensive')
-              <i class="fas fa-sort-amount-up"></i> С начало дорогие
+              <i class="fas fa-sort-amount-up"></i> Сначала дорогие
             @elseif($filter['order'] === 'sort-cheap')
-              <i class="fas fa-sort-amount-down"></i> С начало дешёвые
+              <i class="fas fa-sort-amount-down"></i> Сначала дешёвые
             @endif
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-shadow rounded-0 border-0 py-3 px-4" aria-labelledby="dropdownOrderLink">
