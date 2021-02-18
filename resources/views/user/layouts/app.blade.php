@@ -7,6 +7,8 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <meta name="yandex-verification" content="0edde6934ab38bad" />
+
   <title>@yield('title', 'Docku')</title>
 
   <!-- Fonts -->
