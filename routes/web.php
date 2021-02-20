@@ -57,7 +57,7 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
   ]);
 
   Route::resource('skus-category', App\Http\Controllers\Admin\SkusCategoryController::class)->only([
-    'store', 'destroy'
+    'store', 'destroy', 'update'
   ]);
   Route::resource('brand', App\Http\Controllers\Admin\BrandController::class)->except([
     'create', 'show', 'edit'
