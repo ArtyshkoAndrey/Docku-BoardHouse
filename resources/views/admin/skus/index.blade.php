@@ -47,7 +47,7 @@
                       </div>
 
                       <div class="col-md-10 col-lg-auto col-4 pl-10 mt-10 mt-lg-0 mt-md-10">
-                        <a href="{{ route('admin.skus.edit', $sk->id) }}" class="btn bg-transparent text-success shadow-none border-0 d-block"><i class="bx bx-pencil font-size-16"></i></a>
+                        <a href="#modal-skus-category-update-{{ $sk->id }}" class="btn bg-transparent text-success shadow-none border-0 d-block"><i class="bx bx-pencil font-size-16"></i></a>
                       </div>
                       <div class="col-md-10 col-lg-auto col-4 pl-10 mt-10 mt-lg-0 mt-md-10">
                         <form action="{{ route('admin.skus-category.destroy', $sk->id) }}" method="POST">
@@ -204,6 +204,37 @@
       </div>
     </div>
   </div>
+
+  @foreach($skus_categories as $sk)
+    <div class="modal ie-scroll-fix" id="modal-skus-category-update-{{ $sk->id }}" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark-light-dm bg-light-lm ">
+          <a href="#" class="close" role="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </a>
+          <div class="container">
+
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <h1 class="modal-title font-size-16 text-center">Редактирование категории размеров</h1>
+              </div>
+              <div class="col-md-8 col-12">
+                <form action="{{ route('admin.skus-category.update', $sk->id) }}" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <div class="form-group">
+                    <label for="name" class="required">Наименование</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Наименование" value="{{ $sk->name }}" required="required">
+                  </div>
+                  <input class="btn btn-primary btn-block" type="submit" value="Изменить">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
 @endsection
 
 @section('script')

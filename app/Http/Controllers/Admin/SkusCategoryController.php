@@ -75,12 +75,19 @@ class SkusCategoryController extends Controller
    * Update the specified resource in storage.
    *
    * @param Request $request
-   * @param  int  $id
-   * @return Response
+   * @param  int $id
+   * @return Application|RedirectResponse|Response|Redirector
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, int $id)
   {
-      //
+    $request->validate([
+      'name' => 'required|string'
+    ]);
+    $sk = SkusCategory::find($id);
+    $sk->name = $request->name;
+    $sk->save();
+    return redirect('admin/skus')->with('success', ['Категория размеров "'. $sk->name .'" успешно бновлена']);
+
   }
 
   /**
