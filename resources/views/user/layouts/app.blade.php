@@ -12,18 +12,18 @@
   <title>@yield('title', 'Docku')</title>
 
   <!-- Fonts -->
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />
-  <link rel="preload" href="{{ asset('css/boxicons.min.css') }}" as="style" />
-  <link rel="preload" href="{{ asset('fonts/boxicons.eot') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/boxicons.svg') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/boxicons.ttf') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/boxicons.woff') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/boxicons.woff2') }}" as="font" crossorigin="anonymous" />
+{{--  <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="style" />--}}
+{{--  <link rel="preload" href="{{ asset('css/boxicons.min.css') }}" as="style" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/boxicons.eot') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/boxicons.svg') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/boxicons.ttf') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/boxicons.woff') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/boxicons.woff2') }}" as="font" crossorigin="anonymous" />--}}
 
-  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Regular.ttf') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Medium.ttf') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Bold.ttf') }}" as="font" crossorigin="anonymous" />
-  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-SemiBold.ttf') }}" as="font" crossorigin="anonymous" />
+{{--  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Regular.ttf') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Medium.ttf') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-Bold.ttf') }}" as="font" crossorigin="anonymous" />--}}
+{{--  <link rel="preload" href="{{ asset('fonts/Montserrat/Montserrat-SemiBold.ttf') }}" as="font" crossorigin="anonymous" />--}}
 
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" />
@@ -34,10 +34,10 @@
 
   <!-- Styles -->
   @if (config('app.env') == 'local')
-    <link rel="preload" href="{{ asset('css/app.css') }}" as="style" />
+{{--    <link rel="preload" href="{{ asset('css/app.css') }}" as="style" />--}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   @else
-    <link rel="preload" href="{{ asset(mix('css/app.css'), true) }}" as="style" />
+{{--    <link rel="preload" href="{{ asset(mix('css/app.css'), true) }}" as="style" />--}}
     <link rel="stylesheet" href="{{ asset(mix('css/app.css'), true) }}">
   @endif
 </head>
