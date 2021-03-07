@@ -12,7 +12,7 @@
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <span class="">@{{ $store.state.currency.short_name ?? 'Загрузка' }}</span>
+              <span class="">@{{ $store.state.currency.short_name ? $store.state.currency.short_name : 'Загрузка' }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               @foreach(\App\Models\Currency::all() as $currency)
