@@ -10,9 +10,9 @@
       </div>
       <div class="col-md-6 col-lg-3">
         <span class="title">Помощь по заказам</span>
-        <a href="#!">Доставка и оплата</a>
-        <a href="#!">Политика конфидециальности</a>
-        <a href="#!">Свяжитесь с нами</a>
+        <a href="{{ route('payment') }}" target="_blank">Доставка и оплата</a>
+        <a href="{{ route('policy') }}" target="_blank">Политика конфидециальности</a>
+        <a href="{{ url('https://wa.link/n44yng') }}" target="_blank">Свяжитесь с нами</a>
       </div>
       <div class="col-md-6 col-lg-2">
         <span class="title">Категории</span>
