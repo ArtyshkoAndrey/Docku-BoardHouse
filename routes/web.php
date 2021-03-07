@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('index');
-
+Route::get('/policy', [\App\Http\Controllers\HomeController::class, 'policy'])->name('policy');
+Route::get('/payment', [\App\Http\Controllers\HomeController::class, 'payment'])->name('payment');
 
 Route::prefix('product')->name('product.')->group( function () {
   Route::get('/search', [ProductController::class, 'search'])->name('search');

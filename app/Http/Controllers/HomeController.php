@@ -30,4 +30,20 @@ class HomeController extends Controller
       ->get();
     return view('user.index', compact('categories', 'newProducts', 'hitProducts'));
   }
+
+  /**
+   * @return View
+   */
+  public function policy () :View
+  {
+    return view('user.page.policy');
+  }
+
+  /**
+   * @return View
+   */
+  public function payment () :View
+  {
+    return view('user.page.payment');
+  }
 }
