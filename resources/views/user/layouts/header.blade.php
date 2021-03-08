@@ -210,7 +210,7 @@
 
   <nav class="navbar navbar-expand category-menu">
     <div class="container-fluid container-md w-100">
-      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav align-items-center w-100">
           <li class="nav-item ml-auto">
             <a href="{{ route('index') }}" class="nav-link">Главная</a>
