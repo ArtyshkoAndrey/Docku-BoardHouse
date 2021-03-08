@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+## Добро пожаловать
 
-You can use the [editor on GitHub](https://github.com/ArtyshkoAndrey/Docku-BoardHouse/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Данный проект разработан с использованием технологий Laravel, Bootstrap-Grid, MDBootstrap, Vue.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Ниже описана карткая теория
 
-### Markdown
+### Страницы
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Все html страницы расположены в каталоке `resource/view/user/*`
 
-```markdown
-Syntax highlighted code block
+**ВАЖНО**
+Не тегать файлы административной панели, частный подпроект которые запрещает сотороние изменения без уведомления Создателя
+Все html страницы административной панели расположены в каталоке `resource/view/admin/*`
 
-# Header 1
-## Header 2
-### Header 3
+### URL
 
-- Bulleted
-- List
+Основные пользовательские маршруты, url-links, расположены в файле
+`route/web.php`
+1. Используется Middleware auth.user для страниц профиля и личный заказов,
 
-1. Numbered
-2. List
+### Логика кода
 
-**Bold** and _Italic_ and `Code` text
+Все Controllers располодения
+`app/Http/Controllers/*` - without `../Admin/*`
 
-[Link](url) and ![Image](src)
-```
+Все код расписание с использование PHPDoc, с краткими пояснениями.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Для всех
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ArtyshkoAndrey/Docku-BoardHouse/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Если данный проект будет модернизироваться сторонними разработчиками, создавать отдельную свою ветку каждому разработчику, копию из ветки local.
+После очередных изменений, необходимо создать Pull Request в ветку главного разработчика Fulliton (local).
+Разработчик Fulliton проверяет код, далее принимает его, или отклоняет на доработку с коментариями.
