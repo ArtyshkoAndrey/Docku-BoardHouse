@@ -41,6 +41,7 @@ class ProductController extends Controller
       $products = $products->where('title', 'like', '%' . $name . '%');
     }
     $products = $products->paginate(10);
+    $products->appends($filter);
     $filter = [
       'name' => $name,
       'type' => $type
