@@ -185,7 +185,7 @@ class ProductController extends Controller
     $ids = array_diff($idsPS, $ids);
 
     foreach ($ids as $id) {
-      ProductSkus::whereSkusId($id)->delete();
+      ProductSkus::whereSkusId($id)->whereProductId($product->id)->delete();
     }
     $data = $request->all();
     $data['meta'] = (object) [
