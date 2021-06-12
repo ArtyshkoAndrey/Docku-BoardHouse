@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Exceptions\CouponCodeUnavailableException;
 use App\Http\Controllers\Controller;
 use App\Models\CartItems;
@@ -9,6 +10,8 @@ use App\Models\Currency;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\ParserEmsService;
+use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Validator;
@@ -16,7 +19,7 @@ use Validator;
 class ApiController extends Controller
 {
 
-  public function currency (int $id): JsonResponse
+  public function currency(int $id): JsonResponse
   {
     $validate = Validator::make(
       [
@@ -38,23 +41,24 @@ class ApiController extends Controller
    * @param Request $request
    * @return JsonResponse
    */
-  public function set_currency (Request $request): JsonResponse
+  public function set_currency(Request $request): JsonResponse
   {
     $request->validate([
       'currency_id' => 'required|exists:currencies,id',
-      'user_id'     => 'present|int|exists:users,id|nullable'
+      'user_id' => 'present|int|exists:users,id|nullable'
     ]);
 
     $data = $request->all();
     $currency = Currency::find($data['currency_id']);
 
-    if ($data['user_id'])
+    if ($data['user_id']) {
       User::find($data['user_id'])->update(['currency_id' => $data['currency_id']]);
+    }
 
     return response()->json($currency, 200);
   }
 
-  public function products (Request $request): JsonResponse
+  public function products(Request $request): JsonResponse
   {
     $ids = $request->get('products_skuses_ids', []);
     $products = Product::with('photos', 'productSkuses.skus')->whereHas('productSkuses', function ($q) use ($ids) {
@@ -64,7 +68,7 @@ class ApiController extends Controller
     return response()->json($products);
   }
 
-  public function update_cart (Request $request)
+  public function update_cart(Request $request)
   {
     $data = $request->all();
 
@@ -74,13 +78,13 @@ class ApiController extends Controller
     }
   }
 
-  public function cart_items_auth (Request $request): JsonResponse
+  public function cart_items_auth(Request $request): JsonResponse
   {
     $cartItems = CartItems::whereUserId($request->get('user_id'))->get();
     return response()->json($cartItems);
   }
 
-  public function coupon (Request $request)
+  public function coupon(Request $request)
   {
 
     $data = $request->all();
@@ -139,7 +143,7 @@ class ApiController extends Controller
 
       if ($countCategoriesEnabled > 0) {
         if (!$record->categoriesEnabled()->whereIn('category_id', $product->categories)->exists()) {
-         continue;
+          continue;
         }
       }
       $sum += ($product->on_sale ? $product->price_sale : $product->price) * $item['item']['amount'];
@@ -147,11 +151,13 @@ class ApiController extends Controller
 
     if ($sum > 0) {
       if ($record->type === CouponCode::TYPE_FIXED) {
-        if ($sum - $record->value < 1)
+        if ($sum - $record->value < 1) {
           $sale = $sum - 1;
+        }
 
-        else
+        else {
           $sale = $record->value;
+        }
       } elseif ($record->type = CouponCode::TYPE_PERCENT) {
         $sale = $sum / 100 * $record->value;
       }
@@ -164,13 +170,20 @@ class ApiController extends Controller
     return response()->json(['sale' => $sale]);
   }
 
-  public function getCostEms (Request $request): JsonResponse
+  /**
+   * Parser cost in KazPost
+   *
+   * @param Request $request
+   * @return JsonResponse
+   * @throws GuzzleException
+   */
+  public function getCostEms(Request $request): JsonResponse
   {
     try {
       $emsService = new ParserEmsService($request->post_code, $request->country_code, $request->weight);
       $price = $emsService->getPrice();
       return response()->json($price);
-    } catch (\Exception $exception) {
+    } catch (Exception $exception) {
       return response()->json('Возможно в ваш город нет доставки', 500);
     }
   }
