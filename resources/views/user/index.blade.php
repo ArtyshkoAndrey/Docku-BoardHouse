@@ -20,7 +20,7 @@
     @include('user.layouts.category-preview', ['title' => 'Новое поступление', 'link' => route('product.all'), 'products' => $newProducts])
 
     {{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
-    @include('user.layouts.category-preview', ['title' => 'Хит продаж', 'link' => route('product.all'), 'products' => $hitProducts])
+    @include('user.layouts.category-preview', ['title' => 'Хиты продаж', 'link' => route('product.all'), 'products' => $hitProducts])
 
     @foreach($categories as $category)
       @if($category->products->count() > 0)
