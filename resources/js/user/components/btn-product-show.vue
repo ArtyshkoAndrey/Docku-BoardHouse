@@ -1,6 +1,6 @@
 <template>
   <button class="btn btn-dark btn-to-cart mt-2 mt-md-0" style="transition: .2s;"
-          :style="check ? 'background-color: #2D89DE!important; border-color: #2D89DE!important; color: white!important;' : null"
+          :style="check ? 'background-color: #27c300!important; border-color: #27c300!important; color: white!important;' : null"
           @click="addItem">
     <span>{{ label }}</span>
     <i class="bx bx-cart-alt"></i>

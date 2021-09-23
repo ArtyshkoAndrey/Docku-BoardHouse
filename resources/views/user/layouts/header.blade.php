@@ -80,7 +80,7 @@
                             <i class="bx bx-sm bxs-dashboard"></i>
                           </div>
                           <div class="col-auto mx-2">
-                            Администитивная панель
+                            Административная панель
                           </div>
                         </a>
                       </div>
@@ -210,7 +210,7 @@
 
   <nav class="navbar navbar-expand category-menu">
     <div class="container-fluid container-md w-100">
-      <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse w-100 justify-content-center" id="sub-menu">
         <ul class="navbar-nav align-items-center w-100">
           <li class="nav-item ml-auto">
             <a href="{{ route('index') }}" class="nav-link">Главная</a>

@@ -40,7 +40,7 @@
 {{--            <span>В корзину</span>--}}
 {{--          </button>--}}
 
-          <btn-product :id="{{ $product->skuses()->first()->pivot->id }}" :label="'В корзину'"></btn-product>
+          <btn-product :id="{{ $item->skuses()->first()->pivot->id }}" :label="'В корзину'"></btn-product>
         @else
           <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0" disabled>
             Товар распродан
