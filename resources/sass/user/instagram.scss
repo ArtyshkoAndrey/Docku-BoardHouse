@@ -4,7 +4,7 @@
  */
 
 section.instagram {
-  height: 600px;
+  height: auto;
   background-image: linear-gradient(0deg,
     #6480AA, rgba(255, 255, 255, 0)),
   url('../images/instagram-background.jpg');
@@ -18,6 +18,7 @@ section.instagram {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 100px 0 200px 0;
 
   &::after {
     content: '';
@@ -32,21 +33,21 @@ section.instagram {
     bottom: -1% !important;
   }
 
-  &::before {
-    content: "";
-    background-image: url('../images/instagram-phone.svg');
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: contain;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-
-    @include media-breakpoint-down(md) {
-      content: none;
-    }
-  }
+  //&::before {
+  //  content: "";
+  //  background-image: url('../images/instagram-phone.svg');
+  //  background-repeat: no-repeat;
+  //  background-position: right;
+  //  background-size: contain;
+  //  width: 100%;
+  //  height: 100%;
+  //  position: absolute;
+  //  bottom: 0;
+  //
+  //  @include media-breakpoint-down(md) {
+  //    content: none;
+  //  }
+  //}
 
   span {
     color: #ffffff;

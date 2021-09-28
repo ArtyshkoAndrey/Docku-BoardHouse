@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\InstagramPosts;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -28,7 +30,9 @@ class HomeController extends Controller
       ->orderByDesc('id')
       ->take(4)
       ->get();
-    return view('user.index', compact('categories', 'newProducts', 'hitProducts'));
+    $instagramService = new InstagramPosts();
+    $posts = $instagramService->posts;
+    return view('user.index', compact('categories', 'newProducts', 'hitProducts', 'posts'));
   }
 
   /**

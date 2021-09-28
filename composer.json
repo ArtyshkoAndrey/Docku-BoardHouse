@@ -25,7 +25,8 @@
     "facade/ignition": "^2.5.9",
     "nunomaduro/collision": "^5.3.0",
     "ext-dom": "*",
-    "ext-libxml": "*"
+    "ext-libxml": "*",
+    "ext-curl": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",

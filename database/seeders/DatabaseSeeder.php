@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use DB;
 use Eloquent;
 use Faker\Factory;
+use App\Models\Instagram;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,45 +25,45 @@ class DatabaseSeeder extends Seeder
 //    $this->call('UserTableSeeder');
 //    $this->command->info('User table seeded!');
 
-    $path = 'public/sql/countries.sql';
-    DB::unprepared(file_get_contents($path));
-    $this->command->info('Country table seeded!');
-
-    $path = 'public/sql/cities.sql';
-    DB::unprepared(file_get_contents($path));
-    $this->command->info('City table seeded!');
-
-    DB::table('users')->insert([
-      'name'        => 'Артышко Андрей Алексеевич',
-      'email'       => 'artyshko.andrey@gmail.com',
-      'password'    => Hash::make('123123'),
-      'address'     => 'ул.Горького 24, кв. 25',
-      'post_code'   => '660099',
-      'phone'       => '+7(902)9999999',
-      'country_id'  => 1,
-      'city_id'     => 1,
-      'avatar'      => null,
-      'is_admin'    => true,
-      'created_at'  => now(),
-      'updated_at'  => now(),
-    ]);
+//    $path = 'public/sql/countries.sql';
+//    DB::unprepared(file_get_contents($path));
+//    $this->command->info('Country table seeded!');
+//
+//    $path = 'public/sql/cities.sql';
+//    DB::unprepared(file_get_contents($path));
+//    $this->command->info('City table seeded!');
+//
+//    DB::table('users')->insert([
+//      'name'        => 'Артышко Андрей Алексеевич',
+//      'email'       => 'artyshko.andrey@gmail.com',
+//      'password'    => Hash::make('123123'),
+//      'address'     => 'ул.Горького 24, кв. 25',
+//      'post_code'   => '660099',
+//      'phone'       => '+7(902)9999999',
+//      'country_id'  => 1,
+//      'city_id'     => 1,
+//      'avatar'      => null,
+//      'is_admin'    => true,
+//      'created_at'  => now(),
+//      'updated_at'  => now(),
+//    ]);
 //    Юзер админов
 
-    DB::table('users')->insert([
-      'name'        => 'Роман',
-      'email'       => 'iminovarts@gmail.com',
-      'password'    => Hash::make('123123'),
-      'address'     => 'Казахстан',
-      'post_code'   => '660099',
-      'phone'       => '+7(902)9999999',
-      'country_id'  => 82,
-      'city_id'     => 10451,
-      'avatar'      => null,
-      'is_admin'    => true,
-      'created_at'  => now(),
-      'updated_at'  => now(),
-    ]);
-    $this->command->info('User table seeded!');
+//    DB::table('users')->insert([
+//      'name'        => 'Роман',
+//      'email'       => 'iminovarts@gmail.com',
+//      'password'    => Hash::make('123123'),
+//      'address'     => 'Казахстан',
+//      'post_code'   => '660099',
+//      'phone'       => '+7(902)9999999',
+//      'country_id'  => 82,
+//      'city_id'     => 10451,
+//      'avatar'      => null,
+//      'is_admin'    => true,
+//      'created_at'  => now(),
+//      'updated_at'  => now(),
+//    ]);
+//    $this->command->info('User table seeded!');
 
 //    DB::table('brands')->insert([
 //      'name'        => 'Nike',
@@ -219,18 +221,24 @@ class DatabaseSeeder extends Seeder
 //      'price'       => 10000
 //    ]);
 
-    DB::table('settings')->insert([
-      'name'        => 'cash',
-      'data'        => '1',
-      'created_at'  => now(),
-      'updated_at'  => now(),
-    ]);
+//    DB::table('settings')->insert([
+//      'name'        => 'cash',
+//      'data'        => '1',
+//      'created_at'  => now(),
+//      'updated_at'  => now(),
+//    ]);
+//
+//    DB::table('settings')->insert([
+//      'name'        => 'cloudPayment',
+//      'data'        => '1',
+//      'created_at'  => now(),
+//      'updated_at'  => now(),
+//    ]);
 
-    DB::table('settings')->insert([
-      'name'        => 'cloudPayment',
-      'data'        => '1',
-      'created_at'  => now(),
-      'updated_at'  => now(),
-    ]);
+    $inst = new Instagram();
+    $inst->key = config('instagram.key');
+    $inst->key_update = Carbon::now();
+    $inst->posts = [];
+    $inst->save();
   }
 }

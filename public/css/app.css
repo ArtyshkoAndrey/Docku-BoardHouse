@@ -46472,7 +46472,7 @@ footer .container .row > div .number {
  * Я буду рад если вы будите вносить улучшения, всегда жду ваших пул реквестов
  */
 section.instagram {
-  height: 600px;
+  height: auto;
   background-image: linear-gradient(0deg, #6480AA, rgba(255, 255, 255, 0)), url("../images/instagram-background.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -46483,6 +46483,7 @@ section.instagram {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 100px 0 200px 0;
 }
 section.instagram::after {
   content: "";
@@ -46495,22 +46496,6 @@ section.instagram::after {
   background-size: cover;
   background-image: url("../images/instagram-mountains.svg");
   bottom: -1% !important;
-}
-section.instagram::before {
-  content: "";
-  background-image: url("../images/instagram-phone.svg");
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: 0;
-}
-@media (max-width: 991.98px) {
-  section.instagram::before {
-    content: none;
-  }
 }
 section.instagram span {
   color: #ffffff;

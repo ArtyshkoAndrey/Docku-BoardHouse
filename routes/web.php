@@ -90,3 +90,8 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
 });
 
 Route::post('auth/check', [App\Http\Controllers\ApiController::class, 'check']);
+
+Route::get('/test-inst', function () {
+  $instagram = new \App\Services\InstagramPosts();
+  dd($instagram->updatePosts()->posts);
+});
