@@ -47,6 +47,8 @@
       })
     })
 
+    $('.instagram-posts').tooltip({ boundary: 'window' })
+
     function updatePostHeight (el) {
       let img = el.querySelector('img')
       console.log(img.width)

@@ -81,6 +81,7 @@ class InstagramPosts
     foreach ($media->data as $mediaObj) {
         $instaFeed[$mediaObj->id]['img'] = $mediaObj->thumbnail_url ?? $mediaObj->media_url;
         $instaFeed[$mediaObj->id]['link'] = $mediaObj->permalink;
+        $instaFeed[$mediaObj->id]['caption'] = $mediaObj->caption;
     }
     return $instaFeed;
   }

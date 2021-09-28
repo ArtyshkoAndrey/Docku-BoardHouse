@@ -9,7 +9,12 @@
         <div class="row">
           @foreach($posts as $post)
             <div class="col-4 mt-3">
-              <a href="{{ url($post['link']) }}" target="_blank" class="d-block instagram-posts">
+              <a href="{{ url($post['link']) }}"
+                 target="_blank"
+                 data-toggle="tooltip"
+                 data-placement="top"
+                 title="{{ mb_strimwidth($post['caption'], 0, 40, "...") }}"
+                 class="d-block instagram-posts">
                 <img src="{{ $post['img'] }}" class="w-100 object-fit-cover rounded-3" alt="{{ $post['link'] }}">
               </a>
             </div>
