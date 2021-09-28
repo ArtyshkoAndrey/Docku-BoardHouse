@@ -39,6 +39,7 @@ Route::prefix('order')->name('order.')->group( function () {
   Route::get('/create', [OrderController::class, 'create'])->name('create');
   Route::post('/store', [OrderController::class, 'store'])->name('store');
   Route::post('/update/status', [OrderController::class, 'updateStatus'])->name('update.status');
+  Route::get('/show/{id}', [OrderController::class, 'show'])->middleware('auth')->name('show');
 });
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -89,3 +90,8 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
 });
 
 Route::post('auth/check', [App\Http\Controllers\ApiController::class, 'check']);
+
+Route::get('/test-inst', function () {
+  $instagram = new \App\Services\InstagramPosts();
+  dd($instagram->updatePosts()->posts);
+});

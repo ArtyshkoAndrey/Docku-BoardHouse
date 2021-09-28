@@ -75,9 +75,6 @@
           <div class="col-12 sizes-wrapper mb-2">
             <div class="row">
               <div class="col-auto mr-auto font-weight-bold" style="color: #2D3134;">Выберите размер</div>
-              <div class="col-auto">
-                <a href="#!">Как выбрать нужный размер</a>
-              </div>
               <div class="col-12 mt-2 size-table">
                <div class="row">
                  @foreach($product->skuses as $skus)
@@ -94,12 +91,14 @@
             </div>
           </div>
           <div class="col-12 mb-5">
-            <button class="btn btn-dark btn-to-cart mt-2 mt-md-0"
-                    :disabled="selectSkus === null"
-                    @click="$store.commit('addItem', {id: selectSkus, amount: 1})">
-              <span>Добавить в корзину</span>
-              <i class="bx bx-cart-alt"></i>
-            </button>
+{{--            <button class="btn btn-dark btn-to-cart mt-2 mt-md-0"--}}
+{{--                    :disabled="selectSkus === null"--}}
+{{--                    @click="$store.commit('addItem', {id: selectSkus, amount: 1})">--}}
+{{--              <span>Добавить в корзину</span>--}}
+{{--              <i class="bx bx-cart-alt"></i>--}}
+{{--            </button>--}}
+
+            <btn-product-show :id="selectSkus" :disabled="selectSkus === null" :label="'Добавить в корзину'"></btn-product-show>
           </div>
           <div class="col-12 description-wrapper">
             <div class="row">

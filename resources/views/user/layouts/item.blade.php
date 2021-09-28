@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="row context mt-auto">
-      <div class="col-12 col-md-5 d-flex flex-column justify-content-center pl-2 pr-0">
+      <div class="col-12 col-md-4 d-flex flex-column justify-content-center pl-2 pr-0">
         @if($item->on_sale)
           <span class="old-price">{{ $cost($store.state.currency.ratio * <? echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>
           <span class="price">{{ $cost($store.state.currency.ratio * <? echo $item->price_sale ?>) }} @{{ $store.state.currency.symbol }}</span>
@@ -27,18 +27,20 @@
           <span class="price">{{ $cost($store.state.currency.ratio * <? echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>
         @endif
       </div>
-      <div class="col-12 col-md-7 d-flex justify-content-center align-items-center p-0 px-2">
+      <div class="col-12 col-md-8 d-flex justify-content-center align-items-center p-0 px-2">
         @if($item->skuses()->count() >=  2)
-          <a href="{{ route('product.show', $item->id) }}" class="btn btn-outline-dark w-100 btn-to-cart">
+          <a href="{{ route('product.show', $item->id) }}" class="btn btn-outline-dark w-100 btn-to-cart" style="letter-spacing: 0; padding: 0.5rem 0.7rem">
             <i class="bx bx-cart"></i>
-            <span>Выбрать</span>
+            <span>Выбрать размер</span>
           </a>
         @elseif($item->skuses()->count() === 1)
-          <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0"
-              @click="$store.commit('addItem', {id: {{ $item->skuses()->first()->pivot->id }}, amount: 1})">
-            <i class="bx bx-cart"></i>
-            <span>В корзину</span>
-          </button>
+{{--          <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0"--}}
+{{--              @click="$store.commit('addItem', {id: {{ $item->skuses()->first()->pivot->id }}, amount: 1})">--}}
+{{--            <i class="bx bx-cart"></i>--}}
+{{--            <span>В корзину</span>--}}
+{{--          </button>--}}
+
+          <btn-product :id="{{ $item->skuses()->first()->pivot->id }}" :label="'В корзину'"></btn-product>
         @else
           <button class="btn btn-outline-dark btn-to-cart w-100 mt-2 mt-md-0" disabled>
             Товар распродан

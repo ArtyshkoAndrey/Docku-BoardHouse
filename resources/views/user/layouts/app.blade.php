@@ -93,6 +93,39 @@
 
 
 <script>
+
+  $("#sub-menu .dropdown-toggle").on('hide.bs.dropdown', function(e) {
+    return false
+  });
+
+  document.querySelectorAll('#sub-menu .nav-item').forEach(function(every){
+
+    every.addEventListener('mouseover', function(e){
+
+      let el_link = this.querySelector('a[data-mdb-toggle]');
+
+      if(el_link != null){
+        let nextEl = el_link.nextElementSibling;
+        el_link.classList.add('show');
+        nextEl.classList.add('show');
+        this.querySelector('.dropdown-menu').classList.add('show');
+      }
+
+    });
+    every.addEventListener('mouseleave', function(e){
+      let el_link = this.querySelector('a[data-mdb-toggle]');
+
+      if(el_link != null){
+        let nextEl = el_link.nextElementSibling;
+        el_link.classList.remove('show');
+        nextEl.classList.remove('show');
+        this.querySelector('.dropdown-menu').classList.remove('show');
+      }
+
+
+    })
+  });
+
   function toggleSearch() {
     let search = document.getElementsByClassName('search')[0];
     let categoryMenu = document.getElementsByClassName('category-menu')[0];
@@ -189,6 +222,17 @@
     $('.category-menu').on('hidden.bs.dropdown', function () {
       setTimeout(() => { checkOpenCart() }, 100)
     })
+
+    // $('.dropdown-toggle').on('click', function(event){
+    //   // The event won't be propagated up to the document NODE and
+    //   // therefore delegated events won't be fired
+    //   console.log(1)
+    //   event.stopPropagation();
+    // });
+
+
+
+
   }
 </script>
 @yield('js')

@@ -7,30 +7,32 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\OrderStoreRequest;
-use App\Jobs\CloseOrder;
-use App\Models\Order;
-use App\Models\Setting;
-use App\Models\User;
-use App\Notifications\AdminPaidOrderNotification;
-use App\Notifications\ChangeOrderUser;
-use App\Notifications\CreateOrderNotification;
-use App\Notifications\RegisterPassword;
-use App\Services\CartService;
-use App\Services\OrderService;
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Setting;
+use App\Jobs\CloseOrder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Swift_TransportException;
+use App\Services\OrderService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Hash;
+use App\Notifications\ChangeOrderUser;
+use Illuminate\Contracts\View\Factory;
+use App\Notifications\RegisterPassword;
+use App\Http\Requests\OrderStoreRequest;
+use App\Notifications\CreateOrderNotification;
+use Illuminate\Contracts\Foundation\Application;
+use App\Notifications\AdminPaidOrderNotification;
 
 class OrderController extends Controller
 {
 
   protected OrderService $orderService;
 
-  public function __construct(OrderService $orderService)
+  public function __construct (OrderService $orderService)
   {
     $this->orderService = $orderService;
   }
@@ -38,6 +40,7 @@ class OrderController extends Controller
   public function index ()
   {
     $orders = auth()->user()->orders()->orderBy('id', 'desc')->get();
+
     return view('user.order.index', compact('orders'));
   }
 
@@ -45,6 +48,7 @@ class OrderController extends Controller
   {
     $cash = Setting::whereName('cash')->first();
     $cloudPayment = Setting::whereName('cloudPayment')->first();
+
     return view('user.order.create', compact('cash', 'cloudPayment'));
   }
 
@@ -52,7 +56,7 @@ class OrderController extends Controller
   {
     $data = $request->all();
     $info = $data['info'];
-    $user = User::firstOrNew(['email' =>  $info['email']]);
+    $user = User::firstOrNew(['email' => $info['email']]);
 
     $user->phone = $info['phone'];
     $user->post_code = $info['post_code'];
@@ -74,36 +78,19 @@ class OrderController extends Controller
     $user->city()->associate($info['city']['id']);
     $user->save();
 
-    $order = $this->orderService
-      ->store(
-        $user,
-        $data['items'],
-        $data['method_pay'],
-        $data['transfer'],
-        $data['price'],
-        $data['sale'],
-        $data['code']
-      );
+    $order = $this->orderService->store($user, $data['items'], $data['method_pay'], $data['transfer'], $data['price'], $data['sale'], $data['code']);
 
     $user->notify(new CreateOrderNotification($order));
     Auth::login($user);
-    $delay = config('app.order.test') ?
-      now()->addMinutes(config('app.order.delay.minutes')) :
-      now()->addHours(config('app.order.delay.hours'));
+    $delay = config('app.order.test') ? now()->addMinutes(config('app.order.delay.minutes')) : now()->addHours(config('app.order.delay.hours'));
     CloseOrder::dispatch($order, $delay, $this->orderService);
 
-    return response()->json([
-      'order' => $order,
-      'user' => $user,
-      'status' => 'success',
-    ]);
+    return response()->json(['order' => $order, 'user' => $user, 'status' => 'success',]);
   }
 
   public function updateStatus (Request $request)
   {
-    $request->validate([
-      'order' => 'required|exists:orders,id'
-    ]);
+    $request->validate(['order' => 'required|exists:orders,id']);
 
     $order = Order::find($request->order);
 
@@ -118,6 +105,22 @@ class OrderController extends Controller
       $admin->notify(new AdminPaidOrderNotification($order));
     }
 
+  }
+
+  /**
+   * @param int $id
+   *
+   * @return Application|Factory|View
+   */
+  public function show (int $id)
+  {
+    $order = Order::find($id);
+
+    if (!$order || $order->user->id !== auth()->id() || $order->ship_status !== Order::SHIP_STATUS_PAID) {
+      abort('404');
+    }
+
+    return view('user.order.show', compact('order'));
   }
 
 }

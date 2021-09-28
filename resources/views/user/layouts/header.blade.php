@@ -80,7 +80,7 @@
                             <i class="bx bx-sm bxs-dashboard"></i>
                           </div>
                           <div class="col-auto mx-2">
-                            Администитивная панель
+                            Административная панель
                           </div>
                         </a>
                       </div>
@@ -210,13 +210,13 @@
 
   <nav class="navbar navbar-expand category-menu">
     <div class="container-fluid container-md w-100">
-      <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse w-100 justify-content-center" id="sub-menu">
         <ul class="navbar-nav align-items-center w-100">
           <li class="nav-item ml-auto">
             <a href="{{ route('index') }}" class="nav-link">Главная</a>
           </li>
 
-          @foreach(\App\Models\Category::whereDoesntHave('parents')->get() as $index => $category)
+          @foreach(\App\Models\Category::whereDoesntHave('parents')->orderBy('name')->get() as $index => $category)
 
             <li class="nav-item dropdown">
               <a
@@ -237,10 +237,10 @@
 
                   <div class="row">
 
-                    @foreach($category->child as $childCategory)
+                    @foreach($category->child()->orderBy('name')->get() as $childCategory)
                       <div class="col-6 col-md-4 col-lg-3 flex-column" >
                         <a class="item font-weight-bold text-black" href="{{ route('product.all', ['category' => $childCategory->id]) }}">{{ $childCategory->name }}</a>
-                        @foreach($childCategory->child as $thirdCategory)
+                        @foreach($childCategory->child()->orderBy('name')->get() as $thirdCategory)
                           <a class="item" href="{{ route('product.all', ['category' => $thirdCategory->id]) }}">{{ $thirdCategory->name }}</a>
                         @endforeach
                       </div>
@@ -281,7 +281,7 @@
                   <?php
                     $countBrands = (int) (App\Models\Brand::count() / 4);
 
-                    \App\Models\Brand::chunk($countBrands, function ($brands) {
+                    \App\Models\Brand::orderBy('name')->chunk($countBrands, function ($brands) {
                       echo '<div class="col-6 col-md-4 col-lg-3 flex-column" >';
                       foreach ($brands as $brand) {
                         echo '<a class="item" href="' . route('product.all', ['brand' => $brand->id]) . '">' . $brand->name . '</a>';

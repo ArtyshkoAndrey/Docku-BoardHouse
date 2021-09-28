@@ -16,11 +16,10 @@
   </section>
 
   <section>
-{{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
+
     @include('user.layouts.category-preview', ['title' => 'Новое поступление', 'link' => route('product.all'), 'products' => $newProducts])
 
-    {{--    TODO: Доделать сортировку товаров в каталоге и вывести ссылку--}}
-    @include('user.layouts.category-preview', ['title' => 'Хит продаж', 'link' => route('product.all'), 'products' => $hitProducts])
+    @include('user.layouts.category-preview', ['title' => 'Хиты продаж', 'link' => route('product.all'), 'products' => $hitProducts])
 
     @foreach($categories as $category)
       @if($category->products->count() > 0)
@@ -33,3 +32,27 @@
   @include('user.layouts.instagram')
 @endsection
 
+@section('js')
+  <script>
+    let posts = $('.instagram-posts')
+    if (posts) {
+      posts.each(function () {
+        updatePostHeight(this)
+      })
+    }
+
+    $( window ).resize(function() {
+      posts.each(function () {
+        updatePostHeight(this)
+      })
+    })
+
+    $('.instagram-posts').tooltip({ boundary: 'window' })
+
+    function updatePostHeight (el) {
+      let img = el.querySelector('img')
+      console.log(img.width)
+      $(img).css({'height': $(img).width()+'px'});
+    }
+  </script>
+@endsection

@@ -3,17 +3,20 @@
 
 namespace App\Jobs;
 
-use App\Models\Currency;
-use Carbon\Carbon;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use Log;
+use Carbon\Carbon;
+use ErrorException;
+use App\Models\Currency;
+use Illuminate\Bus\Queueable;
+use App\Services\InstagramPosts;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateCurrencies implements ShouldQueue
 {
+
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
   protected string $url = 'https://nationalbank.kz/rss/rates_all.xml';
@@ -22,7 +25,7 @@ class UpdateCurrencies implements ShouldQueue
    * Create a new job instance.
    *
    */
-  public function __construct()
+  public function __construct ()
   {
 
   }
@@ -32,27 +35,22 @@ class UpdateCurrencies implements ShouldQueue
    *
    * @return void
    */
-  public function handle()
+  public function handle ()
   {
-    $arrContextOptions = array(
-      "ssl"=> array(
-        "verify_peer" => false,
-        "verify_peer_name" => false
-      )
-    );
+    $arrContextOptions = array("ssl" => array("verify_peer" => false, "verify_peer_name" => false));
 
     try {
       $assertion = file_get_contents($this->url, false, stream_context_create($arrContextOptions));
       $ar = simplexml_load_string($assertion);
       if (isset($ar->channel)) {
-        if(isset($ar->channel->item)) {
+        if (isset($ar->channel->item)) {
           foreach ($ar->channel->item as $item) {
             if (isset($item->title) && isset($item->description)) {
-              if ((string)$item->title === 'USD') {
+              if ((string) $item->title === 'USD') {
                 $currency = Currency::where('short_name', 'USD')->first();
                 $currency->ratio = 1 / $item->description;
                 $currency->save();
-              } else if ((string)$item->title === 'RUB') {
+              } else if ((string) $item->title === 'RUB') {
                 $currency = Currency::where('short_name', 'RUB')->first();
                 $currency->ratio = 1 / $item->description;
                 $currency->save();
@@ -65,9 +63,13 @@ class UpdateCurrencies implements ShouldQueue
       $currency = Currency::where('name', 'Тенге')->first();
       $currency->updated_at = Carbon::now();
       $currency->save();
-    } catch (\ErrorException $e) {
+    } catch (ErrorException $e) {
       Log::info($e);
     }
+
+    $instagramService = new InstagramPosts();
+
+    $instagramService->updateToken();
   }
 
 }

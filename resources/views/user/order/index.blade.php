@@ -32,7 +32,7 @@
                 </li>
                 <li class="nav-item bg-white m-0">
                   <a class="nav-link border-0" id="success-order-tab" data-toggle="tab" href="#success-order" role="tab" aria-controls="success-order"
-                     aria-selected="false">Выполненые</a>
+                     aria-selected="false">Выполненные</a>
                 </li>
               </ul>
               <div class="tab-content w-100" id="myTabContent">
@@ -53,7 +53,12 @@
                         @forelse($orders->where('ship_status', '!=', \App\Models\Order::SHIP_STATUS_RECEIVED) as $order)
                             <tr>
                               <th scope="row">{{ $order->no }}</th>
-                              <td>{{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}</td>
+                              <td>
+                                {{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}
+                                @if($order->ship_status === App\Models\Order::SHIP_STATUS_PAID)
+                                  <a href="{{ route('order.show', $order->id) }}" class="text-danger">Оплатить</a>
+                                @endif
+                              </td>
                               <td>{{ \App\Models\Order::$paymentMethodsMap[$order->payment_method] }}</td>
                               <td>{{ \App\Models\Order::$transferMethodsMap[$order->transfer] }}</td>
                               <td>{{ $order->ship_data->track ?? 'Нет данных' }}</td>
