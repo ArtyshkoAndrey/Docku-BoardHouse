@@ -32,3 +32,25 @@
   @include('user.layouts.instagram')
 @endsection
 
+@section('js')
+  <script>
+    let posts = $('.instagram-posts')
+    if (posts) {
+      posts.each(function () {
+        updatePostHeight(this)
+      })
+    }
+
+    $( window ).resize(function() {
+      posts.each(function () {
+        updatePostHeight(this)
+      })
+    })
+
+    function updatePostHeight (el) {
+      let img = el.querySelector('img')
+      console.log(img.width)
+      $(img).css({'height': $(img).width()+'px'});
+    }
+  </script>
+@endsection

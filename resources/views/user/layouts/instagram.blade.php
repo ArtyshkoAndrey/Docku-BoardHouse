@@ -8,9 +8,9 @@
       <div class="col-12 col-md-5">
         <div class="row">
           @foreach($posts as $post)
-            <div class="col-4 mt-3 d-flex align-items-stretch">
-              <a href="{{ url($post['link']) }}" target="_blank" class="d-block">
-                <img src="{{ $post['img'] }}" class="img-fluid rounded-3 h-100" alt="{{ $post['link'] }}">
+            <div class="col-4 mt-3">
+              <a href="{{ url($post['link']) }}" target="_blank" class="d-block instagram-posts">
+                <img src="{{ $post['img'] }}" class="w-100 object-fit-cover rounded-3" alt="{{ $post['link'] }}">
               </a>
             </div>
           @endforeach

@@ -47376,4 +47376,9 @@ body {
   transform: translateX(10px);
   opacity: 0;
 }
+
+.object-fit-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 /*# sourceMappingURL=app.css.map*/
