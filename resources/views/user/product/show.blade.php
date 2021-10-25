@@ -68,9 +68,9 @@
           <div class="col-12 title-wrapper mb-2">{{ $product->title }}</div>
           <div class="col-12 prices-wrapper sale mb-2">
             @if($product->on_sale)
-              <span class="old-price">{{ $cost($store.state.currency.ratio * <? echo $product->price ?>) }} @{{ $store.state.currency.symbol }}</span>
+              <span class="old-price">{{ $cost($store.state.currency.ratio * <?php echo $product->price ?>) }} @{{ $store.state.currency.symbol }}</span>
             @endif
-            <span class="price">{{ $cost($store.state.currency.ratio * <? echo $product->on_sale ? $product->price_sale : $product->price?>) }} @{{ $store.state.currency.symbol }}</span>
+            <span class="price">{{ $cost($store.state.currency.ratio * <?php echo $product->on_sale ? $product->price_sale : $product->price?>) }} @{{ $store.state.currency.symbol }}</span>
           </div>
           <div class="col-12 sizes-wrapper mb-2">
             <div class="row">
