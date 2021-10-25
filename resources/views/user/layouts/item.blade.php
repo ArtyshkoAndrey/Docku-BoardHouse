@@ -21,10 +21,10 @@
     <div class="row context mt-auto">
       <div class="col-12 col-md-4 d-flex flex-column justify-content-center pl-2 pr-0">
         @if($item->on_sale)
-          <span class="old-price">{{ $cost($store.state.currency.ratio * <? echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>
-          <span class="price">{{ $cost($store.state.currency.ratio * <? echo $item->price_sale ?>) }} @{{ $store.state.currency.symbol }}</span>
+          <span class="old-price">{{ $cost($store.state.currency.ratio * <?php echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>
+          <span class="price">{{ $cost($store.state.currency.ratio * <?php echo $item->price_sale ?>) }} @{{ $store.state.currency.symbol }}</span>
         @else
-          <span class="price">{{ $cost($store.state.currency.ratio * <? echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>
+          <span class="price">{{ $cost($store.state.currency.ratio * <?php echo $item->price ?>) }} @{{ $store.state.currency.symbol }}</span>
         @endif
       </div>
       <div class="col-12 col-md-8 d-flex justify-content-center align-items-center p-0 px-2">
