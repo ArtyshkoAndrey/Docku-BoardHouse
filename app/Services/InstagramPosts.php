@@ -24,6 +24,7 @@ class InstagramPosts
   {
     try {
       $this->instagram = Instagram::firstOrFail();
+      $this->posts = $this->instagram->posts;
     } catch (ModelNotFoundException $e) {
       $this->instagram = new Instagram();
       $this->instagram->key = config('instagram.key');
