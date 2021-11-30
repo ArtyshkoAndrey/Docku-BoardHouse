@@ -70,6 +70,7 @@ class UpdateCurrencies implements ShouldQueue
     $instagramService = new InstagramPosts();
 
     $instagramService->updateToken();
+    $instagramService->updatePosts();
   }
 
 }

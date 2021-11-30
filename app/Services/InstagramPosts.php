@@ -32,9 +32,8 @@ class InstagramPosts
       $this->instagram->posts_update = Carbon::create('2000', '1', '1');
       $this->instagram->save();
       $this->updateToken();
+      $this->updatePosts();
     }
-
-    $this->updatePosts();
 
   }
 
