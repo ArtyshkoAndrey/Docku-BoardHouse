@@ -4,7 +4,14 @@
     <div class="row">
       <div class="col-12">
         <a href="{{ route('product.show', $item->id) }}" class="img-wrapper d-block">
-          <div class="sale-badge">Sale</div>
+          @if($item->on_sale)
+            @php
+              $per_price = $item->price / 100;
+              $per = $item->price_sale / $per_price / 10;
+              $per = round($per, 0, PHP_ROUND_HALF_UP) * 10 ;
+            @endphp
+            <div class="sale-badge">{{ $per }}%</div>
+          @endif
           <picture>
             <source type="image/webp" srcset="{{ $item->thumbnail_webp }}">
             <source type="image/jpeg" srcset="{{ $item->thumbnail_jpg }}">
