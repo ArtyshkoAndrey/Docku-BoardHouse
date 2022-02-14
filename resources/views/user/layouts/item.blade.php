@@ -8,7 +8,7 @@
             @php
               $per_price = $item->price / 100;
               $per = $item->price_sale / $per_price / 10;
-              $per = round($per, 0, PHP_ROUND_HALF_UP) * 10 ;
+              $per = 100 - round($per, 0, PHP_ROUND_HALF_UP) * 10 ;
             @endphp
             <div class="sale-badge">{{ $per }}%</div>
           @endif
